@@ -359,6 +359,8 @@ var psg = {
 	balance: null,
     homeMenu: null,
 	historyMenu: null,
+	menuIcons: null,
+	menuNames: null,
 	configXml: null,
 	login: function ( username, password, callback ) {
 		var data;
@@ -552,71 +554,10 @@ var psg = {
 		}
     },
 	getMenuIcon: function ( menuName ) {
-		switch (menuName) {
-			case "whats_new": 
-				return '<i class="fa fa-newspaper-o fa-lg fa-fw ui-menu-icon"></i>';
-			case "55": // history
-				return '<i class="fa fa-history fa-lg fa-fw ui-menu-icon"></i>';
-			case "57": // contact
-				return '<i class="fa fa-envelope-o fa-lg fa-fw ui-menu-icon"></i>';
-			case "89": // claims landing
-				return '<i class="fa fa-clipboard fa-lg fa-fw ui-menu-icon"></i>';
-			case "68": // profile
-				return '<i class="fa fa-user fa-lg fa-fw ui-menu-icon"></i>';
-			case "71": // shopping
-				return '<i class="fa fa-gift fa-lg fa-fw ui-menu-icon"></i>';
-			case "84": // quick points
-				return '<i class="fa fa-certificate fa-lg fa-fw ui-menu-icon"></i>';
-			case "57":
-				return '<i class="fa fa-history fa-lg fa-fw ui-menu-icon"></i>';
-			case "points_awarded":
-				return '<i class="fa fa-trophy fa-lg fa-fw ui-menu-icon"></i>';
-			case "orders":
-				return '<i class="fa fa-truck fa-lg fa-fw ui-menu-icon"></i>';
-			case "claim_history":
-				return '<i class="fa fa-line-chart fa-lg fa-fw ui-menu-icon"></i>';
-			case "wish_list":
-				return '<i class="fa fa-star-o fa-lg fa-fw ui-menu-icon"></i>';
-			case "shopping_browse":
-				return '<i class="fa fa-th fa-lg fa-fw ui-menu-icon"></i>';
-			case "shopping_cart":
-				return '<i class="fa fa-shopping-cart fa-lg fa-fw ui-menu-icon"></i>';
-			case "shopping_search_filter":
-				return '<i class="fa fa-search-minus fa-lg fa-fw ui-menu-icon"></i>';
-			case "rec_items":
-				return '<i class="fa fa-smile-o fa-lg fa-fw ui-menu-icon"></i>';
-		}
+		return psg.menuIcons[menuName];
 	},
 	getMenuName: function ( sectionTypeId ) {
-		switch (sectionTypeId) {
-			case "claim_history":
-				return "Performance Tracking";
-			case "orders":
-				return "Orders";
-			case "points_awarded":
-				return "Awards and Adjustments";
-			case "rec_items":
-				return "Reward Yourself!";
-			case "shopping_browse":
-				return "Browse Departments";
-			case "shopping_cart":
-				return "Shopping Cart";
-			case "shopping_search_filter":
-				return "Filter &amp; Sort";
-			case "whats_new":
-				return "What's New";
-			case "wish_list":
-				return "Wish List";
-		}
-		
-		var search = "MENU";
-		if (psg.participantTypeId != null && psg.participantTypeId != 0){
-			search = 'MENU > PARTICIPANT_TYPES[PARTICIPANT_TYPE_ID="' + psg.participantTypeId + '"]';
-		}
-		search += ' > SECTION[TYPE_ID="' + sectionTypeId + '"]';
-		
-		var matching = $(psg.configXml).find(search);
-		return matching.length > 0 ? matching.attr("NAME") : "";
+		return psg.menuNames[sectionTypeId];
 	},
 	goDesktopSite: function ( isPublic ) {
 		sessionStorage.setItem("desktop",1); //effects all sites for this domain
