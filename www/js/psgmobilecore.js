@@ -619,10 +619,10 @@ var psg = {
 		return matching.length > 0 ? matching.attr("NAME") : "";
 	},
 	goDesktopSite: function ( isPublic ) {
-		psg.setSessionItem("user-wants-desktop", true);
+		sessionStorage.setItem("desktop",1); //effects all sites for this domain
 		var url = app.isPhoneGap ? app.getHost() + "/home.aspx" : "../home.aspx";
 		if ( isPublic ) {
-			url = app.isPhoneGap ? app.getHost() + "/" : "../login.aspx";
+			url = app.isPhoneGap ? app.getHost() + "/" : "../index.html";
 		}
 		window.location = url;
 	}
