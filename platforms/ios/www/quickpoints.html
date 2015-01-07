@@ -1,0 +1,66 @@
+<html>
+<head><title></title></head>
+<body>
+ <!-- Start Page ----------------------------------------- -->
+	<div data-role="page" id="page_quick_points">
+	  <div data-role="panel" data-position="right" data-position-fixed="true" data-display="push" data-display="overlay" data-theme="a" id="page_quick_points_popup" >
+			<ul class='popup_menu' data-role="listview" data-inset="false"  data-theme="a">
+			</ul>
+		</div>
+	  <div data-theme="a" data-role="header" data-position="fixed">
+		  <a data-rel="back" data-role="button" data-direction="reverse" data-transition="slide"
+			 data-icon="carat-l" data-iconpos="notext" class="ui-btn-left">
+			  Back
+		  </a>
+		  <h3 class="psg-class-program-name">
+		  </h3>
+		  <a href="#page_quick_points_popup" data-rel="panel" data-role="button"
+			 data-inline="true" data-icon="bullets" data-iconpos="notext" class="ui-btn-right">Menu</a>
+		</div>
+		
+		<div data-role="content"  id="page_quick_points_content">
+			<h3 class="psg-section-name" psg-section-type-id="84"></h3>
+				<div tabindex="-1" style="display: none;outline: none !important;" class="error" id="quick_points_error">
+				</div>
+				<p>Claim your points by entering the number found on your certificate.</p>
+				<div style="display:none" id="quick_points_scan_instructions"><p class="ui-text-small">If your certificate contains a QR code then click the QR code icon to scan it.
+				</p></div>
+				<label for="certificate_number">
+					Certificate Number
+				</label>
+				
+				<div id="qpointsContainer">
+				    
+				    <div class="panelLeft">
+					<div class="innerpnlLft">
+					  <div class="ui-input-text ui-corner-all ui-body-inherit ui-shadow-inset ui-input-with-icon-container">
+					    <input id="certificate_number" type="text" data-enhanced="true" >
+					  </div>
+					</div>
+				    </div>
+				    
+				    
+				    <div class="panelRight" id="quick_points_scan" style="display:none">
+					<div class="innerpnlRgt"><span class="fa fa-qrcode ui-menu-icon fa-lg fa-fw"></span></div>
+				    </div>
+				    
+				</div>
+				
+				<div class="focusScan" style="display: none; text-align: center;">
+				  <button  class="ui-btn ui-btn-a fa fa-qrcode ui-menu-icon fa-lg fa-fw" id="quick_points_scan2">Scan It</button>
+				</div>
+				
+				
+				
+				
+				<br>
+				<button  class="ui-btn ui-btn-a ui-shadow ui-corner-all" id="quick_points_submit">
+				Reward Me!</button>
+		</div>
+
+		<div data-theme="a" data-role="footer" data-position="fixed">
+		<!-- footer is set dynamically for all pages in psgmobilecore.js:PageBeforeCreateManager(e) -->
+		</div>
+</div>
+</body>
+</html>

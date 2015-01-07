@@ -1,0 +1,809 @@
+ /************************** Global SCSS Variables ***************************************/
+ 
+ //// This value controld the background color of the app and should stay white 
+ $AppBckClr:#FFF;
+ 
+//// This value controls the overall font color
+$FntClr:#000;
+
+///// This value controls that color of the following items: field labels, Display text, border-color, and secondary text
+$neutralClr:#8c8b8b;
+
+
+///// This value controls the color of the following items: error labels
+$errorTxtClr:red;
+
+
+ 
+ /************************** Global SCSS Variables ***************************************/
+ 
+ 
+ 
+
+/************************************************* Theme A SCSS Variables ***************************************/
+
+
+/************* Header, Statusbar, PointsNumbers, Icons  ************/
+
+/////  This value controls the color of the following item(s): Header/Banner and *Statusbar.
+$ThmeA_HdrClr:#000;
+
+/////  This value controls the text color of the following item(s): Header/Banner.
+$ThmeA_HdrTxtClr:#FFF;
+
+/////  This value controls the color of the following item(s): PointsNumber.
+$ThmeA_PntClr:#000;
+
+/////  This value controls the color of the following item(s): Carats ( actually color is adjusted below ).
+$ThmeA_CrtClr:#000;
+
+/////  This value controls the color of the following item(s): Menu Icons.
+$ThmeA_MnuIconClr:#000;
+
+
+/************* Dividers and Collapsible(s)  ************/
+
+/////  This value controls the color of the following item(s): Dividers.
+$ThmeA_DvdClr:#bfbfbf;
+
+/////  This value controls the color of the following item(s): Dividers Text.
+$ThmeA_DvdTxtClr:#FFF;
+
+/////  This value controls the color of the following item(s): Collapsible.
+$ThmeA_ClpClr:#bfbfbf;
+
+/////  This value controls the color of the following item(s): Collapsible Text.
+$ThmeA_ClpTxtClr:#FFF;
+
+
+
+/*************   Links and Buttons  ************/
+
+/////  This value controls the color of the following item(s): Links (normal and visited).
+$ThmeA_LnkClrNormal:#6a6a6a;
+
+/////  This value controls the color of the following item(s): Links (hover and active).
+$ThmeA_LnkClrHover:#bfbfbf;
+
+/////  This value controls the color of the following item(s): List (hover and active).
+$ThmeA_LstClrHover:#8c8b8b;
+
+/////  This value controls the color of the following item(s): Button (normal and visited).
+$ThmeA_btnClrNormal:#bfbfbf;
+
+/////  This value controls the color of the following item(s): Button Text (normal and visited).
+$ThmeA_btnTxtClrNormal:#000;
+
+/////  This value controls the color of the following item(s): Button (hover and active).
+$ThmeA_btnClrHover:#6a6a6a;
+
+/////  This value controls the color of the following item(s): Button Text (hover and active).
+$ThmeA_btnTxtClrHover:#FFF;
+
+
+
+/************************** Theme A SCSS Variables ***************************************/
+
+
+/************************************************* Theme B SCSS Variables ***************************************/
+
+
+/************* Header, Statusbar, PointsNumbers, Icons  ************/
+
+/////  This value controls the color of the following item(s): Header/Banner and *Statusbar.
+$ThmeB_HdrClr:#000;
+
+/////  This value controls the text color of the following item(s): Header/Banner.
+$ThmeB_HdrTxtClr:#FFF;
+
+/////  This value controls the color of the following item(s): PointsNumber.
+$ThmeB_PntClr:#000;
+
+/////  This value controls the color of the following item(s): Carats ( actually color is adjusted below ).
+$ThmeB_CrtClr:#000;
+
+/////  This value controls the color of the following item(s): Menu Icons.
+$ThmeB_MnuIconClr:#000;
+
+
+/************* Dividers and Collapsible(s)  ************/
+
+/////  This value controls the color of the following item(s): Dividers.
+$ThmeB_DvdClr:#bfbfbf;
+
+/////  This value controls the color of the following item(s): Dividers Text.
+$ThmeB_DvdTxtClr:#FFF;
+
+/////  This value controls the color of the following item(s): Collapsible.
+$ThmeB_ClpClr:#bfbfbf;
+
+/////  This value controls the color of the following item(s): Collapsible Text.
+$ThmeB_ClpTxtClr:#FFF;
+
+
+
+/*************   Links and Buttons  ************/
+
+/////  This value controls the color of the following item(s): Links (normal and visited).
+$ThmeB_LnkClrNormal:#6a6a6a;
+
+/////  This value controls the color of the following item(s): Links (hover and active).
+$ThmeB_LnkClrHover:#bfbfbf;
+
+/////  This value controls the color of the following item(s): List (hover and active).
+$ThmeB_LstClrHover:#8c8b8b;
+
+/////  This value controls the color of the following item(s): Button (normal and visited).
+$ThmeB_btnClrNormal:#bfbfbf;
+
+/////  This value controls the color of the following item(s): Button Text (normal and visited).
+$ThmeB_btnTxtClrNormal:#000;
+
+/////  This value controls the color of the following item(s): Button (hover and active).
+$ThmeB_btnClrHover:#6a6a6a;
+
+/////  This value controls the color of the following item(s): Button Text (hover and active).
+$ThmeB_btnTxtClrHover:#FFF;
+
+
+
+/************************** Theme B SCSS Variables ***************************************/
+
+
+
+/************************************************* Theme C SCSS Variables ***************************************/
+
+
+/************* Header, Statusbar, PointsNumbers, Icons  ************/
+
+/////  This value controls the color of the following item(s): Header/Banner and *Statusbar.
+$ThmeC_HdrClr:#000;
+
+/////  This value controls the text color of the following item(s): Header/Banner.
+$ThmeC_HdrTxtClr:#FFF;
+
+/////  This value controls the color of the following item(s): PointsNumber.
+$ThmeC_PntClr:#000;
+
+/////  This value controls the color of the following item(s): Carats ( actually color is adjusted below ).
+$ThmeC_CrtClr:#000;
+
+/////  This value controls the color of the following item(s): Menu Icons.
+$ThmeC_MnuIconClr:#000;
+
+
+/************* Dividers and Collapsible(s)  ************/
+
+/////  This value controls the color of the following item(s): Dividers.
+$ThmeC_DvdClr:#bfbfbf;
+
+/////  This value controls the color of the following item(s): Dividers Text.
+$ThmeC_DvdTxtClr:#FFF;
+
+/////  This value controls the color of the following item(s): Collapsible.
+$ThmeC_ClpClr:#bfbfbf;
+
+/////  This value controls the color of the following item(s): Collapsible Text.
+$ThmeC_ClpTxtClr:#FFF;
+
+
+
+/*************   Links and Buttons  ************/
+
+/////  This value controls the color of the following item(s): Links (normal and visited).
+$ThmeC_LnkClrNormal:#6a6a6a;
+
+/////  This value controls the color of the following item(s): Links (hover and active).
+$ThmeC_LnkClrHover:#bfbfbf;
+
+/////  This value controls the color of the following item(s): List (hover and active).
+$ThmeC_LstClrHover:#8c8b8b;
+
+/////  This value controls the color of the following item(s): Button (normal and visited).
+$ThmeC_btnClrNormal:#bfbfbf;
+
+/////  This value controls the color of the following item(s): Button Text (normal and visited).
+$ThmeC_btnTxtClrNormal:#000;
+
+/////  This value controls the color of the following item(s): Button (hover and active).
+$ThmeC_btnClrHover:#6a6a6a;
+
+/////  This value controls the color of the following item(s): Button Text (hover and active).
+$ThmeC_btnTxtClrHover:#FFF;
+
+
+
+/************************** Theme C SCSS Variables ***************************************/
+
+
+
+
+
+
+/* Company Logo or large panel area */
+
+
+h3.psg-class-program-name.ui-title{
+	padding: .6em 0 .6em !important;
+}
+
+#homeLogo{
+	margin-bottom: 15px;
+	height: 50px;
+	background-image: url(../img/Employing_Excellence_Banner.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+/* Panel buttons area */
+
+#panelContainer{
+	overflow: hidden;
+	width: 100%;
+	margin-bottom: 25px;
+	.panelLeft{
+		width:49.95%;
+		clear:left;
+		margin:0;
+		padding:0;
+		float:left;
+		min-height: 1px;
+		text-align: center;
+		
+		.innerpnlLft{
+			position: relative;
+			padding: .4em 1em;
+			overflow: hidden;
+			display: block;
+			clear: both;
+		}
+	}
+	
+	.panelRight{
+		width:49.95%;
+		margin:0;
+		padding:0;
+		float:left;
+		min-height: 1px;
+		text-align: center;
+		
+		.innerpnlRgt{
+			position: relative;
+			padding: .4em 1em;
+			overflow: hidden;
+			display: block;
+			clear: both;
+		}
+	}
+}
+
+
+
+
+
+/* Ensures images are not cut-off */
+img { max-width: 100%; }
+
+.ui-absolute {
+	position: absolute;
+}
+.ui-text-right {
+	text-align: right;
+	color:$ThmeA_PntClr;
+	font-weight: bold !important;
+}
+.ui-float-right {
+	position: relative;
+	float: right;
+	color:$ThmeA_PntClr;
+	font-weight: bold !important;
+}
+.ui-float-left {
+	position: relative;
+	float: left;
+}
+.ui-hide {
+	display: none;
+}
+.ui-no-ellipse {
+	white-space: normal !important;
+}
+.ui-text-small {
+	font-size: small;
+	font-weight: normal;
+	margin-bottom: .55em;
+}
+.ui-custom-count-pos {
+    font-size: 11px;
+    font-weight: bold;
+    padding: 0.2em 0.5em;
+    float: right;
+}
+.ui-center {
+	text-align: center;
+}
+.ui-middle {
+	vertical-align: middle;
+}
+.ui-bottom {
+	position: relative;
+	vertical-align: bottom;
+	bottom: 0;
+}
+.ui-margin-top-1x {
+	margin-top: 1em !important;
+}
+.ui-margin-top-2x {
+	margin-top: 2em !important;
+}
+.ui-full-width {
+	width: 100%;
+}
+.ui-table-columntoggle-btn {
+    display: none !important;
+}
+.ui-tracking-number {
+	padding-left: 1em;
+}
+.ui-product-thumbnail {
+	margin: 1px;
+	padding: 0px;
+	max-width: 70px;
+	min-width: 70px;
+}
+.ui-product-image-popup {
+	padding: 3px;
+}
+.ui-disclosure {
+	font-size: x-small;
+}
+.ui-paragraph-padding {
+	padding-top: .5em;
+}
+.ui-text-important {
+	font-style: italic;
+	/*font-weight: bold;*/
+}
+.ui-overlay-container {
+    position: relative;
+}
+.ui-underlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: table-cell;
+    z-index: 0;
+}
+.ui-form-label {
+	text-align: right;
+	color: #787878;
+	font-size: .8em;
+	font-weight: bold;
+	font-variant: small-caps;
+}
+.ui-form-field {
+	/*padding-left: 1em;*/
+}
+.ui-alt-title-color {
+	color: $ThmeA_LnkClrNormal;
+}
+
+.ui-input-with-icon-container {
+	position: relative;
+}
+.ui-input-icon {
+	display: block;
+	position: absolute;
+	/*top: 10px;*/
+	left: 3px;
+	z-index: 10;
+	color: #dddddd !important;
+}
+.ui-input-with-icon {
+	margin-left: 30px !important;
+}
+.ui-pad-before-list {
+	margin-bottom: 40px;
+}
+.ui-indent-1x {
+	padding-left: 1em;
+}
+.ui-indent-2x {
+	padding-left: 2em;
+}
+.ui-indent-3x {
+	padding-left: 3em;
+}
+.ui-input-with-button-container {
+	position: relative;
+}
+.ui-input-with-button {
+}
+.ui-input-button {
+	position: absolute;
+	top: 10px;
+	right: 3px;
+	z-index: 10;
+}
+.ui-line-above {
+	border-top-color: #828282;
+	border-top-color: rgba(0,0,0,.15);
+	border-top-width: 1px;
+	border-top-style: solid;
+}
+
+#login_enrollment_link.linkBtn{
+	width:70% !important;
+}
+
+.linkBtn.remote-content{
+	width:100% !important;
+}
+
+#psg-promotion-claim-view-cGroup div.ui-controlgroup-controls div.ui-select.ui-btn-inline.ui-mini{	
+		width:100% !important;	
+}
+
+
+#psg-copyright-notice {
+	padding-top: 2em;
+	text-align: center;
+	font-size: small;
+	font-weight: normal;
+}
+#psg-login-forgot-password-link {
+	font-size: small;
+	margin-left: 1em;
+	/*padding-top: 4px;*/
+	float: right;
+}
+#psg-claim-detail-content h4{
+	margin: 10px 0 25px 0;
+	font-size: .95em;
+	font-weight: normal;	
+	
+}
+#psg-order-detail-order-number{
+	font-size: .95em;
+	margin: 0;	
+}
+
+#psg-claims-confirmation-success-icon {
+	color: #336600 !important;
+	float: left;
+}
+#psg-claims-confirmation-audit-icon {
+}
+
+
+#qpointsContainer{
+	overflow: hidden;
+	width: 100%;
+	margin-bottom: 5px;
+	.panelLeft{
+		width:75%;
+		clear:left;
+		margin:0;
+		padding:0;
+		float:left;
+		min-height: 1px;
+		text-align: center;
+		
+		.innerpnlLft{
+			position: relative;
+			padding: .4em 0;
+			overflow: hidden;
+			display: block;
+			clear: both;
+		}
+	}
+	
+	.panelRight{
+		width:20%;
+		margin:0;
+		padding:0;
+		float:left;
+		min-height: 1px;
+		text-align: right;
+		
+		.innerpnlRgt{
+			position: relative;
+			padding: .4em 0 .06em;
+			overflow: hidden;
+			display: block;
+			clear: both;
+			border-bottom: solid 0.1em $neutralClr;
+		}
+	}
+}
+
+
+
+
+/// styling for secondary scan button
+.focusScan #quick_points_scan2.fa-qrcode:before {
+	position: absolute;
+	left: 1em;
+}
+
+.focusScan #icon_search_scan2.fa-barcode:before {
+	position: absolute;
+	left: 1em;
+}
+
+.focusScan #icon_invitation_scan2.fa-barcode:before {
+	position: absolute;
+	left: 1em;
+}
+
+
+#psg_detail_item_points{
+	text-align: right;
+	padding-right: 10%;
+	margin-bottom: .3em;
+}
+
+#detailOnsaleTble{
+	text-align: right;
+	width: 100%;
+	padding-right: 10%;
+	tr td:nth-child(2){
+		width:45%;
+	}
+}
+
+#psg_detail_item_regular_price{
+	text-align: right;
+	padding-right: 10%;
+}
+
+/// Make shopping filter dialog behave like a page
+
+#page_shopping_search_filter.ui-page-header-fixed{
+	padding: 0 !important;
+	div.ui-dialog-contain{
+		width: 100% !important;
+		max-width: 100% !important;
+		margin: 0px auto 0px auto;
+		padding: 0;
+		position: relative;
+		top: 0;
+		-webkit-border-radius: 0 !important; 
+		border-radius: 0 !important; 	
+	}
+}
+
+/// Make edit shipping dialog behave like a page
+
+#page_edit_checkout_address.ui-page-header-fixed{
+	padding: 0 !important;
+	div.ui-dialog-contain{
+		width: 100% !important;
+		max-width: 100% !important;
+		margin: 0px auto 0px auto;
+		padding: 0;
+		position: relative;
+		top: 0;
+		-webkit-border-radius: 0 !important; 
+		border-radius: 0 !important; 	
+	}
+}
+
+/// Make remote content dialog behave like a page
+
+#page_remote_content.ui-page-header-fixed{
+	padding: 0 !important;
+	div.ui-dialog-contain{
+		width: 100% !important;
+		max-width: 100% !important;
+		margin: 0px auto 0px auto;
+		padding: 0;
+		position: relative;
+		top: 0;
+		-webkit-border-radius: 0 !important; 
+		border-radius: 0 !important; 	
+	}
+}
+
+
+/// Make Logout dialog behave like a page
+
+#page_timeout.ui-page-header-fixed{
+	padding: 0 !important;
+	div.ui-dialog-contain{
+		width: 100% !important;
+		max-width: 100% !important;
+		margin: 0px auto 0px auto;
+		padding: 0;
+		position: relative;
+		top: 0;
+		-webkit-border-radius: 0 !important; 
+		border-radius: 0 !important; 	
+	}
+}
+
+
+.psg-claims-confirmation-new-claim {
+	text-align: center;
+}
+.psg-point-account-balance {
+	text-align: center;
+	font-size: small;
+	font-weight: normal;
+}
+.ispu_available {
+	background-image:url('images/instorepickup.png'); 
+	background-repeat:no-repeat; 
+	padding-left:20px; 
+	padding-bottom:4px;
+}
+.is_on_sale {
+	background-image:url('images/onsaleicon.png'); 
+	background-repeat:no-repeat; 
+	padding-left:36px; 
+	display:inline-block; 
+	height:32px; 
+	margin-top:4px; 
+	margin-bottom:4px; 
+	padding-top:.8em;
+}
+.itemavailability {
+	color:#333;
+	border:1px solid #333;
+	background-color:white;
+	padding:4px 8px 4px 8px;
+	text-align:center;
+	margin-bottom:10px;	
+}
+.psg-item-list-image {
+}
+.psg-item-list-image-container {
+	background-color: white;
+	margin: 2px 2px 2px 2px;
+	padding: 5px 5px 5px 5px;
+	text-align: center;
+}
+.psg_item_detail_text {
+	margin-top:1em;
+	max-width: 70px;
+}
+
+#psg_detail_item_title{
+	margin: 0 -1em 0 -1em;
+	font-family: inherit;
+	font-size: .95em;
+	border-bottom: solid $neutralClr .05em;
+	padding: 0 1em 1em 1em;
+	
+}
+#psg-listview-checkout_confirm{
+	li.headerDivider.ui-li-divider.ui-bar-a.ui-first-child{
+		padding-left: 3em !important; 
+		margin-bottom: 2em !important;
+	}
+}
+.psg-item-detail-image {
+	padding: 10px 0px 10px 0px;
+	margin: 4px 0px 4px 0px;
+}
+.psg-item-detail-image-container {
+	background-color: white;
+}
+.ispu_containerondetail {
+	text-align:left; 
+	margin-left:1em;
+}
+.ispu_headerondetail {
+	background-image:url('images/instorepickup.png'); 
+	background-repeat:no-repeat; 
+	padding-left:20px; 
+	margin-top:10px; 
+	padding-bottom:4px; 
+	font-weight:bold;
+}
+.ispu_storename {
+}
+.ispu_availability {
+	font-size: small;
+}
+.ispu_cell {
+	padding-bottom:4px;
+}
+
+
+/* Grid formatting */
+.ui-sixfive-block-a {
+	width: 65%;
+	float:left;
+	padding-top:1px;
+	padding-bottom:1px;
+}
+.ui-threefive-block-b {
+	width: 35%;
+	float: left;
+}
+.ui-threefive-block-a {
+	width: 35%;
+	float:left;
+	padding-top:1px;
+	padding-bottom:1px;
+}
+.ui-sixfive-block-b {
+	width: 65%;
+	float: left;
+}
+.psg_point_balance {
+    text-align: center;
+    font-weight: normal;
+    padding-top: .4em;
+    padding-bottom: .4em;
+    font-weight:bold;
+    font-size:1.2em;
+}
+.controlgroup-textinput{
+    padding-top:.22em;
+    padding-bottom:.22em;
+}
+
+.error 
+{
+    color:$errorTxtClr;
+}
+.nomobile{
+	display:none;
+}
+
+/* Special formatting for claim history */
+.ui-claim-status {
+	color: #787878;
+	font-weight: bold;
+	/*font-variant: small-caps;*/
+	position: absolute;
+	bottom: 4px;
+	right: 0;
+}
+.psg-desktop-link {
+	font-weight: normal !important;
+}
+.validate-error{
+	color:$errorTxtClr;
+    display:block;
+}
+
+.app-connection {
+	position: absolute;
+	right: 45px;
+	top: 12px;
+}
+a.app-connection:link,
+a.app-connection:hover,
+a.app-connection:visited,
+a.app-connection:active {
+	color: white !important;
+}
+.app-online {
+	visibility: hidden;
+}
+.app-offline {
+	visibility: visible;
+}
+
+
+
+/*********************************    ipad/tablet media queries   *******************************************/
+
+@media screen and (min-width: 768px) { 
+
+    
+    #qpointsContainer .panelRight .innerpnlRgt{
+	border-bottom: solid 0.1em $neutralClr;
+    }
+    
+
+
+}
+
+

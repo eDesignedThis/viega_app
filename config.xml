@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.incentivesolutions.rewardtrax" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Rewardtrax</name>
+    <description>
+        Mobile Incentives and Loyalty Application
+    </description>
+    <author email="support@incentivesolutions.com" href="http://www.incentivesolutions.com">
+        Incentive Solutions, Inc.
+    </author>
+    <icon src="icon.png" />
+    <preference name="permissions" value="none" />
+    <preference name="phonegap-version" value="3.6.3" />
+    <preference name="orientation" value="default" />
+    <preference name="target-device" value="universal" />
+    <preference name="fullscreen" value="true" />
+    <preference name="webviewbounce" value="true" />
+    <preference name="prerendered-icon" value="true" />
+    <preference name="stay-in-webview" value="false" />
+    <preference name="ios-statusbarstyle" value="black-opaque" />
+    <preference name="detect-data-types" value="true" />
+    <preference name="exit-on-suspend" value="false" />
+    <preference name="show-splash-screen-spinner" value="true" />
+    <preference name="auto-hide-splash-screen" value="true" />
+    <preference name="disable-cursor" value="false" />
+    <preference name="android-minSdkVersion" value="7" />
+    <preference name="android-installLocation" value="auto" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="10000" />
+    
+    <gap:plugin name="org.apache.cordova.camera" />
+    <gap:plugin name="org.apache.cordova.device" />
+    <gap:plugin name="org.apache.cordova.dialogs" />
+    <gap:plugin name="org.apache.cordova.geolocation" />
+    <gap:plugin name="org.apache.cordova.inappbrowser" />
+    <gap:plugin name="org.apache.cordova.network-information" />
+    <gap:plugin name="org.apache.cordova.splashscreen" />
+    <gap:plugin name="org.apache.cordova.vibration" />
+    <gap:plugin name="com.phonegap.plugins.barcodescanner" version="2.0.0" />
+    <gap:plugin name="com.pushwoosh.plugins.pushwoosh" version="3.0.2" />
+    <gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
+    
+    <platform name="ios">
+        <!-- running cordova-icon will resize the icon.png file in the root folder for every platform that is within said project. icon.png must be 1024x1024 -->
+        <!-- images are determined by width and height. The following are supported -->
+        <splash src="www/res/screen/ios/iphone_portrait.png" width="320" height="480"/>
+        <splash src="www/res/screen/ios/iphone_retina_portrait.png" width="640" height="960"/>
+        <splash src="www/res/screen/ios/ipad_portrait.png" width="768" height="1024"/>
+        <splash src="www/res/screen/ios/ipad_retina_portrait.png" width="1536" height="2048"/>
+        <splash src="www/res/screen/ios/ipad_landscape.png" width="1024" height="768"/>
+        <splash src="www/res/screen/ios/ipad_retina_landscape.png" width="2048" height="1536"/>
+        <splash src="www/res/screen/ios/iphone_586h_portrait.png" width="640" height="1136"/>
+    </platform>
+	
+	
+    <platform name="android">
+        <splash src="www/res/screen/android/screen-hdpi-landscape.png" density="land-hdpi"/>
+        <splash src="www/res/screen/android/screen-ldpi-landscape.png" density="land-ldpi"/>
+        <splash src="www/res/screen/android/screen-mdpi-landscape.png" density="land-mdpi"/>
+        <splash src="www/res/screen/android/screen-xhdpi-landscape.png" density="land-xhdpi"/>
+        
+        <splash src="www/res/screen/android/screen-hdpi-portrait.png" density="port-hdpi"/>
+        <splash src="www/res/screen/android/screen-ldpi-portrait.png" density="port-ldpi"/>
+        <splash src="www/res/screen/android/screen-mdpi-portrait.png" density="port-mdpi"/>
+        <splash src="www/res/screen/android/screen-xhdpi-portrait.png" density="port-xhdpi"/>
+    </platform>
+
+	
+    <platform name="wp8">
+        <!-- images are determined by width and height. The following are supported -->
+        <splash src="www/res/screen/windows-phone/screen-portrait.jpg" width="768" height="1280"/>
+    </platform>
+
+    <gap:splash gap:platform="android" gap:qualifier="port-ldpi" src="res/screen/android/screen-ldpi-portrait.png" />
+    <gap:splash gap:platform="android" gap:qualifier="port-mdpi" src="res/screen/android/screen-mdpi-portrait.png" />
+    <gap:splash gap:platform="android" gap:qualifier="port-hdpi" src="res/screen/android/screen-hdpi-portrait.png" />
+    <gap:splash gap:platform="android" gap:qualifier="port-xhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />
+    <gap:splash gap:platform="ios" height="480" src="res/screen/ios/iphone_portrait.png" width="320" />
+    <gap:splash gap:platform="ios" height="960" src="res/screen/ios/screen_iphone-portrait-2x.png" width="640" />
+    <gap:splash gap:platform="ios" height="1024" src="res/screen/ios/ipad_portrait.png" width="768" />
+    <gap:splash gap:platform="ios" height="768" src="res/screen/ios/ipad_landscape.png" width="1024" />
+    <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
+    
+    
+    <access origin="*" />
+</widget>

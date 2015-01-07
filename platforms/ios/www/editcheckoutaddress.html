@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div data-role="page" id="page_edit_checkout_address" data-dialog="true">
+	<div data-theme="a" data-role="header" data-position="fixed">
+		<h3>Edit Shipping Address</h3>
+	</div>
+	<div role="main" class="ui-content">
+		<p class="ui-text-important">
+			NOTICE: Changing the address here may affect sales tax and can change the points
+			required to redeem items in your cart. Your shipping address can also affect the
+			availability of some items.</p>
+		<form  id="frmEditCheckoutAddress">
+			<div class="ui-margin-top-1x">
+				<label for="edit_checkout_name">
+					Name
+				</label>
+				<input id="edit_checkout_name" name="edit_checkout_name" type="text" data-rule-required="true" data-msg-required="Name Required">
+			</div>
+			<div class="ui-margin-top-1x">
+				<label for="edit_checkout_address1">
+					Address 1
+				</label>
+				<input id="edit_checkout_address1" type="text" name="edit_checkout_address1" data-rule-required="true" data-msg-required="Street Address Required" required>
+			</div>
+			<div class="ui-margin-top-1x">
+				<label for="edit_checkout_address2">
+					Address 2
+				</label>
+				<input id="edit_checkout_address2" name="edit_checkout_address2" type="text"  >
+			</div>
+			<div class="ui-margin-top-1x">
+				<label for="edit_checkout_city">
+					City
+				</label>
+				<input id="edit_checkout_city" type="text" name="edit_checkout_city" data-rule-required="true" data-msg-required="City Required">
+			</div>
+			<div class="ui-margin-top-1x">
+				<label for="edit_checkout_state">
+					State Code
+				</label>
+				<input id="edit_checkout_state" type="text" name="edit_checkout_state" data-rule-required="true" data-msg-required="State Code Required">
+			</div>
+			<div class="ui-margin-top-1x">
+				<label for="edit_checkout_zip">
+					Zip Code
+				</label>
+				<input id="edit_checkout_zip" type="text" name="edit_checkout_zip" data-rule-required="true" data-msg-required="Zip Code Required">
+			</div>
+			<div class="ui-margin-top-1x">
+				<label for="edit_checkout_country">
+					Country
+				</label>
+				<input id="edit_checkout_country" type="text" disabled >
+			</div>
+			<div class="ui-margin-top-1x">
+				<label for="edit_checkout_phone">
+					Phone
+				</label>
+				<input id="edit_checkout_phone" type="text" name="edit_checkout_phone" data-rule-required="true" data-msg-required="Phone Number Required" >
+			</div>
+			<!-- <div class="ui-margin-top-1x">
+				<label for="edit_checkout_email">
+					Email
+				</label>
+				<input id="edit_checkout_email" type="text" name="edit_checkout_email" data-rule-required="true" data-msg-required="Email Required"   >
+			</div> -->
+			<br>
+			<button class="ui-btn ui-btn-a ui-shadow ui-corner-all" id="buttonEditAddressDone">
+				Done</button>
+		</form>
+
+	</div>
+
+</div>
+</body>
+</html>

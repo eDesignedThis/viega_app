@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div data-role="page" id="page_wish_list">
+		<div data-role="panel" data-position="right" data-position-fixed="true" data-display="push" data-display="overlay" data-theme="a" id="page_wish_list_popup" >
+			<ul class='popup_menu' data-role="listview" data-inset="false"  data-theme="a">
+			</ul>
+		</div>
+		<div data-theme="a" data-role="header" data-position="fixed">
+			<a data-rel="back" data-role="button" data-direction="reverse" data-transition="slide"
+			   data-icon="carat-l" data-iconpos="notext" class="ui-btn-left">
+				Back
+			</a>
+			<h3 class="psg-class-program-name">
+			</h3>
+			<a href="#page_wish_list_popup" data-rel="panel" data-role="button"
+			   data-inline="true" data-icon="bullets" data-iconpos="notext" class="ui-btn-right">Menu</a>
+		</div>
+
+		<div role="main" class="ui-content">
+			<h3 class="psg-section-name ui-pad-before-list" psg-section-type-id="wish_list"></h3>
+			<div style="margin-top:-15px;">
+				<ul id="psg-listview-wishlist" data-role="listview" >
+				</ul>
+			</div>
+			<div style="margin-top: 15px;">
+				<ul id="psg_listview_wishlist_static" data-role="listview" data-filter="false">
+					<li>
+						<p class="ui-no-ellipse ui-disclosure">
+							Items in your wish list expire and will be removed after 30 days. Points and availability
+							subject to change.
+						</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div data-theme="a" data-role="footer" data-position="fixed">
+		<!-- footer is set dynamically for all pages in psgmobilecore.js:PageBeforeCreateManager(e) -->
+		</div>
+	</div>
+</body>
+</html>

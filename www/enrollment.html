@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <!-- Home -->
+    <div data-role="page" id="page_enrollment">
+        <div data-theme="a" class="myclass" data-role="header">
+			<a data-rel="back" data-role="button" data-direction="reverse" data-transition="slide"
+			   data-icon="carat-l" data-iconpos="notext" class="ui-btn-left">
+				Back
+			</a>
+			<h3 class="psg-class-program-name">
+            </h3>
+			<!-- this is part of the initial setup so mno menu -->
+        </div>
+        <div id="page_enrollment_content" data-role="content">
+            <form data-ajax="false" id="frmEnrollment" >
+            <div style="display: none;color:red;" id="enrollment_error">
+            </div>
+		   
+            <div id="enrollment_form_div">
+
+			</div>
+			<div class="ui-margin-top-1x">
+				<input type="checkbox" id="enroll_agree" name="agree" data-rule-required="true" data-msg-required="You must agree to the terms." data-role="none"/>
+				I have read and accept the <a target="_blank" class="remote-content" data-transition="slide" remote-content-topic='Terms'>Terms of Use</a> agreement that governs this site which includes my consent to receive program-related emails.
+			</div>
+            <div class="ui-margin-top-1x">
+                <label for="password">
+                    Password
+                </label>
+                <input id="password" name="password" type="password" data-rule-required="true" data-msg-required="Password Required">
+            </div>
+			<div class="ui-margin-top-1x">
+                <label for="password_confirm">
+                    Password Confirm
+                </label>
+                <input id="password_confirm" name="confirm" type="password" data-rule-required="true" data-msg-required="Password Confirm Required">
+            </div>
+			<button class="ui-btn ui-btn-a ui-shadow ui-corner-all" type="submit">Save</button>
+            </form>
+        </div>
+		<div data-theme="a" data-role="footer" data-position="fixed" class="footer_fixed">
+			<div data-role="navbar" data-iconpos="top">
+				<ul>
+					<li><a class="linkBtn remote-content" data-transition="slide" remote-content-topic='Terms'   >Terms </a></li>
+					<li><a class="linkBtn remote-content" data-transition="slide" remote-content-topic='Privacy' >Privacy </a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

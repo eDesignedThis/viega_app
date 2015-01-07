@@ -1,0 +1,6 @@
+Application icon generator:
+makeappicon.com
+
+Launch images:
+http://ticons.fokkezb.nl/
+

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div data-role="page" id="page_checkout_confirm">
+		
+		
+		<div data-role="panel" data-position="right" data-position-fixed="true" data-display="push" data-display="overlay" data-theme="a" id="page_checkout_confirm_popup" >
+			<ul class='popup_menu' data-role="listview" data-inset="false"  data-theme="a">
+			</ul>
+		</div>
+		
+		<div data-theme="a" data-role="header" data-position="fixed">
+			<a data-rel="back" data-role="button" data-direction="reverse" data-transition="slide"
+			   data-icon="carat-l" data-iconpos="notext" class="ui-btn-left">
+				Back
+			</a>
+			<h3 class="psg-class-program-name">
+			</h3>
+			<a href="#page_checkout_confirm_popup" data-rel="panel" data-role="button"
+			   data-inline="true" data-icon="bullets" data-iconpos="notext" class="ui-btn-right">Menu</a>
+
+		</div>
+
+		<div role="main" class="ui-content">
+				<ul id="psg-listview-checkout_confirm" data-role="listview">
+				</ul>
+			
+			<div style="margin-top: 15px;">
+				<ul id="psg_listview_checkout_confirm_static" data-role="listview" data-filter="false">
+					<li>
+						<div class="ui-grid-a ui-text-small">
+							<div class="ui-block-a">
+								&nbsp;</div>
+							<div class="ui-block-b ui-text-right">
+								<strong>Points</strong></div>
+							<div class="ui-block-a">
+								Shipping &amp; Sales Tax:</div>
+							<div class="ui-block-b ui-text-right">
+								Included</div>
+							<div class="ui-block-a">
+								Total:</div>
+							<div id="psg_checkout_confirm_total_points" class="ui-block-b ui-text-right">
+							</div>
+							<div class="ui-block-a">
+								Remaining:</div>
+							<div id="psg_checkout_confirm_remaining_points" class="ui-block-b ui-text-right">
+							</div>
+						</div>
+					</li>
+					<li>
+						<p id="checkout_confirm_error" style="display: none;" class="error ui-no-ellipse"
+							data-role="none" data-enhance="false">
+						</p>
+						<p class="ui-no-ellipse">
+							<input type="checkbox" id="checkout_checkbox" data-role="none">
+							<strong>
+								Click the check box to confirm your order and agree to the 
+								<a class="remote-content" data-transition="slide" remote-content-topic='Return Policy'>return policy.</a>
+							</strong>
+						</p>
+						<br>
+						<button type="submit" id="psg_checkout_confirm_button" class="ui-btn ui-btn-a ui-shadow ui-corner-all">
+							Confirm Order</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div data-theme="a" data-role="footer" data-position="fixed">
+		<!-- footer is set dynamically for all pages in psgmobilecore.js:PageBeforeCreateManager(e) -->
+		</div>
+	</div>
+</body>
+</html>

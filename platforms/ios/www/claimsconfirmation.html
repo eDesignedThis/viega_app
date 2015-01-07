@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <!-- Home -->
+    <div data-role="page" id="page_claims_confirmation">
+		<div data-theme="a" data-role="header" data-position="fixed">
+			<h3 class="psg-class-program-name"></h3>
+		</div>
+        <div data-role="content">
+			<div id="psg-claims-confirmation-success-div"><i class="fa fa-check-circle-o fa-2x psg-claims-confirmation-success-icon"></i>&nbsp; Your claim has been successfully submitted.</div>
+			<div id="psg-claims-confirmation-audit-div"> 
+				<h3><i class="fa fa-exclamation-triangle fa-2x psg-claims-confirmation-audit-icon"></i>&nbsp; ATTENTION</h3>
+				<p>Your claim requires further verification.  A program administrator will review the claim and follow-up with you if any further information is required.</p>
+			</div>
+			<br />
+			<div id="psg-claims-confirmation-new-claim-div">
+				<ul data-role="listview" data-theme="a" data-inset="true">
+					<li data-theme="b"><a class="ui-no-ellipse" id="psg-claims-confirmation-new-invoice-button" class="psg-claims-confirmation-page-link" href="claimslanding.html" data-transition="slide" data-direction="reverse"><i class="fa fa-file-o fa-lg fa-fw"></i>&nbsp; Enter a new claim </a></li>
+					<li><a class="ui-no-ellipse" id="psg-claims-confirmation-same-invoice-button" class="psg-claims-confirmation-page-link" href="claims.html" data-transition="slide" data-direction="reverse"><i class="fa fa-files-o fa-lg fa-fw ui-menu-icon"></i>&nbsp; New claim, same invoice </a></li>
+					<li><a class="ui-no-ellipse" id="psg-claims-confirmation-home-button" class="psg-claims-confirmation-page-link" href="home.html" data-transition="slide" data-direction="reverse"><i class="fa fa-home fa-lg fa-fw ui-menu-icon"></i>&nbsp; Return to main menu </a></li>
+				</ul>
+			</div>
+        </div>
+    </div>
+	<script type="text/javascript">
+	</script>
+</body>
+</html>
