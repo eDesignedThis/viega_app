@@ -18,21 +18,6 @@ function page_contact_show(){
     $('#form_contact').validate({ submitHandler: submitContactForm});
     
     
-$(document).bind('pagecreate', 'page_contact',function() {
-    $(this).find('a[data-rel="back"]').click(function(event) {
-        event.stopPropagation();
-        if ($.mobile.urlHistory.stack.length == 1) {
-            $.mobile.changePage($(this).attr('href'));
-        } else {
-            $.mobile.back()
-        }
-        return false
-    })
-});
-    
-    
-    
-    
 }
 
  function submitContactForm() {
