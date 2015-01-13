@@ -12,6 +12,7 @@ function page_login_show() {
     if (!app.offerMobileApp) {
         $("#download_app_offer").hide();
     } else {
+	    $('login_app_logo').attr('src','img/logo.png');
 	    $('#login_app_name').text(app.appName);
 		$('#login_app_company').text(app.appCompany);
 		var storeName = "";
@@ -20,9 +21,9 @@ function page_login_show() {
 		var isIOS = /(ipad|iphone|ipod)/g.test(ua);
 		var isAndroid = /android/g.test(ua);
 		var isWP = /(iemobile|lumia)/g.test(ua);
+		var link = "";
 		if (isIOS || isAndroid || isWP) {
 			//alert(ua+"\n\nisIOS "+isIOS+" isAndroid "+isAndroid + " isChrome "+isChrome);
-			var link = "";
 			if (isIOS)
 			{
 				var isChrome = ua.indexOf("crios") > 0;
@@ -54,10 +55,8 @@ function page_login_show() {
 			}
 			$("#launch_app_store_link").attr("href", link);
 		}
-		else
-		{
-			storeName = 'In the App Store, Google Play, and Windows Store';
-			$('#launch_app_store_link').hide();
+		if (link === "") {
+		  $("#download_app_offer").hide();
 		}
 		$('#login_app_store').html(storeName);
 	}
