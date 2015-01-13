@@ -4,37 +4,42 @@
     <head>
 		<title></title>
         <meta charset="utf-8" />
-		<!-- if we are running in safari on iOS then use the apple standard application banner,
-		 https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html
- 		If we are not on that configuration we provide our own. -->
-		<meta name="apple-itunes-app" content="app-id=535886823, app-argument=myURL">
-
 		<meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-tap-highlight" content="no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-	
-	<!--Check to see if the user is in PRIVATE Browser mode-->
-	
-	<!--<script>
-            if (window.location.protocol != "https:") {
-		
-                window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
-		alert('You are in Privacy Mode\nPlease deactivate Privacy Mode and then reload the page.');
-		
-            }
-         </script>-->
-	
-	
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, width=device-width" />
+	<script>
+        if (window.location.protocol != "https:") {	
+            window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
+		}
+		if (!lsTest()) {
+			alert('You are in Private Browsing Mode.  This site will not function in Private mode. \nPlease deactivate Private Browsing Mode and then reload the page.');
+        }
+		function lsTest(){
+			var test = 'test';
+			try {
+				localStorage.setItem(test, test);
+				localStorage.removeItem(test);
+				return true;
+			} catch(e) {
+				return false;
+			}	
+		}
+    </script>
         <!-- CSS -->
-		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<!-- build:css css/allpremin.css -->
 		<link rel="stylesheet" href="css/jquery.mobile-1.4.3.min.css" />
 		<link rel="stylesheet" href="css/jquery.mobile.structure-1.4.3.min.css" />
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
+		<!--endbuild -->
+		<!-- build:css css/allsite.css -->
 		<link rel="stylesheet" href="css/jqx.base.css" type="text/css" />
 		<link rel="stylesheet" href="css/psgmobile.css" />
-		<link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+		<!--endbuild -->
 		<link rel="stylesheet" href="css/custom.css" />
-		<link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
+		
         <!-- jQuery and jQuery Mobile -->
 		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 		<script>
@@ -48,12 +53,13 @@
 				$.mobile.ajaxEnabled = true;
 			});
 		</script>
+		<!-- build:js js/allutils.js -->'
 		<script type="text/javascript" src="js/jquery.mobile-1.4.3.min.js"></script>
 		<script type="text/javascript" src="js/jquery.validate.min.js" ></script>
-		<!-- MomentJS -->
 		<script type="text/javascript" src="js/moment.min.js" ></script>
-		<!-- PSG Core and Page Functions-->
 		<script type="text/javascript" src="js/psgmobilecore.js"></script>
+		<!--endbuild-->
+		<!-- build:js js/allpages.js -->'
 		<script type="text/javascript" src="js/pages/indexweb.js"></script>
 		<script type="text/javascript" src="js/pages/checkoutaddress.js"></script>
 		<script type="text/javascript" src="js/pages/checkoutconfirm.js"></script>
@@ -96,7 +102,9 @@
 		<script type="text/javascript" src="js/pages/whatsnew.js"></script>
 		<script type="text/javascript" src="js/pages/wishlist.js"></script>
 		<script type="text/javascript" src="js/pages/profile.js"></script>
+		<!--endbuild-->
 		<!-- jQwidgets -->
+		<!-- build:js js/alljqwidgets.js -->'
 		<script type="text/javascript" src="js/jqwidgets/jqxcore.js"></script>
 		<script type="text/javascript" src="js/jqwidgets/jqxprogressbar.js"></script>
 		<script type="text/javascript" src="js/jqwidgets/jqxbuttons.js"></script>
@@ -107,6 +115,7 @@
 		<script type="text/javascript" src="js/jqwidgets/jqxscrollbar.js"></script>
 		<script type="text/javascript" src="js/jqwidgets/jqxlistbox.js"></script>
 		<script type="text/javascript" src="js/jqwidgets/jqxcombobox.js"></script>
+		<!--endbuild-->
 		<!--Custom JS to override above if needed -->
 		<script type="text/javascript" src="js/custom.js"></script>
     </head>
