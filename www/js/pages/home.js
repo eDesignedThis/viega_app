@@ -31,7 +31,6 @@ function getHomeMenu(){
 			  "68" : '<i class="fa fa-user fa-lg fa-fw ui-menu-icon"></i>',
 			  "71" : '<i class="fa fa-gift fa-lg fa-fw ui-menu-icon"></i>',
 			  "84" : '<i class="fa fa-certificate fa-lg fa-fw ui-menu-icon"></i>',
-			  "57" : '<i class="fa fa-history fa-lg fa-fw ui-menu-icon"></i>',
 			  "points_awarded" : '<i class="fa fa-trophy fa-lg fa-fw ui-menu-icon"></i>',
 			  "orders" : '<i class="fa fa-truck fa-lg fa-fw ui-menu-icon"></i>',
 			  "claim_history" : '<i class="fa fa-line-chart fa-lg fa-fw ui-menu-icon"></i>',
