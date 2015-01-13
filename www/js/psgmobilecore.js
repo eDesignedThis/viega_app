@@ -316,7 +316,9 @@ var psg = {
 			psg.setCache('mobile_config', data);
 		}
 		psg.configXml = $.parseXML(data.Xml);
-		psg.programName = data.ProgramName;
+		if (psg.programName == null) {
+			psg.programName = data.ProgramName; //allow custom.js override
+		}
 		psg.programGuid = data.Guid;
 		psg.baseUrl = data.BaseUrl;
 		psg.requiresEnrollmentConfirmation = false;
@@ -361,6 +363,8 @@ var psg = {
 	historyMenu: null,
 	menuIcons: null,
 	menuNames: null,
+	headerImageName: null,
+	headerImageEnabled: false,
 	configXml: null,
 	login: function ( username, password, callback ) {
 		var data;
@@ -420,14 +424,18 @@ var psg = {
 	},
 	pageInit: function() {
 	    
-		//var programImageHeader = "<img src='./img/ISI_Group_Logo_NoTM.svg' alt='ISI Group' style='height: 25px;'>";
 		var programName = psg.programName;
 		var balance = psg.balance;
 		if (balance == null){
 			balance = "Unknown";
 		}
-		$('.psg-class-program-name').text(programName);
-		//$("div[data-role='header'] .psg-class-program-name").html(programImageHeader);
+		
+		if (psg.headerImageEnabled) {
+			var programImageHeader = "<img src='./img/" + psg.headerImageName + "' alt='Logo' style='height: " + psg.headerImageHeight + "';'>";
+			$("div[data-role='header'] .psg-class-program-name").html(programImageHeader);
+		} else {
+			$('.psg-class-program-name').text(programName);
+		}
 		$('.psg_point_balance').text(balance + " Points");
 	},
 	getCache: function(key,hours){
