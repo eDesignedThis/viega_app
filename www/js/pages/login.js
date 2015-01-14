@@ -12,7 +12,7 @@ function page_login_show() {
     if (!app.offerMobileApp) {
         $("#download_app_offer").hide();
     } else {
-	    $('login_app_logo').attr('src','img/logo.png');
+	    $('#login_app_logo').attr('src','img/logo.png');
 	    $('#login_app_name').text(app.appName);
 		$('#login_app_company').text(app.appCompany);
 		var storeName = "";
