@@ -1,284 +1,10 @@
- /************************** Global SCSS Variables ***************************************/
- 
- //// This value controld the background color of the app and should stay white 
- $AppBckClr:#FFF;
- 
-//// This value controls the overall font color
-$FntClr:#000;
 
-///// This value controls that color of the following items: field labels, Display text, border-color, and secondary text
-$neutralClr:#8c8b8b;
-
-
-///// This value controls the color of the following items: error labels
-$errorTxtClr:red;
-
-
- 
- /************************** Global SCSS Variables ***************************************/
- 
- 
- 
-
-/************************************************* Theme A SCSS Variables ***************************************/
-
-
-/************* Header, Statusbar, PointsNumbers, Icons  ************/
-
-/////  This value controls the color of the following item(s): Header/Banner and *Statusbar.
-$ThmeA_HdrClr:#000;
-
-/////  This value controls the text color of the following item(s): Header/Banner.
-$ThmeA_HdrTxtClr:#FFF;
-
-/////  This value controls the color of the following item(s): PointsNumber.
-$ThmeA_PntClr:#000;
-
-/////  This value controls the color of the following item(s): Carats ( actually color is adjusted below ).
-$ThmeA_CrtClr:#000;
-
-/////  This value controls the color of the following item(s): Menu Icons.
-$ThmeA_MnuIconClr:#000;
-
-
-/************* Dividers and Collapsible(s)  ************/
-
-/////  This value controls the color of the following item(s): Dividers.
-$ThmeA_DvdClr:#bfbfbf;
-
-/////  This value controls the color of the following item(s): Dividers Text.
-$ThmeA_DvdTxtClr:#FFF;
-
-/////  This value controls the color of the following item(s): Collapsible.
-$ThmeA_ClpClr:#bfbfbf;
-
-/////  This value controls the color of the following item(s): Collapsible Text.
-$ThmeA_ClpTxtClr:#FFF;
-
-
-
-/*************   Links and Buttons  ************/
-
-/////  This value controls the color of the following item(s): Links (normal and visited).
-$ThmeA_LnkClrNormal:#6a6a6a;
-
-/////  This value controls the color of the following item(s): Links (hover and active).
-$ThmeA_LnkClrHover:#bfbfbf;
-
-/////  This value controls the color of the following item(s): List (hover and active).
-$ThmeA_LstClrHover:#8c8b8b;
-
-/////  This value controls the color of the following item(s): Button (normal and visited).
-$ThmeA_btnClrNormal:#bfbfbf;
-
-/////  This value controls the color of the following item(s): Button Text (normal and visited).
-$ThmeA_btnTxtClrNormal:#000;
-
-/////  This value controls the color of the following item(s): Button (hover and active).
-$ThmeA_btnClrHover:#6a6a6a;
-
-/////  This value controls the color of the following item(s): Button Text (hover and active).
-$ThmeA_btnTxtClrHover:#FFF;
-
-
-
-/************************** Theme A SCSS Variables ***************************************/
-
-
-/************************************************* Theme B SCSS Variables ***************************************/
-
-
-/************* Header, Statusbar, PointsNumbers, Icons  ************/
-
-/////  This value controls the color of the following item(s): Header/Banner and *Statusbar.
-$ThmeB_HdrClr:#000;
-
-/////  This value controls the text color of the following item(s): Header/Banner.
-$ThmeB_HdrTxtClr:#FFF;
-
-/////  This value controls the color of the following item(s): PointsNumber.
-$ThmeB_PntClr:#000;
-
-/////  This value controls the color of the following item(s): Carats ( actually color is adjusted below ).
-$ThmeB_CrtClr:#000;
-
-/////  This value controls the color of the following item(s): Menu Icons.
-$ThmeB_MnuIconClr:#000;
-
-
-/************* Dividers and Collapsible(s)  ************/
-
-/////  This value controls the color of the following item(s): Dividers.
-$ThmeB_DvdClr:#bfbfbf;
-
-/////  This value controls the color of the following item(s): Dividers Text.
-$ThmeB_DvdTxtClr:#FFF;
-
-/////  This value controls the color of the following item(s): Collapsible.
-$ThmeB_ClpClr:#bfbfbf;
-
-/////  This value controls the color of the following item(s): Collapsible Text.
-$ThmeB_ClpTxtClr:#FFF;
-
-
-
-/*************   Links and Buttons  ************/
-
-/////  This value controls the color of the following item(s): Links (normal and visited).
-$ThmeB_LnkClrNormal:#6a6a6a;
-
-/////  This value controls the color of the following item(s): Links (hover and active).
-$ThmeB_LnkClrHover:#bfbfbf;
-
-/////  This value controls the color of the following item(s): List (hover and active).
-$ThmeB_LstClrHover:#8c8b8b;
-
-/////  This value controls the color of the following item(s): Button (normal and visited).
-$ThmeB_btnClrNormal:#bfbfbf;
-
-/////  This value controls the color of the following item(s): Button Text (normal and visited).
-$ThmeB_btnTxtClrNormal:#000;
-
-/////  This value controls the color of the following item(s): Button (hover and active).
-$ThmeB_btnClrHover:#6a6a6a;
-
-/////  This value controls the color of the following item(s): Button Text (hover and active).
-$ThmeB_btnTxtClrHover:#FFF;
-
-
-
-/************************** Theme B SCSS Variables ***************************************/
-
-
-
-/************************************************* Theme C SCSS Variables ***************************************/
-
-
-/************* Header, Statusbar, PointsNumbers, Icons  ************/
-
-/////  This value controls the color of the following item(s): Header/Banner and *Statusbar.
-$ThmeC_HdrClr:#000;
-
-/////  This value controls the text color of the following item(s): Header/Banner.
-$ThmeC_HdrTxtClr:#FFF;
-
-/////  This value controls the color of the following item(s): PointsNumber.
-$ThmeC_PntClr:#000;
-
-/////  This value controls the color of the following item(s): Carats ( actually color is adjusted below ).
-$ThmeC_CrtClr:#000;
-
-/////  This value controls the color of the following item(s): Menu Icons.
-$ThmeC_MnuIconClr:#000;
-
-
-/************* Dividers and Collapsible(s)  ************/
-
-/////  This value controls the color of the following item(s): Dividers.
-$ThmeC_DvdClr:#bfbfbf;
-
-/////  This value controls the color of the following item(s): Dividers Text.
-$ThmeC_DvdTxtClr:#FFF;
-
-/////  This value controls the color of the following item(s): Collapsible.
-$ThmeC_ClpClr:#bfbfbf;
-
-/////  This value controls the color of the following item(s): Collapsible Text.
-$ThmeC_ClpTxtClr:#FFF;
-
-
-
-/*************   Links and Buttons  ************/
-
-/////  This value controls the color of the following item(s): Links (normal and visited).
-$ThmeC_LnkClrNormal:#6a6a6a;
-
-/////  This value controls the color of the following item(s): Links (hover and active).
-$ThmeC_LnkClrHover:#bfbfbf;
-
-/////  This value controls the color of the following item(s): List (hover and active).
-$ThmeC_LstClrHover:#8c8b8b;
-
-/////  This value controls the color of the following item(s): Button (normal and visited).
-$ThmeC_btnClrNormal:#bfbfbf;
-
-/////  This value controls the color of the following item(s): Button Text (normal and visited).
-$ThmeC_btnTxtClrNormal:#000;
-
-/////  This value controls the color of the following item(s): Button (hover and active).
-$ThmeC_btnClrHover:#6a6a6a;
-
-/////  This value controls the color of the following item(s): Button Text (hover and active).
-$ThmeC_btnTxtClrHover:#FFF;
-
-
-
-/************************** Theme C SCSS Variables ***************************************/
-
-
-
-
-
-
-/* Company Logo or large panel area */
+/* psgmobile css */
 
 
 h3.psg-class-program-name.ui-title{
 	padding: .6em 0 .6em !important;
 }
-
-#homeLogo{
-	margin-bottom: 15px;
-	height: 50px;
-	background-image: url(../img/Employing_Excellence_Banner.png);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: contain;
-}
-
-/* Panel buttons area */
-
-#panelContainer{
-	overflow: hidden;
-	width: 100%;
-	margin-bottom: 25px;
-	.panelLeft{
-		width:49.95%;
-		clear:left;
-		margin:0;
-		padding:0;
-		float:left;
-		min-height: 1px;
-		text-align: center;
-		
-		.innerpnlLft{
-			position: relative;
-			padding: .4em 1em;
-			overflow: hidden;
-			display: block;
-			clear: both;
-		}
-	}
-	
-	.panelRight{
-		width:49.95%;
-		margin:0;
-		padding:0;
-		float:left;
-		min-height: 1px;
-		text-align: center;
-		
-		.innerpnlRgt{
-			position: relative;
-			padding: .4em 1em;
-			overflow: hidden;
-			display: block;
-			clear: both;
-		}
-	}
-}
-
-
 
 
 
@@ -288,17 +14,8 @@ img { max-width: 100%; }
 .ui-absolute {
 	position: absolute;
 }
-.ui-text-right {
-	text-align: right;
-	color:$ThmeA_PntClr;
-	font-weight: bold !important;
-}
-.ui-float-right {
-	position: relative;
-	float: right;
-	color:$ThmeA_PntClr;
-	font-weight: bold !important;
-}
+
+
 .ui-float-left {
 	position: relative;
 	float: left;
@@ -387,9 +104,6 @@ img { max-width: 100%; }
 .ui-form-field {
 	/*padding-left: 1em;*/
 }
-.ui-alt-title-color {
-	color: $ThmeA_LnkClrNormal;
-}
 
 .ui-input-with-icon-container {
 	position: relative;
@@ -477,50 +191,6 @@ img { max-width: 100%; }
 }
 #psg-claims-confirmation-audit-icon {
 }
-
-
-#qpointsContainer{
-	overflow: hidden;
-	width: 100%;
-	margin-bottom: 5px;
-	.panelLeft{
-		width:75%;
-		clear:left;
-		margin:0;
-		padding:0;
-		float:left;
-		min-height: 1px;
-		text-align: center;
-		
-		.innerpnlLft{
-			position: relative;
-			padding: .4em 0;
-			overflow: hidden;
-			display: block;
-			clear: both;
-		}
-	}
-	
-	.panelRight{
-		width:20%;
-		margin:0;
-		padding:0;
-		float:left;
-		min-height: 1px;
-		text-align: right;
-		
-		.innerpnlRgt{
-			position: relative;
-			padding: .4em 0 .06em;
-			overflow: hidden;
-			display: block;
-			clear: both;
-			border-bottom: solid 0.1em $neutralClr;
-		}
-	}
-}
-
-
 
 
 /// styling for secondary scan button
@@ -671,14 +341,7 @@ img { max-width: 100%; }
 	max-width: 70px;
 }
 
-#psg_detail_item_title{
-	margin: 0 -1em 0 -1em;
-	font-family: inherit;
-	font-size: .95em;
-	border-bottom: solid $neutralClr .05em;
-	padding: 0 1em 1em 1em;
-	
-}
+
 #psg-listview-checkout_confirm{
 	li.headerDivider.ui-li-divider.ui-bar-a.ui-first-child{
 		padding-left: 3em !important; 
@@ -748,10 +411,7 @@ img { max-width: 100%; }
     padding-bottom:.22em;
 }
 
-.error 
-{
-    color:$errorTxtClr;
-}
+
 .nomobile{
 	display:none;
 }
@@ -768,10 +428,7 @@ img { max-width: 100%; }
 .psg-desktop-link {
 	font-weight: normal !important;
 }
-.validate-error{
-	color:$errorTxtClr;
-    display:block;
-}
+
 
 .app-connection {
 	position: absolute;
@@ -789,21 +446,6 @@ a.app-connection:active {
 }
 .app-offline {
 	visibility: visible;
-}
-
-
-
-/*********************************    ipad/tablet media queries   *******************************************/
-
-@media screen and (min-width: 768px) { 
-
-    
-    #qpointsContainer .panelRight .innerpnlRgt{
-	border-bottom: solid 0.1em $neutralClr;
-    }
-    
-
-
 }
 
 

@@ -449,6 +449,16 @@ legend,
 	color: inherit;
 	text-shadow: inherit;
 }
+
+.error {
+    color:$errorTxtClr;
+}
+
+.validate-error{
+	color:$errorTxtClr;
+    display:block;
+}
+
 /* Form labels (overrides font-weight bold in bars, and mini font-size) */
 .ui-mobile label,
 div.ui-controlgroup-label {
@@ -457,6 +467,52 @@ div.ui-controlgroup-label {
 	margin: 0 0 .4em;
 	color:$neutralClr;
 }
+
+
+#qpointsContainer{
+	overflow: hidden;
+	width: 100%;
+	margin-bottom: 5px;
+	.panelLeft{
+		width:75%;
+		clear:left;
+		margin:0;
+		padding:0;
+		float:left;
+		min-height: 1px;
+		text-align: center;
+		
+		.innerpnlLft{
+			position: relative;
+			padding: .4em 0;
+			overflow: hidden;
+			display: block;
+			clear: both;
+		}
+	}
+	
+	.panelRight{
+		width:20%;
+		margin:0;
+		padding:0;
+		float:left;
+		min-height: 1px;
+		text-align: right;
+		
+		.innerpnlRgt{
+			position: relative;
+			padding: .4em 0 .06em;
+			overflow: hidden;
+			display: block;
+			clear: both;
+			border-bottom: solid 0.1em $neutralClr;
+			span{
+				padding-bottom: 1px;	
+			}
+		}
+	}
+}
+
 
 #shoppingsearch_search_department{
     margin: 15px 0 10px 0;
@@ -472,6 +528,7 @@ div.ui-controlgroup-label {
 textarea.ui-input-text{
     background-color: #e3e1e1 !important;
 }
+
 
 #avalShpPnts {
     
@@ -491,6 +548,18 @@ textarea.ui-input-text{
     
 }
 
+.ui-text-right {
+	text-align: right;
+	color:$ThmeA_PntClr;
+	font-weight: bold !important;
+}
+
+.ui-float-right {
+	position: relative;
+	float: right;
+	color:$ThmeA_PntClr;
+	font-weight: bold !important;
+}
 
 
 .shopDscptStyle{
@@ -498,6 +567,14 @@ textarea.ui-input-text{
 }
 .shopPtsStyle{
     @include shopPntsStyles;
+}
+
+#psg_detail_item_title{
+	margin: 0 -1em 0 -1em;
+	font-family: inherit;
+	font-size: .95em;
+	border-bottom: solid $neutralClr .05em;
+	padding: 0 1em 1em 1em;
 }
 
 div#psg_jqx_progress_bar_0.jqx-progressbar.jqx-widget.jqx-widget-content.jqx-rc-all[style]{
@@ -672,6 +749,73 @@ button.ui-btn.ui-icon-minus.shopping-cart-subtract{
 }
 
 
+/* App welcome and home page configuration styles
+-------------------------------------------------------------------------------------------*/
+
+.ui-alt-title-color {
+	color: $ThmeA_LnkClrNormal;
+}
+
+
+
+#homeLogo{
+	margin-bottom: 15px;
+	height: 50px;
+	background-image: url(../img/Employing_Excellence_Banner.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+/* Panel buttons area */
+
+#panelContainer{
+	overflow: hidden;
+	width: 100%;
+	margin-bottom: 25px;
+	.panelLeft{
+		width:49.95%;
+		clear:left;
+		margin:0;
+		padding:0;
+		float:left;
+		min-height: 1px;
+		text-align: center;
+		
+		.innerpnlLft{
+			position: relative;
+			padding: .4em 1em;
+			overflow: hidden;
+			display: block;
+			clear: both;
+		}
+	}
+	
+	.panelRight{
+		width:49.95%;
+		margin:0;
+		padding:0;
+		float:left;
+		min-height: 1px;
+		text-align: center;
+		
+		.innerpnlRgt{
+			position: relative;
+			padding: .4em 1em;
+			overflow: hidden;
+			display: block;
+			clear: both;
+			
+			
+		}
+	}
+}
+
+
+
+
+
+
 
 /*********************************    ipad/tablet media queries   *******************************************/
 
@@ -689,8 +833,21 @@ button.ui-btn.ui-icon-minus.shopping-cart-subtract{
 	border-width: 0 0 .1em 0;
     }
     
+    
+    #qpointsContainer .panelRight .innerpnlRgt{
+	border-bottom: solid 0.1em $neutralClr;
+    }
 
 }
+
+
+
+/*********************************    ipad/tablet media queries   *******************************************/
+
+
+
+
+
 
 
 
