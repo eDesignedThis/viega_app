@@ -11,7 +11,19 @@ function page_login_show() {
 	}
     if (!app.offerMobileApp) {
         $("#download_app_offer").hide();
+	
+	//var webIcons =	"<link href='img/webIcon/apple-touch-icon.png' rel='apple-touch-icon' />" +
+	//		"<link href='img/webIcon/apple-touch-icon-76x76.png' rel='apple-touch-icon' sizes='76x76' />" +
+	//		"<link href='img/webIcon/apple-touch-icon-120x120.png' rel='apple-touch-icon' sizes='120x120' />" +
+	//		"<link href='img/webIcon/apple-touch-icon-152x152.png' rel='apple-touch-icon' sizes='152x152' />" +
+	//		"<link href='img/webIcon/apple-touch-icon-180x180.png' rel='apple-touch-icon' sizes='180x180' />" +
+	//		"<link href='img/webIcon/icon-hires.png' rel='icon' sizes='192x192' />" +
+	//		"<link href='img/webIcon/icon-normal.png' rel='icon' sizes='128x128' />"
+	//
+	//$("head").append(webIcons);
+	
     } else {
+	    $('#login_app_logo').attr('src','img/logo.png');
 	    $('#login_app_name').text(app.appName);
 		$('#login_app_company').text(app.appCompany);
 		var storeName = "";
@@ -20,9 +32,9 @@ function page_login_show() {
 		var isIOS = /(ipad|iphone|ipod)/g.test(ua);
 		var isAndroid = /android/g.test(ua);
 		var isWP = /(iemobile|lumia)/g.test(ua);
+		var link = "";
 		if (isIOS || isAndroid || isWP) {
 			//alert(ua+"\n\nisIOS "+isIOS+" isAndroid "+isAndroid + " isChrome "+isChrome);
-			var link = "";
 			if (isIOS)
 			{
 				var isChrome = ua.indexOf("crios") > 0;
@@ -54,10 +66,8 @@ function page_login_show() {
 			}
 			$("#launch_app_store_link").attr("href", link);
 		}
-		else
-		{
-			storeName = 'In the App Store, Google Play, and Windows Store';
-			$('#launch_app_store_link').hide();
+		if (link === "") {
+		  $("#download_app_offer").hide();
 		}
 		$('#login_app_store').html(storeName);
 	}

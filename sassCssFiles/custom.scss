@@ -764,6 +764,13 @@ button.ui-btn.ui-icon-minus.shopping-cart-subtract{
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
+	display:none;
+	p{
+	    display:none;
+	}
+	img{
+	    display: none;
+	}
 }
 
 /* Panel buttons area */
@@ -771,7 +778,7 @@ button.ui-btn.ui-icon-minus.shopping-cart-subtract{
 #panelContainer{
 	overflow: hidden;
 	width: 100%;
-	margin-bottom: 25px;
+	margin-bottom: 24px;
 	.panelLeft{
 		width:49.95%;
 		clear:left;
@@ -787,6 +794,10 @@ button.ui-btn.ui-icon-minus.shopping-cart-subtract{
 			overflow: hidden;
 			display: block;
 			clear: both;
+			img{
+			    height: 80px;
+			    
+			}
 		}
 	}
 	
@@ -804,7 +815,9 @@ button.ui-btn.ui-icon-minus.shopping-cart-subtract{
 			overflow: hidden;
 			display: block;
 			clear: both;
-			
+			img{
+			     height: 80px;
+			}
 			
 		}
 	}
