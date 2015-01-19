@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<!-- Home -->
+<div data-role="page" id="page_profile">
+	<div data-role="panel" data-position="right" data-position-fixed="true" data-display="push" data-display="overlay" data-theme="a" id="page_profile_popup" >
+			<ul class='popup_menu' data-role="listview" data-inset="false"  data-theme="a">
+			</ul>
+		</div>
+
+	<div data-theme="a" class="myclass" data-role="header">
+		
+		<a data-rel="back" data-role="button" data-direction="reverse" data-transition="slide"
+		   data-icon="carat-l" data-iconpos="notext" class="ui-btn-left">
+			Back
+		</a>
+		<h3 class="psg-class-program-name">
+		</h3>
+		<a href="#page_profile_popup" data-rel="panel" data-role="button"
+		   data-inline="true" data-icon="bullets" data-iconpos="notext" class="ui-btn-right">Menu</a>
+
+	</div>
+
+	<div id="page_profile_content" data-role="content">
+	
+		<h3 class="psg-section-name" psg-section-type-id="68"></h3>
+		<form data-ajax="false" id="frmProfile" >
+			<div tabindex="-1" style="display: none;outline: none !important;" class="error" id="profile_error">
+			</div>
+
+			<div id="profile_form_div">
+
+			</div>
+			<!--<div class="ui-field-contain">
+
+			</div>-->
+			<div class="ui-margin-top-1x">
+				<label for="profile_oldpassword">
+					Current Password
+				</label>
+				<input id="profile_oldpassword" name="currentPassword" type="password" >
+			</div>
+			<div class="ui-margin-top-1x">
+				<label for="profile_password">
+					New Password
+				</label>
+				<input id="profile_password" name="password"  type="password" >
+			</div>
+			<div class="ui-margin-top-1x">
+				<label for="profile_password_confirm">
+					Confirm New Password
+				</label>
+				<input id="profile_password_confirm" name="confirm" type="password" >
+			</div>
+			<br>
+			<button class="ui-btn ui-btn-a ui-shadow ui-corner-all" type="submit">Save</button>
+		</form>
+     </div>
+	 <div data-theme="a" data-role="footer" data-position="fixed">
+		<!-- footer is set dynamically for all pages in psgmobilecore.js:PageBeforeCreateManager(e) -->
+	</div>
+	</div>
+</body>
+</html>

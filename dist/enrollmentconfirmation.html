@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div data-role="page" id="page_enrollment_confirmation">
+        <div data-theme="a" class="myclass" data-role="header">
+			<h3 class="psg-class-program-name">
+            </h3>
+			<!-- this is part of the initial setup so mno menu -->
+        </div>
+        <div id="page_enrollment_confirmation_content" data-role="content">
+            <div style="display: none;color:red;" id="enrollment_error">
+            </div>
+			<div id="psg-enrollment-confirmation-app-offer">
+				<h3 class="ui-center">Download our <span class="ui-alt-title-color">Mobile App</span></h3>
+				<p class="ui-no-ellipse ui-center">Access your incentives on-the-go!<br /><small>Available for iPhone, Android, and other mobile devices.</small></p>
+				<a class="ui-btn" data-theme="a">Download</a>
+			</div>
+			<button id="psg-enrollment-confirmation-continue-button" class="ui-btn ui-btn-a" data-theme="a">Continue</button>
+			<br/>
+			<div id="psg-enrollment-confirmation-message" data-role="collapsible" data-theme="a" data-content-theme="c" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+				<h3 id="psg-enrollment-confirmation-message-title"></h3>
+				<div id="psg-enrollment-confirmation-message-content"></div>
+			</div>
+		</div>
+		<div data-theme="a" data-role="footer" data-position="fixed" class="footer_fixed">
+			<div data-role="navbar" data-iconpos="top">
+				<ul>
+					<li><a class="linkBtn remote-content" data-transition="slide" remote-content-topic='Terms'   >Terms </a></li>
+					<li><a class="linkBtn remote-content" data-transition="slide" remote-content-topic='Privacy' >Privacy </a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

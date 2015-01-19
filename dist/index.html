@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+		<title></title>
+        <meta charset="utf-8" />
+		<meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, width=device-width" />
+	<script>
+        if (window.location.protocol != "https:") {	
+            window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
+		}
+		if (!lsTest()) {
+			alert('You are in Private Browsing Mode.  This site will not function in Private mode. \nPlease deactivate Private Browsing Mode and then reload the page.');
+        }
+		function lsTest(){
+			var test = 'test';
+			try {
+				localStorage.setItem(test, test);
+				localStorage.removeItem(test);
+				return true;
+			} catch(e) {
+				return false;
+			}	
+		}
+    </script>
+        <!-- CSS -->
+		<link rel="stylesheet" href="css/allpremin.6bd7e2a2.css">
+		<link rel="stylesheet" href="css/allsite.d5c0c42c.css">
+		<link rel="stylesheet" href="css/custom.css" />
+		
+        <!-- jQuery and jQuery Mobile -->
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+		<script>
+		// when JqueryMobile is ready
+			$(document).on('mobileinit', function () {
+				$.mobile.ignoreContentEnabled = true;
+				$.mobile.allowCrossDomainPages = true;
+				$.mobile.pushStateEnabled = false;
+				$.support.cors = true;
+				$.mobile.linkBindingEnabled = true;
+				$.mobile.ajaxEnabled = true;
+			});
+		</script>
+		<script src="js/allutils.a50e91e0.js"></script>
+		<script src="js/allpages.2ee6c881.js"></script>
+		<!-- jQwidgets -->
+		<script src="js/alljqwidgets.e109c0c3.js"></script>
+		<!--Custom JS to override above if needed -->
+		<script type="text/javascript" src="js/custom.js"></script>
+    </head>
+    <body>
+        <div data-role="page" id="page_index" class="app2">
+            <h1>RewardTrax</h1>
+            <div id="deviceready" class="blink">
+                <p class="event listening">Loading</p>
+                <p class="event received">Ready</p>
+            </div>
+        </div>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
+</html>

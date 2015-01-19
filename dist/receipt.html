@@ -1,0 +1,50 @@
+ <!DOCTYPE html>
+<html>
+ <head>
+	 <title></title>
+ </head>
+<body>
+<div data-role="page" id="page_receipt">
+    <!--NO BACK BUTTON-->
+	<div data-theme="a" data-role="header" data-position="fixed">
+		<a data-role="button" data-direction="reverse" data-transition="slide"
+		   href="home.html" data-icon="home" data-iconpos="notext" class="ui-btn-right">
+			Home
+		</a>
+        <h3 class="psg-class-program-name"></h3>
+		<!-- no need for menu on receipt page -->
+    </div>
+
+	<div role="main" class="ui-content">
+       <h3>Order Receipt</h3>
+
+       <p class="ui-text-important">Your order, <span id="receipt_order_number"></span>,
+		   has been received and is currently being processed.
+		   You can track your order on the Orders page.
+	    	<div id="receipt_ispu" style="display:none" ><p><img id="error_icon" alt="Warning" src="img/warning.png" />
+				<strong>For in-store pickup items</strong>, an email will be sent to you when your order is ready for pick-up.
+				Please do not go to the store until you receive this email</p>
+			</div>
+	   </p>
+	  <p style="margin: 0 auto;text-align:center"><a href="home.html" class="ui-btn ui-btn-inline ui-shadow ui-corner-all">Home</a></p>
+	</div>
+
+	<div data-theme="a" data-role="footer" data-position="fixed">
+		<div class="ui-sixfive-block-a">
+			<div class="psg_point_balance"></div>
+		</div>
+		<div class="ui-threefive-block-b">
+			<div data-role="navbar" data-iconpos="top">
+				<ul>
+					<li>
+						<a href="login.html" data-transition="fade">
+							Logout
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

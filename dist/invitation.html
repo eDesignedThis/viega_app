@@ -1,0 +1,62 @@
+<html>
+<head><title></title></head>
+<body>
+ <!-- Start Page ----------------------------------------- -->
+	<div data-role="page" id="page_invitation">
+		<div data-theme="a" class="myclass" data-role="header">
+			<a data-rel="back" data-role="button" data-direction="reverse" data-transition="slide"
+			   data-icon="carat-l" data-iconpos="notext" class="ui-btn-left">
+				Back
+			</a>
+			<h3 class="psg-class-program-name">
+			</h3>
+			<!-- part of initial setup so no menu -->
+		</div>
+		<div data-role="content">
+			<div tabindex="-1" style="display: none;outline: none !important;" class="error" id="invitation_error">
+			</div>
+			<p>Please provide the following information to start your enrollment:</p>
+			<p id="invitation_scan_inscrutions" style="display:none" class="ui-text-small">Click the QR code icon to scan a code.</p>
+			<div class="ui-margin-top-1x">
+				<label for="invitation_id" id="invitation_label">
+					Invitation ID
+				</label>
+				
+				<div id="qpointsContainer">
+				    
+				    <div class="panelLeft">
+					<div class="innerpnlLft">
+					  <div class="ui-input-text ui-corner-all ui-body-inherit ui-shadow-inset ui-input-with-icon-container">
+							<input id="invitation_id" name="invitation_id" type="text" data-enhanced="true" >
+						</div>
+					</div>
+				    </div>
+				    
+				    
+				    <div class="panelRight" id="icon_invitation_scan" style="display:none;">
+					<div class="innerpnlRgt"><span class="fa fa-qrcode ui-menu-icon fa-lg fa-fw" style=""></span></div>
+				    </div>
+				    
+				</div>
+				
+			</div>
+			
+			<div class="focusScan" style="display: none; text-align: center;">
+				  <button  class="ui-btn ui-btn-a fa fa-barcode ui-menu-icon fa-lg fa-fw" id="icon_invitation_scan2">Scan It</button>
+			</div>
+			
+			<br>
+			
+			<button class="ui-btn ui-btn-b ui-shadow ui-corner-all" id="invitation_submit">Next</button>
+		</div>
+		<div data-theme="a" data-role="footer" data-position="fixed" class="footer_fixed">
+			<div data-role="navbar" data-iconpos="top">
+				<ul>
+					<li><a class="linkBtn remote-content" data-transition="slide" remote-content-topic='Terms'   >Terms </a></li>
+					<li><a class="linkBtn remote-content" data-transition="slide" remote-content-topic='Privacy' >Privacy </a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
