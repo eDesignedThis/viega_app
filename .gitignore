@@ -15,12 +15,15 @@ $RECYCLE.BIN/
 *.msp
 www.zip
 plugins/
+**/plugins/*
 .cordova/
 platforms/
 installs/
-www/.tmp/
-www/node_modules/
-www/dist
+.tmp/
+node_modules/
+**/node_modules/*
+
+dist/
 
 
 # =========================
