@@ -825,6 +825,56 @@ button.ui-btn.ui-icon-minus.shopping-cart-subtract{
 
 
 
+/*********************************    download app offer banner (on login screen)  *******************************************/
+
+
+#download_app_offer {
+	height:35px;
+	background-color: white;
+	border:1px solid grey;
+	margin:0;
+	margin-bottom:1em;
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	padding:10px;
+	
+	img {
+	    width:40px;
+	    height:40px;
+	    margin-top:-3px;
+	    margin-left:20px;
+	    margin-right:10px;
+	    border:1px solid #d3d3d3;
+	}
+	
+	p {
+	    margin:0;
+	    margin-top:0px;
+	    vertical-align:top;
+	    line-height: 10px;
+	    font-size:14px;
+	}
+	
+	a[title='Delete'] {
+	    width:16px;
+	    height:16px;
+	}
+	
+	a[title='Download'] {
+	    margin:10px;
+	    border:1px solid grey;
+	    border-radius: 5px;
+	    padding:5px;
+	}
+	
+}
+
+		
+
+
+
 
 
 

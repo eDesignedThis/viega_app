@@ -3,9 +3,17 @@ require('load-grunt-tasks')(grunt);
  grunt.initConfig({  
         pkg: grunt.file.readJSON('package.json'),
 		useminPrepare: {
-	      html: 'indexweb.html',
+	      html: 'www/indexweb.html',
 	      options: {
-	        dest: 'dist'
+		    flow: {
+				steps: {
+					js: ['concat','uglifyjs'],
+					jsmin: ['concat'],
+					css: ['concat', 'cssmin']
+				},
+				post: []
+			},
+	        dest: 'dist/'
 	      }
 	  },
 	  copy:{
@@ -13,18 +21,18 @@ require('load-grunt-tasks')(grunt);
             {
                 expand: true,
                 src: [
-                    'img/*.*',
-					'fonts/*.*',
-					'css/images/*.*',
-					'css/custom.css',
-					'js/custom.js',
-					'js/jquery-2.1.1.min.js',
-                    '*.html'
+                    'www/img/*.*',
+					'www/fonts/*.*',
+					'www/css/images/**',
+					'www/css/custom.css',
+					'www/js/custom.js',
+					'www/js/jquery-2.1.1.min.js',
+                    'www/*.html'
                 ],
                 dest: 'dist'
             },
 	    index: {
-	    	src: './indexweb.html', dest: 'dist/index.html'
+	    	src: './www/indexweb.html', dest: 'dist/www/index.html'
 	    }
 	  },
 	   filerev: {
@@ -42,7 +50,7 @@ require('load-grunt-tasks')(grunt);
     ]
 },
 	  usemin:{
-	  	html:['dist/index.html']
+	  	html:['dist/www/index.html']
 	  }
 });
 

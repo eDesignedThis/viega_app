@@ -7,38 +7,6 @@
 <body>
 <!-- Login Page ----------------------------------------- -->
 	<div data-role="page" id="page_login">
-		<style>
-			#download_app_offer {
-				height:35px;
-				background-color: white;
-				border:1px solid grey;
-				margin:0;
-				margin-bottom:1em;
-				position:absolute;
-				top:0;
-				left:0;
-				right:0;
-				padding:10px;
-			}
-			#download_app_offer img {
-				width:40px;
-				height:40px;
-				margin-top:-3px;
-				margin-left:20px;
-				margin-right:10px;
-				border:1px solid #d3d3d3;
-			}
-			#download_app_offer p {
-				margin:0;
-				margin-top:0px;
-				vertical-align:top;
-				line-height: 10px;
-				font-size:14px;
-			}
-			#download_app_offer a[title='Delete'] { width:16px; height:16px; }
-			#download_app_offer a[title='Download'] { margin:10px;border:1px solid grey;border-radius: 5px;padding:5px; }
-		</style>
-
 		<div data-theme="a" class="myclass" data-role="header">
 			<h3 class="psg-class-program-name">
 			</h3>
@@ -53,7 +21,7 @@
 				<a id="login_app_close" onclick="$('#download_app_offer').hide();" data-role="button" data-icon="delete"
 				   data-iconpos="notext" data-mini="true"
 				   data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true"
-				   data-wrapperels="span" data-theme="b" title="Delete" class="ui-btn-left">Close</a>
+				   data-wrapperels="span" data-theme="a" title="Delete" class="ui-btn-left">Close</a>
 				<a href="itms-apps://" id="launch_app_store_link"
 				   data-theme="a" class="ui-btn-right" title="Download" >Download</a>
 			</div>
