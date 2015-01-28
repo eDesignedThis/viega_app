@@ -600,12 +600,7 @@ function PageBeforeCreateManager(e) {
 
 	// set handler for remote content pages
 	page.find('.remote-content').click(function(event) {
-		var sectionName = page.attr("remote-content-topic");		// Terms or Privacy
-		//if (id == "terms"){
-		//	sectionName = "Terms";
-		//}else if (id == "start_privacy"){
-		//	sectionName = "Privacy";
-		//}
+		var sectionName = $(this).attr("remote-content-topic");	
 		psg.setSessionItem('remote_section_name', sectionName);
 		$.mobile.changePage('remotecontent.html');
 	});
