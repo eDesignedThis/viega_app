@@ -15,6 +15,8 @@ $neutralClr:#8c8b8b;
 $errorTxtClr:red;
 
 
+/////  This value controls the color of the following item(s): List (hover and active).
+$ThmeA_LstClrHover:#8c8b8b;
  
  /************************** Global SCSS Variables ***************************************/
  
@@ -65,9 +67,6 @@ $ThmeA_LnkClrNormal:#6a6a6a;
 
 /////  This value controls the color of the following item(s): Links (hover and active).
 $ThmeA_LnkClrHover:#bfbfbf;
-
-/////  This value controls the color of the following item(s): List (hover and active).
-$ThmeA_LstClrHover:#8c8b8b;
 
 /////  This value controls the color of the following item(s): Button (normal and visited).
 $ThmeA_btnClrNormal:#bfbfbf;
@@ -765,6 +764,7 @@ button.ui-btn.ui-icon-minus.shopping-cart-subtract{
 	background-position: center;
 	background-size: contain;
 	display:none;
+	
 	p{
 	    display:none;
 	}
@@ -773,7 +773,7 @@ button.ui-btn.ui-icon-minus.shopping-cart-subtract{
 	}
 }
 
-/* Panel buttons area */
+/* Panel buttons area for home screen */
 
 #panelContainer{
 	overflow: hidden;
@@ -839,6 +839,7 @@ button.ui-btn.ui-icon-minus.shopping-cart-subtract{
 	left:0;
 	right:0;
 	padding:10px;
+	z-index:0 ;
 	
 	img {
 	    width:40px;

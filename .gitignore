@@ -22,7 +22,6 @@ installs/
 .tmp/
 node_modules/
 **/node_modules/*
-
 dist/
 **/dist/*
 
@@ -56,5 +55,8 @@ www/cordova.js
 www/cordova_plugins.js
 
 # Sass and Scss Mapping files
-**/.sass-cache
+**/.sass-cache/
+.sass-cache/
 **/.sass-cache/*
+sassCssFiles/.sass-cache/*
+sassCssFiles/.sass-cache/
