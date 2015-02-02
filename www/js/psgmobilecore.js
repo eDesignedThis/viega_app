@@ -316,9 +316,7 @@ var psg = {
 			psg.setCache('mobile_config', data);
 		}
 		psg.configXml = $.parseXML(data.Xml);
-		if (psg.programName == null) {
-			psg.programName = data.ProgramName; //allow custom.js override
-		}
+		psg.programName = data.ProgramName;
 		psg.programGuid = data.Guid;
 		psg.baseUrl = data.BaseUrl;
 		psg.requiresEnrollmentConfirmation = false;
@@ -332,15 +330,24 @@ var psg = {
 			psg.requiresEnrollmentConfirmation = (defaultStatus != 0 && defaultStatus != 1) || (defaultStatus == 0 && loginBehavior == 0);
 		}
 		
-		var hasMobile = modules.attr('MOBILE_APP');
-		if (hasMobile == '1') {
-			var mobileNode = $xml.find('PROGRAM > MOBILE');
-			psg.programName = mobileNode.attr('APPLICATION_NAME');
+		
+		var mobileNode = $xml.find('PROGRAM > MOBILE');
+		var appName = mobileNode.attr('APPLICATION_NAME');
+		var enableHeaderImage = mobileNode.attr('HEADER_IMAGE_ENABLED');
+		if (enableHeaderImage == '1') {
+			psg.headerImageEnabled = true;
+			psg.headerImageHeight = mobileNode.attr('HEADER_IMAGE_HEIGHT');
+			psg.headerImageName = mobileNode.attr('HEADER_IMAGE_NAME');
 		}
+		if (appName != '') {
+			psg.programName = appName;
+		}
+		
+		var hasApp = modules.attr('MOBILE_APP');
 		if (!app.isPhoneGap) {
-			app.offerMobileApp = (hasMobile == '1') ? true: false;
+			app.offerMobileApp = (hasApp == '1') ? true: false;
 			if (app.offerMobileApp){
-				app.appName = mobileNode.attr('APPLICATION_NAME');
+				app.appName = appName;
 				app.appCompany = mobileNode.attr('COMPANY_NAME');
 				app.appUrlGoogle = mobileNode.find('ANDROID').text();
 				app.appUrlApple = mobileNode.find('IOS').text();
@@ -364,6 +371,7 @@ var psg = {
 	menuIcons: null,
 	menuNames: null,
 	headerImageName: null,
+	headerImageHeight: null,
 	headerImageEnabled: false,
 	configXml: null,
 	login: function ( username, password, callback ) {
@@ -585,7 +593,7 @@ function PageBeforeCreateManager(e) {
 	if ( !footer.hasClass("footer_fixed") ) {
 		var footerText = '<div class="psg_point_balance ui-center"></div>';
 		if (!app.isPhoneGap) {
-			footerText = '<div class="ui-grid-a"><div class="ui-block-a"><div class="ui-center"><a data-ajax="false" onclick="psg.goDesktopSite();" class="ui-btn ui-btn-b ui-corner-all ui-mini psg-desktop-link"><i class="fa fa-desktop fa-lg"></i>&nbsp; Desktop Site </a></div></div><div class="ui-block-b">' + footerText;
+			footerText = '<div class="ui-grid-a"><div class="ui-block-a"><div class="ui-center"><a data-ajax="false" onclick="psg.goDesktopSite();" class="ui-btn ui-btn-a ui-corner-all ui-mini psg-desktop-link"><i class="fa fa-desktop fa-lg"></i>&nbsp; Desktop Site </a></div></div><div class="ui-block-b">' + footerText;
 			footerText += '</div></div>';
 		}
 		footer.html(footerText);
@@ -612,7 +620,7 @@ function PageBeforeCreateManager(e) {
 			var offlineClass = app.isOnline(false) ? 'app-online' : 'app-offline';
 			header.append(' \
 				<a id="app_offline_link" href="#app_offline_message" data-rel="popup" data-transition="pop" \
-				title="Offline" data-theme="b" class="app-connection ' + offlineClass + '">\
+				title="Offline" data-theme="a" class="app-connection ' + offlineClass + '">\
 				<i class="fa fa-unlink"></i></a> \
 			');
 			//$(e.target).find('#app_offline_link').button();

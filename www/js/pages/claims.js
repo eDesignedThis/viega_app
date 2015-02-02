@@ -165,7 +165,7 @@ function ParseFields(page,searchTerm,canEdit) {
 						formString += ' data-rule-regex="true" data-psg-validation="' +  validationExpression + '" data-msg-regex="' + validationMessage + '" ';
 					}
 					formString += '>';
-					//formString += '<button id="scan_' + itemId + '" value="Scan" class="ui-btn ui-btn-b ui-icon-eye ui-btn-icon-notext cancel">Scan</button>';
+					//formString += '<button id="scan_' + itemId + '" value="Scan" class="ui-btn ui-btn-a ui-icon-eye ui-btn-icon-notext cancel">Scan</button>';
 					formString += '<a href="#" id="scan_' + itemId + '" class="fa fa-qrcode ui-menu-icon fa-lg fa-fw" style="margin:-14px .3125em 0;margin-right:5px;position:absolute;top:65%;right:0;"></a>';
 					formString += '</div>';
 					scriptString += '<script>app.initScanField("' + itemId + '");</scr' + 'ipt>';

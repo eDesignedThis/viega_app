@@ -289,7 +289,7 @@ function HandleGetSearch(data) {
 		var displayCounts = psgShopping.Search.Mode.isSet();
 		var first = (data.ItemsCollection.PageIndex*20)+1;
 		var last = data.ItemsCollection.CatalogItems.length + first - 1;
-		var listString = //'<li data-theme="b">Search Results</li>'
+		var listString = //'<li data-theme="a">Search Results</li>'
 			"<li data-theme='a'>" +
 			"	<table cellspacing='0' width='100%'>"+
 			"		<tr>" +

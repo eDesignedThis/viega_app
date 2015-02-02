@@ -12,7 +12,7 @@ require('load-grunt-tasks')(grunt);
             
 		watch: {
 				css: {
-						files: '**/*.scss',
+						files: './sassCssFiles/program.scss',
 						tasks: ['sass']
 				}
 		},
@@ -38,7 +38,7 @@ require('load-grunt-tasks')(grunt);
 				],
 				dest: 'dist'
 			},
-			scss: { src: './sassCssFiles/program.scss', dest: 'dist/www/css/program.scss'},
+			scss: { src: './sassCssFiles/programtemplate.scss', dest: 'dist/www/css/programtemplate.scss'},
 			index: {
 				src: './www/indexweb.html', dest: 'dist/www/index.html'
 			}
