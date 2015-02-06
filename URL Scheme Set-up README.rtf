@@ -1,17 +1,16 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf160
+{\rtf1\ansi\ansicpg1252\cocoartf1344\cocoasubrtf720
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 HelveticaNeue;}
 {\colortbl;\red255\green255\blue255;\red38\green38\blue38;\red245\green245\blue245;\red83\green149\blue74;
 \red101\green71\blue146;\red213\green58\blue6;\red148\green6\blue75;\red14\green114\blue164;}
-\margl1440\margr1440\vieww15560\viewh8140\viewkind0
+\margl1440\margr1440\vieww15040\viewh14860\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
 
-\f0\fs28 \cf0 Custom URL scheme for IOS\
+\f0\b\fs36 \cf0 Custom URL scheme for IOS
+\b0\fs28 \
 \
 \pard\pardeftab720
 \cf2 \expnd0\expndtw0\kerning0
-1. Copy the \cf2 \expnd0\expndtw0\kerning0
-LaunchMyApp.js file from the nl.x-services.plugins.launchmyapp folder located in \cf2 \expnd0\expndtw0\kerning0
-www/ios/LaunchMyApp.js to www/js/plugins/LaunchMyApp.js ( create a plugins folder in the js folder if necessary ) and reference it in the index.html file:\
+1. Copy the LaunchMyApp.js file from the nl.x-services.plugins.launchmyapp folder located in www/ios/LaunchMyApp.js to www/js/plugins/ios/LaunchMyApp.js ( create a plugins folder in the js folder if necessary ) and reference it in the index.html file:\
 \
 \pard\pardeftab720
 \cf2 \cb3 \expnd0\expndtw0\kerning0
@@ -24,33 +23,33 @@ type\cf2 \expnd0\expndtw0\kerning0
  \cf5 \expnd0\expndtw0\kerning0
 src\cf2 \expnd0\expndtw0\kerning0
 =\cf6 \expnd0\expndtw0\kerning0
-"js/plugins/LaunchMyApp.js"\cf2 \expnd0\expndtw0\kerning0
+"js/plugins/ios/LaunchMyApp.js"\cf2 \expnd0\expndtw0\kerning0
 ></\cf4 \expnd0\expndtw0\kerning0
 script\cf2 \expnd0\expndtw0\kerning0
 >\
 \
-The \cf2 \cb1 \expnd0\expndtw0\kerning0
-handleOpenURL method is already in it.\cf2 \cb3 \expnd0\expndtw0\kerning0
+The \cb1 \expnd0\expndtw0\kerning0
+handleOpenURL method is already in it.\cb3 \expnd0\expndtw0\kerning0
 \
 \
 \pard\pardeftab720
-\cf7 \cb3 \expnd0\expndtw0\kerning0
-function\cf2 \cb3 \expnd0\expndtw0\kerning0
+\cf7 \expnd0\expndtw0\kerning0
+function\cf2 \expnd0\expndtw0\kerning0
  \cf5 \expnd0\expndtw0\kerning0
 handleOpenURL\cf2 \expnd0\expndtw0\kerning0
 (url) \{\
   \cf5 \expnd0\expndtw0\kerning0
-console\cf8 \cb3 \expnd0\expndtw0\kerning0
-.log\cf2 \cb3 \expnd0\expndtw0\kerning0
+console\cf8 \expnd0\expndtw0\kerning0
+.log\cf2 \expnd0\expndtw0\kerning0
 (\cf6 \expnd0\expndtw0\kerning0
 "received url: "\cf2 \expnd0\expndtw0\kerning0
- \cf7 \cb3 \expnd0\expndtw0\kerning0
-+\cf2 \cb3 \expnd0\expndtw0\kerning0
+ \cf7 \expnd0\expndtw0\kerning0
++\cf2 \expnd0\expndtw0\kerning0
  url);\
 \}\
 \
 \
-2. Open the project config.xml file and the following\
+2. Open the project config.xml file and the following ( should already be in it )\
 \
 <gap:plugin name="nl.x-services.plugins.launchmyapp">\
         <param name="URL_SCHEME" value=\'93url_scheme_value\'94 />\
@@ -101,9 +100,30 @@ array\cf2 \expnd0\expndtw0\kerning0
 \
 \
 \
-Android Web Intent\
+\pard\pardeftab720
+
+\b\fs36 \cf2 Android Web Intent
+\b0\fs28 \
 \
-1. You should already be reference the LaunchMyApp.js file in the index.html file.\
+\pard\pardeftab720
+\cf2 \cb1 \expnd0\expndtw0\kerning0
+1. Copy the LaunchMyApp.js file from the nl.x-services.plugins.launchmyapp folder located in www/android/LaunchMyApp.js to www/js/plugins/android/LaunchMyApp.js ( create a plugins folder in the js folder if necessary ) and reference it in the index.html file:\
+\
+\pard\pardeftab720
+\cf2 \cb3 \expnd0\expndtw0\kerning0
+<\cf4 \expnd0\expndtw0\kerning0
+script\cf2 \expnd0\expndtw0\kerning0
+ \cf5 \expnd0\expndtw0\kerning0
+type\cf2 \expnd0\expndtw0\kerning0
+=\cf6 \expnd0\expndtw0\kerning0
+"text/javascript"\cf2 \expnd0\expndtw0\kerning0
+ \cf5 \expnd0\expndtw0\kerning0
+src\cf2 \expnd0\expndtw0\kerning0
+=\cf6 \expnd0\expndtw0\kerning0
+"js/plugins/android/LaunchMyApp.js"\cf2 \expnd0\expndtw0\kerning0
+></\cf4 \expnd0\expndtw0\kerning0
+script\cf2 \expnd0\expndtw0\kerning0
+>\
 \
 \pard\pardeftab720
 \cf2 \cb1 \expnd0\expndtw0\kerning0
@@ -121,17 +141,16 @@ name\cf2 \expnd0\expndtw0\kerning0
 value\cf2 \expnd0\expndtw0\kerning0
 =\cf6 \expnd0\expndtw0\kerning0
 "nl.xservices.plugins.LaunchMyApp"\cf2 \expnd0\expndtw0\kerning0
-/>\cf2 \cb1 \expnd0\expndtw0\kerning0
+/>\cb1 \expnd0\expndtw0\kerning0
 \
-\cf2 \cb3 \expnd0\expndtw0\kerning0
+\cb3 \expnd0\expndtw0\kerning0
 \
-3. Go into the \cf2 \cb1 \expnd0\expndtw0\kerning0
-nl.x-services.plugins.launchmyapp folder and \cf2 \expnd0\expndtw0\kerning0
-copy the nl folder. Place the entire folder into platforms/android/src/ \
+3. Go into the \cb1 \expnd0\expndtw0\kerning0
+nl.x-services.plugins.launchmyapp folder and copy the nl folder. Place the entire folder into platforms/android/src/ \
 \
 4. Open the AndroidManifest.xml for the Android project and inside the /manifest/application/activity node (replace URL_SCHEME with the same you have in the config.xml file):\
 \
-\cf2 \cb3 \expnd0\expndtw0\kerning0
+\cb3 \expnd0\expndtw0\kerning0
 <\cf4 \expnd0\expndtw0\kerning0
 intent-filter\cf2 \expnd0\expndtw0\kerning0
 >\
@@ -165,24 +184,26 @@ android:name\cf2 \expnd0\expndtw0\kerning0
  />\
 </\cf4 \expnd0\expndtw0\kerning0
 intent-filter\cf2 \expnd0\expndtw0\kerning0
->\cf2 \cb1 \expnd0\expndtw0\kerning0
+>\cb1 \expnd0\expndtw0\kerning0
 \
-\cf2 \cb3 \expnd0\expndtw0\kerning0
+\cb3 \expnd0\expndtw0\kerning0
 \
-5. \cf2 \cb1 \expnd0\expndtw0\kerning0
-In AndroidManifest.xml set the launchMode to singleTask  <activity android:launchMode="singleTask" ..\
-\cf2 \cb3 \expnd0\expndtw0\kerning0
+5. \cb1 \expnd0\expndtw0\kerning0
+In AndroidManifest.xml set the launchMode to singleTask  <activity android:launchMode="singleTask" .. (BEWARE:  every time that the project is clean or re-built, it will revert back to \'93singleTop\'94 , you will have to manual reset it before deploying it)\
+\cb3 \expnd0\expndtw0\kerning0
 \
 6. Clean the project and rebuild.\
 \
-Usage:\
+
+\b\fs36 Usage
+\b0\fs28 :\
 \
 1. 
-\f1 \cf2 \cb1 \expnd0\expndtw0\kerning0
+\f1 \cb1 \expnd0\expndtw0\kerning0
 The app can be launched by linking to it like this from a website or an email for example (all of these will work 
 \fs32 \
 
-\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\f0\fs28 \cb3 \expnd0\expndtw0\kerning0
 \
 <\cf4 \expnd0\expndtw0\kerning0
 a\cf2 \expnd0\expndtw0\kerning0
@@ -222,11 +243,11 @@ a\cf2 \expnd0\expndtw0\kerning0
 >\
 \
 2. 
-\f1 \cf2 \cb1 \expnd0\expndtw0\kerning0
+\f1 \cb1 \expnd0\expndtw0\kerning0
 To open your app from another PhoneGap app, use the InAppBrowser plugin and launch the receiving app like this, to avoid a 'protocol not supported' error:\
 \
 
-\f0 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\f0 \cb3 \expnd0\expndtw0\kerning0
 <\cf4 \expnd0\expndtw0\kerning0
 button\cf2 \expnd0\expndtw0\kerning0
  \cf5 \expnd0\expndtw0\kerning0
