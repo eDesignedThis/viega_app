@@ -101,6 +101,8 @@ function getJson(action, successCallBack, data, failCallback, timeout, nospinner
             case "LOGIN.PROGRAMINFO":
             case "POINTS.SUMMARY":
             case "PARTICIPANT.GETAWARDPOINTS":
+			case "PARTICIPANT.GETCARDAWARDS":
+			case "PARTICIPANT.GETCARDFUNDINGS":
 			case "ORDER.ORDERS":
                 baseUrl += "jsonService.ashx?action=";
                 requestType = "GET";
@@ -803,6 +805,12 @@ function PageContainerBeforeShowManager(e,ui) {
 			if (app.deviceReadyFired){
 				history.forward();
 			}
+			break;
+		case 'page_card_awards':
+			page_card_awards_show();
+			break;
+		case 'page_card_fundings':
+			page_card_fundings_show();
 			break;
 		case 'page_config':
 			page_config_show();

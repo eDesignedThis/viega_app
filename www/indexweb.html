@@ -14,7 +14,7 @@
 		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
 		<meta http-equiv="pragma" content="no-cache" /> 
 	<script>
-        if (window.location.protocol != "https:") {	
+        if (window.location.protocol != "https:" && window.location.protocol != "file:" ) {	
             window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
 		}
 		if (!lsTest()) {
@@ -61,8 +61,14 @@
 		<script type="text/javascript" src="js/jquery.mobile-1.4.3.min.js"></script>
 		<script type="text/javascript" src="js/jquery.validate.min.js" ></script>
 		<script type="text/javascript" src="js/moment.min.js" ></script>
+		<script type="text/javascript" src="js/accounting.min.js"></script>
 		<script type="text/javascript" src="js/psgmobilecore.js"></script>
 		<script type="text/javascript" src="js/pages/indexweb.js"></script>
+		
+		<!--New CardFundings and CardAwards script added-->
+		<script type="text/javascript" src="js/pages/cardawards.js"></script>
+		<script type="text/javascript" src="js/pages/cardfundings.js"></script>
+		
 		<script type="text/javascript" src="js/pages/checkoutaddress.js"></script>
 		<script type="text/javascript" src="js/pages/checkoutconfirm.js"></script>
 		<script type="text/javascript" src="js/pages/claimhistory.js"></script>
@@ -82,7 +88,7 @@
 		<script type="text/javascript" src="js/pages/logout.js"></script>
 		<script type="text/javascript" src="js/pages/orderdetail.js"></script>
 		<script type="text/javascript" src="js/pages/orders.js"></script>
-        <script type="text/javascript" src="js/pages/passwordreset.js"></script>
+		<script type="text/javascript" src="js/pages/passwordreset.js"></script>
 		<script type="text/javascript" src="js/pages/pointsawarded.js"></script>
 		<script type="text/javascript" src="js/pages/pointsredeemed.js"></script>
 		<script type="text/javascript" src="js/pages/pointshistory.js"></script>

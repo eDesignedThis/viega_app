@@ -29,31 +29,31 @@ $ThmeA_LstClrHover:#8c8b8b;
 /************* Header, Statusbar, PointsNumbers, Icons  ************/
 
 /////  This value controls the color of the following item(s): Header/Banner and *Statusbar.
-$ThmeA_HdrClr:<%PrimaryColor%>;
+$ThmeA_HdrClr:<%Color1%>;
 
 /////  This value controls the text color of the following item(s): Header/Banner.
 $ThmeA_HdrTxtClr:#FFF;
 
 /////  This value controls the color of the following item(s): PointsNumber.
-$ThmeA_PntClr:<%PrimaryColor%>;
+$ThmeA_PntClr:<%Color1%>;
 
 /////  This value controls the color of the following item(s): Carats ( actually color is adjusted below ).
-$ThmeA_CrtClr:<%PrimaryColor%>;
+$ThmeA_CrtClr:<%Color1%>;
 
 /////  This value controls the color of the following item(s): Menu Icons.
-$ThmeA_MnuIconClr:<%SecondColor%>;
+$ThmeA_MnuIconClr:<%Color2%>;
 
 
 /************* Dividers and Collapsible(s)  ************/
 
 /////  This value controls the color of the following item(s): Dividers.
-$ThmeA_DvdClr:<%ThirdColor%>;
+$ThmeA_DvdClr:<%Color3%>;
 
 /////  This value controls the color of the following item(s): Dividers Text.
 $ThmeA_DvdTxtClr:#FFF;
 
 /////  This value controls the color of the following item(s): Collapsible.
-$ThmeA_ClpClr:<%ThirdColor%>;
+$ThmeA_ClpClr:<%Color3%>;
 
 /////  This value controls the color of the following item(s): Collapsible Text.
 $ThmeA_ClpTxtClr:#FFF;
@@ -63,19 +63,19 @@ $ThmeA_ClpTxtClr:#FFF;
 /*************   Links and Buttons  ************/
 
 /////  This value controls the color of the following item(s): Links (normal and visited).
-$ThmeA_LnkClrNormal:<%SecondColor%>;
+$ThmeA_LnkClrNormal:<%Color2%>;
 
 /////  This value controls the color of the following item(s): Links (hover and active).
-$ThmeA_LnkClrHover:<%PrimaryColor%>;
+$ThmeA_LnkClrHover:<%Color1%>;
 
 /////  This value controls the color of the following item(s): Button (normal and visited).
-$ThmeA_btnClrNormal:<%SecondColor%>;
+$ThmeA_btnClrNormal:<%Color2%>;
 
 /////  This value controls the color of the following item(s): Button Text (normal and visited).
 $ThmeA_btnTxtClrNormal:#000;
 
 /////  This value controls the color of the following item(s): Button (hover and active).
-$ThmeA_btnClrHover:<%PrimaryColor%>;
+$ThmeA_btnClrHover:<%Color1%>;
 
 /////  This value controls the color of the following item(s): Button Text (hover and active).
 $ThmeA_btnTxtClrHover:#FFF;
