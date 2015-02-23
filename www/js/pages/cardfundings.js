@@ -21,7 +21,7 @@ function HandleGetCardFundings (data) {
 	// refreshing the list to apply styles
 	ul.listview({
 		autodividers: true,
-		dividerTheme: "a" ,
+		dividerTheme: "a" ,  
 		autodividersSelector: function (li) {
 			var out = li.attr("data-psg-divider");
 			return out;

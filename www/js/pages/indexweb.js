@@ -24,7 +24,7 @@ var app = {
 	appCompany: null,
 	isOnline: function () { return true; },
 	//TODO: Change url to ".." before publishing
-	getHost: function () { return ".."; },
+	getHost: function () { return ".."; }, //https://kheldalpha.rwdshq.com/532  https://kheldalpha.rwdshq.com/140
 	getBase: function () {
 			var stop = window.location.pathname.indexOf("/m/") + 3;
 			return window.location.pathname.substring(0, stop);
