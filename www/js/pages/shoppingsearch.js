@@ -26,7 +26,8 @@ function page_shopping_search_show() {
 
 	//$("#btn_search_scan").hide();
     if (app.isPhoneGap){
-	
+		
+		$('#psg_search_keyword').attr("placeholder", "Enter a search term here");
 		$("#icon_search_scan").show();
 		$("#icon_search_scan2").off('click').click(shoppingSearchScan);
 		
@@ -282,7 +283,7 @@ function shoppingSearchScan() {
 }
 
 function HandleGetSearch(data) {
-	$('#psg_search_keyword').removeAttr("placeholder");
+	//$('#psg_search_keyword').removeAttr("placeholder");
 	if (data.Result == null || data.Result == "success") {
 		var searchDepartment = psgShopping.Department.Current.get();
 		var searchTerm = $('#psg_search_keyword').val();

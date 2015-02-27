@@ -33,5 +33,5 @@ function registerPushwooshIOS(appId, appName){
 
 	//reset badges on app start
 	console.log("set badge number");
-	pushNotification.setApplicationIconBadgeNumber(0);
+	//pushNotification.setApplicationIconBadgeNumber(0);
 }
