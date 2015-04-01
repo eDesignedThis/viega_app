@@ -140,8 +140,8 @@ var itemDetails = {
 		if (data.Result == null || data.Result == "success") {
 			$.each(data.Stores, function (index, store) {
 
-				storeString += "<li>" + store.StoreName +
-				"<br><span style='font-size:small;'>" + store.StoreAvailabilityMessage +
+				storeString += "<li style='font-size:small;'>" + store.StoreName +
+				"<br><span>" + store.StoreAvailabilityMessage +
 				"</span></li>";
 			});
 		}
