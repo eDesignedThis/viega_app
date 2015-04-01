@@ -6,7 +6,7 @@ function HandleGetPointsAwarded (data) {
 	var listString = '';
 	// running a loop
 	$.each(data, function (index, value) {
-		listString += '<li data-psg-divider="' + moment(value.TransactionDate,'YYY-MM-DD').format('MMMM YYYY') + '">'+
+		listString += '<li data-psg-divider="' + moment(value.TransactionDate,'YYYY-MM-DD').format('MMMM YYYY') + '">'+
 			'<div class="ui-no-ellipse ui-text-small"><strong>' + value.TransactionDescription + '</strong></div>' +
 			'<div class="ui-grid-a"> ' +
 				'<div class="ui-block-a ui-text-small">' + moment(value.TransactionDate,'YYYY-MM-DD').format('MM-DD-YYYY') + '</div>' +
