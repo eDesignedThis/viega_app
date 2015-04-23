@@ -16,7 +16,13 @@ var app = {
 		$(document).on('pagecreate', PageBeforeCreateManager);
 		$(document).on('pagecontainerbeforetransition', PageBeforeTransitionManager);
 		$(document).on('pagecontainerbeforeshow', PageContainerBeforeShowManager);
-		$.mobile.pageContainer.pagecontainer('change', 'login.html');
+		if (sessionStorage.getItem('startPage') != null){
+			var startPage = sessionStorage.getItem('startPage');
+			sessionStorage.removeItem('startPage');
+			$.mobile.pageContainer.pagecontainer('change', startPage);
+		} else {
+			$.mobile.pageContainer.pagecontainer('change', 'login.html');
+		}
 	},
 	isPhoneGap: false,
 	offerMobileApp: false,
