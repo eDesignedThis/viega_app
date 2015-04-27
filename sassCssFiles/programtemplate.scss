@@ -1,3 +1,32 @@
+ @function luma($c) {
+   $-local-red: red(rgba($c, 1.0));
+   $-local-green: green(rgba($c, 1.0));
+   $-local-blue: blue(rgba($c, 1.0));
+   
+   @return (0.2126 * $-local-red  +
+            0.7152 * $-local-green +
+            0.0722 * $-local-blue) / 255;
+ 
+ }
+ 
+ @function pick-visible-color($bg, $c1, $c2) {
+ 
+   $bg-luma: luma($bg);
+   $c1-luma: luma($c1);
+   $c2-luma: luma($c2);
+   $c1-diff: abs($bg-luma - $c1-luma);
+   $c2-diff: abs($bg-luma - $c2-luma);
+ 
+   @if $c1-diff > $c2-diff {
+     @return $c1;
+   } @else {
+     @return $c2;
+   }
+ }
+ 
+  @function set-foreground-text-color($background-color) {
+    @return pick-visible-color($background-color, #000000, #ffffff)
+ }
  
  /************************** Global SCSS Variables ***************************************/
  
@@ -32,7 +61,7 @@ $ThmeA_LstClrHover:#8c8b8b;
 $ThmeA_HdrClr:<%Color1%>;
 
 /////  This value controls the text color of the following item(s): Header/Banner.
-$ThmeA_HdrTxtClr:#FFF;
+$ThmeA_HdrTxtClr:set-foreground-text-color($ThmeA_HdrClr);
 
 /////  This value controls the color of the following item(s): PointsNumber.
 $ThmeA_PntClr:<%Color1%>;
@@ -50,13 +79,13 @@ $ThmeA_MnuIconClr:<%Color2%>;
 $ThmeA_DvdClr:<%Color3%>;
 
 /////  This value controls the color of the following item(s): Dividers Text.
-$ThmeA_DvdTxtClr:#FFF;
+$ThmeA_DvdTxtClr:set-foreground-text-color($ThmeA_DvdClr);
 
 /////  This value controls the color of the following item(s): Collapsible.
 $ThmeA_ClpClr:<%Color3%>;
 
 /////  This value controls the color of the following item(s): Collapsible Text.
-$ThmeA_ClpTxtClr:#FFF;
+$ThmeA_ClpTxtClr:set-foreground-text-color($ThmeA_ClpClr);
 
 
 
@@ -72,7 +101,7 @@ $ThmeA_LnkClrHover:<%Color1%>;
 $ThmeA_btnClrNormal:<%Color2%>;
 
 /////  This value controls the color of the following item(s): Button Text (normal and visited).
-$ThmeA_btnTxtClrNormal:#000;
+$ThmeA_btnTxtClrNormal:set-foreground-text-color($ThmeA_btnClrNormal);
 
 /////  This value controls the color of the following item(s): Button (hover and active).
 $ThmeA_btnClrHover:<%Color1%>;
@@ -449,11 +478,11 @@ legend,
 }
 
 .error {
-    color:$errorTxtClr;
+    color:$errorTxtClr !important;
 }
 
 .validate-error{
-	color:$errorTxtClr;
+	color:$errorTxtClr !important;
     display:block;
 }
 
@@ -2183,6 +2212,8 @@ html head + body .ui-body-c.ui-focus {
 	-moz-box-shadow: 0 0 12px #3388cc ;
 	box-shadow: 0 0 12px #3388cc ;*/
 }
+
+
 
 
 
