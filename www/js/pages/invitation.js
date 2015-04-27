@@ -47,8 +47,20 @@ function page_invitation_show(){
 	}
 	
 	
-	
-	
+	if  (!app.isPhoneGap) {
+		var id = null;
+		debugger;
+		if (sessionStorage.getItem('startPageQS') != null) {
+			id = getQSParameterByName('invitation_id', sessionStorage.getItem('startPageQS'));
+		}
+        else if (location.search != null && location.search != '') {
+			id = getQSParameterByName('invitation_id');
+		}
+		if (id != null) {
+			$('#invitation_id').val(id);
+		}
+	}
+
 	$('#invitation_id').off('keypress', onKeyPress).on('keypress', onKeyPress);
 	function onKeyPress ( e ) {
 		if (e.which == 13) {
@@ -73,6 +85,11 @@ function page_invitation_show(){
 			psg.setSessionItem('enrollPrefill',JSON.stringify(data.ParticipantDataTable));
 			psg.setSessionItem('participantKey',data.ParticipantKey);
 			$.mobile.pageContainer.pagecontainer('change', 'enrollment.html');
+			
+			//Send tracking data to Google
+			ga('send','event','Invitation ID','Submit');
+			
+			
 		} else {
 		    var message = data.Result; 
 		    if (message.indexOf('login') > 1){
