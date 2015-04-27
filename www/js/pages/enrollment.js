@@ -1,6 +1,6 @@
 function page_enrollment_show(){
 	var searchTerm = 'ENROLLMENT > FIELD';
-	if (psg.participantTypeId != "0" && !psg.isOpenEnrollment){
+	if (psg.participantTypeId != null && psg.participantTypeId != "0") {
 		searchTerm = 'ENROLLMENT > PARTICIPANT_TYPES[PARTICIPANT_TYPE_ID="' + psg.participantTypeId + '"] > FIELD';
 	}
 
@@ -12,7 +12,9 @@ function page_enrollment_show(){
 
 	if (!psg.isOpenEnrollment) {
 		var participantDataRow = JSON.parse(sessionStorage.getItem(app.getBase() + 'enrollPrefill'));
-		PreFillForm(participantDataRow[0],'enrollment');
+		if (participantDataRow != null) {
+			PreFillForm(participantDataRow[0],'enrollment');
+		}
 	}
 
 	$('#frmEnrollment').validate({ submitHandler: submitEnrollmentForm });
@@ -36,6 +38,8 @@ function page_enrollment_show(){
 	
 	function submitEnrollmentResults( data ) {
 		if (data.Result == null || data.Result == "success") {
+			//Send tracking data to Google
+			ga('send','event','Enrollment Success','Submit');
 			psg.removeSessionItem('participantKey');
 			if (!app.isPhoneGap || psg.requiresEnrollmentConfirmation) {
 				$.mobile.changePage('enrollmentconfirmation.html');
