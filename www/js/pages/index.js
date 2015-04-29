@@ -30,7 +30,49 @@ var app = {
     onDeviceReady: function() {
         app.deviceReadyFired = true;
 	    app.receivedEvent('deviceready');
+	    
+	    
+	    /// Google Universal tracking code for mobile app
+		
+		var universalCode = config.googleUA;
+		
+		var userDeviceId = device.uuid;
+		
+		if (universalCode !=='') {
+		    
+		    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		    })(window,document,'script','js/googleAnalytics.js','ga');
+		    
+		    // The UA number changes per app
+		    
+		    var ua = universalCode;
+		    var uuid = userDeviceId; //device.uuid;
+			ga('create', ua, {'storage': 'none','clientId': uuid });  
+			ga('set','checkProtocolTask',null);
+			ga('set','checkStorageTask',null);
+		    
+			ga('send', 'pageview'); 
+			
+		     $(document).on('pageshow', '[data-role=page], [data-role=dialog]', function (event, ui) {
+					    try {
+						if ($.mobile.activePage.attr("data-url")) {
+						    ga('send', 'pageview', $.mobile.activePage.attr("id")); 
+						} else {
+						    ga('send', 'pageview');
+						}
+					    } catch (err) {}
+					});
+		}
+		
+		
+		//Send tracking data to Google
+		ga('send','event','User Launched App','Open');
+		
+		
 		app.phoneGapInit();
+		
         if ($.isReady){
 			app.onDocumentReady();
 		}else{

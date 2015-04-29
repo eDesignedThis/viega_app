@@ -80,6 +80,10 @@ function HandleQuickPointsScan(){
 		function (result) {
 			$('#certificate_number').val(result.text);
 			$('#quick_points_submit').trigger('click');
+			
+			//Send tracking data to Google
+			ga('send','event','Redeem Points','Scan');
+			
 		},
 		function (error) {
 			navigator.notification.alert('Unable to read QR code', function(){}, 'Scan Failed', 'OK');
@@ -92,6 +96,10 @@ function HandleQuickPointsCallback(data){
 	if (data.Result == null || data.Result == "success") {
 		if (typeof data.PointAccount !== null) {
                 UpdatePointAccount(data.PointAccount);
+		
+		//Send tracking data to Google
+		ga('send','event','Redeem Points','Submit');
+		
             }
 		//TODO: Need better message.	
 		$('#certificate_number').val(""); 

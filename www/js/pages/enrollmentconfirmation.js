@@ -49,6 +49,9 @@ function page_enrollment_confirmation_show(){
 	function loginCallback ( data ) {
 		if (data.Result == null || data.Result == "success") {
 			$.mobile.changePage('home.html');
+			
+			//Send tracking data to Google
+			ga('send','event','Enrollment Confirmation','Submit');
 		}
 		else {
 			// Login is better for handling errors.

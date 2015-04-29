@@ -11,7 +11,12 @@ function registerPushwooshIOS(appId, appName){
 	
 					//display alert to the user for example
 					navigator.notification.alert(
-						notification.aps.alert,function(){},
+						notification.aps.alert,function(){
+                                                    
+                                                    //Send tracking data to Google
+                                                    ga('send','event','User Opened Push Notification iOS','Open');
+                                                    
+                                                    },
 						appName);
 	
 					//clear the app badge

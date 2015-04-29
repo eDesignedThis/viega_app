@@ -28,6 +28,12 @@ function ShowAlert(message, title, functionName, buttons) {
 	}
 }
 
+function getQSParameterByName(name,queryString) {
+	    var qs = (queryString == null) ? window.location.search : queryString;
+		var match = RegExp('[?&]' + name + '=([^&]*)').exec(qs);
+		return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+	}
+
 // insert commas into currency number
 function addCommas(nStr) {
     nStr += '';
@@ -101,12 +107,12 @@ function getJson(action, successCallBack, data, failCallback, timeout, nospinner
             case "LOGIN.PROGRAMINFO":
             case "POINTS.SUMMARY":
             case "PARTICIPANT.GETAWARDPOINTS":
-			case "PARTICIPANT.GETCARDAWARDS":
-			case "PARTICIPANT.GETCARDFUNDINGS":
-			case "ORDER.ORDERS":
-                baseUrl += "jsonService.ashx?action=";
-                requestType = "GET";
-                break;
+	    case "PARTICIPANT.GETCARDAWARDS":
+	    case "PARTICIPANT.GETCARDFUNDINGS":
+	    case "ORDER.ORDERS":
+            baseUrl += "jsonService.ashx?action=";
+            requestType = "GET";
+            break;
             default:
                 baseUrl += "jsonSecure.ashx?action=";
                 break;

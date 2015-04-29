@@ -13,7 +13,12 @@ function registerPushwooshAndroid(appId, googleProjectId, appName){
 									 
 		//and show alert
 		navigator.notification.alert(
-			message,function(){},
+			message,function(){
+				
+			    //Send tracking data to Google
+                            ga('send','event','User Opened Push Notification Android','Open');
+				
+				},
 			appName);
 	});
  
