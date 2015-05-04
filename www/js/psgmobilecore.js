@@ -447,7 +447,7 @@ var psg = {
 		}
 		
 		if (psg.headerImageEnabled) {
-			var programImageHeader = "<img src='./img/" + psg.headerImageName + "' alt='Logo' style='height: " + psg.headerImageHeight + "';'>";
+			var programImageHeader = "<img src='./img/" + psg.headerImageName + "' alt='Logo' style='height: " + psg.headerImageHeight + "px;';'>";
 			$("div[data-role='header'] .psg-class-program-name").html(programImageHeader);
 		} else {
 			$('.psg-class-program-name').text(programName);
