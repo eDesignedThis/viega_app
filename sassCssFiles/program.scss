@@ -1,8 +1,12 @@
  
  /************************** Global SCSS Variables ***************************************/
- 
+  
  //// This value controld the background color of the app and should stay white 
  $AppBckClr:#FFF;
+ 
+ //// This is the value for overall font family
+ 
+ $FntFamily: 'Helvetica', 'HelveticaNeue', 'Arial', 'sans-serif';
  
 //// This value controls the overall font color
 $FntClr:#000;
@@ -167,7 +171,7 @@ body {
     background-color: $AppBckClr; 
     
     background-attachment:fixed;
-    font-family:'Helvetica', 'HelveticaNeue', 'Arial', 'sans-serif';
+    font-family:  $FntFamily;
     height:100%;
     margin:0px;
     padding:0px;
