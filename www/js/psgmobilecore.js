@@ -329,6 +329,7 @@ var psg = {
 		psg.baseUrl = data.BaseUrl;
 		psg.requiresEnrollmentConfirmation = false;
 		var $xml = $(psg.configXml);
+		psg.payoutType = xml.find('PROGRAM').attr('PAYOUT'); 
 		var modules = $xml.find('PROGRAM > MODULES');
 		psg.isOpenEnrollment = (modules.attr('OPEN_ENROLLMENT') == "1");
 		if (psg.isOpenEnrollment) {
@@ -371,6 +372,7 @@ var psg = {
 	participantTypeId: null,
 	programName: null,
 	programGuid: null,
+	payoutType: null,
 	isOpenEnrollment: false,
 	requiresEnrollmentConfirmation: false,
 	balance: null,

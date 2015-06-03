@@ -67,7 +67,7 @@ function getHomeMenu(){
 				
 				var searchMenu = "MENU";
 				if (psg.participantTypeId != null && psg.participantTypeId != 0){
-					searchMenu = 'MENU > PARTICIPANT_TYPES[PARTICIPANT_TYPE_ID="' + psg.participantTypeId + '"]';
+					searchMenu = 'MENU > PARTICIPANT_TYPES[PARTICIPANT_TYPE_ID="' + psg.participantTypeId + '"]  > SECTION';
 				}
 				searchMenu += ' > SECTION[TYPE_ID="' + sectionType + '"]';
 				

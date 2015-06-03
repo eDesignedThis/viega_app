@@ -109,6 +109,11 @@ $ThmeA_btnClrHover:<%Color1%>;
 /////  This value controls the color of the following item(s): Button Text (hover and active).
 $ThmeA_btnTxtClrHover:#FFF;
 
+// This value controls the radius of the buttons within the app
+$buttonCrns: 0em !important;
+
+// This value controls if buttons are: bevel or noBevel
+$buttonType: noBevel;
 
 
 /************************** Theme A SCSS Variables ***************************************/
@@ -131,14 +136,30 @@ $ThmeA_btnTxtClrHover:#FFF;
 
 //// Mixin for input fields
 @mixin inputStyles {
-    border-top:none !important;
-    border-right:none !important;
-    border-left:none !important;
-    border-bottom: solid .1em $neutralClr !important;
-    border-radius: 0 !important;
-    -webkit-border-radius: 0 !important;
+    
+    @if $buttonType == bevel {
+	
+	border-top: solid .15em $neutralClr !important;
+	border-right: solid .1em $neutralClr !important;
+	border-left: solid .1em $neutralClr !important;
+	border-bottom: solid .1em $neutralClr !important;
+	border-radius: $buttonCrns;
+	-webkit-border-radius: $buttonCrns;
+	padding: .2em;
+    
+    } @else if $buttonType == noBevel {
+	
+	border-top:none !important;
+	border-right:none !important;
+	border-left:none !important;
+	border-bottom: solid .1em $neutralClr !important;
+	border-radius: 0 !important;
+	-webkit-border-radius: 0 !important;
+	
+	
+    }
+    
 }
-
 
 //// Mixin for shopping Description
 @mixin shopDescrptStyles{
@@ -570,13 +591,15 @@ ul#psg-listview-claimdetail-details{
 
 ////// Corners for buttons etc. Variables //////////////////////////
 
-$buttonNoCrns:0 !important;
-   
-$buttonCrns: 0.6125em !important;
-
 .btnCrns{
     -webkit-border-radius: 0.6125em !important;
     border-radius: 0.6125em !important;
+}
+
+
+#page_start div.ui-footer.ui-bar-a.ui-footer-fixed.slideup ul.ui-grid-a .linkBtn, #page_login div.ui-footer.ui-bar-a.ui-footer-fixed.slideup ul.ui-grid-a .linkBtn{
+    -webkit-border-radius: 0 !important;
+    border-radius: 0 !important;
 }
 
 
@@ -1063,24 +1086,81 @@ html body .ui-group-theme-a a:active {
 
 //// Mixin for Buttons Theme A /////////////
 
+@mixin buttonBevelStyleA{
+  
+    background: $ThmeA_btnClrNormal;
+    background: linear-gradient(top,  $ThmeA_btnClrNormal,  darken($ThmeA_btnClrNormal, 12%) );
+    background: -ms-linear-gradient(top,  $ThmeA_btnClrNormal,  darken($ThmeA_btnClrNormal, 12%) );
+    background: -webkit-gradient(linear, left top, left bottom, from($ThmeA_btnClrNormal), to(darken($ThmeA_btnClrNormal, 12%) ) );
+    background: -moz-linear-gradient(top,  $ThmeA_btnClrNormal,  darken($ThmeA_btnClrNormal, 12%) );
+    
+    
+    
+}
+
+
+@mixin buttonBevelStyleA-Hover{
+  
+    background: $ThmeA_btnClrHover;
+    background: linear-gradient(top,  darken($ThmeA_btnClrHover, 12%), $ThmeA_btnClrHover);
+    background: -ms-linear-gradient(top,  darken($ThmeA_btnClrHover, 12%), $ThmeA_btnClrHover );
+    background: -webkit-gradient(linear, left top, left bottom, from(darken($ThmeA_btnClrHover, 12%) ), to($ThmeA_btnClrHover) );  
+    background: -moz-linear-gradient(top,  darken($ThmeA_btnClrHover, 12%), $ThmeA_btnClrHover );
+    
+    
+}
+
 @mixin buttonsStylesA {
-    background-color:$ThmeA_btnClrNormal;
-    color: $ThmeA_btnTxtClrNormal !important;
-    border:none !important;
-    margin: .5em auto;
-    padding: .6em .6em;
-    font-size:.9em;
-    font-weight:normal !important;
-    width:75%;
-    border-radius: $buttonNoCrns;
-    -webkit-border-radius: $buttonNoCrns;
+    
+    
+    @if $buttonType == bevel {
+	
+	@include buttonBevelStyleA;
+	color: $ThmeA_btnTxtClrNormal !important;
+	border:none !important;
+	margin: .5em auto;
+	padding: .6em .6em;
+	font-size:.9em;
+	font-weight:normal !important;
+	width:75%;
+	border-radius: $buttonCrns;
+	-webkit-border-radius: $buttonCrns;
+	 
+	
+    } @else if $buttonType == noBevel {
+	
+	background-color:$ThmeA_btnClrNormal;
+	color: $ThmeA_btnTxtClrNormal !important;
+	border:none !important;
+	margin: .5em auto;
+	padding: .6em .6em;
+	font-size:.9em;
+	font-weight:normal !important;
+	width:75%;
+	border-radius: $buttonCrns;
+	-webkit-border-radius: $buttonCrns;
+    }
+    
+   
+    
 }
 
 @mixin buttonsStylesA-Hover {
-    background-color:$ThmeA_btnClrHover !important;
-    color: $ThmeA_btnTxtClrHover !important;
+    
+     @if $buttonType == bevel {
+	
+	@include buttonBevelStyleA-Hover;
+	color: $ThmeA_btnTxtClrHover !important;
+    
+     } else {
+	
+	background-color:$ThmeA_btnClrHover !important;
+	color: $ThmeA_btnTxtClrHover !important;
+     }
+    
     
 }
+
 
 button.ui-btn.ui-btn-a {
     @include buttonsStylesA;
