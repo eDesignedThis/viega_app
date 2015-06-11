@@ -329,7 +329,7 @@ var psg = {
 		psg.baseUrl = data.BaseUrl;
 		psg.requiresEnrollmentConfirmation = false;
 		var $xml = $(psg.configXml);
-		psg.payoutType = xml.find('PROGRAM').attr('PAYOUT'); 
+		psg.payoutType = $xml.find('PROGRAM').attr('PAYOUT'); 
 		var modules = $xml.find('PROGRAM > MODULES');
 		psg.isOpenEnrollment = (modules.attr('OPEN_ENROLLMENT') == "1");
 		if (psg.isOpenEnrollment) {
@@ -376,7 +376,7 @@ var psg = {
 	isOpenEnrollment: false,
 	requiresEnrollmentConfirmation: false,
 	balance: null,
-    homeMenu: null,
+	homeMenu: null,
 	historyMenu: null,
 	menuIcons: null,
 	menuNames: null,
@@ -602,7 +602,13 @@ function PageBeforeCreateManager(e) {
 	var footer = page.find("div[data-role='footer']");
 	if ( !footer.hasClass("footer_fixed") ) {
 		var footerText = '<div class="psg_point_balance ui-center"></div>';
-		if (!app.isPhoneGap) {
+		if (app.isPhoneGap && psg.payoutType == 1) {
+			footer.hide();
+		}
+		if (!app.isPhoneGap) { 
+		    if (psg.payoutType == 1) {
+			footerText = '<a data-ajax="false" onclick="psg.goDesktopSite();" class="ui-btn ui-btn-a ui-corner-all ui-mini psg-desktop-link"><i class="fa fa-desktop fa-lg"></i>&nbsp; Desktop Site </a>';
+		    }
 			footerText = '<div class="ui-grid-a"><div class="ui-block-a"><div class="ui-center"><a data-ajax="false" onclick="psg.goDesktopSite();" class="ui-btn ui-btn-a ui-corner-all ui-mini psg-desktop-link"><i class="fa fa-desktop fa-lg"></i>&nbsp; Desktop Site </a></div></div><div class="ui-block-b">' + footerText;
 			footerText += '</div></div>';
 		}

@@ -20,7 +20,7 @@ function getHomeMenu(){
 		var xml = $(psg.configXml);
 		var search = "MENU > SECTION";
 		if (psg.participantTypeId != null && psg.participantTypeId != 0){
-			search = 'MENU > PARTICIPANT_TYPES[PARTICIPANT_TYPE_ID="' + psg.participantTypeId + '"]';
+			search = 'MENU > PARTICIPANT_TYPES[PARTICIPANT_TYPE_ID="' + psg.participantTypeId + '"]  > SECTION';
 		}
 		
 		var menuIcons={  
@@ -38,7 +38,9 @@ function getHomeMenu(){
 			  "shopping_browse" : '<i class="fa fa-th fa-lg fa-fw ui-menu-icon"></i>',
 			  "shopping_cart" : '<i class="fa fa-shopping-cart fa-lg fa-fw ui-menu-icon"></i>',
 			  "shopping_search_filter" : '<i class="fa fa-search-minus fa-lg fa-fw ui-menu-icon"></i>',
-			  "rec_items" : '<i class="fa fa-smile-o fa-lg fa-fw ui-menu-icon"></i>'			  
+			  "rec_items" : '<i class="fa fa-smile-o fa-lg fa-fw ui-menu-icon"></i>',
+			  "card_awards" : '<i class="fa fa-trophy fa-lg fa-fw ui-menu-icon"></i>',
+			  "card_fundings" : '<i class="fa fa-money fa-lg fa-fw ui-menu-icon"></i>',
 			  };
 		var menuNames ={
 			"claim_history":"Performance Tracking",
@@ -49,7 +51,9 @@ function getHomeMenu(){
 			"shopping_cart":"Shopping Cart",
 			"shopping_search_filter":"Filter &amp; Sort",
 			"whats_new":"What's New",
-			"wish_list":"Wish List"};
+			"wish_list":"Wish List",
+			"card_fundings":"Funding Info",
+			"card_awards":"Awards and Adjustments"};
 		setHomeIcons(menuIcons);
 		
 		var menuString = '<li><a href="whatsnew.html" data-transition="slide">' + psg.getMenuIcon("whats_new") + '&nbsp; What\'s New </a></li>';
@@ -67,7 +71,7 @@ function getHomeMenu(){
 				
 				var searchMenu = "MENU";
 				if (psg.participantTypeId != null && psg.participantTypeId != 0){
-					searchMenu = 'MENU > PARTICIPANT_TYPES[PARTICIPANT_TYPE_ID="' + psg.participantTypeId + '"]  > SECTION';
+					searchMenu = 'MENU > PARTICIPANT_TYPES[PARTICIPANT_TYPE_ID="' + psg.participantTypeId + '"]';
 				}
 				searchMenu += ' > SECTION[TYPE_ID="' + sectionType + '"]';
 				
@@ -76,8 +80,14 @@ function getHomeMenu(){
 			}
 		});
 		
-		var historyMenu =  '<li><a href="pointsawarded.html" data-transition="slide">' + psg.getMenuIcon("points_awarded") + '&nbsp; Awards and Adjustments </a></li> \
+		var historyMenu = ''; 
+		if (psg.payoutType != '1') {
+			historyMenu =  '<li><a href="pointsawarded.html" data-transition="slide">' + psg.getMenuIcon("points_awarded") + '&nbsp; Awards and Adjustments </a></li> \
 							<li><a href="orders.html" data-transition="slide">' + psg.getMenuIcon("orders") + '&nbsp; Orders </a></li>';
+		} else {
+			historyMenu = '<li><a href="cardawards.html" data-transition="slide">' + psg.getMenuIcon("card_awards") + '&nbsp; Awards and Adjustments </a></li> \
+						    <li><a href="cardfundings.html" data-transition="slide">' + psg.getMenuIcon("card_fundings") + '&nbsp; Funding </a></li>';
+		}
 		if (hasClaimLanding) {
 			historyMenu += '<li><a href="claimhistory.html" data-transition="slide">' + psg.getMenuIcon("claim_history") + '&nbsp; Performance Tracking</a></li>';
 		}	
