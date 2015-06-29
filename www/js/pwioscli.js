@@ -40,5 +40,5 @@ function registerPushwooshIOS(appId, appName){
 					}
 				);
 				//reset badges on app start
-				//pushNotification.setApplicationIconBadgeNumber(0);
+				pushNotification.setApplicationIconBadgeNumber(0);
 }

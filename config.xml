@@ -11,7 +11,6 @@ xmlns:android   = "http://schemas.android.com/apk/res/android">
     </author>
     <icon src="icon.png" />
     <preference name="permissions" value="none" />
-    <preference name="phonegap-version" value="3.6.3" />
     <preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="true" />
@@ -24,8 +23,6 @@ xmlns:android   = "http://schemas.android.com/apk/res/android">
     <preference name="show-splash-screen-spinner" value="true" />
     <preference name="auto-hide-splash-screen" value="true" />
     <preference name="disable-cursor" value="false" />
-    <preference name="android-minSdkVersion" value="7" />
-    <preference name="android-installLocation" value="auto" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="10000" />
     

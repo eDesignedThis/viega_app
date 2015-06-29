@@ -9,7 +9,7 @@ function page_whatsnew_show (){
 					});
 
 					if (setString == '') {
-						setString = '<p>There are no announcements at this time.</p><p class="ui-alt-title-color"><small>But don\'t worry; I\'m sure they will come-up with something, soon.</small></p>';
+						setString = '<p>No current annoucements.</p>';
 					}
 
 					var div = $('#psg_collapsible_set_whats_new');

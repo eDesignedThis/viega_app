@@ -28,10 +28,27 @@ function page_claim_show() {
 	}
 
 	function submitClaimForm() {
-		var formContent = $('#frmClaim').serialize();
-		var promotionId = psg.getSessionItem('promotion_id');
-		var	data = JSON.stringify({ form_contents: formContent, promotion_id: promotionId });
-		getJson("MOBILE.CLAIM.SAVE", submitClaimFormResult, data);
+		if (!app.isPhoneGap) {
+			var formContent = $('#frmClaim').serialize();
+			var promotionId = psg.getSessionItem('promotion_id');
+			var	data = JSON.stringify({ form_contents: formContent, promotion_id: promotionId });
+			getJson("MOBILE.CLAIM.SAVE", submitClaimFormResult, data);
+		} else {
+			var params = new Object();
+			params.otherinfo = "whatever";  //you can send additional info with the file
+
+			var imageUri = $('.psg_picture_image').attr('src');
+			var options = new FileUploadOptions();
+			options.fileKey = "file";
+			options.fileName = imageUri.substr(imageUri.lastIndexOf('/')+1);
+			options.mimeType = "image/jpeg";
+			options.params = params;
+			options.chunkedMode = false;
+
+			var ft = new FileTransfer();
+			var url = app.getHost() + "/json/jsonclaim.ashx"
+			ft.upload(imageUri, url, function(){alert("Woot");},function(){alert("Booo");}, options);
+		}
 	}
 
 	function submitClaimFormResult(data){
@@ -236,6 +253,7 @@ function ParseFields(page,searchTerm,canEdit) {
 				}
 				formString += '></textarea>';					
 				break;
+			case 'document':	
 			case 'picture':
 			    if (isPhoneGap){
 					formString += '<input style="display:none;" data-role="none" name="' + itemName + '" id="' + itemId + '"  \
@@ -244,11 +262,11 @@ function ParseFields(page,searchTerm,canEdit) {
 						formString += ' data-rule-required="true" data-msg-required="' + itemLabel + ' is required." ';
 					}
 					formString += '> \
-						<img id="img_' + itemId + '" style="width:250px;display:none">\
+						<img id="img_' + itemId + '" style="width:250px;display:none" class="psg_picture_image">\
 						<button id="picture_' + itemId + '" class="ui-btn ui-btn-a ui-icon-camera ui-btn-icon-right cancel ui-shadow ui-corner-all"  >Attach / Change Photo</button>';
 						scriptString += '<script>app.initPictureField("' + itemId + '");</scr' + 'ipt>';
 				}else{
-					formString += '<input type="file" accept="image/*" capture name="' + itemName + '" id="' + itemId + '" placeholder="' + placeholder + '">';
+					formString += '<input type="file" accept="image/*" capture="camera" name="' + itemName + '" id="' + itemId + '" placeholder="' + placeholder + '">';
 				//TODO: implement html5 media capture with fileAPI
 				}
 				break;
