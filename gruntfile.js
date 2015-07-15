@@ -34,6 +34,7 @@ require('load-grunt-tasks')(grunt);
 					'www/css/custom.css',
 					'www/js/custom.js',
 					'www/js/jquery-2.1.1.min.js',
+					'www/js/googleAnalytics.js',
 					'www/*.html'
 				],
 				dest: 'dist'

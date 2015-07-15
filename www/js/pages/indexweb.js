@@ -27,8 +27,6 @@ var app = {
 		/// Google Universal tracking code for mobile app
 		
 		var universalCode = '';
-		
-		
 		if (universalCode !=='') {
 		    
 		    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -54,6 +52,13 @@ var app = {
 						}
 					    } catch (err) {}
 					});
+		} else {
+			if (!('ga' in window)){
+				window.ga = function(){
+					window.ga.q.push(arguments);
+					};
+				window.ga.q = [];
+			}
 		}
 		
 		

@@ -64,6 +64,13 @@ var app = {
 						}
 					    } catch (err) {}
 					});
+		} else {
+			if (!('ga' in window)){
+				window.ga = function(){
+					window.ga.q.push(arguments);
+					};
+				window.ga.q = [];
+			}
 		}
 		
 		
