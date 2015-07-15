@@ -28,10 +28,35 @@ function page_claim_show() {
 	}
 
 	function submitClaimForm() {
+<<<<<<< Updated upstream
 		var formContent = $('#frmClaim').serialize();
 		var promotionId = psg.getSessionItem('promotion_id');
 		var	data = JSON.stringify({ form_contents: formContent, promotion_id: promotionId });
 		getJson("MOBILE.CLAIM.SAVE", submitClaimFormResult, data);
+=======
+		if (!app.isPhoneGap) {
+			var formContent = $('#frmClaim').serialize();
+			var promotionId = psg.getSessionItem('promotion_id');
+			var	data = JSON.stringify({ form_contents: formContent, promotion_id: promotionId });
+			getJson("MOBILE.CLAIM.SAVE", submitClaimFormResult, data);
+		} else {
+			 
+			var data = {};
+			$('#frmClaim').serializeArray().map(function(x){data[x.name] = x.value;});
+			
+			var imageUri = $('.psg_picture_image').attr('src');
+			var options = new FileUploadOptions();
+			options.fileKey = "file";
+			options.fileName = imageUri.substr(imageUri.lastIndexOf('/')+1);
+			options.mimeType = "image/jpeg";
+			options.params = data;
+			options.chunkedMode = false;
+
+			var ft = new FileTransfer();
+			var url = app.getHost() + "/json/jsonmobile.ashx"
+			ft.upload(imageUri, url, function(){alert("Woot");},function(){alert("Booo");}, options);
+		}
+>>>>>>> Stashed changes
 	}
 
 	function submitClaimFormResult(data){
@@ -140,7 +165,7 @@ function ParseFields(page,searchTerm,canEdit) {
 			formString +='<input name="' + itemName + '" type="hidden" value="' + moment().format('MM/DD/YYYY') + '" >';
 			return;
 		} 
-		else if (itemType == 'addressblock') {
+		if (itemType == 'addressblock') {
 			formString += ExpandAddressBlock(page);
 			return; //continue;
 		}
