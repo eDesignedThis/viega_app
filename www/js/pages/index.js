@@ -55,7 +55,7 @@ var app = {
 		    
 			ga('send', 'pageview'); 
 			
-		     $(document).on('pageshow', '[data-role=page], [data-role=dialog]', function (event, ui) {
+		    $(document).on('pageshow', '[data-role=page], [data-role=dialog]', function (event, ui) {
 					    try {
 						if ($.mobile.activePage.attr("data-url")) {
 						    ga('send', 'pageview', $.mobile.activePage.attr("id")); 
@@ -63,8 +63,19 @@ var app = {
 						    ga('send', 'pageview');
 						}
 					    } catch (err) {}
-					});
-		}
+			});
+                    
+                    
+        }   else {
+                if (!('ga' in window)){
+                    window.ga = function(){
+                        window.ga.q.push(arguments);
+                        };
+                    window.ga.q = [];
+                }        
+                    
+             
+            }
 		
 		
 		//Send tracking data to Google

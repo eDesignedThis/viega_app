@@ -27,8 +27,6 @@ var app = {
 		/// Google Universal tracking code for mobile app
 		
 		var universalCode = '';
-		
-		
 		if (universalCode !=='') {
 		    
 		    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -45,16 +43,26 @@ var app = {
 		    
 			ga('send', 'pageview'); 
 			
-		     $(document).on('pageshow', '[data-role=page], [data-role=dialog]', function (event, ui) {
+		    $(document).on('pageshow', '[data-role=page], [data-role=dialog]', function (event, ui) {
 					    try {
-						if ($.mobile.activePage.attr("data-url")) {
-						    ga('send', 'pageview', $.mobile.activePage.attr("id")); 
-						} else {
-						    ga('send', 'pageview');
-						}
+                            if ($.mobile.activePage.attr("data-url")) {
+                                ga('send', 'pageview', $.mobile.activePage.attr("id")); 
+                            } else {
+                                ga('send', 'pageview');
+                            }
 					    } catch (err) {}
-					});
-		}
+			});
+            
+        }   else {
+                if (!('ga' in window)){
+                    window.ga = function(){
+                        window.ga.q.push(arguments);
+                        };
+                    window.ga.q = [];
+                }
+            
+            
+            }
 		
 		
 		
