@@ -124,12 +124,13 @@ function getJson(action, successCallBack, data, failCallback, timeout, nospinner
 	if ( requestType == 'POST') {
 		if (psg.isNothing(data))
 			data = { test: 1 };
-		if (typeof data != 'string')
-			data = JSON.stringify(data);
 	}
 	else if ( typeof data === 'undefined' )
 		data = null;
 
+	var contentType = 'application/json; charset=utf-8';
+	if (action == 'MOBILE.CLAIM.SUBMIT')  //add enrollment after rework
+	  contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
 	// default timeout
 	if (psg.isNothing(timeout))
 		timeout = 10000;
@@ -172,7 +173,7 @@ function getJson(action, successCallBack, data, failCallback, timeout, nospinner
 		data: data,
 		type: requestType,
 		timeout: timeout,
-		contentType: 'application/json; charset=utf-8',
+		contentType: contentType,
 		accept: 'application/json',
 		dataType: 'json',
 		success: function(data)

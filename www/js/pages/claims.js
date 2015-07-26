@@ -28,22 +28,14 @@ function page_claim_show() {
 	}
 
 	function submitClaimForm() {
-<<<<<<< Updated upstream
-		var formContent = $('#frmClaim').serialize();
+		var data = {};
+		$('#frmClaim').serializeArray().map(function(x){data[x.name] = x.value;});
 		var promotionId = psg.getSessionItem('promotion_id');
-		var	data = JSON.stringify({ form_contents: formContent, promotion_id: promotionId });
-		getJson("MOBILE.CLAIM.SAVE", submitClaimFormResult, data);
-=======
-		if (!app.isPhoneGap) {
-			var formContent = $('#frmClaim').serialize();
-			var promotionId = psg.getSessionItem('promotion_id');
-			var	data = JSON.stringify({ form_contents: formContent, promotion_id: promotionId });
-			getJson("MOBILE.CLAIM.SAVE", submitClaimFormResult, data);
+		data["promotion_id"] = promotionId;
+		if (!app.isPhoneGap || $('.psg_picture_image') == null || $('.psg_picture_image').attr('src') == null
+			|| $('.psg_picture_image').attr('src') == '') {
+			getJson("MOBILE.CLAIM.SUBMIT", submitClaimFormResult, data);
 		} else {
-			 
-			var data = {};
-			$('#frmClaim').serializeArray().map(function(x){data[x.name] = x.value;});
-			
 			var imageUri = $('.psg_picture_image').attr('src');
 			var options = new FileUploadOptions();
 			options.fileKey = "file";
@@ -53,10 +45,9 @@ function page_claim_show() {
 			options.chunkedMode = false;
 
 			var ft = new FileTransfer();
-			var url = app.getHost() + "/json/jsonmobile.ashx"
-			ft.upload(imageUri, url, function(){alert("Woot");},function(){alert("Booo");}, options);
+			var url = app.getHost() + "/json/jsonmobile.ashx?action=MOBILE.CLAIM.SUBMIT"
+			ft.upload(imageUri, url, submitClaimFormResult,app.standardErrorHandler, options);
 		}
->>>>>>> Stashed changes
 	}
 
 	function submitClaimFormResult(data){
