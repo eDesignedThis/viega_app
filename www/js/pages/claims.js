@@ -32,7 +32,7 @@ function page_claim_show() {
 		$('#frmClaim').serializeArray().map(function(x){data[x.name] = x.value;});
 		var promotionId = psg.getSessionItem('promotion_id');
 		data["promotion_id"] = promotionId;
-		if (!app.isPhoneGap || $('.psg_picture_image') == null || $('.psg_picture_image').attr('src') == null
+		if (!app.isPhoneGap || $('.psg_picture_image').length == 0 || $('.psg_picture_image').attr('src') == null
 			|| $('.psg_picture_image').attr('src') == '') {
 			getJson("MOBILE.CLAIM.SUBMIT", submitClaimFormResult, data);
 		} else {
@@ -46,7 +46,7 @@ function page_claim_show() {
 
 			var ft = new FileTransfer();
 			var url = app.getHost() + "/json/jsonmobile.ashx?action=MOBILE.CLAIM.SUBMIT"
-			ft.upload(imageUri, url, submitClaimFormResult,app.standardErrorHandler, options);
+			ft.upload(imageUri, url, fileSuccess, fileError, options);
 		}
 	}
 
@@ -61,6 +61,24 @@ function page_claim_show() {
 			else {
 				WriteError(data.Result);
 			}
+		}
+	}
+	
+	function fileSuccess(fileUploadResult) {
+		if (!psg.isNothing(fileUploadResult)) {
+			submitClaimFormResult(JSON.parse(fileUploadResult.response));
+		}
+	}
+	
+	function fileError(fileTransferError) {
+		if (!psg.isNothing(fileTransferError)) {
+			var status = fileTransferError.code == FileTransferError.CONNECTION_ERR ? "timeout" : fileTransferError.exception;
+			var fauxXhr = {
+				responseURL: fileTransferError.target,
+				status: fileTransferError.http_status,
+				statusText: status
+			};
+			app.standardErrorHandler(fauxXhr, status);
 		}
 	}
 }
