@@ -122,15 +122,17 @@ function getJson(action, successCallBack, data, failCallback, timeout, nospinner
 	// convert data as needed
     //hack: Ripple does not like blank data on POST.
 	if ( requestType == 'POST') {
-		if (psg.isNothing(data))
+		if (psg.isNothing(data)) {
 			data = { test: 1 };
+			data = JSON.stringify(data);
+		}
 	}
 	else if ( typeof data === 'undefined' )
 		data = null;
 
-	var contentType = 'application/json;charset=utf-8';
+	var contentType = 'application/json; charset=utf-8';
 	if (action == 'MOBILE.CLAIM.SUBMIT') {  //add enrollment after rework
-		contentType = 'application/x-www-form-urlencoded;charset=utf-8';
+		contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
 	}
 	// default timeout
 	if (psg.isNothing(timeout)) {
@@ -181,7 +183,8 @@ function getJson(action, successCallBack, data, failCallback, timeout, nospinner
 		{
 			if ( spinner )
 				hideSpinner();
-			successCallBack(data);
+			try { successCallBack(data); }
+			catch (error) { }
 		} 
 	};
 	

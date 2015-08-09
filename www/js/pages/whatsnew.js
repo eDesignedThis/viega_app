@@ -9,7 +9,7 @@ function page_whatsnew_show (){
 					});
 
 					if (setString == '') {
-						setString = '<p>No current annoucements.</p>';
+						setString = '<p>No current announcements.</p>';
 					}
 
 					var div = $('#psg_collapsible_set_whats_new');

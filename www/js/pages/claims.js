@@ -29,14 +29,17 @@ function page_claim_show() {
 
 	function submitClaimForm() {
 		var data = {};
-		$('#frmClaim').serializeArray().map(function(x){data[x.name] = x.value;});
+		var claimForm = $('#frmClaim');
+		claimForm.serializeArray().map(function(x){data[x.name] = x.value;});
 		var promotionId = psg.getSessionItem('promotion_id');
 		data["promotion_id"] = promotionId;
-		if (!app.isPhoneGap || $('.psg_picture_image').length == 0 || $('.psg_picture_image').attr('src') == null
-			|| $('.psg_picture_image').attr('src') == '') {
+		
+		var picture = claimForm.find('.psg_picture_image');
+		if (!app.isPhoneGap || picture.length == 0 || picture.attr('src') == null
+			|| picture.attr('src') == '') {
 			getJson("MOBILE.CLAIM.SUBMIT", submitClaimFormResult, data);
 		} else {
-			var imageUri = $('.psg_picture_image').attr('src');
+			var imageUri = picture.attr('src');
 			var options = new FileUploadOptions();
 			options.fileKey = "file";
 			options.fileName = imageUri.substr(imageUri.lastIndexOf('/')+1);
@@ -280,19 +283,15 @@ function ParseFields(page,searchTerm,canEdit) {
 				break;
 			case 'document':
 			case 'picture':
-			    if (isPhoneGap){
-					formString += '<input style="display:none;" data-role="none" name="' + itemName + '" id="' + itemId + '"  \
-									type="text" ';
-					if (required) {
-						formString += ' data-rule-required="true" data-msg-required="' + itemLabel + ' is required." ';
-					}
-					formString += '> \
-						<img id="img_' + itemId + '" style="width:250px;display:none" class="psg_picture_image">\
-						<button id="picture_' + itemId + '" class="ui-btn ui-btn-a ui-icon-camera ui-btn-icon-right cancel ui-shadow ui-corner-all"  >Attach / Change Photo</button>';
-						scriptString += '<script>app.initPictureField("' + itemId + '");</scr' + 'ipt>';
-				}else{
-					formString += '<input type="file" accept="image/*" capture="camera" name="' + itemName + '" id="' + itemId + '" placeholder="' + placeholder + '">';
-				//TODO: implement html5 media capture with fileAPI
+				var picture = drawPictureControl(itemId, itemName, itemLabel, required, placeholder);
+				if (!psg.isNothing(picture) && picture.isSupported) {
+					formString += picture.html;
+					scriptString += picture.script;
+				}
+				else {
+					formString += '<div class="ui-text-small">'
+					formString += 'Unfortunately, the mobile website <b>does not support</b> document uploads.';
+					formString += '</div>';
 				}
 				break;
 		}
@@ -301,6 +300,31 @@ function ParseFields(page,searchTerm,canEdit) {
 	
 	var fields = { html: formString, script: scriptString };
 	return fields;
+}
+
+function drawPictureControl(itemId, itemName, itemLabel, required, placeholder) {
+	var formString = '';
+	var scriptString = '';
+	var isSupported = true;
+	
+	if (app.isPhoneGap){
+		formString += '<input style="display:none;" data-role="none" name="' + itemName + '" id="' + itemId + '"  \
+						type="text" ';
+		if (required) {
+			formString += ' data-rule-required="true" data-msg-required="' + itemLabel + ' is required." ';
+		}
+		formString += '> \
+			<img id="img_' + itemId + '" style="width:250px;display:none" class="psg_picture_image">\
+			<button id="picture_' + itemId + '" class="ui-btn ui-btn-a ui-icon-camera ui-btn-icon-right cancel ui-shadow ui-corner-all"  >Attach / Change Photo</button>';
+			scriptString += '<script>app.initPictureField("' + itemId + '");</scr' + 'ipt>';
+	}else{
+		formString += 'Not supported';
+		isSupported = false;
+	//TODO: implement html5 media capture with fileAPI
+	//formString += '<input type="file" accept="image/*" capture="camera" name="' + itemName + '" id="' + itemId + '" placeholder="' + placeholder + '">';
+	}
+	
+	return { html: formString, script: scriptString, isSupported: isSupported};
 }
 
 function undecorateCheckboxes(formString) {
