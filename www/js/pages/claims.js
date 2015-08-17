@@ -17,8 +17,8 @@ function page_claim_show() {
 	if (claimId != null){
 	    var data = JSON.stringify({ claim_id: claimId});
 		getJson("CLAIM.DUPLICATE.GET", handleClaimPrefill, data);
-	}
-
+	}	
+}
 	function handleClaimPrefill(data){
 		if (data.Result == "success"){
 			psg.removeSessionItem('claim_id');
@@ -84,7 +84,7 @@ function page_claim_show() {
 			app.standardErrorHandler(fauxXhr, status);
 		}
 	}
-}
+
 
 function PreFillForm(dataRow, formName) {
 	for(var key in dataRow) {

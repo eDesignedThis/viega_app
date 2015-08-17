@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html>
+<!-- project plan spreadsheet is at:
+https://onedrive.live.com/redir?resid=41CA3D83AA7F1268!165524&authkey=!AP7UjhfPXBhmBPU&ithint=file%2cxlsx
+-->
+
+    <head>
+		<title></title>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, width=device-width" />
+        <!-- CSS -->
+		<!--<link rel="stylesheet" type="text/css" href="css/index.css" /> Remove and content placed in the custom.css file -->
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.3.min.css" />
+		<link rel="stylesheet" href="css/jquery.mobile.structure-1.4.3.min.css" />
+		<link rel="stylesheet" href="css/jqx.base.css" type="text/css" />
+		<link rel="stylesheet" href="css/psgmobile.css" />
+ 		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
+		<link rel="stylesheet" href="css/program.css" />
+		<link rel="stylesheet" href="css/custom.css" />
+	
+       <!-- jQuery and jQuery Mobile -->
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+		<script>
+		// when JqueryMobile is ready
+			$(document).on('mobileinit', function () {
+				$.mobile.ignoreContentEnabled = true;
+				$.mobile.allowCrossDomainPages = true;
+				$.mobile.pushStateEnabled = false;
+				$.support.cors = true;
+				$.mobile.linkBindingEnabled = true;
+				$.mobile.ajaxEnabled = true;
+			});
+		</script>
+		<script type="text/javascript" src="js/jquery.mobile-1.4.3.min.js"></script>
+		<script type="text/javascript" src="js/jquery.validate.min.js" ></script>
+		<!-- MomentJS -->
+		<script type="text/javascript" src="js/moment.min.js" ></script>
+		<!-- PhoneGap and Plugins-->
+		<script type="text/javascript" src="cordova.js"></script>
+		<!-- Push change URLs when going between CLI and PGB -->
+		<script type="text/javascript" src="js/pwioscli.js"></script>
+		<script type="text/javascript" src="js/pwandroidcli.js"></script>
+		<script type="text/javascript" src="js/pwwpcli.js"></script>
+		
+		<!-- JS for Google Analytics -->
+		<script type="text/javascript" src="js/googleAnalytics.js"></script>
+		
+		<script type="text/javascript" src="js/phonegapconfig.js"></script>
+		
+		<!-- URL Scheme functions PLEASE READ THE URL SCHEME SET-UP FILE-->
+		<script type="text/javascript" src="js/plugins/ios/LaunchMyApp.js"></script>
+		<script type="text/javascript" src="js/plugins/android/LaunchMyApp.js"></script>
+		
+		<!-- PSG Core and Page Functions-->
+		<script type="text/javascript" src="js/psgmobilecore.js"></script>
+		<script type="text/javascript" src="js/pages/index.js"></script>
+		
+		<!--New CardFundings and CardAwards script added-->
+		<script type="text/javascript" src="js/pages/cardawards.js"></script>
+		<script type="text/javascript" src="js/pages/cardfundings.js"></script>
+		
+		<script type="text/javascript" src="js/pages/checkoutaddress.js"></script>
+		<script type="text/javascript" src="js/pages/editcheckoutaddress.js"></script>
+		<script type="text/javascript" src="js/pages/checkoutconfirm.js"></script>
+		<script type="text/javascript" src="js/pages/claimhistory.js"></script>
+		<script type="text/javascript" src="js/pages/claimdetail.js"></script>
+		<script type="text/javascript" src="js/pages/claims.js"></script>
+		<script type="text/javascript" src="js/pages/claimsconfirmation.js"></script>
+		<script type="text/javascript" src="js/pages/claimslanding.js"></script>
+		<script type="text/javascript" src="js/pages/contact.js"></script>
+		<script type="text/javascript" src="js/pages/editcheckoutaddress.js"></script>
+		<script type="text/javascript" src="js/pages/enrollment.js"></script>
+		<script type="text/javascript" src="js/pages/enrollmentconfirmation.js"></script>
+		<script type="text/javascript" src="js/pages/home.js"></script>
+		<script type="text/javascript" src="js/pages/invitation.js"></script>
+		<script type="text/javascript" src="js/pages/ispuselect.js"></script>
+		<script type="text/javascript" src="js/pages/itemoptions.js"></script>
+		<script type="text/javascript" src="js/pages/itemdetail.js"></script>
+		<script type="text/javascript" src="js/pages/login.js"></script>
+		<script type="text/javascript" src="js/pages/logout.js"></script>
+		<script type="text/javascript" src="js/pages/orderdetail.js"></script>
+		<script type="text/javascript" src="js/pages/orders.js"></script>
+		<script type="text/javascript" src="js/pages/passwordreset.js"></script>
+		<script type="text/javascript" src="js/pages/pointsawarded.js"></script>
+		<script type="text/javascript" src="js/pages/pointsredeemed.js"></script>
+		<script type="text/javascript" src="js/pages/pointshistory.js"></script>
+		<script type="text/javascript" src="js/pages/promotiondetail.js"></script>
+		<script type="text/javascript" src="js/pages/promotionhistory.js"></script>
+		<script type="text/javascript" src="js/pages/promotioninfo.js"></script>
+		<script type="text/javascript" src="js/pages/quickpoints.js"></script>	
+		<script type="text/javascript" src="js/pages/receipt.js"></script>
+		<script type="text/javascript" src="js/pages/remotecontent.js"></script>
+		<script type="text/javascript" src="js/pages/shoppingcart.js"></script>
+		<script type="text/javascript" src="js/pages/shoppingrecitems.js"></script>
+		<script type="text/javascript" src="js/pages/shoppingbrowse.js"></script>
+		<script type="text/javascript" src="js/pages/shoppingmain.js"></script>
+		<script type="text/javascript" src="js/pages/shoppingsearch.js"></script>
+		<script type="text/javascript" src="js/pages/shoppingsearchfilter.js"></script>
+		<script type="text/javascript" src="js/pages/shoppingonsale.js"></script>
+		<script type="text/javascript" src="js/pages/start.js"></script>
+		<script type="text/javascript" src="js/pages/whatsnew.js"></script>
+		<script type="text/javascript" src="js/pages/wishlist.js"></script>
+		<script type="text/javascript" src="js/pages/config.js"></script>
+		<script type="text/javascript" src="js/pages/profile.js"></script>
+		<!-- jQwidgets -->
+		<script type="text/javascript" src="js/jqwidgets/jqxcore.js"></script>
+		<script type="text/javascript" src="js/jqwidgets/jqxprogressbar.js"></script>
+		<script type="text/javascript" src="js/jqwidgets/jqxbuttons.js"></script>
+		<script type="text/javascript" src="js/jqwidgets/jqxdatetimeinput.js"></script>
+		<script type="text/javascript" src="js/jqwidgets/jqxcalendar.js"></script>
+		<script type="text/javascript" src="js/jqwidgets/jqxtooltip.js"></script>
+		<script type="text/javascript" src="js/jqwidgets/jqxdata.js"></script>
+		<script type="text/javascript" src="js/jqwidgets/jqxscrollbar.js"></script>
+		<script type="text/javascript" src="js/jqwidgets/jqxlistbox.js"></script>
+		<script type="text/javascript" src="js/jqwidgets/jqxcombobox.js"></script>
+		<!--Custom JS to override above if needed -->
+		<script type="text/javascript" src="js/custom.js"></script>
+    </head>
+    <body>
+        <div data-role="page" id="page_index" class="app2">
+            <h1 id="index_header" style="color:#FFF;"></h1>
+            <div id="deviceready" style="height: 0px;">
+                <p class="event listening"></p>
+                <p class="event received"></p>
+            </div>
+        </div>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+
+
+	</body>
+</html>

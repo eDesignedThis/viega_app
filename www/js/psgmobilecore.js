@@ -81,6 +81,7 @@ function WriteError(error) {
     errorDiv.focus();
 }
 
+
 // To prevent duplicate JSON calls, we will keep track of active calls.
 var activeJsonCalls = [];
 
@@ -612,9 +613,17 @@ function PageBeforeCreateManager(e) {
 		}
 		if (!app.isPhoneGap) { 
 		    if (psg.payoutType == 1) {
+				
+			page.find("div[data-role='footer']").attr('style', 'text-align: center !important;');
+				
 			footerText = '<a data-ajax="false" onclick="psg.goDesktopSite();" class="ui-btn ui-btn-a ui-corner-all ui-mini psg-desktop-link"><i class="fa fa-desktop fa-lg"></i>&nbsp; Desktop Site </a>';
-		    }
+			
+		    } else {
+			
 			footerText = '<div class="ui-grid-a"><div class="ui-block-a"><div class="ui-center"><a data-ajax="false" onclick="psg.goDesktopSite();" class="ui-btn ui-btn-a ui-corner-all ui-mini psg-desktop-link"><i class="fa fa-desktop fa-lg"></i>&nbsp; Desktop Site </a></div></div><div class="ui-block-b">' + footerText;
+			
+			}
+			
 			footerText += '</div></div>';
 		}
 		footer.html(footerText);
