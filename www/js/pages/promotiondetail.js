@@ -48,7 +48,11 @@ function page_promotion_detail_show () {
 			output += ' thru ';
 			output += moment(promotion.sales_end_date_jdate,'MM-DD-YYYY').format('MM-DD-YYYY');
 			output += '</div><div>';
-			output += psg.NumberUtil.toPoints(promotion.payout);
+			if (psg.payoutType != '1') {
+				output += psg.NumberUtil.toPoints(promotion.payout);
+			} else {
+				output += psg.NumberUtil.toCurrency(promotion.payout);
+			}
 			output += '</div><div id="psg-collapsible-set-promotion-detail" data-role="collapsibleset" data-theme="a" data-content-theme="a" data-inset="false">';
 			
 		});
