@@ -46,7 +46,7 @@ function page_promotion_info_show () {
 			var productDiv = content.find('#psg-promotion-info-products');
 			productDiv.html(output);
 			productDiv.find(':jqmData(role=table)').table().table("refresh");
-		}, { PromotionId: promotionId });
+		}, JSON.stringify({ PromotionId: promotionId }));
 	});
 	
 	function buildPromotionInfo ( promotion ) {
