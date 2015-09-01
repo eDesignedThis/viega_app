@@ -19,7 +19,7 @@ var itemDetails = {
 			function (result) {
 				idThis.HandleGetShoppingDetail(result);
 			},
-			{key: keyValue});
+			JSON.stringify({key: keyValue}));
 
 		$('#psg_item_detail_cart').on('click', function () {
 			//TODO: validate an option is checked.
@@ -32,14 +32,14 @@ var itemDetails = {
 			var keyValue = sessionStorage.getItem(getBase() + "psg-item-key");
 			getJson("SHOPPING.CART.ADD",
 				function(result) { idThis.HandleItemDetailAddCallback(result, 'shoppingcart.html'); },
-				{key: keyValue, selectedOrderOptions: selectedOptions});
+				JSON.stringify({key: keyValue, selectedOrderOptions: selectedOptions}));
 		});
 
 		$('#psg_item_detail_wishlist').on('click', function () {
 			var keyValue = sessionStorage.getItem(getBase() + "psg-item-key");
 			getJson("SHOPPING.WISHLIST.ADD",
 				function(result){ idThis.HandleItemDetailAddCallback(result, 'wishlist.html'); },
-				{key: keyValue});
+				JSON.stringify({key: keyValue}));
 		});
 	},
 
@@ -86,7 +86,8 @@ var itemDetails = {
 				xml.find("OptionList > DropDownList > ListItem").each(function () {
 					var item = $(this)
 					var points = item.attr("TotalPoints");
-					optionString = '<option value="' + item.attr('Value') + '" class="ui-no-ellipse">' + item.attr('Text');
+					var itemValue = (!item.attr('Value')) ? item.attr('Text') : item.attr('Value');
+					optionString = '<option value="' + itemValue + '" class="ui-no-ellipse">' + item.attr('Text');
 					if (hasPricing) {
 						if (optionString.indexOf('/') > -1) {
 							optionString += ' /'
@@ -189,7 +190,7 @@ var itemDetails = {
 		$("#detailMoreStoresZip").blur();
 
 		var idThis = this;
-		var data = { sku: this.ispuKey };
+		var data = JSON.stringify({ sku: this.ispuKey });
 		var zip = $("#detailMoreStoresZip").val();
 		if (zip.length > 0)
 			data['zip'] = zip;
