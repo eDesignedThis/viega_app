@@ -254,7 +254,7 @@ var psgClaimHistory = {
 				else if (field === 'quantity') {
 					output += psg.NumberUtil.toNumber(value, 2);
 					if (!psg.isNothing(claim.uom)) {
-						output += '&nbsp;' + uom;
+						output += '&nbsp;' + claim.uom;
 					}
 				}
 				else if (field === 'sale_amount') {
