@@ -280,7 +280,7 @@ var app = {
 				function (error) {
 					navigator.notification.alert('Unable to get picture', function(){}, 'Capture Failed', 'OK');
 				},
-				{ 	quality: 75,
+				{ 	quality: 50,
 					destinationType: Camera.DestinationType.FILE_URI
 				}
 			);
