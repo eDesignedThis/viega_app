@@ -43,7 +43,7 @@ function page_promotion_detail_show () {
 			if (psg.isNothing(promotion) || promotion.promotion_id != promotionId) {
 				return;
 			}
-			output += '<h3 class="headerDivider">' + promotion.promotion_name + '</h3><div>';
+			output += '<h3 class="headerDivider">' + promotion.promotion_name + '</h3><div class="ui-margin-top-1x">';
 			output += moment(promotion.sales_start_date_jdate,'MM-DD-YYYY').format('MM-DD-YYYY');
 			output += ' thru ';
 			output += moment(promotion.sales_end_date_jdate,'MM-DD-YYYY').format('MM-DD-YYYY');

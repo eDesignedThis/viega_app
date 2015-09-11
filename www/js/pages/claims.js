@@ -191,7 +191,7 @@ function ParseFields(page,searchTerm,canEdit) {
 		switch(itemType){
 			case 'note':
 				//TODO: Do we need to consider encoding for notes or other field labels?
-				formString += undecorateCheckboxes(itemLabel);
+				formString += '<div class="ui-margin-top-1x">' + undecorateCheckboxes(itemLabel);
 				break;
 			case 'text2':
 			case 'text':
