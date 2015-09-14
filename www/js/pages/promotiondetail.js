@@ -131,9 +131,8 @@ function page_promotion_detail_show () {
 				case "1": if (claim.status_type_id == "4") { return; } break;
 				case "2": if (claim.status_type_id != "0") { return; } break;
 				case "3": if (claim.status_type_id != "1" && claim.status_type_id != "2") { return; } break;
-				case "4": if (claim.status_type_id != "3") { return; } break;
+				case "4": if (claim.status_type_id != "3" && claim.status_type_id != "11") { return; } break;
 				case "5": if (claim.status_type_id != "4") { return; } break;
-				case "6": if (claim.status_type_id != "11") { return; } break;
 			}
 			claims[claims.length] = claim;
 		});

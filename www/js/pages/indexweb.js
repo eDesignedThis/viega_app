@@ -16,6 +16,23 @@ var app = {
 		$(document).on('pagecreate', PageBeforeCreateManager);
 		$(document).on('pagecontainerbeforetransition', PageBeforeTransitionManager);
 		$(document).on('pagecontainerbeforeshow', PageContainerBeforeShowManager);
+		if (location.search != null && location.search != '') {
+		    var sso = getQSParameterByName('sso');
+			if (sso != null){
+				var participantTypeId = getQSParameterByName('pid');
+				if (participantTypeId != null) {
+					psg.participantTypeId = participantTypeId;
+					getJson("POINTS.SUMMARY",function (data) { 
+								if (typeof data !== null) {
+									UpdatePointAccount(data);
+								}
+								$.mobile.pageContainer.pagecontainer('change', 'home.html');
+							}
+					);
+					return
+				}
+			}
+		}
 		if (sessionStorage.getItem('startPage') != null){
 			var startPage = sessionStorage.getItem('startPage');
 			sessionStorage.removeItem('startPage');
