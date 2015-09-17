@@ -6,7 +6,7 @@ function page_receipt_show(){
 	}
 	sessionStorage.removeItem(getBase() + "checkout.hasISPU");
 	sessionStorage.removeItem(getBase() + "checkout.orderNumber");
-	getJson("POINTS.SUMMARY", null, HandleGetReceipt);
+	getJson("POINTS.SUMMARY", HandleGetReceipt);
 }
 
 function HandleGetReceipt(data) {

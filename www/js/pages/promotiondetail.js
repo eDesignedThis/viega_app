@@ -43,12 +43,16 @@ function page_promotion_detail_show () {
 			if (psg.isNothing(promotion) || promotion.promotion_id != promotionId) {
 				return;
 			}
-			output += '<h3 class="headerDivider">' + promotion.promotion_name + '</h3><div>';
+			output += '<h3 class="headerDivider">' + promotion.promotion_name + '</h3><div class="ui-margin-top-1x">';
 			output += moment(promotion.sales_start_date_jdate,'MM-DD-YYYY').format('MM-DD-YYYY');
 			output += ' thru ';
 			output += moment(promotion.sales_end_date_jdate,'MM-DD-YYYY').format('MM-DD-YYYY');
 			output += '</div><div>';
-			output += psg.NumberUtil.toPoints(promotion.payout);
+			if (psg.payoutType != '1') {
+				output += psg.NumberUtil.toPoints(promotion.payout);
+			} else {
+				output += psg.NumberUtil.toCurrency(promotion.payout);
+			}
 			output += '</div><div id="psg-collapsible-set-promotion-detail" data-role="collapsibleset" data-theme="a" data-content-theme="a" data-inset="false">';
 			
 		});
@@ -124,9 +128,10 @@ function page_promotion_detail_show () {
 				return;
 			}
 			switch (filter.ClaimFilter) {
+				case "1": if (claim.status_type_id == "4") { return; } break;
 				case "2": if (claim.status_type_id != "0") { return; } break;
 				case "3": if (claim.status_type_id != "1" && claim.status_type_id != "2") { return; } break;
-				case "4": if (claim.status_type_id != "3") { return; } break;
+				case "4": if (claim.status_type_id != "3" && claim.status_type_id != "11") { return; } break;
 				case "5": if (claim.status_type_id != "4") { return; } break;
 			}
 			claims[claims.length] = claim;

@@ -17,8 +17,8 @@ function page_claim_show() {
 	if (claimId != null){
 	    var data = JSON.stringify({ claim_id: claimId});
 		getJson("CLAIM.DUPLICATE.GET", handleClaimPrefill, data);
-	}	
-}
+	}
+
 	function handleClaimPrefill(data){
 		if (data.Result == "success"){
 			psg.removeSessionItem('claim_id');
@@ -84,7 +84,7 @@ function page_claim_show() {
 			app.standardErrorHandler(fauxXhr, status);
 		}
 	}
-
+}
 
 function PreFillForm(dataRow, formName) {
 	for(var key in dataRow) {
@@ -191,7 +191,7 @@ function ParseFields(page,searchTerm,canEdit) {
 		switch(itemType){
 			case 'note':
 				//TODO: Do we need to consider encoding for notes or other field labels?
-				formString += '<div class="ui-margin-top-1x">' + undecorateCheckboxes(itemLabel);
+				formString += undecorateCheckboxes(itemLabel);
 				break;
 			case 'text2':
 			case 'text':
@@ -458,4 +458,4 @@ function InitDate (fieldName) {
 		hf.val(d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear()); 
 	});
 }
-
+			

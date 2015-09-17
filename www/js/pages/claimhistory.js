@@ -129,9 +129,11 @@ var psgClaimHistory = {
 			output += '<tr><td class="ui-form-label">Sale Date</td><td class="ui-form-field">';
 			output += moment(claim.sale_date_jdate,'MM-DD-YYYY').format('MM-DD-YYYY');
 			output += '</td></tr>';
-			output += '<tr><td class="ui-form-label">Quantity</td><td class="ui-form-field">';
-			output += claim.quantity.toString();
-			output += '</td></tr>';
+			if (!psg.isNothing(claim.quantity)) {
+				output += '<tr><td class="ui-form-label">Quantity</td><td class="ui-form-field">';
+				output += claim.quantity.toString();
+				output += '</td></tr>';
+			}
 			if (!psg.isNothing(claim.promotion_basis) && claim.promotion_basis >= 20) {
 				output += '<tr><td class="ui-form-label">Amount</td><td class="ui-form-field">';
 				output += psg.NumberUtil.toCurrency(claim.sale_amount);
@@ -166,6 +168,45 @@ var psgClaimHistory = {
 		}
 		
 		var output = '';
+		if (!psg.isNothing(claim.cover_sheet_id)) {
+			if (claim.status_type_id == 3 || claim.status_type_id == 11) {
+				output += '<div class="audit_div">';
+				var hasDocuments = !psg.isNothing(claim["Documents"]);
+				if (!hasDocuments) {
+					output += '<h3><i class="fa fa-exclamation-triangle fa-2x psg-claims-confirmation-audit-icon"></i>&nbsp; ATTENTION</h3>';
+					output += '<p>Your submission <b>requires documentation</b>. You may upload the documentation now.</p>';
+				}
+				else {
+					output += '<h3>Claim Verification</h3>';
+					output += '<p>You have uploaded the following documentation as verification:</p>';
+					output += '<code>';
+					$.each(claim["Documents"], function( index, doc ) {
+						if (psg.isNothing(doc)) return;
+						output += doc.DocumentLocation + '<br />';
+					});
+					output += '</code>';
+					output += '<p>You may upload additional documentation, if needed.</p>';
+				}
+				var picture = drawPictureControl('claimdetail_document', 'document', 'Upload Document', '0', '');
+				if (!psg.isNothing(picture) && picture.isSupported) {
+					output += '<form data-ajax="false" id="frmClaimDetail">';
+					output += '<div class="ui-margin-top-1x">'
+					output += '<input name="cover_sheet_id" type="hidden" value="' + claim.cover_sheet_id + '" >';
+					output += picture.html;
+					output += '</div>';
+					output += '<br />';
+					output += '<button class="ui-btn ui-btn-a ui-shadow ui-corner-all" type="submit">Submit</button>';
+					output += picture.script;
+					output += '</form>';
+				}
+				else {
+					output += '<div class="ui-margin-top-1x ui-text-small">'
+					output += 'Unfortunately, the mobile website <b>does not support</b> document uploads.';
+					output += '</div>';
+				}
+				output += '</div><br /><br />';
+			}
+		}
 		output += '<h3 class="headerDivider">' + claim.promotion_name + '</h3>';
 		output += '<h4>Claim ID: ' + claim.claim_id.toString() + '</h4>';
 		output += '<ul id="psg-listview-claimdetail-status" data-role="listview" data-theme="a" data-divider-theme="a" data-inset="false"><li data-role="list-divider">Claim Status</li><li class="ui-field-contain"><label for="psg-claim-detail-claim-date" class="ui-text-small">Claim Date:</label><span id="psg-claim-detail-claim-date">';
@@ -213,7 +254,7 @@ var psgClaimHistory = {
 				else if (field === 'quantity') {
 					output += psg.NumberUtil.toNumber(value, 2);
 					if (!psg.isNothing(claim.uom)) {
-						output += '&nbsp;' + uom;
+						output += '&nbsp;' + claim.uom;
 					}
 				}
 				else if (field === 'sale_amount') {

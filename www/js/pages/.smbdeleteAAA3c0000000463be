@@ -41,7 +41,7 @@ function page_enrollment_show(){
 			//Send tracking data to Google
 			ga('send','event','Enrollment Success','Submit');
 			psg.removeSessionItem('participantKey');
-			if ((!app.isPhoneGap && app.offerMobileApp) || psg.requiresEnrollmentConfirmation) {
+			if (!app.isPhoneGap || psg.requiresEnrollmentConfirmation) {
 				$.mobile.changePage('enrollmentconfirmation.html');
 			}
 			else {

@@ -81,6 +81,7 @@ function WriteError(error) {
     errorDiv.focus();
 }
 
+
 // To prevent duplicate JSON calls, we will keep track of active calls.
 var activeJsonCalls = [];
 
@@ -97,7 +98,7 @@ function getJson(action, successCallBack, data, failCallback, timeout, nospinner
     var requestType = "POST";
     if (action.indexOf("SHOPPING.") == 0) {
         baseUrl += "jsonCatalog.ashx?action=";
-    } else if (action.indexOf("MOBILE.") == 0 || action.indexOf("REMOTE.") == 0) {
+    } else if (action.indexOf("MOBILE.") == 0 || action.indexOf("REMOTE.") == 0 ) {
         baseUrl += "jsonMobile.ashx?action=";
     } else if (action.indexOf("CLAIM.") == 0) {
         baseUrl += "jsonClaim.ashx?action=";
@@ -105,14 +106,19 @@ function getJson(action, successCallBack, data, failCallback, timeout, nospinner
 	else {
         switch (action) {
             case "LOGIN.PROGRAMINFO":
-            case "POINTS.SUMMARY":
             case "PARTICIPANT.GETAWARDPOINTS":
-	    case "PARTICIPANT.GETCARDAWARDS":
-	    case "PARTICIPANT.GETCARDFUNDINGS":
-	    case "ORDER.ORDERS":
-            baseUrl += "jsonService.ashx?action=";
-            requestType = "GET";
-            break;
+			case "PARTICIPANT.GETCARDAWARDS":
+			case "PARTICIPANT.GETCARDFUNDINGS":
+				baseUrl += "jsonService.ashx?action=";
+				requestType = "GET";
+				break;
+			case "POINTS.SUMMARY":
+            case "ORDER.ORDERS":
+            case "CONTACT.CONTACTUSPOST":
+			case "POINTS.POINTSREDEEMED":
+				baseUrl += "jsonMobile.ashx?action=";
+				requestType = "GET";
+				break;			
             default:
                 baseUrl += "jsonSecure.ashx?action=";
                 break;
@@ -122,24 +128,29 @@ function getJson(action, successCallBack, data, failCallback, timeout, nospinner
 	// convert data as needed
     //hack: Ripple does not like blank data on POST.
 	if ( requestType == 'POST') {
-		if (psg.isNothing(data))
+		if (psg.isNothing(data)) {
 			data = { test: 1 };
-		if (typeof data != 'string')
 			data = JSON.stringify(data);
+		}
 	}
 	else if ( typeof data === 'undefined' )
 		data = null;
 
+	var contentType = 'application/json; charset=utf-8';
+	if (action == 'MOBILE.CLAIM.SUBMIT') {  //add enrollment after rework
+		contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
+	}
 	// default timeout
-	if (psg.isNothing(timeout))
+	if (psg.isNothing(timeout)) {
 		timeout = 10000;
+	}
 
 	// default fail callback
-	if (psg.isNothing(failCallback))
+	if (psg.isNothing(failCallback)) {
 		failCallback = function (xhr,status){  };
+	}
 
-	if (psg.isNothing(showOfflineAlert))
-	{
+	if (psg.isNothing(showOfflineAlert)) {
 		showOfflineAlert = true;
 	}
 	
@@ -162,8 +173,7 @@ function getJson(action, successCallBack, data, failCallback, timeout, nospinner
 	
 	// show a busy spinner unless the caller specifically says not to
 	var spinner = typeof nospinner === 'undefined' || nospinner !== true;
-	if ( spinner )
-	{
+	if ( spinner ) {
 		showSpinner();
 	}
 
@@ -172,14 +182,15 @@ function getJson(action, successCallBack, data, failCallback, timeout, nospinner
 		data: data,
 		type: requestType,
 		timeout: timeout,
-		contentType: 'application/json; charset=utf-8',
+		contentType: contentType,
 		accept: 'application/json',
 		dataType: 'json',
 		success: function(data)
 		{
 			if ( spinner )
 				hideSpinner();
-			successCallBack(data);
+			try { successCallBack(data); }
+			catch (error) { }
 		} 
 	};
 	
@@ -607,9 +618,17 @@ function PageBeforeCreateManager(e) {
 		}
 		if (!app.isPhoneGap) { 
 		    if (psg.payoutType == 1) {
+				
+			page.find("div[data-role='footer']").attr('style', 'text-align: center !important;');
+				
 			footerText = '<a data-ajax="false" onclick="psg.goDesktopSite();" class="ui-btn ui-btn-a ui-corner-all ui-mini psg-desktop-link"><i class="fa fa-desktop fa-lg"></i>&nbsp; Desktop Site </a>';
-		    }
+			
+		    } else {
+			
 			footerText = '<div class="ui-grid-a"><div class="ui-block-a"><div class="ui-center"><a data-ajax="false" onclick="psg.goDesktopSite();" class="ui-btn ui-btn-a ui-corner-all ui-mini psg-desktop-link"><i class="fa fa-desktop fa-lg"></i>&nbsp; Desktop Site </a></div></div><div class="ui-block-b">' + footerText;
+			
+			}
+			
 			footerText += '</div></div>';
 		}
 		footer.html(footerText);

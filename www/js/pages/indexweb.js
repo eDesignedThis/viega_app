@@ -16,6 +16,23 @@ var app = {
 		$(document).on('pagecreate', PageBeforeCreateManager);
 		$(document).on('pagecontainerbeforetransition', PageBeforeTransitionManager);
 		$(document).on('pagecontainerbeforeshow', PageContainerBeforeShowManager);
+		if (location.search != null && location.search != '') {
+		    var sso = getQSParameterByName('sso');
+			if (sso != null){
+				var participantTypeId = getQSParameterByName('pid');
+				if (participantTypeId != null) {
+					psg.participantTypeId = participantTypeId;
+					getJson("POINTS.SUMMARY",function (data) { 
+								if (typeof data !== null) {
+									UpdatePointAccount(data);
+								}
+								$.mobile.pageContainer.pagecontainer('change', 'home.html');
+							}
+					);
+					return
+				}
+			}
+		}
 		if (sessionStorage.getItem('startPage') != null){
 			var startPage = sessionStorage.getItem('startPage');
 			sessionStorage.removeItem('startPage');
@@ -24,22 +41,49 @@ var app = {
 			$.mobile.pageContainer.pagecontainer('change', 'login.html');
 		}
 		
-		/// Google Universal tracking code for mobile app
+		 /// Google Universal tracking code for mobile app
+        
+        
+        var uaConfigNum = config.googleUA;
+        var mockUaCode = 'UA-00000000-1';
+        
+        if ( uaConfigNum !=='') {
+            var universalCode = uaConfigNum;
+			console.log("GA Code is Set");
+        } else {
+             var universalCode = mockUaCode;
+			 console.log("Using Mock Code");
+        }
 		
-		var universalCode = '';
+        
+		
 		if (universalCode !=='') {
+            
+            //  Set the campaign source for proper view reporting
+            if (!app.isPhoneGap) {
+                
+                var campaignSoure = 'Mobile Opt';
+                console.log("Tracking Mobile Opt Site");
+                
+            } else if (app.isPhoneGap) {
+                
+                var campaignSoure = 'Mobile App';
+                console.log("Tracking Mobile App");
+            }
+           
 		    
 		    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		    })(window,document,'script','js/googleAnalytics.js','ga');
 		    
-		   
-		    var ua = universalCode;
+		    // The UA number changes per app
 		    
+		    var ua = universalCode;
 			ga('create', ua, 'auto');  
 			ga('set','checkProtocolTask',null);
 			ga('set','checkStorageTask',null);
+            ga('set', 'campaignSource', campaignSoure);
 		    
 			ga('send', 'pageview'); 
 			
@@ -52,16 +96,18 @@ var app = {
                             }
 					    } catch (err) {}
 			});
-            
+                    
+                    
         }   else {
+            
                 if (!('ga' in window)){
                     window.ga = function(){
                         window.ga.q.push(arguments);
                         };
                     window.ga.q = [];
-                }
-            
-            
+                }        
+                    
+             
             }
 		
 		
@@ -73,7 +119,8 @@ var app = {
 	appCompany: null,
 	isOnline: function () { return true; },
 	//TODO: Change url to ".." before publishing
-	getHost: function () { return ".."; }, //https://kheldalpha.rwdshq.com/532  https://kheldalpha.rwdshq.com/140
+	getHost: function () { return ".."; },
+	//getHost: function () { return "https://alpha.rwdshq.com/140"; }, //https://kheldalpha.rwdshq.com/532  https://kheldalpha.rwdshq.com/140
 	getBase: function () {
 			var stop = window.location.pathname.indexOf("/m/") + 3;
 			return window.location.pathname.substring(0, stop);

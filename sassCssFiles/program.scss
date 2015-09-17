@@ -1138,7 +1138,7 @@ html body .ui-group-theme-a a:active {
 	@include buttonBevelStyleA-Hover;
 	color: $ThmeA_btnTxtClrHover !important;
     
-     } else {
+     } @else {
 	
 	background-color:$ThmeA_btnClrHover !important;
 	color: $ThmeA_btnTxtClrHover !important;
