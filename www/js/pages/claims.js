@@ -458,4 +458,4 @@ function InitDate (fieldName) {
 		hf.val(d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear()); 
 	});
 }
-			
+

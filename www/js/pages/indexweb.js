@@ -89,11 +89,11 @@ var app = {
 			
 		    $(document).on('pageshow', '[data-role=page], [data-role=dialog]', function (event, ui) {
 					    try {
-						if ($.mobile.activePage.attr("data-url")) {
-						    ga('send', 'pageview', $.mobile.activePage.attr("id")); 
-						} else {
-						    ga('send', 'pageview');
-						}
+                            if ($.mobile.activePage.attr("data-url")) {
+                                ga('send', 'pageview', $.mobile.activePage.attr("id")); 
+                            } else {
+                                ga('send', 'pageview');
+                            }
 					    } catch (err) {}
 			});
                     
