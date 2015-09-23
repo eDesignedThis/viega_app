@@ -7,6 +7,7 @@ cordova plugin add org.apache.cordova.network-information
 cordova plugin add org.apache.cordova.splashscreen
 cordova plugin add org.apache.cordova.vibration
 cordova plugin add com.phonegap.plugins.barcodescanner
+cordova plugin add cordova-plugin-statusbar
 cordova plugin add https://github.com/phonegap-build/StatusBarPlugin.git 
 cordova plugin add https://github.com/Pushwoosh/pushwoosh-phonegap-3.0-plugin.git
 
@@ -14,17 +15,7 @@ cordova plugin add https://github.com/Pushwoosh/pushwoosh-phonegap-3.0-plugin.gi
 
 
 
-com.phonegap.plugin.statusbar 1.1.0 "StatusBar"
-com.phonegap.plugins.barcodescanner 2.0.1 "BarcodeScanner"
-com.pushwoosh.plugins.pushwoosh 3.4.5 "Pushwoosh"
-cordova-plugin-whitelist 1.0.0 "Whitelist"
-org.apache.cordova.camera 0.3.4 "Camera"
-org.apache.cordova.device 0.2.13 "Device"
-org.apache.cordova.dialogs 0.2.11 "Notification"
-org.apache.cordova.file 1.3.3 "File"
-org.apache.cordova.file-transfer 0.5.0 "File Transfer"
-org.apache.cordova.geolocation 0.3.11 "Geolocation"
-org.apache.cordova.inappbrowser 0.6.0 "InAppBrowser"
-org.apache.cordova.network-information 0.2.14 "Network Information"
-org.apache.cordova.splashscreen 0.3.5 "Splashscreen"
-org.apache.cordova.vibration 0.3.12 "Vibration"
+
+cordova plugin add cordova-plugin-splashscreen cordova-plugin-device cordova-plugin-network-information cordova-plugin-geolocation cordova-plugin-camera cordova-plugin-file cordova-plugin-dialogs cordova-plugin-globalization cordova-plugin-inappbrowser https://github.com/Pushwoosh/pushwoosh-phonegap-3.0-plugin.git cordova-plugin-statusbar https://github.com/apache/cordova-plugin-whitelist.git#r1.0.0 cordova-plugin-file cordova-plugin-file-transfer cordova-plugin-inappbrowser cordova-plugin-vibration com.phonegap.plugins.barcodescanner
+
+
