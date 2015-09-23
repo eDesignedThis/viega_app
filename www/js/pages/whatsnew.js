@@ -17,8 +17,7 @@ function page_whatsnew_show (){
 					$('#psg_collapsible_set_whats_new').collapsibleset('refresh');
 					/// Find External Links and prepare them to be opened in native browser
 					var exLinks = $("#page_whatsnew").find('a[href^="http:"]');
-					exLinks.removeAttr("target");
-					exLinks.addClass("MobileHelper");
+					exLinks.addClass("MobileHelper").attr("rel", "external");
 				
 				});
 		
@@ -36,7 +35,7 @@ function page_whatsnew_show (){
 			
 			console.log(outGoingLink);
 		    
-		    navigator.notification.confirm('Would you like to swith to your native browser to view this link', goToBrowser, psg.programName, ['Yes','No']);
+		    navigator.notification.confirm('Would you like to switch to your native browser to view this link?', goToBrowser, psg.programName, ['Yes','No']);
 		    
 		    function goToBrowser(buttonIndex){
 			
