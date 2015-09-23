@@ -1,11 +1,11 @@
 var config = {
-appName: 'RewardTrax',
-appPushId: 'AA322-266A3',
+appName: 'Feel Good Rewards',
+appPushId: '7BE02-2C596',
 //this is the project number not the project Id
-googleProjectNumber: '66243742706', 
+googleProjectNumber: '951980095510', 
 msServiceName: '',
-host: 'https://kheldalpha.rwdshq.com/33',
-base: '/33/m/',
+host: 'https://www.mrsteamfeelgoodrewards.com/', //https://www.mrsteamfeelgoodrewards.com/
+base: '/mrsteamfeelgoodrewards/m/',
 googleUA: ''
 
 }
