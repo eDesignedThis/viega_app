@@ -1,9 +1,9 @@
 /*
 Syntax error: Invalid CSS after "$ThmeA_HdrClr:": expected expression (e.g. 1px, bold), was "<%Color1%>;"
-        on line 61 of /Volumes/Development/mobile/projects/mobile/App Development/mobileApp_Core/sassCssFiles/programtemplate.scss
+        on line 64 of /Users/sbradley/Documents/RewardTrax_App_Development/RewardTrax/RewardTrax_App/sassCssFiles/programtemplate.scss
 
 Backtrace:
-/Volumes/Development/mobile/projects/mobile/App Development/mobileApp_Core/sassCssFiles/programtemplate.scss:61
+/Users/sbradley/Documents/RewardTrax_App_Development/RewardTrax/RewardTrax_App/sassCssFiles/programtemplate.scss:64
 /Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:1129:in `expected'
 /Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/script/lexer.rb:199:in `expected!'
 /Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/script/parser.rb:471:in `assert_expr'
@@ -40,4 +40,4 @@ org/jruby/RubyArray.java:1603:in `each'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Invalid CSS after \"$ThmeA_HdrClr:\": expected expression (e.g. 1px, bold), was \"<%Color1%>;\"\A         on line 61 of /Volumes/Development/mobile/projects/mobile/App Development/mobileApp_Core/sassCssFiles/programtemplate.scss"; }
+  content: "Syntax error: Invalid CSS after \"$ThmeA_HdrClr:\": expected expression (e.g. 1px, bold), was \"<%Color1%>;\"\A         on line 64 of /Users/sbradley/Documents/RewardTrax_App_Development/RewardTrax/RewardTrax_App/sassCssFiles/programtemplate.scss"; }
