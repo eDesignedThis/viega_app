@@ -174,11 +174,11 @@ var psgClaimHistory = {
 				var hasDocuments = !psg.isNothing(claim["Documents"]);
 				if (!hasDocuments) {
 					output += '<h3><i class="fa fa-exclamation-triangle fa-2x psg-claims-confirmation-audit-icon"></i>&nbsp; ATTENTION</h3>';
-					output += '<p>Your submission <b>requires documentation</b>. You may upload the documentation now.</p>';
+					output += '<p>Your submission <b>requires documentation</b>. You may attach a picture now.</p>';
 				}
 				else {
 					output += '<h3>Claim Verification</h3>';
-					output += '<p>You have uploaded the following documentation as verification:</p>';
+					output += '<p>You have attached the following picture as verification:</p>';
 					output += '<code>';
 					$.each(claim["Documents"], function( index, doc ) {
 						if (psg.isNothing(doc)) return;
