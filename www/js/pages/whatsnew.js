@@ -69,4 +69,5 @@ function page_whatsnew_show (){
 		
 		
 		
+		
 }
