@@ -16,9 +16,8 @@ function page_whatsnew_show (){
 					div.html(setString);
 					$('#psg_collapsible_set_whats_new').collapsibleset('refresh');
 					/// Find External Links and prepare them to be opened in native browser
-					var exLinks = $("#page_whatsnew").find('a[href^="http:"]');
-					exLinks.addClass("MobileHelper").attr("rel", "external");
-				
+     var exLinks = $("#page_whatsnew").find('a[href^="http:"], a[href^="https:"]');
+     exLinks.addClass("MobileHelper").attr("rel", "external");				
 				});
 		
 		
@@ -26,6 +25,7 @@ function page_whatsnew_show (){
 		
 		
 		//// Find the MobileHelper link class and open links in native browser
+		if (app.isPhoneGap) {
 		
 		$(".colspLrg").delegate('.MobileHelper', 'click', function(e) {
 		    
@@ -61,7 +61,7 @@ function page_whatsnew_show (){
 		    
 		    
 		});
-		
+		}
 		
 		
 		
