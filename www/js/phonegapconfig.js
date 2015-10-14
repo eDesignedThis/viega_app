@@ -6,6 +6,6 @@ googleProjectNumber: '66243742706',
 msServiceName: '',
 host: 'https://kheldalpha.rwdshq.com/33',
 base: '/33/m/',
-googleUA: ''
+googleUA: 'UA-61738744-1'
 
 }
