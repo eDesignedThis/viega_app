@@ -34,11 +34,11 @@ function page_contact_show(){
 
  function submitContactForm() {
       var data = JSON.stringify({ subject: $('#contact_subject').val(), other: $('#contact_other_subject').val(), question: $('#contact_question').val() });
-      getJson("SHOPPING.SHOPPINGCARTITEMS", HandleContactSubmit, data);
+      getJson("CONTACT.CONTACTUSPOST", HandleContactSubmit, data);
     }
 
     function HandleContactSubmit(data) {
-        if (data.Result == null || data.Result == "success") {
+        if (data.Result == "success") {
             var result = $('#contact_result');
             result.show();
             $('#contact_subject_container').hide();
