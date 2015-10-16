@@ -121,7 +121,7 @@ var app = {
 		
 		/// Change the color of the status bar to match the header color
 		
-		StatusBar.backgroundColorByHexString('#000');
+		StatusBar.backgroundColorByHexString('#0667EC');
 		
 		
 		
