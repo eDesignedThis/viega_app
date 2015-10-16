@@ -883,6 +883,18 @@ function PageContainerBeforeShowManager(e,ui) {
 		case 'page_item_options':
 			page_item_options_show();
 			break;
+		case 'page_learn_earn_content':
+			page_learn_earn_content_show();
+			break;	
+		case 'page_learn_earn_content_trivia':
+			page_learn_earn_content_trivia_show();
+			break;
+		case 'page_learn_earn_detail':
+			page_learn_earn_detail_show();
+			break;	
+		case 'page_learn_earn_main':
+			page_learn_earn_main_show();
+			break;		
 		case 'page_login':
 			page_login_show();
 			break;
