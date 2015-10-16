@@ -2,12 +2,12 @@ function page_home_show(){
 	if (!app.isPhoneGap){
 		$('#home_settings').hide();
 	}
-	
+
 	var menuString = getHomeMenu();
     var ul = $('#home_menu');
 	ul.html(menuString);
 	ul.listview('refresh');
-	
+
 }
 
 function getHomeMenu(){
