@@ -1,4 +1,4 @@
-function page_learn_earn_main_show(){
+//function page_learn_earn_main_show(){
 	
 	// Add your JSON here 
 // 	getJson("", function(data) {
@@ -31,7 +31,7 @@ function page_learn_earn_main_show(){
 // 		});
 // 		ul.listview('refresh');
 // 		$('.link-order').on("click", function () {
-// 				sessionStorage.setItem('psg-learnearn-id', $(this).attr('data-psg-order-id'));
+// 				sessionStorage.setItem('psg-learnearn-id', $(this).attr('data-psg-learnearn-id'));
 // 				$.mobile.changePage( 'learnearndetail.html');
 // 			});
 // 	  });
