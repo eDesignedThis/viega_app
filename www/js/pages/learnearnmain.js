@@ -1,4 +1,4 @@
-//function page_learn_earn_main_show(){
+function page_learn_earn_main_show(){
 	
 	// Add your JSON here 
 // 	getJson("", function(data) {
@@ -37,6 +37,6 @@
 // 	  });
 // 	
 //        
-// }
+ }
 
  //// Add any additional functions here

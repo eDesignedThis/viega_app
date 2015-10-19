@@ -320,6 +320,7 @@ button,
 }
 
 
+
 //////////////////// Input Place holder text  //////////////////////
 
 ::-webkit-input-placeholder {
@@ -658,12 +659,11 @@ button.ui-btn.ui-icon-minus.shopping-cart-subtract{
 
 #homeLogo{
 	margin-bottom: 15px;
-	height: 50px;
-	background-image: url(../img/Employing_Excellence_Banner.png);
+	height: 150px;
+	background-image: url(../img/icon.png);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
-	display:none;
 	
 	p{
 	    display:none;
@@ -672,6 +672,7 @@ button.ui-btn.ui-icon-minus.shopping-cart-subtract{
 	    display: none;
 	}
 }
+
 
 /* Panel buttons area for home screen */
 
