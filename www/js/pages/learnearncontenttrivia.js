@@ -14,7 +14,7 @@ function page_learn_earn_content_trivia_show(){
 // 				</li>';
 // 		});
 // 
-// 		var ul = $('#psg-listview-psg-listview-learntrivia');
+// 		var ul = $('#psg-listview-learntrivia');
 // 		ul.html(listString);
 // 		ul.listview({
 // 			  autodividers: true,
