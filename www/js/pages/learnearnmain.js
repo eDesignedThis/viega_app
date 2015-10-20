@@ -10,7 +10,7 @@ function page_learn_earn_main_show(){
 // 		var listString = '';
 // 		$.each(data, function (index, value) {
 // 			  listString += '<li data-psg-divider="' + type of learn and earn here (Survey, Trivia, or Quiz)+ '"> \
-// 				<a href="#" data-psg-learnearn-id="' + put the learn and earn Id here + '" class="link-order"> \
+// 				<a href="#" data-psg-learnearn-id="' + put the learn and earn Id here + '" class="link-learnearn"> \
 // 					<div class="ui-no-ellipse ui-text-small"><strong>Order ' + title of the learn and earn here + '</strong></div> \
 // 					<div class="ui-text-small"> \
 // 					<div class="ui-float-left">' + the expiration or the complete date here + '</div> \
@@ -30,7 +30,7 @@ function page_learn_earn_main_show(){
 // 			  }
 // 		});
 // 		ul.listview('refresh');
-// 		$('.link-order').on("click", function () {
+// 		$('.link-learnearn').on("click", function () {
 // 				sessionStorage.setItem('psg-learnearn-id', $(this).attr('data-psg-learnearn-id'));
 // 				$.mobile.changePage( 'learnearndetail.html');
 // 			});
