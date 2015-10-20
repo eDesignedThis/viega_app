@@ -1,9 +1,9 @@
 function page_learn_earn_main_show(){
 	// Add your JSON here
-	getJson("SURVEY.LIST.GET",HandleSurveyAvailableList);
+	getJson("SURVEY.LIST.GET",HandleSurveyAllList);
 }
 
-function HandleSurveyAvailableList (data) {	
+function HandleSurveyAllList (data) {	
  		/// Message on the learn and Earn main page
  		var contentString = $('#psg-content-learnearn');
  		contentString.html('test');
@@ -11,7 +11,7 @@ function HandleSurveyAvailableList (data) {
  		var listString = '';
  		$.each(data, function (index, value) {
 				
- 			  listString += '<li data-psg-divider="' + value.SurveyTypeID  + '"> \
+ 			  listString += '<li data-psg-divider="' + value.SurveyTypeText  + '"> \
  				<a href="#" data-psg-learnearn-id="' + SurveyID + '" class="link-order"> \
  					<div class="ui-no-ellipse ui-text-small"><strong>Order ' + SurveyTitle + '</strong></div> \
  					<div class="ui-text-small"> \
@@ -36,7 +36,7 @@ function HandleSurveyAvailableList (data) {
  				sessionStorage.setItem('psg-learnearn-id', $(this).attr('data-psg-order-id'));
  				$.mobile.changePage( 'learnearndetail.html');
  			});
- 	  });
+ 	 
  	
         
  }
