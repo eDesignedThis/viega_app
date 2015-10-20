@@ -12,8 +12,8 @@ function HandleSurveyAllList (data) {
  		$.each(data, function (index, value) {
 				
  			  listString += '<li data-psg-divider="' + value.SurveyTypeText  + '"> \
- 				<a href="#" data-psg-learnearn-id="' + SurveyID + '" class="link-learnearn"> \
- 					<div class="ui-no-ellipse ui-text-small"><strong>Order ' + SurveyTitle + '</strong></div> \
+ 				<a href="#" data-psg-learnearn-id="' + value.SurveyID + '" class="link-learnearn"> \
+ 					<div class="ui-no-ellipse ui-text-small"><strong>Order ' + value.SurveyTitle + '</strong></div> \
  					<div class="ui-text-small"> \
  					<div class="ui-float-left">' + moment(value.EndDate,'YYYY-MM-DD').format('MM-DD-YYYY') + '</div> \
  				</div> \

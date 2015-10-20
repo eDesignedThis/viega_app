@@ -1,4 +1,10 @@
 function page_learn_earn_detail_show(){
+	var learnEarnId = sessionStorage.getItem('psg-learnearn-id');
+	
+	getJson("", Handle,data);
+	
+	
+}
 		
 	// Add your JSON here 
 // 	getJson("", function(data) {
