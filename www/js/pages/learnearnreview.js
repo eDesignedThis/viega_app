@@ -1,19 +1,20 @@
-function page_learn_earn_content_show(){
-	
-		// Add your JSON here 
-// 		getJson("", function(data) {
+function page_learn_earn_main_review() {
+	// Add your JSON here 
+// 	getJson("", function(data) {
 // 		
 // 		var listString = '';
 // 		$.each(data, function (index, value) {
 // 			  listString += '<li data-psg-divider="' + learn and earn title+ '"> \
+// 					<div>' + Thank you or completion message + '</div> \
 // 					<div>\
-// 						<span>' + question NUmber goes here + '</span><span>' + question goes here + '</span>\
+// 						<span>' + results of quiz or survey + '</span>\
+// 						<span>' + The completion date + '</span>\
 // 					</div>\
-// 					<div>'+ Question choices or field goes here +'</div> \
+// 					<div> <a href="" data-role="button" >back to learn and earn</a> </div> \
 // 				</li>';
 // 		});
 // 
-// 		var ul = $('#psg-listview-learncontent');
+// 		var ul = $('#psg-listview-learnreview');
 // 		ul.html(listString);
 // 		ul.listview({
 // 			  autodividers: true,
@@ -27,6 +28,7 @@ function page_learn_earn_content_show(){
 // 		ul.listview('refresh');
 // 		
 // 	  });
-	  
+// 	
+//    
 }
 

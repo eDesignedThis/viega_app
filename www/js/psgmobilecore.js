@@ -897,6 +897,9 @@ function PageContainerBeforeShowManager(e,ui) {
 			break;	
 		case 'page_learn_earn_main':
 			page_learn_earn_main_show();
+			break;
+		case 'page_learn_earn_review':
+			page_learn_earn_main_review();
 			break;		
 		case 'page_login':
 			page_login_show();

@@ -1,13 +1,21 @@
 function page_learn_earn_detail_show(){
+
    getJson("SURVEY.LIST.DETAIL",HandleSurveyDetailList);    
+
+	var learnEarnId = sessionStorage.getItem('psg-learnearn-id');
+	
+	getJson("", Handle,data);
+	
+	
 }
+
 
 function HandleSurveyAllList (data) {
    
    var listString = '';
    $.each(data, function (index, value) {
       listString += '<li data-psg-divider="' + value.SurveyTitle  + '"> \
-      <div>' + the detail info about THIS learn and earn here + '</div> \
+      <div>' + value.SurveyInstructions + '</div> \
       <div>\
        <span>' + value.SurveyTypeText + '</span>\
        <span>' + value.NumberOfQuestions + '</span>\
