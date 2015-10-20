@@ -38,7 +38,7 @@ function HandleSurveyAllList (data) {
    
    ul.listview('refresh');
    
-    });
+};
   
 
 
