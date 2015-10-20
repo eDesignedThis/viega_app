@@ -103,6 +103,9 @@ function getJson(action, successCallBack, data, failCallback, timeout, nospinner
     } else if (action.indexOf("CLAIM.") == 0) {
         baseUrl += "jsonClaim.ashx?action=";
     }
+	else if (action.indexOf("SURVEY.") == 0) {
+		baseUrl += "jsonSurvey.ashx?action=";
+	}
 	else {
         switch (action) {
             case "LOGIN.PROGRAMINFO":
