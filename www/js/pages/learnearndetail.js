@@ -1,29 +1,25 @@
 function page_learn_earn_detail_show(){
-
-   getJson("SURVEY.LIST.DETAIL",HandleSurveyDetailList);    
-
-	var learnEarnId = sessionStorage.getItem('psg-learnearn-id');
-	
-	getJson("", Handle,data);
-	
-	
+	var surveyId = sessionStorage.getItem('psg-learnearn-id');
+	alert(surveyId);
+	var data = JSON.stringify({surveyId: surveyId}); 
+	getJson("SURVEY.LIST.DETAIL",HandleSurveyDetailList,data);  
 }
 
 
-function HandleSurveyAllList (data) {
+function HandleSurveyDetailList (data) {
    
    var listString = '';
-   $.each(data, function (index, value) {
-      listString += '<li data-psg-divider="' + value.SurveyTitle  + '"> \
-      <div>' + value.SurveyInstructions + '</div> \
+   
+      listString += '<li data-psg-divider="' + data.SurveyTitle  + '"> \
+      <div>' + data.SurveyInstructions + '</div> \
       <div>\
-       <span>' + value.SurveyTypeText + '</span>\
-       <span>' + value.NumberOfQuestions + '</span>\
-       <span>' + value.SurveyAward + '</span>\
+       <span>' + data.SurveyTypeText + '</span>\
+       <span>' + data.questionCount + '</span>\
+       <span>' + data.SurveyAward + '</span>\
       </div>\
       <div> <a href="" data-role="button" >Start Now</a> </div> \
      </li>';
-   });
+
  
    var ul = $('#psg-listview-learndetail');
    ul.html(listString);
