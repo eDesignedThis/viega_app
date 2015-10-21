@@ -25,6 +25,36 @@
 			
 			<!--This will hold the available the detail info for a specific Learn & Earn item -->
 			<ul id="psg-listview-learntrivia" data-role="listview" data-filter="true" data-autodividers="true"  data-dividertheme="a" >
+			<div>
+				<div id="divTrivia">
+					<input type="hidden" id="txtQuestionId" runat="server" />
+					<input type="hidden" id="txtQuestionType" runat="server" />
+					<input type="hidden" id="txtPageIndex" runat="server" />
+						<div class="trivia_container">
+							<div class="trivia_title"><label id="lblSurveyTitle" /></div>
+							<div class="trivia_header"><label id="lblQuestionHeader" /></div>
+							<div class="trivia_question_number"><label id="lblSurveyNumber" /></div>
+							<div class="trivia_question">
+							<label id="lblSurveyQuestion" /></div>
+							<label class="error" id="lblError" ></label>
+							<div class="trivia_answer_container">
+								<label id="lblSurveyAnswers"></label>
+							</div>
+							<div class="trivia_button_container">
+								<button id="cmdSubmit" class="trivia_submit_button" value="Submit"  type="submit"  />
+								<label id="lblCorrect" class="trivia_correct_text" />
+								<label id="lblWrong" class="trivia_wrong_text"  />
+							</div>
+						</div>
+					<div id="pnlPager" >
+					<div class="trivia_pager_container">
+						<a href="#" id="cmdPrevious" class="trivia_pager_page_link trivia_pager_previous_page_link" >&lt; Prev</a>
+						<a href="#" id="cmdNext"  class="trivia_pager_page_link trivia_pager_next_page_link" >Next &gt;</a>
+						&nbsp;
+					</div>
+					</div>
+				</div>
+			</div>			
 			</ul>
 			
 		</div>
