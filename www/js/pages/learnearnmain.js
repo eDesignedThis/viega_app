@@ -12,7 +12,7 @@ function HandleSurveyAllList (data) {
  		var listString = '';
  		$.each(data, function (index, value) {
 				
- 			  listString += '<li data-psg-divider="' + value.SurveyID  + '"> \
+ 			  listString += '<li data-psg-divider="' + value.SurveyTypeText  + '"> \
  				<a href="#" data-psg-learnearn-id="' + value.SurveyID + '" class="link-learnearn"> \
  					<div class="ui-no-ellipse ui-text-small"><strong> ' + value.SurveyTitle + '</strong></div> \
  					<div class="ui-no-ellipse ui-text-small"><strong> ' + value.SurveyTypeText	 + '</strong></div> \
