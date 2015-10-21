@@ -40,14 +40,20 @@ function HandleSurveyAllList (data) {
  		$('.link-learnearn').on("click", function() {
 			 
  				sessionStorage.setItem('psg-learnearn-id', $(this).attr('data-psg-learnearn-id'));
-				 
-				 /// check if survey/quiz or trivia
+				 /// check if survey/quiz or trivia and if survey/quiz is completed or available
 				 var learnEarnSelected = $(this).closest('li').attr('data-psg-divider');
-				 
+				 var learnEarnCatgry = $(this).find('div.ui-float-left strong').html();
+	
 				 if(learnEarnSelected == 'Trivia'){
 					 $.mobile.changePage('learnearncontenttrivia.html');
-				 } else{
-					 $.mobile.changePage('learnearndetail.html');
+				 } else if((learnEarnSelected == 'Quiz') || (learnEarnSelected == 'Survey')){
+					 
+					 if(learnEarnCatgry == 'Available'){
+						 $.mobile.changePage('learnearndetail.html');
+					 }else{
+						 $.mobile.changePage('learnearnreview.html');
+					 }
+					 
 				 }
  				
  			});
