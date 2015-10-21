@@ -6,7 +6,7 @@
 
 function HandleSurveyAllList (data) {	
  		/// Message on the learn and Earn main page
- 		var contentString = $('#psg-content-learnearn');
+ 		var contentString = $('.psg-learnearn-txt-content');
  		contentString.html('test');
  		
  		var listString = '';
