@@ -14,12 +14,10 @@ function HandleSurveyAllList (data) {
 				
  			  listString += '<li data-psg-divider="' + value.SurveyTypeText  + '"> \
  				<a href="#" data-psg-learnearn-id="' + value.SurveyID + '" class="link-learnearn"> \
- 					<div class="ui-no-ellipse ui-text-small"><strong> ' + value.SurveyTitle + '</strong></div> \
- 					<div class="ui-no-ellipse ui-text-small"><strong> ' + value.SurveyTypeText	 + '</strong></div> \
-					<div class="ui-no-ellipse ui-text-small"><strong> ' + value.SurveyCategory + '</strong></div> \
+ 					<div class="ui-no-ellipse"><strong> ' + value.SurveyTitle + '</strong></div> \
 					<div class="ui-text-small"> \
- 					<div class="ui-float-left">' + moment(value.EndDate,'YYYY-MM-DD').format('MM-DD-YYYY') + '</div> \
- 				</div> \
+ 						<div class="ui-float-left"><strong> ' + value.SurveyCategory + '</strong>: ' + moment(value.EndDate,'YYYY-MM-DD').format('MM-DD-YYYY') + '</div> \
+ 					</div> \
  				</a> \
  				</li>';
  		});
