@@ -1,13 +1,12 @@
 	var index = 0;
 	var questionId = 0;
 	var questionType = '';
+	var surveyId = 0;
 	function page_learn_earn_content_trivia_show(){
-		var surveyId = sessionStorage.getItem('psg-learnearn-id'); // @@@ need from main page
+		var surveyId = sessionStorage.getItem('psg-learnearn-id'); 
 		//alert(surveyId);
 		var data = JSON.stringify({ surveyId: surveyId, counter: index, type: 'New', });  
 		getJson("SURVEY.TRIVIA.GET",HandleSurveyTrivia,data);  	
-		
-		
 	}	
 	function HandleSurveyTrivia (data) {
 		var questionId = '';
@@ -42,7 +41,7 @@
 		var previousShow = false;
 		if (data.DetailList.length == 0)
 		{
-			var id="divTrivia_<%=this.ClientID %>";
+			var id="divTrivia_" + surveyId;
 			$('#' + id).hide();
 			return;
 		}
@@ -87,13 +86,13 @@
 						{
 							$('#lblCorrect').hide();
 							$('#lblWrong').show();
-							$('#lblWrong').text('<%= WrongAnswerMessage %>');				
+							$('#lblWrong').text('Incorrect');				
 						}
 						else
 						{
 							$('#lblWrong').hide();
 							$('#lblCorrect').show();
-							$('#lblCorrect').text('<%= CorrectAnswerMessage %>'); 
+							$('#lblCorrect').text('Correct'); 
 						}			
 				}
 			}
@@ -103,7 +102,7 @@
 		GetData('next');
 		return false;
 	});
-	$('#cmdPrevious').click(function () {
+	$('.cmdPrevious').on("click", function() {
 		GetData('previous');
 		return false;
 	});
@@ -111,14 +110,13 @@
 		
 		//var questionId = $('#txtQuestionId').val();
 		//var questionType = $('#txtQuestionType').val();
-		var surveyId = '<%= SurveyID %>';
 		var answer = $("[name=q" + questionId + "]:checked").val();
 		var error = "No Data";
 		if (answer==undefined){
 			$('#lblError').html("Section Required");
 			return false;
 		}
-		var surveyId = sessionStorage.getItem('psg-learnearn-id'); // @@@ need from main page
+		
 		var data = JSON.stringify({ surveyId: surveyId, counter: index, questionId: questionId,questionType: questionType,answer: answer, type: 'New' });
 		getJson("SURVEY.TRIVIA.SUBMIT",HandleSurveyTrivia,data);  					
 						
@@ -128,7 +126,6 @@
     });
 	function GetData(type)
 	{
-		var surveyId = sessionStorage.getItem('psg-learnearn-id'); // @@@ need from main page
 		var data = JSON.stringify({type: type,surveyId: surveyId,counter: index}); 
 		getJson("SURVEY.TRIVIA.GET",HandleSurveyTrivia,data);  		
 	}
