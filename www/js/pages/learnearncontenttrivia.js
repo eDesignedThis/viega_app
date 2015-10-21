@@ -1,4 +1,6 @@
 	var index = 0;
+	var questionId = 0;
+	var questionType = '';
 	function page_learn_earn_content_trivia_show(){
 		var surveyId = sessionStorage.getItem('psg-learnearn-id'); // @@@ need from main page
 		//alert(surveyId);
