@@ -5,10 +5,13 @@
 
 
 function HandleSurveyAllList (data) {	
+	
  		/// Message on the learn and Earn main page
- 		var contentString = $('.psg-learnearn-txt-content');
- 		//contentString.html('test');
- 		
+		//var contentString = '';
+		//contentString += '<p>' + data.SurveyInstructions + '</p>';
+		//var learnEarnWelcome = $('.psg-learnearn-txt-content');
+      	//learnEarnWelcome.html(contentString);
+		 
  		var listString = '';
  		$.each(data, function (index, value) {
 				
@@ -33,9 +36,20 @@ function HandleSurveyAllList (data) {
  			  }
  		});
  		ul.listview('refresh');
- 		$('.link-learnearn').on("click", function () {
+		 
+ 		$('.link-learnearn').on("click", function() {
+			 
  				sessionStorage.setItem('psg-learnearn-id', $(this).attr('data-psg-learnearn-id'));
- 				$.mobile.changePage( 'learnearndetail.html');
+				 
+				 /// check if survey/quiz or trivia
+				 var learnEarnSelected = $(this).closest('li').attr('data-psg-divider');
+				 
+				 if(learnEarnSelected == 'Trivia'){
+					 $.mobile.changePage('learnearncontenttrivia.html');
+				 } else{
+					 $.mobile.changePage('learnearndetail.html');
+				 }
+ 				
  			});
  	 
  	
