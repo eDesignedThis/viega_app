@@ -46,7 +46,8 @@ function HandleSurveyAllList (data) {
 	
 				 if(learnEarnSelected == 'Trivia'){
 					 $.mobile.changePage('learnearncontenttrivia.html');
-				 } else if((learnEarnSelected == 'Quiz') || (learnEarnSelected == 'Survey')){
+				 } 
+				 if(learnEarnSelected !== 'Trivia'){
 					 
 					 if(learnEarnCatgry == 'Available'){
 						 $.mobile.changePage('learnearndetail.html');
