@@ -10,7 +10,6 @@
 		
 			$('#cmdNext').click(function () {
 				GetData('next');
-		 
 			});
 			$('#cmdPrevious').click(function() {
 				GetData('previous');
