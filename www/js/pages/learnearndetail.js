@@ -1,4 +1,5 @@
 function page_learn_earn_detail_show() {
+
       var surveyId = sessionStorage.getItem('psg-learnearn-id');
       //alert(surveyId);
       var data = JSON.stringify({ surveyId: surveyId });
@@ -7,7 +8,7 @@ function page_learn_earn_detail_show() {
 
 
 function HandleSurveyDetailList(data) {
-     
+   	debugger;  
       var listString = '';
     
       listString += '<li data-psg-divider="' + data.SurveyTitle + '"> \
