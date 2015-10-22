@@ -27,9 +27,9 @@ function HandleSurveyAllList (data) {
 			}	
  			  listString += '<li data-psg-divider="' + value.SurveyTypeText  + '"> \
  				<a href="#" data-psg-learnearn-id="' + value.SurveyID + '" class="link-learnearn"> \
- 					<div class="ui-no-ellipse"><strong> ' + value.SurveyTitle + '</strong></div> \
+ 					<div class="ui-no-ellipse"><strong>' + value.SurveyTitle + '</strong></div> \
 					<div class="ui-text-small"> \
- 						<div class="ui-float-left"><strong>' + value.SurveyCategory + '</strong>: ' + endDate + '</div> \
+ 						<div class="ui-float-left"><strong>' + value.SurveyCategory + '</strong>' + endDate + '</div> \
  					</div> \
  				</a> \
  				</li>';
