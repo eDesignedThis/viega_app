@@ -13,13 +13,23 @@ function HandleSurveyAllList (data) {
       	//learnEarnWelcome.html(contentString);
 		 
  		var listString = '';
- 		$.each(data, function (index, value) {
-				
+ 		var endDate = '';
+
+		$.each(data, function (index, value) {
+			debugger;
+			if (value.SurveyCategory=='Available Until:')
+			{
+				endDate = moment(value.EndDate,'YYYY-MM-DD').format('MM-DD-YYYY')
+			}
+			else
+			{
+				endDate = '';	
+			}	
  			  listString += '<li data-psg-divider="' + value.SurveyTypeText  + '"> \
  				<a href="#" data-psg-learnearn-id="' + value.SurveyID + '" class="link-learnearn"> \
- 					<div class="ui-no-ellipse"><strong> ' + value.SurveyTitle + '</strong></div> \
+ 					<div class="ui-no-ellipse"><strong>' + value.SurveyTitle + '</strong></div> \
 					<div class="ui-text-small"> \
- 						<div class="ui-float-left"><strong> ' + value.SurveyCategory + '</strong>: ' + moment(value.EndDate,'YYYY-MM-DD').format('MM-DD-YYYY') + '</div> \
+ 						<div class="ui-float-left"><strong>' + value.SurveyCategory + '</strong> ' + endDate + '</div> \
  					</div> \
  				</a> \
  				</li>';
@@ -38,7 +48,7 @@ function HandleSurveyAllList (data) {
  		ul.listview('refresh');
 		 
  		$('.link-learnearn').on("click", function() {
-			
+			debugger;
  				sessionStorage.setItem('psg-learnearn-id', $(this).attr('data-psg-learnearn-id'));
 				 /// check if survey/quiz or trivia and if survey/quiz is completed or available
 				 var learnEarnSelected = $(this).closest('li').attr('data-psg-divider');
@@ -52,13 +62,15 @@ function HandleSurveyAllList (data) {
 					 $.mobile.changePage('learnearncontenttrivia.html');
 				 } else{
 					 console.log("This is not Trivia");
-					 console.log("Check the category again here: " + learnEarnCatgry);
-					 if(learnEarnCatgry === 'Available'){
+					 if(learnEarnCatgry == 'Completed'){
+						 console.log("Check the category again here: " + learnEarnCatgry);
 						 console.log("The staus is available");
-						 $.mobile.changePage('learnearndetail.html');
-					 }else {
-						console.log("The staus is completed");
 						 $.mobile.changePage('learnearnreview.html');
+					 }else {
+						 console.log("Check the category again here: " + learnEarnCatgry);
+						console.log("The staus is available");
+						$.mobile.changePage('learnearndetail.html');
+						 
 					 }
 					 
 				 }
