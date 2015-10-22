@@ -1,4 +1,4 @@
-function page_learn_earn_main_review() {
+function page_learn_earn_review() {
       var surveyId = sessionStorage.getItem('psg-learnearn-id');
       var data = JSON.stringify({ surveyId: surveyId });
       getJson("SURVEY.LIST.DETAIL", HandleSurveyDetailList, data);
