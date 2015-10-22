@@ -38,20 +38,26 @@ function HandleSurveyAllList (data) {
  		ul.listview('refresh');
 		 
  		$('.link-learnearn').on("click", function() {
-			 
+			
  				sessionStorage.setItem('psg-learnearn-id', $(this).attr('data-psg-learnearn-id'));
 				 /// check if survey/quiz or trivia and if survey/quiz is completed or available
 				 var learnEarnSelected = $(this).closest('li').attr('data-psg-divider');
 				 var learnEarnCatgry = $(this).find('div.ui-float-left strong').html();
+				 
+				 console.log(learnEarnSelected);
+				  console.log(learnEarnCatgry);
+				 
 	
 				 if(learnEarnSelected == 'Trivia'){
 					 $.mobile.changePage('learnearncontenttrivia.html');
-				 } 
-				 if(learnEarnSelected !== 'Trivia'){
-					 
-					 if(learnEarnCatgry == 'Available'){
+				 } else{
+					 console.log("This is not Trivia");
+					 console.log("Check the category again here: " + learnEarnCatgry);
+					 if(learnEarnCatgry === 'Available'){
+						 console.log("The staus is available");
 						 $.mobile.changePage('learnearndetail.html');
-					 }else{
+					 }else {
+						console.log("The staus is completed");
 						 $.mobile.changePage('learnearnreview.html');
 					 }
 					 
