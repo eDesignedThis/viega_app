@@ -20,7 +20,7 @@
 				var error = "No Data";
 				if (answer==undefined){
 					$('#lblError').html("Section Required");
-					
+					return false;
 				}
 				
 				var data = JSON.stringify({ surveyId: surveyId, counter: index, questionId: questionId,questionType: questionType,answer: answer, type: 'New' });
@@ -73,7 +73,7 @@
 			return;
 		}
 
-		if (index >= 0 ) 
+		if (index > 0 ) 
 		{
 			if( data.DetailList[index].HistoryId > 0)
 			{
