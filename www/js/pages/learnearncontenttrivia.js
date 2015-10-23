@@ -7,13 +7,7 @@
 		var data = JSON.stringify({ surveyId: surveyId, counter: index, type: 'New', });  
 		getJson("SURVEY.TRIVIA.GET",HandleSurveyTrivia,data); 
 		
-			$('#cmdNext').click(function () {
-				GetData('next');
-			});
-			$('#cmdPrevious').click(function() {
-				GetData('previous');
-				
-			});
+	
 			$('#cmdSubmit').click(function () {
 				var answer = $("[name=q" + questionId + "]:checked").val();
 				var error = "No Data";
@@ -36,14 +30,14 @@
 		var questionId = '';
 		var	questionType = '';	
 		//Hide Buttons
-		ClearFields();
+		
 
 		if (data != null) {
 			index = data.Count;
 			
 			if(index >= 0){
 				
-				HideShowControls(data);
+				
 				
 				var listString = '';
 				
@@ -82,12 +76,12 @@
 				listString += '<li>\
 									<div id="pnlPager">\
 										<div class="trivia_pager_container ui-grid-a">\
-											<div class="ui-block-a"><div class="ui-center"><a href="#" id="cmdPrevious" class="trivia_pager_page_link trivia_pager_previous_page_link linkBtn ui-btn ui-btn-a ui-shadow ui-corner-all ui-mini">Prev</a></div></div>\
+											<div class="ui-block-a"><div class="ui-center"><a  href="#" id="cmdPrevious" class="trivia_pager_page_link trivia_pager_previous_page_link linkBtn ui-btn ui-btn-a ui-shadow ui-corner-all ui-mini">Prev</a></div></div>\
 											<div class="ui-block-b"><div class="ui-center"><a href="#" id="cmdNext" class="trivia_pager_page_link trivia_pager_next_page_link linkBtn ui-btn ui-btn-a ui-shadow ui-corner-all ui-mini">Next</a></div></div>\
 										</div>\
 									</div>\
 								</li>';
-				
+
 				
 				
 				// if(data.DetailList[index].QuestionId != null){questionId = data.DetailList[index].QuestionId};
@@ -123,6 +117,15 @@
 	
 		ul.listview('refresh');
 		
+		$('#cmdNext').click(function () {
+			GetData('next');
+		});
+		$('#cmdPrevious').click(function() {
+			GetData('previous');
+			
+		});
+		ClearFields();
+		HideShowControls(data);
 		
 	}		
 	function HideShowControls(data)
