@@ -3,52 +3,22 @@
 	var questionType = '';
 	var surveyId = 0;
 	function page_learn_earn_content_trivia_show(){
-		var surveyId = sessionStorage.getItem('psg-learnearn-id'); 
+		surveyId = sessionStorage.getItem('psg-learnearn-id'); 
 		var data = JSON.stringify({ surveyId: surveyId, counter: index, type: 'New', });  
 		getJson("SURVEY.TRIVIA.GET",HandleSurveyTrivia,data); 
+		return false;
 		
-			$('#cmdNext').click(function () {
-				GetData('next');
-			});
-			$('#cmdPrevious').click(function() {
-				GetData('previous');
-				
-			});
-			$('#cmdSubmit').click(function () {
-				var answer = $("[name=q" + questionId + "]:checked").val();
-				var error = "No Data";
-				if (answer==undefined){
-					$('#lblError').html("Section Required");
-					return false;
-				}
-				
-				var data = JSON.stringify({ surveyId: surveyId, counter: index, questionId: questionId,questionType: questionType,answer: answer, type: 'New' });
-				getJson("SURVEY.TRIVIA.SUBMIT",HandleSurveyTrivia,data);  					
-								
-				if (data != null) {
-					index = data.Count;
-				}
-			});
-			
-			//Hide Buttons
-			ClearFields();
-
-			
-			return false;
-
 	}	
 	
 	
 	function HandleSurveyTrivia (data) {
 		var questionId = '';
 		var	questionType = '';	
-		
+
 		if (data != null) {
 			index = data.Count;
 			
 			if(index >= 0){
-				
-				HideShowControls(data);
 				
 				var listString = '';
 				
@@ -87,12 +57,12 @@
 				listString += '<li>\
 									<div id="pnlPager">\
 										<div class="trivia_pager_container ui-grid-a">\
-											<div class="ui-block-a"><div class="ui-center"><a href="#" id="cmdPrevious" class="trivia_pager_page_link trivia_pager_previous_page_link linkBtn ui-btn ui-btn-a ui-shadow ui-corner-all ui-mini">Prev</a></div></div>\
+											<div class="ui-block-a"><div class="ui-center"><a  href="#" id="cmdPrevious" class="trivia_pager_page_link trivia_pager_previous_page_link linkBtn ui-btn ui-btn-a ui-shadow ui-corner-all ui-mini">Prev</a></div></div>\
 											<div class="ui-block-b"><div class="ui-center"><a href="#" id="cmdNext" class="trivia_pager_page_link trivia_pager_next_page_link linkBtn ui-btn ui-btn-a ui-shadow ui-corner-all ui-mini">Next</a></div></div>\
 										</div>\
 									</div>\
 								</li>';
-				
+			
 				// if(data.DetailList[index].QuestionId != null){questionId = data.DetailList[index].QuestionId};
 				// if(data.DetailList[index].QuestionType != null){questionType = data.DetailList[index].QuestionType};
 				// if(data.DetailList[index].SurveyTitle != null){$('#lblSurveyTitle').text(data.DetailList[index].SurveyTitle)};
@@ -123,6 +93,32 @@
 	
 		ul.listview('refresh');
 		
+		$('#cmdNext').click(function () {
+			GetData('next');
+		});
+		$('#cmdPrevious').click(function() {
+			GetData('previous');
+			
+		});
+		
+		$('#cmdSubmit').click(function () {
+			var answer = $("[name=q" + questionId + "]:checked").val();
+			var error = "No Data";
+			if (answer==undefined){
+				$('#lblError').html("Section Required");
+				return false;
+			}
+			
+			var data = JSON.stringify({ surveyId: surveyId, counter: index, questionId: questionId,questionType: questionType,answer: answer, type: 'New' });
+			getJson("SURVEY.TRIVIA.SUBMIT",HandleSurveyTrivia,data);  					
+							
+			if (data != null) {
+				index = data.Count;
+			}
+		});
+		
+		ClearFields();
+		HideShowControls(data);
 		
 	}	
 	
