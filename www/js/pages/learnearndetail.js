@@ -6,7 +6,15 @@ function page_learn_earn_detail_show() {
 
 function HandleSurveyDetailList(data) {
 	if (psg.isNothing(data)) return;
+	if (data.Result == "success") {
+		DrawSurveyDetail(data.Survey);
+	}
+	else {
+		WriteError(data.Result);
+	}
+}
 
+function DrawSurveyDetail(data) {
 	var listString = '';
 
 	listString += '<li data-psg-divider="' + data.SurveyTitle + '"> \
@@ -21,10 +29,10 @@ function HandleSurveyDetailList(data) {
 	}
 	else if (data.hasTaken && data.attempts <= data.Retakes && data.Score < data.SurveyPassingGrade && data.CanTake) {
 		if (data.attempts > 0) {
-			listString += '<li><a href="learnearncontent.html">Retake Now</a></li>';
+			listString += '<li><a href="learnearncontent.html" data-transition="slide">Retake Now</a></li>';
 		}
 		else {
-			listString += '<li><a href="learnearncontent.html">Start Now</a></li>';
+			listString += '<li><a href="learnearncontent.html" data-transition="slide">Start Now</a></li>';
 		}
 	}
 	else if (data.hasTaken || data.attempts > data.Retakes) {
@@ -33,7 +41,7 @@ function HandleSurveyDetailList(data) {
 		} else {
 			listString += '<li><div class="ui-no-ellipse ui-text-small psg-learnearn-li-section"><p>Completed: ' + data.results + '</p></div></li>';
 		}
-		listString += '<li><a href="learnearncontent.html" data-direction="reverse" data-icon="arrow-l">Back</a></li>';
+		listString += '<li><a href="learnearnmain.html" data-transition="slide" data-direction="reverse" data-icon="arrow-l">Back</a></li>';
 	}
       
 	var ul = $('#psg-listview-learndetail');
