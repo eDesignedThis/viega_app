@@ -29,15 +29,20 @@
 					index = data.Count;
 				}
 			});
+			
+			//Hide Buttons
+			ClearFields();
+
+			
 			return false;
 
 	}	
+	
+	
 	function HandleSurveyTrivia (data) {
 		var questionId = '';
 		var	questionType = '';	
-		//Hide Buttons
-		ClearFields();
-
+		
 		if (data != null) {
 			index = data.Count;
 			
@@ -48,30 +53,30 @@
 				var listString = '';
 				
 				listString += '<li data-psg-divider="' + data.DetailList[index].SurveyTitle + '">\
-								<div class="ui-no-ellipse ui-text-small">'; // Open the div for trivia question number, question, and submit
+								<div class="ui-no-ellipse">'; // Open the div for trivia question number, question, and submit
 								
 				if(data.DetailList[index].QuestionHeader != null){
-					listString += '<p class="trivia_header" id="lblQuestionHeader">' + data.DetailList[index].QuestionHeader + '</p>';
+					listString += '<p class="trivia_header psg-lrnErn-txt" id="lblQuestionHeader">' + data.DetailList[index].QuestionHeader + '</p>';
 					}		
 					
 				if(data.DetailList[index].QuestionOrder != null){
-					listString += '<p class="trivia_question_number" id="lblSurveyNumber">Trivia Question #' + data.DetailList[index].QuestionOrder + '</p>';
+					listString += '<p class="trivia_question_number psg-lrnErn-txt" id="lblSurveyNumber">Trivia Question #' + data.DetailList[index].QuestionOrder + '</p>';
 					}				
 				
 				if(data.DetailList[index].QuestionText != null){
-					listString += '<div class="trivia_question ui-no-ellipse ui-text-small">\
-										<p id="lblSurveyQuestion">' + data.DetailList[index].QuestionText + '</p>\
+					listString += '<div class="trivia_question ui-no-ellipse">\
+										<p class="psg-lrnErn-txt" id="lblSurveyQuestion">' + data.DetailList[index].QuestionText + '</p>\
 									</div>'; 
 				}
-					listString += '<p class="error" id="lblError"></p>';
+					listString += '<p class="error psg-lrnErn-txt" id="lblError"></p>';
 					
 				if(data.Markup != null){
-					listString += '<div class="trivia_answer_container ui-no-ellipse ui-text-small">\
+					listString += '<div class="trivia_answer_container ui-no-ellipse">\
 										<p id="lblSurveyAnswers">' + data.Markup + '</p>\
 									</div>'; 
 				}	
 				
-				listString += '<div class="trivia_button_container ui-no-ellipse ui-text-small ui-grid-a">\
+				listString += '<div class="trivia_button_container ui-no-ellipse ui-grid-a">\
 									<div class="ui-block-a"><div class="ui-center"><p id="lblCorrect" class="trivia_correct_text"></p><p id="lblWrong" class="trivia_wrong_text"></p></div></div>\
 									<div class="ui-block-b"><div class="ui-center"><button data-mini="true" id="cmdSubmit" class="trivia_submit_button ui-btn ui-btn-a ui-shadow ui-corner-all" value="Submit" type="submit" >Submit</button></div></div>\
 								</div>\
@@ -88,8 +93,6 @@
 									</div>\
 								</li>';
 				
-				
-				
 				// if(data.DetailList[index].QuestionId != null){questionId = data.DetailList[index].QuestionId};
 				// if(data.DetailList[index].QuestionType != null){questionType = data.DetailList[index].QuestionType};
 				// if(data.DetailList[index].SurveyTitle != null){$('#lblSurveyTitle').text(data.DetailList[index].SurveyTitle)};
@@ -97,9 +100,6 @@
 				// if(data.DetailList[index].QuestionOrder != null){$('#lblSurveyNumber').text('Trivia Question #' + data.DetailList[index].QuestionOrder)};
 				// if(data.DetailList[index].QuestionText != null){$('#lblSurveyQuestion').text(data.DetailList[index].QuestionText)};
 				// if(data.Markup != null){$('#lblSurveyAnswers').html(data.Markup)};
-				
-				
-				
 				
 			}
 			else
@@ -124,7 +124,10 @@
 		ul.listview('refresh');
 		
 		
-	}		
+	}	
+	
+	
+		
 	function HideShowControls(data)
 	{
 		
@@ -207,38 +210,3 @@
 	}	
 
 
-
-		// Add your JSON here 
-// 		getJson("", function(data) {
-// 		
-// 		var listString = '';
-// 		$.each(data, function (index, value) {
-// 			  listString += '<li data-psg-divider="' + learn and earn title+ '"> \
-// 					<div>' + trivia question Number here + '</div> \
-// 					<div>\
-// 						<span>' + trivia question goes here + '</span>\
-// 					</div>\
-// 					<div>'+ trivia button container here +'</div> \
-// 					<div>'+ trivia pager container here +'</div> \
-// 				</li>';
-// 		});
-// 
-// 		var ul = $('#psg-listview-learntrivia');
-// 		ul.html(listString);
-// 		ul.listview({
-// 			  autodividers: true,
-// 			  dividerTheme: "a" ,
-// 			  autodividersSelector: function (li) {
-// 				  var out = li.attr("data-psg-divider");
-// 				  return out;
-// 			  }
-// 		});
-// 		
-// 		ul.listview('refresh');
-// 		
-// 	  });
-	
-       
-//}
-
- 

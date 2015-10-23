@@ -308,12 +308,18 @@ img {
 	border-bottom: solid 1px;
 }
 
+.psg-lrnErn-txt{
+    font-size: 1.25em !important;
+    overflow: visible;
+    white-space: normal !important;
+}
 
-
-
-
-
-
+.trivia_answer_container{
+    margin-top:25px;
+}
+.trivia_button_container{
+    margin-top:25px;
+}
 
 .ispu_containerondetail {
     text-align: left;
