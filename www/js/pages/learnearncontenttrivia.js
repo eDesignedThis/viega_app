@@ -3,28 +3,10 @@
 	var questionType = '';
 	var surveyId = 0;
 	function page_learn_earn_content_trivia_show(){
-		var surveyId = sessionStorage.getItem('psg-learnearn-id'); 
+		surveyId = sessionStorage.getItem('psg-learnearn-id'); 
 		var data = JSON.stringify({ surveyId: surveyId, counter: index, type: 'New', });  
 		getJson("SURVEY.TRIVIA.GET",HandleSurveyTrivia,data); 
-		
-	
-			$('#cmdSubmit').click(function () {
-				var answer = $("[name=q" + questionId + "]:checked").val();
-				var error = "No Data";
-				if (answer==undefined){
-					$('#lblError').html("Section Required");
-					return false;
-				}
-				
-				var data = JSON.stringify({ surveyId: surveyId, counter: index, questionId: questionId,questionType: questionType,answer: answer, type: 'New' });
-				getJson("SURVEY.TRIVIA.SUBMIT",HandleSurveyTrivia,data);  					
-								
-				if (data != null) {
-					index = data.Count;
-				}
-			});
 			return false;
-
 	}	
 	function HandleSurveyTrivia (data) {
 		var questionId = '';
@@ -81,20 +63,9 @@
 										</div>\
 									</div>\
 								</li>';
-
-				
-				
-				// if(data.DetailList[index].QuestionId != null){questionId = data.DetailList[index].QuestionId};
-				// if(data.DetailList[index].QuestionType != null){questionType = data.DetailList[index].QuestionType};
-				// if(data.DetailList[index].SurveyTitle != null){$('#lblSurveyTitle').text(data.DetailList[index].SurveyTitle)};
-				// if(data.DetailList[index].QuestionHeader != null){$('#lblQuestionHeader').text(data.DetailList[index].QuestionHeader)};
-				// if(data.DetailList[index].QuestionOrder != null){$('#lblSurveyNumber').text('Trivia Question #' + data.DetailList[index].QuestionOrder)};
-				// if(data.DetailList[index].QuestionText != null){$('#lblSurveyQuestion').text(data.DetailList[index].QuestionText)};
-				// if(data.Markup != null){$('#lblSurveyAnswers').html(data.Markup)};
-				
-				
-				
-				
+			
+				if(data.DetailList[index].QuestionId != null){questionId = data.DetailList[index].QuestionId};
+				if(data.DetailList[index].QuestionType != null){questionType = data.DetailList[index].QuestionType};
 			}
 			else
 			{
@@ -124,6 +95,26 @@
 			GetData('previous');
 			
 		});
+		$('#cmdSubmit').click(function () {
+			var answer = $("[name=q" + questionId + "]:checked").val();
+			var error = "No Data";
+			
+			
+			
+			
+			
+			if (answer==undefined){
+				$('#lblError').html("Section Required");
+				return false;
+			}
+			//surveyId: surveyId, counter: index, type: 'New',
+			var data = JSON.stringify({ surveyId: surveyId, counter: index, questionId: questionId,questionType: questionType,answer: answer, type: 'New' });
+			getJson("SURVEY.TRIVIA.SUBMIT",HandleSurveyTrivia,data);  					
+							
+
+	
+						
+		});		
 		ClearFields();
 		HideShowControls(data);
 		
@@ -133,12 +124,7 @@
 		
 		var nextShow = false;
 		var previousShow = false;
-		if (data.DetailList.length == 0)
-		{
-			var id="divTrivia";
-			$('#' + id).hide();
-			return;
-		}
+	
 
 		if (index > 0 ) 
 		{
