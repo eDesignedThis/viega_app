@@ -796,7 +796,7 @@ html body .ui-group-theme-a .ui-bar-inherit {
 /* line 933, ../../sassCssFiles/program.scss */
 .ui-page-theme-a .colspLrg.ui-collapsible-set .ui-collapsible-heading .ui-btn.ui-btn-a {
   background-color: #636363 !important;
-  font-size: .75em;
+  font-size: .85em;
   font-weight: normal;
   text-shadow: none !important;
   border: none;
@@ -811,7 +811,7 @@ html body .ui-group-theme-a .ui-bar-inherit {
 /* line 947, ../../sassCssFiles/program.scss */
 .ui-page-theme-a .ui-collapsible .ui-collapsible-heading .ui-btn.ui-btn-a {
   background-color: #636363 !important;
-  font-size: .75em;
+  font-size: .85em;
   font-weight: normal;
   text-shadow: none !important;
   border: none;
@@ -845,7 +845,7 @@ html body .ui-group-theme-a .ui-bar-inherit {
 /* line 989, ../../sassCssFiles/program.scss */
 .ui-listview > li.ui-li-divider.ui-bar-a {
   color: white !important;
-  font-size: .65em !important;
+  font-size: .85em !important;
   font-weight: bold !important;
   border-color: #8c8b8b !important;
   background-color: #636363 !important;

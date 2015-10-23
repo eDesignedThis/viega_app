@@ -918,7 +918,7 @@ html body .ui-group-theme-a .ui-bar-inherit {
 //// Mixin for collapsible containers
 @mixin collapsibleStylesA {
     background-color:$ThmeA_ClpClr !important;
-    font-size: .75em;
+    font-size: .85em;
     font-weight: normal;
     text-shadow: none !important;
     border: none;
@@ -978,7 +978,7 @@ html body .ui-group-theme-a .ui-bar-inherit {
 @mixin listViewDivStylesA {
     
     color: $ThmeA_DvdTxtClr !important;
-    font-size: .65em !important;
+    font-size: .85em !important;
     font-weight: bold !important;
     border-color:$neutralClr !important;
     background-color:$ThmeA_DvdClr !important;

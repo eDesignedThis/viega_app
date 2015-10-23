@@ -308,12 +308,132 @@ img {
 	border-bottom: solid 1px;
 }
 
+.psg-lrnErn-txt{
+    font-size: 1.25em !important;
+    overflow: visible;
+    white-space: normal !important;
+}
 
+.trivia_answer_container{
+    margin-top:25px;
+}
+.trivia_button_container{
+    margin-top:25px;
+}
 
+/* Trivia Answer */
+.trivia_answer{
+    vertical-align: text-top;
+    position: relative;
+}
+/* Trivia Answer Container */
+.trivia_answer_container{
+    margin-top: .5em;
+}
+/* Trivia Answer Text */
+.trivia_answer_text{
+    display: inline-block;
+    padding-left: 8px;
+    padding-right: 4px;
+}
 
+/* Trivia Button Container */
+.trivia_button_container{
+    margin-top: .5em;
+    text-align: right;
+}
+/* Trivia Container */
+.trivia_container{
+    border: 3px solid;
+    padding: 8px 8px 8px 8px;
+}
+/* Trivia Correct Answer */
+.trivia_correct_answer{
+    font-weight: bold;
+    background-color: lightgreen;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
 
+/* Trivia Correct Answer Text */
+.trivia_correct_text{
+    font-weight:bold !important; 
+    font-size:1.2em !important;
+}
 
+/* Trivia Pager Container 
+.trivia_pager_container
+{
+color: #333;
+     padding: 8px;
+     border: 1px solid #C0C0C0;
+     border-top-style: none;
+     background-color: #FFF;
+     text-align: center;
+}
+*/
+/* Trivia Pager Next Page Link 
+.trivia_pager_next_page_link
+{
+float: right;
+     text-align: right;
+}
+*/
+/* Trivia Pager Page Link */
+.trivia_pager_page_link{
+    text-decoration: none; 
+    display: inline-block; 
+    line-height: 100%; 
+    cursor: pointer;
+    font-weight:bold; 
+    width:80px; 
+    padding-top:2px;
+}
 
+/* Trivia Pager Previous Page Link 
+.trivia_pager_previous_page_link
+{
+float: left;
+     text-align: left;
+}
+*/
+/* Trivia Question */
+.trivia_question{
+    font-weight: bold;
+}
+
+/* Trivia Question Header */
+.trivia_question_header{
+    font-weight: normal;
+    margin-top: .5em;
+}
+
+/* Trivia Question Number */
+.trivia_question_number{
+    font-size: .8em;
+    font-weight: normal;
+    color: #555555;
+    margin-top: .5em;
+}
+
+/* Trivia Title */
+.trivia_title{
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* Trivia Wrong Answer Mark */
+.trivia_wrong_answer_mark{
+    font-weight: bold;
+    color: red;
+    display: inline-block;
+}
+/* Trivia Wrong Answer Text */
+.trivia_wrong_text{
+    font-weight:bold !important; 
+    font-size:1.2em !important; 
+}
 
 .ispu_containerondetail {
     text-align: left;
