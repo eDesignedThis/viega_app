@@ -15,37 +15,10 @@ function HandleSurveyDetailList(data) {
 }
 
 function DrawSurveyDetail(data) {
-	var listString = '';
-
-	listString += '<li data-psg-divider="' + data.SurveyTitle + '"> \
-		<div class="ui-no-ellipse ui-text-small"><p>' + data.SurveyInstructions + '</p></div>\
-	</li>\
-	<li>\
-		<div class="ui-no-ellipse ui-text-small"><p>' + data.SummaryText + '</p></div>\
-	</li>';
-		
-	if (!data.hasTaken && data.CanTake) {
-		listString += '<li><div class=""><button class="ui-btn ui-btn-a ui-shadow ui-corner-all" type="submit" >Start Now</button></div></li>';
-	}
-	else if (data.hasTaken && data.attempts <= data.Retakes && data.Score < data.SurveyPassingGrade && data.CanTake) {
-		if (data.attempts > 0) {
-			listString += '<li><a href="learnearncontent.html" data-transition="slide">Retake Now</a></li>';
-		}
-		else {
-			listString += '<li><a href="learnearncontent.html" data-transition="slide">Start Now</a></li>';
-		}
-	}
-	else if (data.hasTaken || data.attempts > data.Retakes) {
-		if (psg.isNothing(data.results)) {
-			listString += '<li><div class="ui-no-ellipse ui-text-small psg-learnearn-li-section"><p>Completed</p></div></li>';
-		} else {
-			listString += '<li><div class="ui-no-ellipse ui-text-small psg-learnearn-li-section"><p>Completed: ' + data.results + '</p></div></li>';
-		}
-		listString += '<li><a href="learnearnmain.html" data-transition="slide" data-direction="reverse" data-icon="arrow-l">Back</a></li>';
-	}
-      
+	var detail = BuildLearnEarnDetail(data);
+	
 	var ul = $('#psg-listview-learndetail');
-	ul.html(listString);
+	ul.html(detail.html);
 	ul.listview({
 		autodividers: true,
 		dividerTheme: "a",
@@ -56,6 +29,65 @@ function DrawSurveyDetail(data) {
 	});
 
 	ul.listview('refresh');
+}
+
+function BuildLearnEarnDetail(data) {
+	var listString = '';
+
+	listString += '<li data-psg-divider="' + data.Title + '"> \
+		<div class="ui-no-ellipse ui-text-small"><p>' + data.Instructions + '</p></div>\
+	</li>';
+	
+	// Build summary string.
+	listString += '<li>';
+	listString += '<div class="ui-no-ellipse ui-text-small"><table>';
+	listString += '<tr><td class="ui-form-label">Type</td><td class="ui-form-field">';
+	if (data.SurveyTypeId == 1) {
+		listString += 'Quiz</td></tr>';
+	}
+	else {
+		listString += 'Survey</td></tr>';
+	}
+	listString += '<tr><td class="ui-form-label">Questions</td><td class="ui-form-field">' + data.QuestionCount + '</td></tr>';
+	if (data.AwardPoints > 0) {
+		listString += '<tr><td class="ui-form-label">Award</td><td class="ui-form-field">' + data.AwardAmountText;
+		if (data.SurveyTypeId == 1) {
+			listString += ' for score of ' + data.PassingGrade + '%';
+			if (data.PassingGrade != "100") {
+				listString += ' or more';
+			}
+		}
+		else {
+			listString += ' for completing';
+		}
+		listString += '</td></tr>';
+	}
+	listString += '</table></div>';
+	listString += '</li>';
+	
+	// Build action button.
+	if (!data.HasTaken && data.CanTake) {
+		listString += '<li><a href="learnearncontent.html" class="psg-learn-earn-detail-link" data-transition="slide">Start Now</a></li>';
+	}
+	else if (data.HasTaken && data.Attempts <= data.Retakes && data.Score < data.PassingGrade && data.CanTake) {
+		if (data.Attempts > 0) {
+			listString += '<li><a href="learnearncontent.html" class="psg-learn-earn-detail-link" data-transition="slide">Retake Now</a></li>';
+		}
+		else {
+			listString += '<li><a href="learnearncontent.html" class="psg-learn-earn-detail-link" data-transition="slide">Start Now</a></li>';
+		}
+	}
+	else if (data.HasTaken || data.Attempts > data.Retakes) {
+		if (psg.isNothing(data.Results)) {
+			listString += '<li><div class="ui-no-ellipse ui-text-small psg-learnearn-li-section"><p>Completed</p></div></li>';
+		} else {
+			listString += '<li><div class="ui-no-ellipse ui-text-small psg-learnearn-li-section"><p>Completed: ' + data.Results + '</p></div></li>';
+		}
+		listString += '<li><a href="learnearnmain.html" class="psg-learn-earn-detail-link" data-transition="slide" data-direction="reverse" data-icon="arrow-l">Back</a></li>';
+	}
+	
+	// Return as object so additional info can be returned in future.
+	return { html: listString };
 };
   
 
