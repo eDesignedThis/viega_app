@@ -613,25 +613,7 @@ var psg = {
 		window.location = url;
 	},
 	
-	
-// 	goToExternalSite: function(this.href){
-// 		e.preventDefault();
-// 		console.log(e);
-// 		var outGoingLink = $(this).attr('href');
-// 		console.log(outGoingLink);
-// 		//navigator.notification.confirm('Would you like to switch to your native browser to view this link?', goToBrowser, psg.programName, ['Yes', 'No']);
-// 		// function goToBrowser(buttonIndex) {
-// 		// 	if (buttonIndex == 1) {
-// 		// 		if (device.platform.toUpperCase() === 'ANDROID') {
-// 		// 			navigator.app.loadUrl(outGoingLink, { openExternal: true });
-// 		// 		} else {
-// 		// 			window.open('' + outGoingLink + '', '_system', 'location=yes');
-// 		// 		}
-// 		// 	};
-// 		// }
-// 
-// 	}
-	
+
 }
 
 
@@ -701,11 +683,6 @@ function PageBeforeCreateManager(e) {
 		});
 		
 	}
-	
-	
-	
-	
-	
 	
 	
 	// Setup online/offline indicator.
