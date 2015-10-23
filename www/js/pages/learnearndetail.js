@@ -8,7 +8,6 @@ function page_learn_earn_detail_show() {
 
 
 function HandleSurveyDetailList(data) {
-   	debugger;  
       var listString = '';
     
       listString += '<li data-psg-divider="' + data.SurveyTitle + '"> \

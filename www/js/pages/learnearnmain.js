@@ -16,7 +16,6 @@ function HandleSurveyAllList (data) {
  		var endDate = '';
 
 		$.each(data, function (index, value) {
-			debugger;
 			if (value.SurveyCategory=='Available Until:')
 			{
 				endDate = moment(value.EndDate,'YYYY-MM-DD').format('MM-DD-YYYY')
@@ -48,7 +47,6 @@ function HandleSurveyAllList (data) {
  		ul.listview('refresh');
 		 
  		$('.link-learnearn').on("click", function() {
-			debugger;
  				sessionStorage.setItem('psg-learnearn-id', $(this).attr('data-psg-learnearn-id'));
 				 /// check if survey/quiz or trivia and if survey/quiz is completed or available
 				 var learnEarnSelected = $(this).closest('li').attr('data-psg-divider');
