@@ -15,7 +15,7 @@ function getHomeMenu(){
 			return psg.homeMenu;
 		}
 		
-		var supportedSections = {"55":"pointshistory.html","57":"contact.html","89":"claimslanding.html",
+		var supportedSections = {"55":"pointshistory.html","57":"contact.html","58":"learnearnmain.html","89":"claimslanding.html",
 					"68":"profile.html","71": "shoppingmain.html","84": "quickpoints.html"};
 		var xml = $(psg.configXml);
 		var search = "MENU > SECTION";
@@ -27,6 +27,7 @@ function getHomeMenu(){
 			 "whats_new" : '<i class="fa fa-newspaper-o fa-lg fa-fw ui-menu-icon"></i>',
 			  "55" : '<i class="fa fa-history fa-lg fa-fw ui-menu-icon"></i>',
 			  "57" : '<i class="fa fa-envelope-o fa-lg fa-fw ui-menu-icon"></i>',
+			  "58" : '<i class="fa fa-book fa-lg fa-fw ui-menu-icon"></i>',
 			  "89" : '<i class="fa fa-clipboard fa-lg fa-fw ui-menu-icon"></i>',
 			  "68" : '<i class="fa fa-user fa-lg fa-fw ui-menu-icon"></i>',
 			  "71" : '<i class="fa fa-gift fa-lg fa-fw ui-menu-icon"></i>',
