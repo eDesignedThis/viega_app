@@ -1,9 +1,19 @@
-
 function page_learn_earn_review_show(){
-	//alert('test');
-      // var surveyId = sessionStorage.getItem('psg-learnearn-id');
-      // var data = JSON.stringify({ surveyId: surveyId });
-      // getJson("SURVEY.LIST.DETAIL", HandleSurveyDetailList, data);
+	var surveyId = sessionStorage.getItem('psg-learnearn-id');
+	if (surveyId) {
+		var data = JSON.stringify({ surveyId: surveyId });
+		getJson("SURVEY.REVIEW", handleSurveyInstructions, data);
+	}
+}
+function handleSurveyInstructions(data) {
+	var listString = '';
+	
+	listString += '<li data-psg-divider="' + data.SurveyTitle + '"> \
+		<div class="ui-no-ellipse psg-learnearn-li-section"><p>'+ data.CompletedMessage +'</p></div>\
+		<div class="ui-no-ellipse ui-text-small"><strong>Results: </strong>' + data.Score + '</div>\
+		<div class="ui-no-ellipse ui-text-small"><strong>Completed: </strong>' + data.dateCompleted + '</div>\
+		<button id="backLrnErn" class="ui-btn ui-btn-a ui-shadow ui-corner-all">Back to Learn & Earn</button> </div> \
+	</li>';
 }
 
 
