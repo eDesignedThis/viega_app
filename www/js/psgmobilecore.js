@@ -82,6 +82,12 @@ function WriteError(error) {
 }
 
 
+
+
+
+
+
+
 // To prevent duplicate JSON calls, we will keep track of active calls.
 var activeJsonCalls = [];
 
@@ -605,8 +611,29 @@ var psg = {
 			url = app.isPhoneGap ? app.getHost() + "/" : "../index.html";
 		}
 		window.location = url;
-	}
+	},
+	
+	
+// 	goToExternalSite: function(this.href){
+// 		e.preventDefault();
+// 		console.log(e);
+// 		var outGoingLink = $(this).attr('href');
+// 		console.log(outGoingLink);
+// 		//navigator.notification.confirm('Would you like to switch to your native browser to view this link?', goToBrowser, psg.programName, ['Yes', 'No']);
+// 		// function goToBrowser(buttonIndex) {
+// 		// 	if (buttonIndex == 1) {
+// 		// 		if (device.platform.toUpperCase() === 'ANDROID') {
+// 		// 			navigator.app.loadUrl(outGoingLink, { openExternal: true });
+// 		// 		} else {
+// 		// 			window.open('' + outGoingLink + '', '_system', 'location=yes');
+// 		// 		}
+// 		// 	};
+// 		// }
+// 
+// 	}
+	
 }
+
 
 function PageBeforeCreateManager(e) {
 	var page = $(e.target);
@@ -649,6 +676,37 @@ function PageBeforeCreateManager(e) {
 		psg.setSessionItem('remote_section_name', sectionName);
 		$.mobile.changePage('remotecontent.html');
 	});
+	
+	// Find external links and add helper if mobile app
+	var exLinks = page.find('a[href^="http:"], a[href^="https:"]');
+	exLinks.attr("rel", "external");
+	
+	if (app.isPhoneGap) {
+		
+		exLinks.addClass("MobileHelper").attr("rel", "external");
+			page.delegate('.MobileHelper', 'click', function(e) {
+				e.preventDefault();
+				var outGoingLink = $(this).attr('href');
+				navigator.notification.confirm('Would you like to switch to your native browser to view this link?', goToBrowser, psg.programName, ['Yes', 'No']);
+				function goToBrowser(buttonIndex) {
+					if (buttonIndex == 1) {
+						if (device.platform.toUpperCase() === 'ANDROID') {
+							navigator.app.loadUrl(outGoingLink, { openExternal: true });
+						} else {
+							window.open('' + outGoingLink + '', '_system', 'location=yes');
+						}
+					};
+				}
+		
+		});
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 	// Setup online/offline indicator.
 	if (app.isPhoneGap) {
@@ -824,6 +882,7 @@ function setMenu(page, items) {
 function removeMenuItem(page, href) {
 	$(page).find(".popup_menu a[href='" + href + "']").parent('li').remove();
 }
+
 
 function PageBeforeTransitionManager( event, ui ) {
 	var history = ui.toPage.attr('psg-no-history');
