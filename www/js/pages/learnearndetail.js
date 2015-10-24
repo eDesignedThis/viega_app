@@ -1,10 +1,11 @@
 function page_learn_earn_detail_show() {
 	var surveyId = sessionStorage.getItem('psg-learnearn-id');
 	var data = JSON.stringify({ surveyId: surveyId });
-	getJson("SURVEY.LIST.DETAIL", HandleSurveyDetailList, data);
+	getJson("SURVEY.LIST.DETAIL", HandleSurveyDetail, data);
 }
 
-function HandleSurveyDetailList(data) {
+// Handle errors from ajax.
+function HandleSurveyDetail(data) {
 	if (psg.isNothing(data)) return;
 	if (data.Result == "success") {
 		DrawSurveyDetail(data.Survey);
@@ -14,8 +15,9 @@ function HandleSurveyDetailList(data) {
 	}
 }
 
+// Update UI elements and apply event handlers.
 function DrawSurveyDetail(data) {
-	var detail = BuildLearnEarnDetail(data);
+	var detail = BuildSurveyDetail(data);
 	
 	var ul = $('#psg-listview-learndetail');
 	ul.html(detail.html);
@@ -31,11 +33,12 @@ function DrawSurveyDetail(data) {
 	ul.listview('refresh');
 }
 
-function BuildLearnEarnDetail(data) {
+// Build the UI string from the data.
+function BuildSurveyDetail(data) {
 	var listString = '';
 
 	listString += '<li data-psg-divider="' + data.Title + '"> \
-		<div class="ui-no-ellipse ui-text-small"><p>' + data.Instructions + '</p></div>\
+		<div class="ui-no-ellipse ui-text-small">' + data.Instructions + '</div>\
 	</li>';
 	
 	// Build summary string.
@@ -88,10 +91,4 @@ function BuildLearnEarnDetail(data) {
 	
 	// Return as object so additional info can be returned in future.
 	return { html: listString };
-};
-  
-
-
-
-
- 
+}
