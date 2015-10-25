@@ -11,7 +11,7 @@ function HandleSurveyDetail(data) {
 		DrawSurveyDetail(data.Survey);
 	}
 	else {
-		WriteError(data.Result);
+		WriteError(data.Error);
 	}
 }
 

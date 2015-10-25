@@ -308,6 +308,47 @@ img {
 	border-bottom: solid 1px;
 }
 
+.psg-learn-earn-question-header{
+	margin-bottom: 30px;
+}
+
+.psg-learn-earn-question{
+	margin-bottom: 10px;
+}
+
+.psg-learn-earn-question-number{
+	display: block;
+    font-size: small;
+    font-weight: bold;
+}
+
+.psg-learn-earn-question-number:before{
+	content: "Question #";
+}
+
+.psg-learn-earn-question-text{
+	display: block;
+}
+
+.psg-learn-earn-answers{
+}
+
+.psg-learn-earn-answer-stacked{
+	margin-bottom:10px;
+}
+
+.psg-learn-earn-answer-radio{
+}
+
+.psg-learn-earn-answer-text{
+}
+
+.psg-learn-earn-answer-textbox{
+}
+
+.psg-learn-earn-answer-textarea{
+}
+
 .psg-lrnErn-txt{
     font-size: 1.25em !important;
     overflow: visible;
