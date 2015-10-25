@@ -1,7 +1,7 @@
 function page_learn_earn_content_show(){
 	var surveyId = sessionStorage.getItem('psg-learnearn-id');
 	var data = JSON.stringify({ surveyId: surveyId });
-	getJson("SURVEY.START", HandleSurveyDetailList, data);
+	getJson("SURVEY.START", HandleSurveyContent, data);
 }
 
 function HandleSurveyContent(data) {
@@ -18,7 +18,7 @@ function DrawSurveyContent(data) {
 	var surveyForm = BuildLearnEarnQuestions(data, false);
 	
 	var ul = $('#psg-listview-learncontent');
-	ul.html(surveyForm.html);
+	ul.html(surveyForm);
 	ul.listview({
 		autodividers: true,
 		dividerTheme: "a" ,
@@ -61,7 +61,7 @@ function BuildLearnEarnQuestions(data, readOnly) {
 			listString += '<div class="psg-learn-earn-question-header">' + question.Header + '</div>';
 		}
 		
-		listString += '<div class="psg-learn-earn-question"><span class="psg-learn-earn-question-number">' + question.Order + '</span><span class="psg-learn-earn-question-text">' + question.Text + '</span></div>';
+		listString += '<div class="psg-learn-earn-question"><span class="psg-learn-earn-question-number">' + question.Order + ')&nbsp;</span><span class="psg-learn-earn-question-text">' + question.Text + '</span></div>';
 		
 		// 1 means multi-choice
 		// 3 means stacked multi-choice
@@ -97,5 +97,7 @@ function BuildLearnEarnQuestions(data, readOnly) {
 		
 		listString += '</li>';
 	});
+	
+	return listString;
 }
 
