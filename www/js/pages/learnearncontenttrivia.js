@@ -48,8 +48,17 @@
 				listString += '<div class="trivia_button_container ui-no-ellipse ui-grid-a">\
 									<div class="ui-block-a"><div class="ui-center"><p id="lblCorrect" class="trivia_correct_text"></p><p id="lblWrong" class="trivia_wrong_text"></p></div></div>\
 									<div class="ui-block-b"><div class="ui-center"><button data-mini="true" id="cmdSubmit" class="trivia_submit_button ui-btn ui-btn-a ui-shadow ui-corner-all" value="Submit" type="submit" >Submit</button></div></div>\
+								</div>';
+								
+				listString += '<div id="trivia_cb_message" class="">\
+									<p class="psg-lrnErn-txt">Come back tomorrow for another daily trivia question.</p>\
 								</div>\
-							</li></div>'; // Close the div for trivia question number, question, and submit			
+							</li></div>'; // Close the div for trivia question number, question, and submit		
+							
+							
+							
+							
+					
 				
 				////// Pager section
 				
@@ -89,11 +98,12 @@
 		ul.listview('refresh');
 		
 		$('#cmdNext').click(function () {
+			
 			GetData('next');
 		});
 		$('#cmdPrevious').click(function() {
-			GetData('previous');
 			
+			GetData('previous');
 		});
 
 		$('#cmdSubmit').click(function () {
@@ -122,7 +132,7 @@
 		
 		var nextShow = false;
 		var previousShow = false;
-	
+		var submitShow = false;
 
 		if (index > 0 ) 
 		{
@@ -139,20 +149,31 @@
 		}
 		if (nextShow || previousShow)
 		{			
-			$('#pnlPager').show();					
+			$('#pnlPager').show();
+								
 		}	
-
+		
 		if (index >= 0 ) 
 		{
 			if( data.DetailList[index].HistoryId == 0)
 			{
 				$('#cmdSubmit').show();
+				submitShow = true;
 			}
 		}
 		else
 		{
 			$('#cmdSubmit').hide();
+			submitShow = false;
 		}
+		
+		if ((previousShow == true && nextShow == false) && submitShow == false )
+		{			
+			$('#trivia_cb_message').show();					
+		}else{
+			$('#trivia_cb_message').hide();
+		}
+		
 		if (index >= 0 ) 
 		{
 			if( data.DetailList[index].HistoryId > 0)
@@ -165,6 +186,7 @@
 							$('#lblCorrect').hide();
 							$('#lblWrong').show();
 							$('#lblWrong').text('Incorrect');
+							
 							break;				
 						}
 						else
@@ -172,6 +194,7 @@
 							$('#lblWrong').hide();
 							$('#lblCorrect').show();
 							$('#lblCorrect').text('Correct'); 
+							
 						}			
 				}
 			}
@@ -190,6 +213,7 @@
 		$('#pnlPager').hide();
 		$('#lblCorrect').hide();
 		$('#lblWrong').hide();
+		$('#trivia_cb_message').hide();
 		$('#cmdSubmit').hide();				
 	}	
 

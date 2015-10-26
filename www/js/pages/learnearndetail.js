@@ -38,12 +38,12 @@ function BuildSurveyDetail(data) {
 	var listString = '';
 
 	listString += '<li data-psg-divider="' + data.Title + '"> \
-		<div class="ui-no-ellipse ui-text-small">' + data.Instructions + '</div>\
+		<div class="ui-no-ellipse">' + data.Instructions + '</div>\
 	</li>';
 	
 	// Build summary string.
 	listString += '<li>';
-	listString += '<div class="ui-no-ellipse ui-text-small"><table>';
+	listString += '<div class="ui-no-ellipse"><table>';
 	listString += '<tr><td class="ui-form-label">Type</td><td class="ui-form-field">';
 	if (data.SurveyTypeId == 1) {
 		listString += 'Quiz</td></tr>';
