@@ -145,7 +145,7 @@ function getJson(action, successCallBack, data, failCallback, timeout, nospinner
 		data = null;
 
 	var contentType = 'application/json; charset=utf-8';
-	if (action == 'MOBILE.CLAIM.SUBMIT') {  //add enrollment after rework
+	if (action == 'MOBILE.CLAIM.SUBMIT' || action == 'SURVEY.SUBMIT') {  //add enrollment after rework
 		contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
 	}
 	// default timeout
