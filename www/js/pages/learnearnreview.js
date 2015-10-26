@@ -38,9 +38,9 @@ function BuildSurveyReview(data) {
 	var listString = '';
 
 	listString += '<li data-psg-divider="' + data.Title + '"> \
-		<div class="ui-no-ellipse ui-text-small"> \
+		<div class="ui-no-ellipse"> \
 		<h2>Thank You</h2> \
-		<p class="ui-no-ellipse">Thank you for taking the time to complete this ';
+		<p class="ui-no-ellipse psg-lrnErn-txt">Thank you for taking the time to complete this ';
 	if (data.SurveyTypeId == 1) {
 		listString += 'quiz.';
 	}
@@ -56,7 +56,7 @@ function BuildSurveyReview(data) {
 	
 	// Build summary string.
 	listString += '<li>';
-	listString += '<div class="ui-no-ellipse ui-text-small"><table>';
+	listString += '<div class="ui-no-ellipse"><table>';
 	listString += '<tr><td class="ui-form-label">Type</td><td class="ui-form-field">';
 	if (data.SurveyTypeId == 1) {
 		listString += 'Quiz</td></tr>';
