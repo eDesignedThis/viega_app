@@ -660,31 +660,8 @@ function PageBeforeCreateManager(e) {
 	});
 	
 	// Find external links and add helper if mobile app
-	var exLinks = page.find('a[href^="http:"], a[href^="https:"]');
-	exLinks.attr("rel", "external");
-	
-	if (app.isPhoneGap) {
-		
-		exLinks.addClass("MobileHelper").attr("rel", "external");
-			page.delegate('.MobileHelper', 'click', function(e) {
-				e.preventDefault();
-				var outGoingLink = $(this).attr('href');
-				navigator.notification.confirm('Would you like to switch to your native browser to view this link?', goToBrowser, psg.programName, ['Yes', 'No']);
-				function goToBrowser(buttonIndex) {
-					if (buttonIndex == 1) {
-						if (device.platform.toUpperCase() === 'ANDROID') {
-							navigator.app.loadUrl(outGoingLink, { openExternal: true });
-						} else {
-							window.open('' + outGoingLink + '', '_system', 'location=yes');
-						}
-					};
-				}
-		
-		});
-		
-	}
-	
-	
+	findExternalLinks(page);
+
 	// Setup online/offline indicator.
 	if (app.isPhoneGap) {
 		var header = page.find('div[data-role="header"]');
@@ -852,6 +829,34 @@ function setMenu(page, items) {
 	popup.html( li );
 	popup.listview('refresh');
 }
+
+
+function findExternalLinks(page){
+	setTimeout(function(){
+		var exLinks = page.find('a[href^="http:"], a[href^="https:"]');
+		exLinks.attr("rel", "external");
+		
+		if (app.isPhoneGap) {
+			exLinks.addClass("MobileHelper").attr("rel", "external");
+				page.delegate('.MobileHelper', 'click', function(e) {
+					e.preventDefault();
+					var outGoingLink = $(this).attr('href');
+					navigator.notification.confirm('Would you like to switch to your native browser to view this link?', goToBrowser, psg.programName, ['Yes', 'No']);
+					function goToBrowser(buttonIndex) {
+						if (buttonIndex == 1) {
+							if (device.platform.toUpperCase() === 'ANDROID') {
+								navigator.app.loadUrl(outGoingLink, { openExternal: true });
+							} else {
+								window.open('' + outGoingLink + '', '_system', 'location=yes');
+							}
+						};
+					}
+			});
+			
+		}
+	}, 2000);
+}
+
 
 // remove a menu item from the page (either object or selector)
 // matches the href string:
