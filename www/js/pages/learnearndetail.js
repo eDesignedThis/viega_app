@@ -69,7 +69,10 @@ function BuildSurveyDetail(data) {
 	listString += '</li>';
 	
 	// Build action button.
-	if (!data.HasTaken && data.CanTake) {
+	if (!data.PrerequisitesMet) {
+		listString += '<li><a href="learnearnmain.html" class="psg-learn-earn-detail-link" data-transition="slide" data-direction="reverse" data-icon="arrow-l">Back</a></li>';
+	}
+	else if (!data.HasTaken && data.CanTake) {
 		listString += '<li><a href="learnearncontent.html" class="psg-learn-earn-detail-link" data-transition="slide">Start Now</a></li>';
 	}
 	else if (data.HasTaken && data.Attempts <= data.Retakes && data.Score < data.PassingGrade && data.CanTake) {
