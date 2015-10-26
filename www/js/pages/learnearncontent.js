@@ -65,14 +65,14 @@ function BuildLearnEarnQuestions(data, readOnly) {
 			listString += '<div class="ui-no-ellipse psg-learn-earn-question-header">' + question.Header + '</div>';
 		}
 		
-		listString += '<div class="psg-learn-earn-question"><span class="psg-learn-earn-question-number">' + question.Order + '</span><span class="psg-learn-earn-question-text">' + question.Text + '</span></div>';
+		listString += '<div class="psg-learn-earn-question"><span class="psg-learn-earn-question-number">' + question.Order + '</span><span class="psg-learn-earn-question-text ui-no-ellipse">' + question.Text + '</span></div>';
 		
 		// 1 means multi-choice
 		// 3 means stacked multi-choice
 		// 4 means short answer
-		listString += '<div class="psg-learn-earn-answers">';
+		listString += '<div class="psg-learn-earn-answers ui-no-ellipse">';
 		if (question.QuestionType == 1 || question.QuestionType == 3) { // treat 1 and 3 as stacked
-			listString += '<fieldset data-role="controlgroup">';
+				listString += '<fieldset data-role="controlgroup">';
 			$.each(question.Answers, function (index, answer) {
 				//listString += '<div class="psg-learn-earn-answer-stacked">';
 				if (question.Required == 1 && index == 0) {

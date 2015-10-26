@@ -328,6 +328,8 @@ img {
 
 .psg-learn-earn-question-text{
 	display: block;
+    
+    
 }
 
 .psg-learn-earn-answers{
@@ -341,6 +343,7 @@ img {
 }
 
 .psg-learn-earn-answer-text{
+    font-size: 1.5em !important;
 }
 
 .psg-learn-earn-answer-textbox{
