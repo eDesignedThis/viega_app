@@ -17,6 +17,10 @@ img {
 .ui-no-ellipse {
     white-space: normal !important
 }
+.ui-no-ellipse > p {
+    white-space: normal !important;
+    font-size: 1em !important;
+}
 .ui-text-small {
     font-size: small;
     font-weight: normal;
@@ -340,6 +344,8 @@ img {
 }
 
 .psg-learn-earn-answer-radio{
+    font-size: 1.5em;
+    line-height: 1.5em;
 }
 
 .psg-learn-earn-answer-text{

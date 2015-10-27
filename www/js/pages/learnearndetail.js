@@ -68,7 +68,7 @@ function BuildSurveyDetail(data) {
 	listString += '</table></div>';
 	listString += '</li>';
 	
-	// Build action button.
+	// Build action button.   <button id="contact_submit"class="ui-btn ui-btn-a ui-shadow ui-corner-all" type="submit" >Submit</button>
 	if (!data.PrerequisitesMet) {
 		listString += '<li><a href="learnearnmain.html" class="psg-learn-earn-detail-link" data-transition="slide" data-direction="reverse" data-icon="arrow-l">Back</a></li>';
 	}
