@@ -41,6 +41,10 @@ function SubmitSurvey(){
 	var data = {};
 	var form = $('#frmLearnEarn');
 	form.serializeArray().map(function(x){data[x.name] = x.value;});
+
+	var surveyId = sessionStorage.getItem('psg-learnearn-id');
+	data["surveyId"] = surveyId;
+
 	getJson("SURVEY.SUBMIT", HandleSurveyResult, data);
 }
 
