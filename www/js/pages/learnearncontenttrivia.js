@@ -110,7 +110,7 @@
 			var answer = $("[name=q" + questionId + "]:checked").val();
 			var error = "No Data";
 			if (answer==undefined){
-				$('#lblError').html("Section Required");
+				$('#lblError').html("Selection Required");
 				return false;
 			}
 			//surveyId: surveyId, counter: index, type: 'New',
@@ -151,7 +151,8 @@
 		{			
 			$('#pnlPager').show();
 								
-		}	
+		}
+
 		
 		if (index >= 0 ) 
 		{
@@ -167,11 +168,9 @@
 			submitShow = false;
 		}
 		
-		if ((previousShow == true && nextShow == false) && submitShow == false )
+		if (submitShow == false && index < 1)
 		{			
 			$('#trivia_cb_message').show();					
-		}else{
-			$('#trivia_cb_message').hide();
 		}
 		
 		if (index >= 0 ) 
