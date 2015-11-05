@@ -34,7 +34,7 @@ function HandleGetWishlist(data) {
 				});
 
 				if (listString == '') {
-					listString = '<li>No items in your wish list.</li>';
+					listString = '<li>There are no items in your wish list.</li>';
 				}
 
 				var page = $('#page_wish_list');
