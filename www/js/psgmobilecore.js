@@ -98,7 +98,7 @@ function getJson(action, successCallBack, data, failCallback, timeout, nospinner
     var requestType = "POST";
     if (action.indexOf("SHOPPING.") == 0) {
         baseUrl += "jsonCatalog.ashx?action=";
-    } else if (action.indexOf("MOBILE.") == 0 || action.indexOf("REMOTE.") == 0 ) {
+    } else if (action.indexOf("MOBILE.") == 0 || action.indexOf("REMOTE.") == 0 || action.indexOf("CONTACT.") == 0) {
         baseUrl += "jsonMobile.ashx?action=";
     } else if (action.indexOf("CLAIM.") == 0) {
         baseUrl += "jsonClaim.ashx?action=";
@@ -114,8 +114,7 @@ function getJson(action, successCallBack, data, failCallback, timeout, nospinner
 				break;
 			case "POINTS.SUMMARY":
             case "ORDER.ORDERS":
-            case "CONTACT.CONTACTUSPOST":
-			case "POINTS.POINTSREDEEMED":
+            case "POINTS.POINTSREDEEMED":
 				baseUrl += "jsonMobile.ashx?action=";
 				requestType = "GET";
 				break;			
