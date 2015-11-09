@@ -7,7 +7,7 @@
 		var data = JSON.stringify({ surveyId: surveyId, counter: index, type: 'New', });  
 		getJson("SURVEY.TRIVIA.GET",HandleSurveyTrivia,data); 
 		return false;
-	}	
+	} 	
 	
 	
 	function HandleSurveyTrivia (data) {
