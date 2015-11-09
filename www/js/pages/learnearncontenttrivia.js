@@ -74,6 +74,8 @@
 
 				if(data.DetailList[index].QuestionId != null){questionId = data.DetailList[index].QuestionId};
 				if(data.DetailList[index].QuestionType != null){questionType = data.DetailList[index].QuestionType};
+				// Refresh Points
+				getJson("POINTS.SUMMARY", HandleGetTriviaRefreshPoints);
 
 			}
 			else
@@ -115,17 +117,18 @@
 			}
 			//surveyId: surveyId, counter: index, type: 'New',
 			var data = JSON.stringify({ surveyId: surveyId, counter: index, questionId: questionId,questionType: questionType,answer: answer, type: 'New' });
-			getJson("SURVEY.TRIVIA.SUBMIT",HandleSurveyTrivia,data);  					
-						
+			getJson("SURVEY.TRIVIA.SUBMIT",HandleSurveyTrivia,data);  
 
-			
 		});
 		ClearFields();
 		HideShowControls(data);
 		
 	}	
-	
-	
+	function HandleGetTriviaRefreshPoints(data) {
+		if (typeof data !== null) {
+					UpdatePointAccount(data);
+		}
+	}	
 		
 	function HideShowControls(data)
 	{
