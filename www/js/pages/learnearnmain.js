@@ -24,7 +24,7 @@ function DrawSurveyAllList (data) {
 	var endDate = '';
 
 	if (psg.isNothing(data) || data.length == 0) {
-		listString += '<li><div class="ui-no-ellipse"><p>No opportunities to Learn-and-Earn are currently available.</p></div></li>';
+		listString += '<li><div class="ui-no-ellipse"><p>No opportunities are currently available.</p></div></li>';
 	}
 	else {
 		$.each(data, function (index, value) {

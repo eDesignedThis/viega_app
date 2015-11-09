@@ -47,9 +47,6 @@ function BuildSurveyReview(data) {
 	else {
 		listString += 'survey.';
 	}
-	if (data.AwardPoints > 0) {
-		listString += ' Keep watch for more opportunities to earn awards.';
-	}
 	listString += '</p> \
 		</div>\
 	</li>';

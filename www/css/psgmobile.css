@@ -346,10 +346,17 @@ img {
 .psg-learn-earn-answer-radio{
     font-size: 1.5em;
     line-height: 1.5em;
+	float: left;
 }
 
 .psg-learn-earn-answer-text{
     font-size: 1.5em !important;
+	margin-left: 30px;
+	display: block;
+	padding-bottom: 5px;
+}
+#surveySummary_lblInstructions >p  {
+	white-space:normal !important;
 }
 
 .psg-learn-earn-answer-textbox{
