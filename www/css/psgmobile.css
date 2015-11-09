@@ -389,7 +389,7 @@ img {
 }
 /* Trivia Answer Text */
 .trivia_answer_text{
-    display: inline-block;
+    display: inline;
     padding-left: 8px;
     padding-right: 4px;
 }
