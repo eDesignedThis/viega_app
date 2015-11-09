@@ -36,9 +36,17 @@ function DrawSurveyReview(data) {
 // Build the UI string from the data.
 function BuildSurveyReview(data) {
 	var listString = '';
+	
+	var instructions = data.MobileInstructions;
+	if (psg.isNothing(instructions)) {
+		instructions = data.Instructions;
+	}
 
-	listString += '<li data-psg-divider="' + data.Title + '"> \
-		<div class="ui-no-ellipse"> \
+	listString += '<li data-psg-divider="' + data.Title + '">';
+	if (!psg.isNothing(instructions)) {
+		listString += '<div class="ui-no-ellipse">' + instructions + '</div></li><li>';
+	}
+	listString += '<div class="ui-no-ellipse"> \
 		<h2>Thank You</h2> \
 		<p class="ui-no-ellipse psg-lrnErn-txt">Thank you for taking the time to complete this ';
 	if (data.SurveyTypeId == 1) {
