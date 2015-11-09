@@ -11,6 +11,12 @@ function UpdatePointAccount(pointAccount) {
 	psg.setSessionItem('awarded',  addCommas(pointAccount.PointsAwarded));
 	psg.setSessionItem('redeemed', addCommas(pointAccount.PointsRedeemed * -1));
 	psg.balance = addCommas(pointAccount.Balance);
+
+	var balance = psg.balance;
+	if (balance == null){
+		balance = "Unknown";
+	}
+	$('.psg_point_balance').text(balance + " Points");
 }
 
 //TODO: Merge this function
