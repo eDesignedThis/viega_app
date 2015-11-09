@@ -51,11 +51,19 @@ function SubmitSurvey(){
 function HandleSurveyResult(data) {
 	if (psg.isNothing(data)) return;
 	if (data.Result == "success") {
-		$.mobile.pageContainer.pagecontainer('change', 'learnearnreview.html', { transition: 'slide', changeHash: false } );
+        // With success, must update points in mobile cache.
+        getJson("POINTS.SUMMARY", HandleSurveyPointsUpdate);
 	}
 	else {
 		WriteError(data.Error);
 	}
+}
+
+function HandleSurveyPointsUpdate(data) {
+    if (typeof data !== null) {
+        UpdatePointAccount(data);
+    }
+    $.mobile.pageContainer.pagecontainer('change', 'learnearnreview.html', { transition: 'slide', changeHash: false } );
 }
 
 function BuildLearnEarnQuestions(data, readOnly) {
