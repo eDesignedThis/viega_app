@@ -82,6 +82,12 @@ function WriteError(error) {
 }
 
 
+
+
+
+
+
+
 // To prevent duplicate JSON calls, we will keep track of active calls.
 var activeJsonCalls = [];
 
@@ -103,6 +109,9 @@ function getJson(action, successCallBack, data, failCallback, timeout, nospinner
     } else if (action.indexOf("CLAIM.") == 0) {
         baseUrl += "jsonClaim.ashx?action=";
     }
+	else if (action.indexOf("SURVEY.") == 0) {
+		baseUrl += "jsonSurvey.ashx?action=";
+	}
 	else {
         switch (action) {
             case "LOGIN.PROGRAMINFO":
@@ -136,7 +145,7 @@ function getJson(action, successCallBack, data, failCallback, timeout, nospinner
 		data = null;
 
 	var contentType = 'application/json; charset=utf-8';
-	if (action == 'MOBILE.CLAIM.SUBMIT') {  //add enrollment after rework
+	if (action == 'MOBILE.CLAIM.SUBMIT' || action == 'SURVEY.SUBMIT') {  //add enrollment after rework
 		contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
 	}
 	// default timeout
@@ -602,8 +611,11 @@ var psg = {
 			url = app.isPhoneGap ? app.getHost() + "/" : "../index.html";
 		}
 		window.location = url;
-	}
+	},
+	
+
 }
+
 
 function PageBeforeCreateManager(e) {
 	var page = $(e.target);
@@ -647,6 +659,9 @@ function PageBeforeCreateManager(e) {
 		$.mobile.changePage('remotecontent.html');
 	});
 	
+	// Find external links and add helper if mobile app
+	findExternalLinks(page);
+
 	// Setup online/offline indicator.
 	if (app.isPhoneGap) {
 		var header = page.find('div[data-role="header"]');
@@ -815,12 +830,41 @@ function setMenu(page, items) {
 	popup.listview('refresh');
 }
 
+
+function findExternalLinks(page){
+	setTimeout(function(){
+		var exLinks = page.find('a[href^="http:"], a[href^="https:"]');
+		exLinks.attr("rel", "external");
+		
+		if (app.isPhoneGap) {
+			exLinks.addClass("MobileHelper").attr("rel", "external");
+				page.delegate('.MobileHelper', 'click', function(e) {
+					e.preventDefault();
+					var outGoingLink = $(this).attr('href');
+					navigator.notification.confirm('Would you like to switch to your native browser to view this link?', goToBrowser, psg.programName, ['Yes', 'No']);
+					function goToBrowser(buttonIndex) {
+						if (buttonIndex == 1) {
+							if (device.platform.toUpperCase() === 'ANDROID') {
+								navigator.app.loadUrl(outGoingLink, { openExternal: true });
+							} else {
+								window.open('' + outGoingLink + '', '_system', 'location=yes');
+							}
+						};
+					}
+			});
+			
+		}
+	}, 2000);
+}
+
+
 // remove a menu item from the page (either object or selector)
 // matches the href string:
 // removeMenuItem('#page_home','home.html')
 function removeMenuItem(page, href) {
 	$(page).find(".popup_menu a[href='" + href + "']").parent('li').remove();
 }
+
 
 function PageBeforeTransitionManager( event, ui ) {
 	var history = ui.toPage.attr('psg-no-history');
@@ -883,6 +927,21 @@ function PageContainerBeforeShowManager(e,ui) {
 		case 'page_item_options':
 			page_item_options_show();
 			break;
+		case 'page_learn_earn_content':
+			page_learn_earn_content_show();
+			break;	
+		case 'page_learn_earn_content_trivia':
+			page_learn_earn_content_trivia_show();
+			break;
+		case 'page_learn_earn_detail':
+			page_learn_earn_detail_show();
+			break;	
+		case 'page_learn_earn_main':
+			page_learn_earn_main_show();
+			break;
+		case 'page_learn_earn_review':
+			page_learn_earn_review_show();
+			break;		
 		case 'page_login':
 			page_login_show();
 			break;

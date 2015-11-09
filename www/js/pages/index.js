@@ -120,8 +120,8 @@ var app = {
 		app.initNotifications();
 		
 		/// Change the color of the status bar to match the header color
-		
-		StatusBar.backgroundColorByHexString('#000');
+		StatusBar.overlaysWebView(false);
+		StatusBar.backgroundColorByHexString('#0667EC');
 		
 		
 		
