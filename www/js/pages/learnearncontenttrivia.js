@@ -14,6 +14,12 @@
 		var questionId = '';
 		var	questionType = '';	
 
+		if (data.Result == 'error')
+		{
+			$('#lblError').html(data.Error);
+			return false;		
+		}		
+		
 		if (data != null) {
 			index = data.Count;
 			
