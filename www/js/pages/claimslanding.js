@@ -32,20 +32,31 @@ function page_claims_landing_show (){
 		if (psg.isNothing(promotions)) {
 			return '<li><p class="ui-no-ellipse error"><strong>There are no active promotions at this time.  Please check back later.</strong></p></li>';
 		}
-		
+		var noForm = false;
 		var output = '<li><p class="ui-no-ellipse">Please select one of the following promotions:</p></li>';
 		$.each(promotions, function( index, promotion ) {
-			output += '<li><a href="claims.html" class="psg-promotion-item" data-transition="slide" psg-promotion-id="';
-			output += promotion.promotion_id.toString();
-			output += '" psg-promotion-type-id="';
-			output += promotion.promotion_type_id.toString();
-			output += '"><div class="ui-no-ellipse ui-text-small"><strong>';
+			noForm = false;
+			output += '<li>';
+			if ($(psg.configXml).find('PROMOTION_TYPES[PROMOTION_TYPE_ID="' + promotion.promotion_type_id.toString() +'"][REMOVE_FORM="1"]').length > 0) 
+				noForm = true;
+			
+			if (!noForm) {
+				output += '<a href="claims.html" class="psg-promotion-item" data-transition="slide" psg-promotion-id="';
+				output += promotion.promotion_id.toString();
+				output += '" psg-promotion-type-id="';
+				output += promotion.promotion_type_id.toString();
+				output += '">';
+			} else { 
+		        output += '<a href="#" >';
+			}
+			output += '<div class="ui-no-ellipse ui-text-small"><strong>';
 			output += promotion.promotion_name;
 			output += '</strong></div><div class="ui-text-small"><div class="ui-float-left">';
 			output += moment(promotion.sales_start_date_jdate,'MM-DD-YYYY').format('MM-DD-YYYY');
 			output += ' thru ';
 			output += moment(promotion.sales_end_date_jdate,'MM-DD-YYYY').format('MM-DD-YYYY');
-			output += '</div></div></a><a href="promotioninfo.html" class="psg-promotion-info-item" data-transition="slide" psg-promotion-id="';
+			output += '</div></div></a>';
+			output += '<a href="promotioninfo.html" class="psg-promotion-info-item" data-transition="slide" psg-promotion-id="';
 			output += promotion.promotion_id.toString();
 			output += '">Promotion Information</a></li>';
 		});
