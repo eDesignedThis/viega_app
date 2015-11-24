@@ -63,11 +63,12 @@ function HandleSurveyPointsUpdate(data) {
     if (typeof data !== null) {
         UpdatePointAccount(data);
     }
-    $.mobile.pageContainer.pagecontainer('change', 'learnearnreview.html', { transition: 'slide', changeHash: false } );
+    $.mobile.pageContainer.pagecontainer('change', 'learnearncomplete.html', { transition: 'slide', changeHash: false } );
 }
 
-function BuildLearnEarnQuestions(data, readOnly) {
+function BuildLearnEarnQuestions(data, reviewOnly) {
 	var listString = '';
+	if (psg.isNothing(reviewOnly)) reviewOnly = false;
 	
 	$.each(data.Questions, function (index, question) {
 		listString += '<li data-psg-divider="' + data.Survey.Title + '">';
@@ -84,32 +85,47 @@ function BuildLearnEarnQuestions(data, readOnly) {
 		// 4 means short answer
 		listString += '<div class="psg-learn-earn-answers ui-no-ellipse">';
 		if (question.QuestionType == 1 || question.QuestionType == 3) { // treat 1 and 3 as stacked
-				listString += '<fieldset data-role="controlgroup">';
+			var disabledText = reviewOnly ? ' disabled ' : '';
+			var checkedText = '';
+			var correctMessage = '';
+			listString += '<fieldset data-role="controlgroup">';
 			$.each(question.Answers, function (index, answer) {
+				checkedText = reviewOnly && answer.AnswerId == question.ParticipantAnswerId ? ' checked ' : '';
+				correctMessage = reviewOnly && answer.IsCorrectAnswer === true ? '<span class="psg-learn-earn-correct-answer-message">Correct Answer</span>' : '';
 				//listString += '<div class="psg-learn-earn-answer-stacked">';
 				if (question.Required == 1 && index == 0) {
-					listString += '<label><input type="radio" data-rule-required="true" class="psg-learn-earn-answer-radio" name="answer_id_QN' + question.QuestionId + '" value="' + answer.AnswerId + '" ><span class="psg-learn-earn-answer-text">' + answer.Text + '</span></label>';
+					listString += '<label><input type="radio"' + disabledText + checkedText + 'data-rule-required="true" class="psg-learn-earn-answer-radio" name="answer_id_QN' + question.QuestionId + '" value="' + answer.AnswerId + '" ><span class="psg-learn-earn-answer-text">' + correctMessage + answer.Text + '</span></label>';
 				}
 				else {
-					listString += '<label><input type="radio" class="psg-learn-earn-answer-radio" name="answer_id_QN' + question.QuestionId + '" value="' + answer.AnswerId + '" ><span class="psg-learn-earn-answer-text">' + answer.Text + '</span></label>';
+					listString += '<label><input type="radio"' + disabledText + checkedText + 'class="psg-learn-earn-answer-radio" name="answer_id_QN' + question.QuestionId + '" value="' + answer.AnswerId + '" ><span class="psg-learn-earn-answer-text">' + correctMessage + answer.Text + '</span></label>';
 				}
 				//listString += '</div>';
 			});
 			listString += '</fieldset>';
 		}
 		else if (question.QuestionType == 4) {
-			listString += '<input type="text"';
-			if (question.Required == 1) {
-				listString += ' data-rule-required="true"';
+			if (reviewOnly) {
+				listString += '<div class="ui-no-ellipse" class="psg-learn-earn-answer-textbox">' + question.ParticipantLongAnswer + '</div>';
 			}
-			listString += ' class="psg-learn-earn-answer-textbox" name="long_answer_QN' + question.QuestionId + '"></input>';
+			else {
+				listString += '<input type="text"';
+				if (question.Required == 1) {
+					listString += ' data-rule-required="true"';
+				}
+				listString += ' class="psg-learn-earn-answer-textbox" name="long_answer_QN' + question.QuestionId + '"></input>';
+			}
 		}
 		else {
-			listString += '<textarea';
-			if (question.Required == 1) {
-				listString += ' data-rule-required="true"';
+			if (reviewOnly) {
+				listString += '<div class="ui-no-ellipse" class="psg-learn-earn-answer-textbox">' + question.ParticipantLongAnswer + '</div>';
 			}
-			listString += ' class="psg-learn-earn-answer-textarea" name="long_answer_QN' + question.QuestionId + '"></textarea>';
+			else {
+				listString += '<textarea';
+				if (question.Required == 1) {
+					listString += ' data-rule-required="true"';
+				}
+				listString += ' class="psg-learn-earn-answer-textarea" name="long_answer_QN' + question.QuestionId + '"></textarea>';
+			}
 		}
 		listString += '</div>';
 		

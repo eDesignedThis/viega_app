@@ -358,6 +358,12 @@ img {
 #surveySummary_lblInstructions >p  {
 	white-space:normal !important;
 }
+.psg-learn-earn-correct-answer-message {
+	text-align: right;
+	float: right;
+	padding-left: 1em;
+	font-weight: bold;
+}
 
 .psg-learn-earn-answer-textbox{
 }

@@ -933,6 +933,9 @@ function PageContainerBeforeShowManager(e,ui) {
 		case 'page_item_options':
 			page_item_options_show();
 			break;
+		case 'page_learn_earn_complete':
+			page_learn_earn_complete_show();
+			break;		
 		case 'page_learn_earn_content':
 			page_learn_earn_content_show();
 			break;	

@@ -70,16 +70,7 @@ function DrawSurveyAllList (data) {
 		if (learnEarnSelected == 'Trivia'){
 			$.mobile.pageContainer.pagecontainer('change', 'learnearncontenttrivia.html', { transition: 'slide', changeHash: true } );
 		} else {
-			//console.log("This is not Trivia");
-			if (learnEarnCatgry == 'Completed'){
-				//console.log("Check the category again here: " + learnEarnCatgry);
-				//console.log("The staus is available");
-				$.mobile.pageContainer.pagecontainer('change', 'learnearnreview.html', { transition: 'slide', changeHash: true } );
-			} else {
-				//console.log("Check the category again here: " + learnEarnCatgry);
-				//console.log("The staus is available");
-				$.mobile.pageContainer.pagecontainer('change', 'learnearndetail.html', { transition: 'slide', changeHash: true } );
-			}
+			$.mobile.pageContainer.pagecontainer('change', 'learnearndetail.html', { transition: 'slide', changeHash: true } );
 		}
 	});
  }

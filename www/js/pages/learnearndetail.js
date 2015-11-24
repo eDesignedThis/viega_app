@@ -89,6 +89,7 @@ function BuildSurveyDetail(data) {
 		} else {
 			listString += '<li><div class="ui-no-ellipse ui-text-small psg-learnearn-li-section"><p>Completed: ' + data.Results + '</p></div></li>';
 		}
+		listString += '<li><a href="learnearnreview.html" class="psg-learn-earn-detail-link" data-transition="slide" >Review</a></li>';
 		listString += '<li><a href="learnearnmain.html" class="psg-learn-earn-detail-link" data-transition="slide" data-direction="reverse" data-icon="arrow-l">Back</a></li>';
 	}
 	
