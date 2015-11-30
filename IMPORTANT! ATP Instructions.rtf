@@ -28,10 +28,129 @@ This probably had something to do with tvOS, I reckon -- Apple had to separate t
 \
 Place the following coding into app info.plist file in the resources folder\
 \
-/////////////////////////   ATS code for google analytics /////////////////////////////////\
+/////////////////////////   ATS codes for iOS apps  /////////////////////////////////\
 \
 \
-***********************  Bypass  ATS  Version *****************************\
+*********************  Include all vendor domains that send insecure image inks  **************************\
+\
+\pard\tx529\pardeftab529\pardirnatural
+
+\f2\fs22 \cf0 \kerning1\expnd0\expndtw0 \CocoaLigature0 <key>NSAppTransportSecurity</key>\
+    <dict>\
+        <key>NSExceptionDomains</key>\
+        <dict>\
+            <key>www.google-analytics.com</key>\
+            <dict>\
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>\
+                <true/>\
+                <key>NSIncludesSubdomains</key>\
+                <true/>\
+            </dict>\
+            <key>images.booksamillion.com</key>\
+            <dict>\
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>\
+                <true/>\
+                <key>NSIncludesSubdomains</key>\
+                <true/>\
+            </dict>\
+            <key>img.bbystatic.com</key>\
+            <dict>\
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>\
+                <true/>\
+                <key>NSIncludesSubdomains</key>\
+                <true/>\
+            </dict>\
+            <key>www.tcmpi.com</key>\
+            <dict>\
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>\
+                <true/>\
+                <key>NSIncludesSubdomains</key>\
+                <true/>\
+            </dict>\
+            <key>www.replink.net</key>\
+            <dict>\
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>\
+                <true/>\
+                <key>NSIncludesSubdomains</key>\
+                <true/>\
+            </dict>\
+            <key>images.highspeedbackbone.net</key>\
+            <dict>\
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>\
+                <true/>\
+                <key>NSIncludesSubdomains</key>\
+                <true/>\
+            </dict>\
+            <key>c.shld.net</key>\
+            <dict>\
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>\
+                <true/>\
+                <key>NSIncludesSubdomains</key>\
+                <true/>\
+            </dict>\
+            <key>s3.amazonaws.com</key>\
+            <dict>\
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>\
+                <true/>\
+                <key>NSIncludesSubdomains</key>\
+                <true/>\
+            </dict>\
+            <key>rewards.proamgolfctr.com</key>\
+            <dict>\
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>\
+                <true/>\
+                <key>NSIncludesSubdomains</key>\
+                <true/>\
+            </dict>\
+            <key>origin-media.onecall.com</key>\
+            <dict>\
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>\
+                <true/>\
+                <key>NSIncludesSubdomains</key>\
+                <true/>\
+            </dict>\
+            <key>www.fairlanezip.com</key>\
+            <dict>\
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>\
+                <true/>\
+                <key>NSIncludesSubdomains</key>\
+                <true/>\
+            </dict>\
+            <key>images.madisonpg.com</key>\
+            <dict>\
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>\
+                <true/>\
+                <key>NSIncludesSubdomains</key>\
+                <true/>\
+            </dict>\
+            <key>cdn-us-ec.yottaa.net</key>\
+            <dict>\
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>\
+                <true/>\
+                <key>NSIncludesSubdomains</key>\
+                <true/>\
+            </dict>\
+            <key>basspro.scene7.com</key>\
+            <dict>\
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>\
+                <true/>\
+                <key>NSIncludesSubdomains</key>\
+                <true/>\
+            </dict>\
+        </dict>\
+    </dict>
+\f0\fs28 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720
+\cf0 \expnd0\expndtw0\kerning0
+\
+\
+\
+\
+\
+\
+\
+***********************  Bypass  ATS  Version  (Use with extreme caution) *****************************\
 \
 \pard\pardeftab720\parhyphenfactor20
 
