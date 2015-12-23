@@ -44,7 +44,13 @@ function HandleGetOrderDetail(data) {
 					var estimatedShipDate = (IsMinDate(value.Shipment.EstimatedShipDate)) ? 'None' : moment(value.Shipment.EstimatedShipDate,'YYYY-MM-DD').format('MM-DD-YYYY');
 					shipmentIdInfo += '<li data-role="list-divider">Estimated Ship Date: ' + estimatedShipDate + '</li>';
 				} else {
-					shipmentIdInfo += '<li data-role="list-divider">Shipped: ' + moment(value.Shipment.ShipmentDate,'YYYY-MM-DD').format('MM-DD-YYYY') + '</li>';
+                    
+                    if(value.Shipment.ShipmentDate =='0001-01-01T00:00:00'){
+                        shipmentIdInfo += '<li data-role="list-divider">Shipped: -- </li>';
+                    }else{
+                        shipmentIdInfo += '<li data-role="list-divider">Shipped: ' + moment(value.Shipment.ShipmentDate,'YYYY-MM-DD').format('MM-DD-YYYY') + '</li>';
+                    }
+                    
 					if (!psg.isNothing(value.Shipment.CarrierName)) {
 						shipmentIdInfo += '<li class="ui-text-small"><p>Shipped Via: ' + value.Shipment.CarrierName;
 						if (!psg.isNothing(value.Shipment.TrackingNumber)) {
