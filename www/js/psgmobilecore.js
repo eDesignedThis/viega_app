@@ -63,10 +63,11 @@ function checkLen(thetext){
 }
 
 function IsMinDate(date) {
-    if (date == '0001-01-01 00:00:00')
+    if (date == '0001-01-01 00:00:00'){
         return true;
-    else
+    } else{
         return false;
+    }
 }
 
 function htmlEncode(value) {
@@ -933,6 +934,9 @@ function PageContainerBeforeShowManager(e,ui) {
 		case 'page_item_options':
 			page_item_options_show();
 			break;
+		case 'page_learn_earn_complete':
+			page_learn_earn_complete_show();
+			break;		
 		case 'page_learn_earn_content':
 			page_learn_earn_content_show();
 			break;	
