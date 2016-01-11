@@ -343,6 +343,7 @@ function InitLookup (page, itemId, itemName, itemLookupFields, itemLookupFormat,
 	var formatCode = "[" + fieldName + "]";
 	var formatName = formatCode.replace("_code","_name");
 	var formatZip = formatCode.replace("_code","_zip");
+	var formatCity = formatCode.replace("_code","_city");
 	var format = itemLookupFormat;
 	if (psg.isNothing(format) || format === "undefined"){
 		format = formatCode + " " + formatName;
@@ -355,7 +356,7 @@ function InitLookup (page, itemId, itemName, itemLookupFields, itemLookupFormat,
 	var source = {
 		type: "GET",
 		datatype: "json",
-		datafields: [{name: 'Code'}, {name: 'Name'}, {name: 'ZipCode'}],
+		datafields: [{name: 'Code'}, {name: 'Name'}, {name: 'ZipCode'}, {name: 'City'}],
 		url: app.getHost() +  "/json/JsonService.ashx",
 		data: {
 			action: page + "." + fieldName.replace("_", "") + "s" + ".get",
@@ -378,7 +379,8 @@ function InitLookup (page, itemId, itemName, itemLookupFields, itemLookupFormat,
 			return $.map(data, function (item) {
 				var name = format.replace(formatCode, item.Code);
 				name = name.replace(formatName, item.Name);
-				name = name.replace(formatZip, item.ZipCode);
+				name = name.replace(formatZip, item.ZipCode == null ? "" : item.ZipCode);
+				name = name.replace(formatCity, item.City == null ? "" : item.City);
 				return {
 					label: name,
 					value: item.Code,
