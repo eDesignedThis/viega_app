@@ -249,6 +249,19 @@ img {
     -webkit-border-radius: 0 !important;
     border-radius: 0 !important
 }
+#page_dealer_research.ui-page-header-fixed {
+    padding: 0 !important
+}
+#page_dealer_research.ui-page-header-fixed div.ui-dialog-contain {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0px auto 0px auto;
+    padding: 0;
+    position: relative;
+    top: 0;
+    -webkit-border-radius: 0 !important;
+    border-radius: 0 !important
+}
 .psg-claims-confirmation-new-claim {
     text-align: center
 }
