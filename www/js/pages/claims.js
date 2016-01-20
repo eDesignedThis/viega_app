@@ -238,12 +238,20 @@ function ParseFields(page,searchTerm,canEdit) {
 			case 'modellookup2':
 				var lookupFields = item.attr("LOOKUP_FIELDS");
 				var lookupFormat = item.attr("LOOKUP_FORMAT");
+				var dealerResearch = item.attr("DEALER_RESEARCH");
 				formString += '<div id="div_combo_' + itemId + '"></div><div id="toolTip_' + itemId + '"></div><input style="display:none;" data-role="none" type="text" id="' + itemId +'" name="' + itemName + '" ';
 				if (required) {
 					formString += ' data-rule-required="true" data-msg-required="' + itemLabel + ' is required." ';
 				}
 				formString += '>';
-				scriptString += '<script>InitLookup("' + page + '","' + itemId + '","' + itemName + '","' + lookupFields + '","' + lookupFormat + '","' + placeholder + '");</scr' + 'ipt>';
+				scriptString += '<script>';
+				if (!psg.isNothing(dealerResearch)) {
+					formString += '<br/><span>Cannot find your ' + itemLabel.toLowerCase() + '?</span> <a href="dealerresearch.html" data-ajax="true" data-transition="slidedown" data-rel="dialog">Request Research</a>';
+					formString += '<input type="hidden" id="' + page + '_research_information" name="' + page + '_research_information">';
+					scriptString += 'var dealerResearchCaller = "' + itemId + '";';
+					scriptString += 'var dealerResearchField = "' + page + '_research_information";';
+				}
+				scriptString += 'InitLookup("' + page + '","' + itemId + '","' + itemName + '","' + lookupFields + '","' + lookupFormat + '","' + placeholder + '");</scr' + 'ipt>';
 				break;
 			//we store the actual value in field with display:none
 			case 'date':
@@ -459,5 +467,21 @@ function InitDate (fieldName) {
 		var hf = $('#'+fieldName);
 		hf.val(d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear()); 
 	});
+}
+
+function SetDealerResearchValue(info) {
+	if (psg.isNothing(info)) return;
+	if (psg.isNothing(dealerResearchField)) return;
+	$('#' + dealerResearchField).val(info);	
+	
+	if (psg.isNothing(dealerResearchCaller)) return;
+	var controlName = $("#div_combo_" + dealerResearchCaller);
+	var item = {
+		label: label,
+		value: value
+	}
+	controlName.jqxComboBox('addItem', item);
+	var real = controlName.jqxComboBox('getItemByValue', value);
+	controlName.jqxComboBox('selectItem', real);
 }
 
