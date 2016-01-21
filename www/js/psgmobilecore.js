@@ -916,9 +916,6 @@ function PageContainerBeforeShowManager(e,ui) {
 		case 'page_contact':
 		    page_contact_show();
 			break;
-		case 'page_dealer_research':
-			page_dealer_research_show();
-			break;
 		case 'page_enrollment':
 			page_enrollment_show();
 			break;

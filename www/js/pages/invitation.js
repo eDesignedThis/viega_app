@@ -49,7 +49,6 @@ function page_invitation_show(){
 	
 	if  (!app.isPhoneGap) {
 		var id = null;
-		debugger;
 		if (sessionStorage.getItem('startPageQS') != null) {
 			id = getQSParameterByName('invitation_id', sessionStorage.getItem('startPageQS'));
 		}

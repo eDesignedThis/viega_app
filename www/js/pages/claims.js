@@ -245,11 +245,12 @@ function ParseFields(page,searchTerm,canEdit) {
 				}
 				formString += '>';
 				scriptString += '<script>';
-				if (!psg.isNothing(dealerResearch)) {
-					formString += '<br/><span>Cannot find your ' + itemLabel.toLowerCase() + '?</span> <a href="dealerresearch.html" data-ajax="true" data-transition="slidedown" data-rel="dialog">Request Research</a>';
+				if (!psg.isNothing(dealerResearch) && dealerResearch == "1" && page == "enrollment") {
+					formString += '<div><span>Cannot find your ' + itemLabel.toLowerCase() + '?</span> <a href="#panel_dealer_research">Request Research</a></div>';
 					formString += '<input type="hidden" id="' + page + '_research_information" name="' + page + '_research_information">';
 					scriptString += 'var dealerResearchCaller = "' + itemId + '";';
 					scriptString += 'var dealerResearchField = "' + page + '_research_information";';
+					scriptString += 'DealerResearch.Init();';
 				}
 				scriptString += 'InitLookup("' + page + '","' + itemId + '","' + itemName + '","' + lookupFields + '","' + lookupFormat + '","' + placeholder + '");</scr' + 'ipt>';
 				break;
@@ -469,19 +470,67 @@ function InitDate (fieldName) {
 	});
 }
 
-function SetDealerResearchValue(info) {
-	if (psg.isNothing(info)) return;
-	if (psg.isNothing(dealerResearchField)) return;
-	$('#' + dealerResearchField).val(info);	
-	
-	if (psg.isNothing(dealerResearchCaller)) return;
-	var controlName = $("#div_combo_" + dealerResearchCaller);
-	var item = {
-		label: label,
-		value: value
-	}
-	controlName.jqxComboBox('addItem', item);
-	var real = controlName.jqxComboBox('getItemByValue', value);
-	controlName.jqxComboBox('selectItem', real);
-}
+var DealerResearch = {
+	Init: function () {
+		$('#dealer_research_dealership_name').text('');
+		$('#dealer_research_street_address').text('');
+		$('#dealer_research_city_name').text('');
+		$('#dealer_research_state').text('');
+		$('#dealer_research_zip').text('');
+		$('#dealer_research_dealership_phone').text('');
+		$('#dealer_research_pax_name').text('');
+		$('#dealer_research_pax_email').text('');
+		$('#dealer_research_comment').text('');
 
+		$('#dealer_research_submit').click(DealerResearch.WriteInfo);
+		$('#dealer_research_comment').on('keyup', DealerResearch.CountComment);
+	},
+	CountComment: function () {
+		var len = this.value.length;
+		if (len > 1000) {
+			showAlert('Comment is limited to 1000 characters.','Too Many Characters');
+			thetext.focus();
+		}
+	},
+	WriteInfo: function () {
+		var dealershipName = $('#dealer_research_dealership_name').val();
+		var streetAddress = $('#dealer_research_street_address').val();
+		var city = $('#dealer_research_city_name').val();
+		var state = $('#dealer_research_state').val();
+		var zip = $('#dealer_research_zip').val();
+		var phone = $('#dealer_research_dealership_phone').val();
+		var paxName = $('#dealer_research_pax_name').val();
+		var paxEmail = $('#dealer_research_pax_email').val();
+		var comment = $('#dealer_research_comment').val();
+		var researchText = "Dealership Information ---------- \r\n" +
+			"Dealership Name:\t" + dealershipName + "\r\n" +
+			"Street Address:\t" + streetAddress + "\r\n" +	
+			"City:\t\t" + city + "\r\n" +	
+			"State:\t\t" + state + "\r\n" +	
+			"Zip\\Postal Code:\t" + zip + "\r\n" +	
+			"Phone Number:\t" + phone + "\r\n" +	
+			"\r\n" +
+			"Participant Information ---------- \r\n" +
+			"Name:\t\t" + paxName + "\r\n" +	
+			"Email:\t\t" + paxEmail + "\r\n" +	
+			"\r\n" +
+			"Additional Comments ---------- \r\n" +
+			comment;
+		DealerResearch.SetValue(researchText);
+	},
+	SetValue: function (info) {
+		if (psg.isNothing(info)) return;
+		if (psg.isNothing(dealerResearchField)) return;
+		$('#' + dealerResearchField).val(info);	
+		
+		if (psg.isNothing(dealerResearchCaller)) return;
+		var controlName = $("#div_combo_" + dealerResearchCaller);
+		var item = {
+			label: "Research Requested",
+			value: "0"
+		}
+		controlName.jqxComboBox('addItem', item);
+		var real = controlName.jqxComboBox('getItemByValue', "0");
+		controlName.jqxComboBox('selectItem', real);
+	}
+};
