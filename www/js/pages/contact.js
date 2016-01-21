@@ -35,6 +35,10 @@ function page_contact_show(){
  function submitContactForm() {
       var data = JSON.stringify({ subject: $('#contact_subject').val(), other: $('#contact_other_subject').val(), question: $('#contact_question').val() });
       getJson("CONTACT.CONTACTUSPOST", HandleContactSubmit, data);
+      
+        //Send tracking data to Google
+        ga('send','event','User Submitted Contact Form','Submit');
+      
     }
 
     function HandleContactSubmit(data) {

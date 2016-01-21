@@ -81,8 +81,8 @@ function HandleQuickPointsScan(){
 			$('#certificate_number').val(result.text);
 			$('#quick_points_submit').trigger('click');
 			
-			//Send tracking data to Google
-			ga('send','event','Redeem Points','Scan');
+            //Send tracking data to Google
+            ga('send','event','User Redeem Points','Scan');
 			
 		},
 		function (error) {
@@ -98,7 +98,7 @@ function HandleQuickPointsCallback(data){
                 UpdatePointAccount(data.PointAccount);
 		
 		//Send tracking data to Google
-		ga('send','event','Redeem Points','Submit');
+		ga('send','event','User Redeem Points','Submit');
 		
             }
 		//TODO: Need better message.	

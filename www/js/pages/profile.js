@@ -65,4 +65,7 @@ function submitProfileForm() {
 				WriteError(data.Result);
 			}			
 	},data);
+    
+    //Send tracking data to Google
+    ga('send','event','User Updated Profile','Submit');
 }

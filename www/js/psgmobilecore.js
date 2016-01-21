@@ -862,6 +862,9 @@ function findExternalLinks(page){
 			
 		}
 	}, 2000);
+    
+    //Send tracking data to Google
+    ga('send','event','User Opened External Link','Open');
 }
 
 

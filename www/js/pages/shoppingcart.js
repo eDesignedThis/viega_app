@@ -73,9 +73,17 @@ function page_shopping_cart_show(previousId) {
 		});
 		page.find('.shopping-cart-remove').on("click", function (event) {
 			doShoppingCartAction(event,"SHOPPING.CART.REMOVE");
+            
+            //Send tracking data to Google
+            ga('send','event','User Removed Item From Cart','Remove');
+                
 		});
 		page.find(".shopping-cart-to-wishlist").on("click", function(event) {
 			doShoppingCartAction(event,"SHOPPING.CART.MOVETOWISHLIST");
+            
+            //Send tracking data to Google
+            ga('send','event','User Move Item To Wish List','Cart');
+                
 		});
 		page.find('.link-detail').on("click", function () {
 			psg.setSessionItem('psg-item-key', $(this).attr('data-psg-item-key'));
@@ -98,6 +106,10 @@ function page_shopping_cart_show(previousId) {
 		}
 
 		getJson("CHECKOUT.CART.REFRESH", HandleShoppingCartRefresh);
+        
+        //Send tracking data to Google
+        ga('send','event','User Checkout Items From Cart','Checkout');
+                
 	}
 	
 	function HandleShoppingCartRefresh(data) {
