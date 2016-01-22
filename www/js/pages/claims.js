@@ -247,7 +247,7 @@ function ParseFields(page,searchTerm,canEdit) {
 				scriptString += '<script>';
 				if (!psg.isNothing(dealerResearch) && dealerResearch == "1" && page == "enrollment") {
 					formString += '<div><span>Cannot find your ' + itemLabel.toLowerCase() + '?</span> <a href="#panel_dealer_research">Request Research</a></div>';
-					formString += '<input type="hidden" id="' + page + '_research_information" name="' + page + '_research_information">';
+					formString += '<input type="hidden" id="' + page + '_research_information" name="research_information">';
 					scriptString += 'var dealerResearchCaller = "' + itemId + '";';
 					scriptString += 'var dealerResearchField = "' + page + '_research_information";';
 					scriptString += 'DealerResearch.Init();';
@@ -478,8 +478,6 @@ var DealerResearch = {
 		$('#dealer_research_state').text('');
 		$('#dealer_research_zip').text('');
 		$('#dealer_research_dealership_phone').text('');
-		$('#dealer_research_pax_name').text('');
-		$('#dealer_research_pax_email').text('');
 		$('#dealer_research_comment').text('');
 
 		$('#dealer_research_submit').click(DealerResearch.WriteInfo);
@@ -488,12 +486,17 @@ var DealerResearch = {
 	CountComment: function () {
 		var len = this.value.length;
 		if (len > 1000) {
-			showAlert('Comment is limited to 1000 characters.','Too Many Characters');
+			ShowAlert('Comment is limited to 1000 characters.','Too Many Characters');
 			thetext.focus();
 		}
 	},
 	WriteInfo: function () {
 		var dealershipName = $('#dealer_research_dealership_name').val();
+		if (psg.isNothing(dealershipName) || psg.StringUtil.Trim(dealershipName).length == 0) {
+			ShowAlert('Dealership Name is required.');
+			return;
+		}
+		
 		var streetAddress = $('#dealer_research_street_address').val();
 		var city = $('#dealer_research_city_name').val();
 		var state = $('#dealer_research_state').val();
@@ -505,18 +508,15 @@ var DealerResearch = {
 		var researchText = "Dealership Information ---------- \r\n" +
 			"Dealership Name:\t" + dealershipName + "\r\n" +
 			"Street Address:\t" + streetAddress + "\r\n" +	
-			"City:\t\t" + city + "\r\n" +	
-			"State:\t\t" + state + "\r\n" +	
+			"City:\t\t\t" + city + "\r\n" +	
+			"State:\t\t\t" + state + "\r\n" +	
 			"Zip\\Postal Code:\t" + zip + "\r\n" +	
 			"Phone Number:\t" + phone + "\r\n" +	
-			"\r\n" +
-			"Participant Information ---------- \r\n" +
-			"Name:\t\t" + paxName + "\r\n" +	
-			"Email:\t\t" + paxEmail + "\r\n" +	
 			"\r\n" +
 			"Additional Comments ---------- \r\n" +
 			comment;
 		DealerResearch.SetValue(researchText);
+		$('#panel_dealer_research').panel('close');
 	},
 	SetValue: function (info) {
 		if (psg.isNothing(info)) return;

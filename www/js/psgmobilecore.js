@@ -546,6 +546,10 @@ var psg = {
 				count >>= 1, pattern += pattern;
 			}
 			return result + pattern;
+		},
+		Trim: function(value) {
+			// From http://stackoverflow.com/questions/3000649/trim-spaces-from-start-and-end-of-string
+			return value.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
 		}
     },
 	setSessionItem: function(name,value) {
