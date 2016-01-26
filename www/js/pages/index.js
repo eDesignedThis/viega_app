@@ -32,8 +32,10 @@ var app = {
 	    app.receivedEvent('deviceready');
 	    
 	    /// Google Universal tracking code for mobile app
-        
-        var userDeviceId = device.uuid;
+        var userDeviceId = 'test';
+		if (typeof device != 'undefined') {
+			userDeviceId = device.uuid;
+		}
         var uaConfigNum = config.googleUA;
         var mockUaCode = 'UA-00000000-1';
         
@@ -153,7 +155,7 @@ var app = {
 			showAlert = true;
 		}
 		var online = true;
-		if (navigator == 'undefined'){
+		if (!navigator || !navigator.network){
 			return true;
 		}
 		var state = navigator.network.connection.type;
@@ -308,6 +310,8 @@ var app = {
 	// initialize the app for in app notifications
 	initNotifications: function()
 	{
+		if (!window.plugins  || !window.plugins.pushNotification)
+			return;
 		//there are two types of plug-ins for Pushwoosh.  The CLI is different than PGBuild.
 		//change js files to get the right ones.  Assume build for now.
 		var pushNotification = window.plugins.pushNotification;
