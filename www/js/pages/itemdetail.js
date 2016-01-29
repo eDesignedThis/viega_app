@@ -33,6 +33,10 @@ var itemDetails = {
 			getJson("SHOPPING.CART.ADD",
 				function(result) { idThis.HandleItemDetailAddCallback(result, 'shoppingcart.html'); },
 				JSON.stringify({key: keyValue, selectedOrderOptions: selectedOptions}));
+                
+                //Send tracking data to Google
+                ga('send','event','User Added Item To Cart','Open');
+                
 		});
 
 		$('#psg_item_detail_wishlist').on('click', function () {
@@ -40,6 +44,9 @@ var itemDetails = {
 			getJson("SHOPPING.WISHLIST.ADD",
 				function(result){ idThis.HandleItemDetailAddCallback(result, 'wishlist.html'); },
 				JSON.stringify({key: keyValue}));
+                
+                //Send tracking data to Google
+                ga('send','event','User Added Item To Wish List','Open');
 		});
 	},
 

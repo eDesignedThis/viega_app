@@ -51,6 +51,10 @@ function page_claim_show() {
 			var url = app.getHost() + "/json/jsonmobile.ashx?action=MOBILE.CLAIM.SUBMIT"
 			ft.upload(imageUri, url, fileSuccess, fileError, options);
 		}
+        
+        //Send tracking data to Google
+        ga('send','event','User Submitted Claim','Submit');
+        
 	}
 
 	function submitClaimFormResult(data){

@@ -861,11 +861,16 @@ function findExternalLinks(page){
 								window.open('' + outGoingLink + '', '_system', 'location=yes');
 							}
 						};
+                        
+                         //Send tracking data to Google
+                        ga('send','event','User Opened External Link','Open');
 					}
 			});
 			
 		}
 	}, 2000);
+    
+   
 }
 
 

@@ -81,9 +81,17 @@ function HandleGetWishlist(data) {
 						$.mobile.changePage( wishListNextPage);
 						return;
 					}
+                    
+                    //Send tracking data to Google
+                    ga('send','event','User Moved Item To Cart','Wish List');
+                
 				}
 				else if (event.target.innerText == "Remove") {
 					urlAction = "SHOPPING.WISHLIST.REMOVE";
+                    
+                    //Send tracking data to Google
+                    ga('send','event','User Removed Item','Wish List');
+                
 				}
 
 				var data = JSON.stringify({ key: keyValue });
