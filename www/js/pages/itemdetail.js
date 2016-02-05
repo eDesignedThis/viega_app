@@ -65,7 +65,17 @@ var itemDetails = {
 			$('#psg_detail_item_title').html(data.Item.ItemName);
 			$('#psg_detail_item_url').attr("src", data.Item.ItemMediumImageUrlFullyQualified);
 			$('#psg_detail_item_points').html('<span class="shopPtsStyle">' + data.Item.PointsPerUnitFormatted + '</span> points');
-			$('#psg_item_detail_text').html(data.Item.ItemText);
+			
+			// Before the item text, we want to show any "special" messages.
+			var specialMessages = '';
+			if (!psg.isNothing(data.Item.IsShippable) && data.Item.IsShippable == 0) {
+				specialMessages += '<div class="error" style="padding-bottom:20px;">This item is not shippable to your current location.<br /></div>';
+			}
+			else if (!psg.isNothing(data.Item.BusinessObjectState) && data.Item.BusinessObjectState == 5) {
+				specialMessages += '<div class="error" style="padding-bottom:20px;"><strong>This item is currently unavailable.</strong><br/> The vendor has changed the availability of this item. It may become available in the future.</div>';
+			}
+			$('#psg_item_detail_text').html(specialMessages + data.Item.ItemText);
+
 			if (app.isPhoneGap) {
 				$('#psg_item_detail_text').on('click', 'a', function(e) {
 					e.preventDefault();

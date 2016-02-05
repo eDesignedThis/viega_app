@@ -125,7 +125,15 @@ function page_shopping_cart_show(previousId) {
 		} else if (data.Result == null || data.Result == "success") {
 			$.mobile.pageContainer.pagecontainer('change', 'checkoutaddress.html');
 		} else {
-			WriteError(data.Result);
+			ShowShoppingCartError(data.Result);
+		}
+	}
+
+	function ShowShoppingCartError(errorMessage) {
+		getJson("SHOPPING.SHOPPINGCARTITEMS", HandleGetShoppingItemsWithError);
+		function HandleGetShoppingItemsWithError(data) {
+			HandleGetShoppingItems(data);
+			WriteError(errorMessage);
 		}
 	}
 }
