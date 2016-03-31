@@ -16,6 +16,19 @@ cordova plugin add https://github.com/Pushwoosh/pushwoosh-phonegap-3.0-plugin.gi
 
 
 
-cordova plugin add cordova-plugin-splashscreen cordova-plugin-device cordova-plugin-network-information cordova-plugin-geolocation cordova-plugin-camera cordova-plugin-file cordova-plugin-dialogs cordova-plugin-globalization cordova-plugin-inappbrowser https://github.com/Pushwoosh/pushwoosh-phonegap-3.0-plugin.git cordova-plugin-statusbar https://github.com/apache/cordova-plugin-whitelist.git#r1.0.0 cordova-plugin-file cordova-plugin-file-transfer cordova-plugin-inappbrowser cordova-plugin-vibration com.phonegap.plugins.barcodescanner
+cordova plugin add cordova-plugin-splashscreen cordova-plugin-device cordova-plugin-network-information cordova-plugin-geolocation cordova-plugin-camera cordova-plugin-file cordova-plugin-dialogs cordova-plugin-globalization cordova-plugin-inappbrowser https://github.com/Pushwoosh/pushwoosh-phonegap-3.0-plugin.git cordova-plugin-statusbar cordova-plugin-whitelist cordova-plugin-file cordova-plugin-file-transfer cordova-plugin-inappbrowser cordova-plugin-vibration phonegap-plugin-barcodescanner
 
+cordova plugin remove cordova-plugin-splashscreen cordova-plugin-device cordova-plugin-network-information cordova-plugin-geolocation cordova-plugin-camera cordova-plugin-file cordova-plugin-dialogs cordova-plugin-globalization cordova-plugin-inappbrowser https://github.com/Pushwoosh/pushwoosh-phonegap-3.0-plugin.git cordova-plugin-statusbar cordova-plugin-whitelist cordova-plugin-file cordova-plugin-file-transfer cordova-plugin-inappbrowser cordova-plugin-vibration phonegap-plugin-barcodescanner cordova-plugin-dialogs
+
+
+
+
+Clean up
+
+
+cordova plugin add cordova-plugin-splashscreen cordova-plugin-device cordova-plugin-network-information cordova-plugin-geolocation cordova-plugin-camera cordova-plugin-file cordova-plugin-dialogs cordova-plugin-globalization cordova-plugin-inappbrowser cordova-plugin-whitelist cordova-plugin-file cordova-plugin-file-transfer cordova-plugin-inappbrowser cordova-plugin-vibration phonegap-plugin-barcodescanner cordova-plugin-dialogs
+
+
+
+cordova plugin remove cordova-plugin-splashscreen cordova-plugin-device cordova-plugin-network-information cordova-plugin-geolocation cordova-plugin-camera cordova-plugin-file cordova-plugin-dialogs cordova-plugin-globalization cordova-plugin-inappbrowser cordova-plugin-whitelist cordova-plugin-file cordova-plugin-file-transfer cordova-plugin-inappbrowser cordova-plugin-vibration com.phonegap.plugins.barcodescanner cordova-plugin-dialogs
 
