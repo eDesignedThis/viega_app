@@ -1,6 +1,6 @@
 function registerPushwooshIOS(appId, appName){
 	console.log("initNotifications");
-	var pushNotification = window.plugins.pushNotification;
+	var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
 	
 	console.log("add event listener");
 	//set push notification callback before we initialize the plugin

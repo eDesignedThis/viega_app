@@ -66,6 +66,9 @@ function getHomeMenu(){
 			if (sectionType == 89) {
 				hasClaimLanding = true;
 			}
+			if (sectionType == 71 && item.attr("LOCATION") == -2 ) {
+				return true;
+			}
 			if (sectionType in supportedSections ) {
 				menuString += '<li><a href="' + supportedSections[sectionType] + '" data-transition="slide">' + psg.getMenuIcon(sectionType) + '&nbsp; ' + item.attr("NAME") +'</a></li>'
 				popmenuItems[popmenuItems.length] = { href: supportedSections[sectionType], text: item.attr("NAME") };

@@ -1,28 +1,13 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
-{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 Consolas;\f2\fnil\fcharset0 Menlo-Regular;
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 Menlo-Regular;\f2\fnil\fcharset0 Consolas;
 }
-{\colortbl;\red255\green255\blue255;\red26\green26\blue26;\red246\green246\blue246;\red25\green25\blue25;
-\red234\green234\blue234;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red25\green25\blue25;\red234\green234\blue234;
+}
 \margl1440\margr1440\vieww25520\viewh14000\viewkind0
 \deftab720
 \pard\pardeftab720\partightenfactor0
 
 \f0\fs28 \cf0 \expnd0\expndtw0\kerning0
-To deal with the build issue with the Cordova PushWoosh plugin, turn the \'93Enable Bitcode\'94 setting to \'93No\'94.\
-- In Xcode go to the application Build Settings > Search for \'93Bitcode\'94 and change setting to No.\
-\
-Add this line to your Build Settings -> Header Search Paths:\
-\pard\pardeftab720\partightenfactor0
-
-\f1 \cf2 \cb3 "$(OBJROOT)/UninstalledProducts/$(PLATFORM_NAME)/include"\
-\pard\pardeftab720\partightenfactor0
-
-\f0 \cf0 \cb1 Don't replace the existing line that looks similar, that is still needed to be backwards compatible with Xcode 7 and Xcode 6.4.\
-This probably had something to do with tvOS, I reckon -- Apple had to separate the archive intermediates by platform for universal builds.\
-\
-\
-<meta http-equiv="Content-Security-Policy" content="script-src 'self'  https://cp.pushwoosh.com/ https://mts0.googleapis.com/ https://mts1.googleapis.com/ 'unsafe-inline' 'unsafe-eval'">\
-\
 \
 Place the following coding into app info.plist file in the resources folder\
 \
@@ -33,7 +18,7 @@ Place the following coding into app info.plist file in the resources folder\
 \
 \pard\tx529\pardeftab529\pardirnatural\partightenfactor0
 
-\f2\fs22 \cf0 \kerning1\expnd0\expndtw0 \CocoaLigature0 <key>NSAppTransportSecurity</key>\
+\f1\fs22 \cf0 \kerning1\expnd0\expndtw0 \CocoaLigature0 <key>NSAppTransportSecurity</key>\
     <dict>\
         <key>NSExceptionDomains</key>\
         <dict>\
@@ -135,6 +120,14 @@ Place the following coding into app info.plist file in the resources folder\
                 <key>NSIncludesSubdomains</key>\
                 <true/>\
             </dict>\
+\pard\tx529\pardeftab529\pardirnatural\partightenfactor0
+\cf2 			<key>nominatim.openstreetmap.org</key>\
+        	<dict>\
+          		<key>NSExceptionAllowsInsecureHTTPLoads</key>\
+          		<true/>\
+          		<key>NSIncludesSubdomains</key>\
+          		<true/>\
+        	</dict>\cf0 \
             <key>basspro.scene7.com</key>\
             <dict>\
                 <key>NSExceptionAllowsInsecureHTTPLoads</key>\
@@ -158,7 +151,7 @@ Place the following coding into app info.plist file in the resources folder\
 \
 \pard\pardeftab720\parhyphenfactor20\partightenfactor0
 
-\f1\fs30 \cf4 <key>NSAppTransportSecurity</key>\
+\f2\fs30 \cf3 <key>NSAppTransportSecurity</key>\
 <dict>\
   <!--Include to allow all connections (DANGER)-->\
   <key>NSAllowsArbitraryLoads</key>\
@@ -176,7 +169,7 @@ Simple Version that  does work\
 \clmrg \clvertalt \clshdrawnil \clwWidth14760\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl200 \clpadr200 \gaph\cellx8640
 \pard\intbl\itap1\tx529\pardeftab529\pardirnatural\partightenfactor0
 
-\f2\fs22 \cf0 \kerning1\expnd0\expndtw0 \CocoaLigature0 <key>NSAppTransportSecurity</key>\
+\f1\fs22 \cf0 \kerning1\expnd0\expndtw0 \CocoaLigature0 <key>NSAppTransportSecurity</key>\
     <dict>\
         <key>NSExceptionDomains</key>\
         <dict>\
@@ -189,12 +182,12 @@ Simple Version that  does work\
             </dict>\
         </dict>\
     </dict>
-\f1\fs24 \expnd0\expndtw0\kerning0
+\f2\fs24 \expnd0\expndtw0\kerning0
 \CocoaLigature1 \cell 
 \pard\intbl\itap1\cell \row
 
 \itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
-\clvertalt \clshdrawnil \clwWidth1000\clftsWidth3 \clminw1000 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadl200 \clpadr200 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth1000\clftsWidth3 \clminw1000 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadl200 \clpadr200 \gaph\cellx4320
 \clvertalt \clshdrawnil \clwWidth14760\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl200 \clpadr200 \gaph\cellx8640
 \pard\intbl\itap1\pardeftab720\partightenfactor0
 \cf0 \cell 
@@ -202,7 +195,7 @@ Simple Version that  does work\
 \cf0 \cell \row
 
 \itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
-\clvertalt \clshdrawnil \clwWidth1000\clftsWidth3 \clminw1000 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadl200 \clpadr200 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth1000\clftsWidth3 \clminw1000 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadl200 \clpadr200 \gaph\cellx4320
 \clvertalt \clshdrawnil \clwWidth14760\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl200 \clpadr200 \gaph\cellx8640
 \pard\intbl\itap1\pardeftab720\partightenfactor0
 \cf0 \cell 
@@ -216,7 +209,7 @@ Extended Version if needed\
 \
 \pard\tx529\pardeftab529\pardirnatural\partightenfactor0
 
-\f2\fs22 \cf0 \kerning1\expnd0\expndtw0 \CocoaLigature0 <key>NSExceptionDomains</key>\
+\f1\fs22 \cf0 \kerning1\expnd0\expndtw0 \CocoaLigature0 <key>NSExceptionDomains</key>\
 		<dict>\
 			<key>www.google-analytics.com</key>\
 			<dict>\

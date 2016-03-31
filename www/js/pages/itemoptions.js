@@ -42,12 +42,17 @@ function page_item_options_show(){
 }
 
 function HandleItemOptionClick(event) {
-	 var urlAction = "SHOPPING.WISHLIST.MOVETOCART";
-	 var keyValue = sessionStorage.getItem(getBase() + "add.key");
-	 var id =  $('input[type=radio]:checked').attr("data-psg-id");
-	 var selectedOrderOptions = id + "=" + $('input[type=radio]:checked').val() + ";";
-	 var data = JSON.stringify({ key: keyValue, options: selectedOrderOptions }); 
-	 getJson(urlAction, HandleItemOptionCallback, data);
+	var urlAction = "SHOPPING.WISHLIST.MOVETOCART";
+	var keyValue = sessionStorage.getItem(getBase() + "add.key");
+	var id =  $('input[type=radio]:checked').attr("data-psg-id");
+	if (psg.isNothing(id)) {
+		WriteError('Please select an option.');
+	}
+	else {
+		var selectedOrderOptions = id + "=" + $('input[type=radio]:checked').val() + ";";
+		var data = JSON.stringify({ key: keyValue, options: selectedOrderOptions }); 
+		getJson(urlAction, HandleItemOptionCallback, data);
+	}
 }
 
 function HandleItemOptionCallback(data) {
