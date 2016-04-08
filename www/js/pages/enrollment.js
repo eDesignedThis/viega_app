@@ -75,8 +75,10 @@ function ExpandAddressBlock(page,optionString){
 	formString += ' data-rule-required="true" data-msg-required="Country is required." >';
 				var options = optionString.split('||');
 				$.each(options, function(index, value) {
-						var pairs = value.split('|');
-             			formString += '<option value="' + pairs[0] + '">' + pairs[1] + '</option>';			
+						if (value.indexOf('|') > 0) {
+							var pairs = value.split('|');
+							formString += '<option value="' + pairs[0] + '">' + pairs[1] + '</option>';
+						}			
 				});		
 	formString += '</select>';
     return formString;
