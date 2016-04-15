@@ -27,6 +27,7 @@ xmlns:android   = "http://schemas.android.com/apk/res/android">
     <preference name="disable-cursor" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="10000" />
+    <preference name="SplashScreenMaintainAspectRatio" value="true" />
     <gap:plugin name="org.apache.cordova.camera" />
     <gap:plugin name="org.apache.cordova.device" />
     <gap:plugin name="org.apache.cordova.dialogs" />
