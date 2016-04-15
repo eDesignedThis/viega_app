@@ -36,9 +36,13 @@ function DrawSurveyDetail(data) {
 // Build the UI string from the data.
 function BuildSurveyDetail(data) {
 	var listString = '';
-
+	var instructions = data.MobileInstructions;
+	if (psg.isNothing(instructions))	{
+		instructions = data.Instructions; 
+	}
+	if (psg.isNothing(instructions)){instructions='';}
 	listString += '<li data-psg-divider="' + data.Title + '"> \
-		<div class="ui-no-ellipse">' + data.Instructions + '</div>\
+		<div class="ui-no-ellipse">' + instructions + '</div>\
 	</li>';
 	
 	// Build summary string.

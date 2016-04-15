@@ -181,8 +181,8 @@ function ParseFields(page,searchTerm,canEdit) {
 			formString +='<input name="' + itemName + '" type="hidden" value="' + moment().format('MM/DD/YYYY') + '" >';
 			return;
 		} 
-		if (itemType == 'addressblock') {
-			formString += ExpandAddressBlock(page);
+		if (itemType == 'addressblock' || itemType == 'shippableaddressblock'  || itemType == 'customcountries' ) {
+			formString += ExpandAddressBlock(page,item.attr("OPTION_VALUES"));
 			return; //continue;
 		}
 		else {

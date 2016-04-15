@@ -64,12 +64,22 @@ function page_enrollment_show(){
 	}
 }
 
-function ExpandAddressBlock(page){
+function ExpandAddressBlock(page,optionString){
 	var formString='';
-	formString +='<label for="line_one">Address</label><input name="line_one" id="' + page + '_line_one" type="text" data-rule-required="true" data-msg-required="Address is required." > \
-          <label for="line_one">Address 2</label><input name="line_two" id="' + page + '_line_two" type="text"  > \
-          <label for="line_one">City</label><input name="city" id="' + page + '_city" type="text" data-rule-required="true" data-msg-required="City is required." > \
-          <label for="line_one">State Code</label><input name="state" id="' + page + '_state" type="text" data-rule-required="true" data-msg-required="State Code is required." > \
-          <label for="line_one">Zip Code</label><input name="zip" id="' + page + '_zip" type="text" data-rule-required="true" data-msg-required="Zip Code is required.">';		  
+	formString +='<label for="' + page + '_line_one">Address</label><input name="line_one" id="' + page + '_line_one" type="text" data-rule-required="true" data-msg-required="Address is required." > \
+          <label for="' + page + '_line_two">Address 2</label><input name="line_two" id="' + page + '_line_two" type="text"  > \
+          <label for="' + page + '_city">City</label><input name="city" id="' + page + '_city" type="text" data-rule-required="true" data-msg-required="City is required." > \
+          <label for="' + page + '_state">State Code</label><input name="state" id="' + page + '_state" type="text" data-rule-required="true" data-msg-required="State Code is required." > \
+          <label for="' + page + '_zip">Zip Code</label><input name="zip" id="' + page + '_zip" type="text" data-rule-required="true" data-msg-required="Zip Code is required.">';
+	formString += '<label for="' + page + '_country">Country</label><select id="' + page + '_country" name="' + page + '_country" ';
+	formString += ' data-rule-required="true" data-msg-required="Country is required." >';
+				var options = optionString.split('||');
+				$.each(options, function(index, value) {
+						if (value.indexOf('|') > 0) {
+							var pairs = value.split('|');
+							formString += '<option value="' + pairs[0] + '">' + pairs[1] + '</option>';
+						}			
+				});		
+	formString += '</select>';
     return formString;
 }
