@@ -3,7 +3,14 @@ function page_enrollment_show(){
 	if (psg.participantTypeId != null && psg.participantTypeId != "0") {
 		searchTerm = 'ENROLLMENT > PARTICIPANT_TYPES[PARTICIPANT_TYPE_ID="' + psg.participantTypeId + '"] > FIELD';
 	}
-
+	if (!psg.isOpenEnrollment) {
+		
+		var participantKey = psg.getSessionItem('participantKey');
+		if(psg.isNothing(participantKey)){
+			$.mobile.pageContainer.pagecontainer('change', 'invitation.html');
+			return;
+		}
+	}	
 	var fields = ParseFields('enrollment',searchTerm);
 	var formDiv = $('#enrollment_form_div');
 	formDiv.html(fields.html);
@@ -37,7 +44,8 @@ function page_enrollment_show(){
 	}
 	
 	function submitEnrollmentResults( data ) {
-		if (data.Result == null || data.Result == "success") {
+		if (data == null){return false;}
+		if (data.Result == "success") {
 			//Send tracking data to Google
 			ga('send','event','Enrollment Success','Submit');
 			psg.removeSessionItem('participantKey');
