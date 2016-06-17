@@ -27,7 +27,7 @@ function page_claims_landing_show (){
 			psg.setSessionItem('promotion_id', id);
 		});
 	});
-	
+}
 	function buildPromotionList(promotions) {
 		if (psg.isNothing(promotions)) {
 			return '<li><p class="ui-no-ellipse error"><strong>There are no active promotions at this time.  Please check back later.</strong></p></li>';
@@ -63,4 +63,3 @@ function page_claims_landing_show (){
 		
 		return output;
 	}
-}
