@@ -127,8 +127,17 @@ var app = {
 		
     },
 	onDocumentReady: function() {
-
+        if (window.parent && window.parent.ripple) {
+			$.ajax({
+					async: false,
+					url: "js/rippleinit.js",
+					dataType: "script",
+					success: function(){ console.log('Loaded Custom Ripple Config');},
+					error: function(){ console.log('No Custom Ripple Config');}
+			});
+		}
 		psg.init();
+		
 		if(localStorage.getItem(app.getBase() + 'authToken')){
 			app.authenticate(function() {
 				if (app.authSuccess){

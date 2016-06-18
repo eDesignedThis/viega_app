@@ -11,12 +11,23 @@ var app = {
 	  }
     },
 	onDocumentReady: function() {
+		var hasQS = location.search != null && location.search != '';
+		if (hasQS) {
+			var host = getQSParameterByName('host');
+			if (host != null) {
+				app.getHost = (function () {
+					return function () {
+						return host;
+					}
+				})();
+			}
+		}
 		psg.init();
 		//for pages loaded in the future
 		$(document).on('pagecreate', PageBeforeCreateManager);
 		$(document).on('pagecontainerbeforetransition', PageBeforeTransitionManager);
 		$(document).on('pagecontainerbeforeshow', PageContainerBeforeShowManager);
-		if (location.search != null && location.search != '') {
+		if (hasQS) {
 		    var sso = getQSParameterByName('sso');
 			if (sso != null){
 				var participantTypeId = getQSParameterByName('pid');
@@ -118,9 +129,8 @@ var app = {
 	appName: null,
 	appCompany: null,
 	isOnline: function () { return true; },
-	//TODO: Change url to ".." before publishing
+	//DO NOT CHANGE. Use ?host=xxx to change getHost;
 	getHost: function () { return ".."; },
-	//getHost: function () { return "https://kheldalpha10.rwdshq.com/140"; }, //https://kheldalpha.rwdshq.com/532  https://kheldalpha.rwdshq.com/140
 	getBase: function () {
 			var stop = window.location.pathname.indexOf("/m/") + 3;
 			return window.location.pathname.substring(0, stop);
