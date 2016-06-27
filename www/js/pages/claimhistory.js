@@ -156,7 +156,7 @@ var psgClaimHistory = {
 			output += '</table></div><div class="ui-no-ellipse ui-text-small ui-text-right ui-claim-status ui-underlay"><div class="ui-claim-status">';
 			output += claim.claim_status
 			if (!psg.isNothing(claim.status_type_id) && claim.status_type_id === 0) {
-				output += '<br />' + moment(claim.date_paid1_jdate,'MM-DD-YYYY').format('MM-DD-YYYY');
+				output += '<br />' + moment(claim.date_paid_jdate,'MM-DD-YYYY').format('MM-DD-YYYY');
 			}
 			output += '</div></div></div></a></li>';
 		}
