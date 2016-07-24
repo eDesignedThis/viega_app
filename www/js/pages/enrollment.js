@@ -11,6 +11,18 @@ function page_enrollment_show(){
 			return;
 		}
 	}	
+	var $xml = $(psg.configXml);
+	var w9search = searchTerm + '[TYPE="w9"]';	
+	if ($xml.find(w9search).length != 0){
+		var message = "You cannot complete the enrollment on your mobile device. Please use a tablet or desktop";
+		var formDiv = $('#enrollment_form_div');
+		$('.ui-margin-top-1x').hide();
+		$(':button').hide();
+		formDiv.html(message);
+		$('#page_enrollment_content').trigger('create');
+		return false;
+	}
+	
 	var fields = ParseFields('enrollment',searchTerm);
 	var formDiv = $('#enrollment_form_div');
 	formDiv.html(fields.html);
