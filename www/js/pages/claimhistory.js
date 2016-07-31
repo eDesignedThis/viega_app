@@ -141,22 +141,17 @@ var psgClaimHistory = {
 			}
 			output += '<tr><td class="ui-form-label">Payout</td><td class="ui-form-field">';
 			if (!psg.isNothing(claim.status_type_id) && claim.status_type_id === 0) {
-				amount = claim.amount_paid;
+				amount = claim.amount_paid_formatted;
 			}
 			else {
-				amount = claim.payout;
+				amount = claim.payout_formatted;
 			}
-			if (!psg.isNothing(claim.payout_type) && claim.payout_type === 1) {
-				output += psg.NumberUtil.toCurrency(amount);
-			}
-			else {
-				output += psg.NumberUtil.toPoints(amount);
-			}
+			output += amount;
 			output += '</td></tr>';
 			output += '</table></div><div class="ui-no-ellipse ui-text-small ui-text-right ui-claim-status ui-underlay"><div class="ui-claim-status">';
 			output += claim.claim_status
 			if (!psg.isNothing(claim.status_type_id) && claim.status_type_id === 0) {
-				output += '<br />' + moment(claim.date_paid_jdate,'MM-DD-YYYY').format('MM-DD-YYYY');
+				output += '<br />' + moment(claim.date_paid1_jdate,'MM-DD-YYYY').format('MM-DD-YYYY');
 			}
 			output += '</div></div></div></a></li>';
 		}
@@ -219,22 +214,12 @@ var psgClaimHistory = {
 				output += '<li class="ui-field-contain"><label for="psg-claim-detail-paid-date" class="ui-text-small">Approved Date:</label><span id="psg-claim-detail-paid-date">';
 				output += moment(claim.date_paid_jdate,'MM-DD-YYYY').format('MM-DD-YYYY');
 				output += '</span></li><li class="ui-field-contain"><label for="psg-claim-detail-paid-amount" class="ui-text-small">Award Amount:</label><span id="psg-claim-detail-paid-amount">';
-				if (!psg.isNothing(claim.payout_type) && claim.payout_type === 1) {
-					output += psg.NumberUtil.toCurrency(claim.amount_paid);
-				}
-				else {
-					output += psg.NumberUtil.toPoints(claim.amount_paid);
-				}
+				output += claim.amount_paid_formatted;
 				output += '</span></li>';
 				break;
 			default:
 				output += '<li class="ui-field-contain"><label for="psg-claim-detail-payout" class="ui-text-small">Payout:</label><span id="psg-claim-detail-payout">';
-				if (!psg.isNothing(claim.payout_type) && claim.payout_type === 1){
-					output += psg.NumberUtil.toCurrency(claim.payout);
-				}
-				else {
-					output += psg.NumberUtil.toPoints(claim.payout);
-				}
+				output += claim.payout_formatted;
 				output += '</span></li>';
 		}
 		output += '</ul>';

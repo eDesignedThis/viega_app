@@ -356,6 +356,8 @@ var psg = {
 		psg.requiresEnrollmentConfirmation = false;
 		var $xml = $(psg.configXml);
 		psg.payoutType = $xml.find('PROGRAM').attr('PAYOUT'); 
+        var menuType = $xml.find('MENU').attr("CUSTOM_MENU");
+        psg.isCustomMenu = (menuType == '1') ? true: false;		
 		var modules = $xml.find('PROGRAM > MODULES');
 		psg.isOpenEnrollment = (modules.attr('OPEN_ENROLLMENT') == "1");
 		if (psg.isOpenEnrollment) {
@@ -404,6 +406,7 @@ var psg = {
 	balance: null,
 	homeMenu: null,
 	historyMenu: null,
+	isCustomMenu: false,
 	menuIcons: null,
 	menuNames: null,
 	headerImageName: null,
@@ -424,6 +427,7 @@ var psg = {
 		function internalLoginCallback(data) {
 			var base = app.getBase();
 			if (data.Result == "success") {
+				sessionStorage.clear();
 				if (typeof data.PointAccount !== null) {
 					UpdatePointAccount(data.PointAccount);
 				}
@@ -436,12 +440,11 @@ var psg = {
 				psg.participantTypeId = data.ParticipantTypeId;
 				localStorage.setItem(base + 'last_email', $('#login_email').val());
 				// For MOS, include logout option in popup menu.
-				if (!app.isPhoneGap) {
+				if (!app.isPhoneGap && !psg.isCustomMenu) {
 					addBaseMenuItems( [{ href: "logout.html", text: "Logout" }] );
 				}
-				// Reset standard popup menu, so home can add pax-type-specific options.
-				resetStandardMenu(); // standard = base options + home options.
 				psg.homeMenu = null; // need to reset home menu, too.
+				getHomeMenu();
 			}
 			callback(data);
 		}
@@ -550,6 +553,9 @@ var psg = {
 		Trim: function(value) {
 			// From http://stackoverflow.com/questions/3000649/trim-spaces-from-start-and-end-of-string
 			return value.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+		},
+		ConvertNull: function (value, defaultValue) {
+			return (psg.isNothing(value)) ? defaultValue : value;
 		}
     },
 	setSessionItem: function(name,value) {
@@ -669,6 +675,10 @@ function PageBeforeCreateManager(e) {
 		psg.setSessionItem('remote_section_name', sectionName);
 		$.mobile.changePage('remotecontent.html');
 	});
+	
+	// Show custom content
+	$('.psg_custom_content_promotion_type_' + psg.getSessionItem('promotion_type_id')).show();
+	$('.psg_custom_content_participant_type_' + psg.participantTypeId).show();
 	
 	// Find external links and add helper if mobile app
 	findExternalLinks(page);
@@ -921,6 +931,9 @@ function PageContainerBeforeShowManager(e,ui) {
 			break;
 		case 'page_claims_landing':
 			page_claims_landing_show();
+			break;
+		case 'page_claims_tabled':
+			page_claims_tabled_show();
 			break;
 		case 'page_contact':
 		    page_contact_show();

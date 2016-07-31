@@ -4,10 +4,11 @@ function page_home_show(){
 	}
 
 	var menuString = getHomeMenu();
-    var ul = $('#home_menu');
-	ul.html(menuString);
-	ul.listview('refresh');
-
+    if (!psg.isCustomMenu) {
+    	var ul = $('#home_menu');
+		ul.html(menuString);
+		ul.listview('refresh');
+	}
 }
 
 function getHomeMenu(){
@@ -15,8 +16,7 @@ function getHomeMenu(){
 			return psg.homeMenu;
 		}
 		
-		var supportedSections = {"55":"pointshistory.html","57":"contact.html","58":"learnearnmain.html","89":"claimslanding.html",
-					"68":"profile.html","71": "shoppingmain.html","84": "quickpoints.html"};
+		var supportedSections = getHomeSupportedSections();
 		var xml = $(psg.configXml);
 		var search = "MENU > SECTION";
 		if (psg.participantTypeId != null && psg.participantTypeId != 0){
@@ -54,11 +54,16 @@ function getHomeMenu(){
 			"whats_new":"What's New",
 			"wish_list":"Wish List",
 			"card_fundings":"Funding Info",
-			"card_awards":"Awards and Adjustments"};
+			"card_awards":"Awards and Adjustments"
+		};
 		setHomeIcons(menuIcons);
 		
-		var menuString = '<li><a href="whatsnew.html" data-transition="slide">' + psg.getMenuIcon("whats_new") + '&nbsp; What\'s New </a></li>';
-		var popmenuItems = [{ href: "home.html", text: "Home" }, { href: "whatsnew.html", text: "What's New" }];
+		var menuString = (psg.isCustomMenu) ? '': '<li><a href="whatsnew.html" data-transition="slide">' + psg.getMenuIcon("whats_new") + '&nbsp; What\'s New </a></li>';
+		var popmenuItems = [];
+		if (!psg.isCustomMenu) {
+			popmenuItems[popmenuItems.length] = { href: "home.html", text: "Home" };
+			popmenuItems[popmenuItems.length] = { href: "whatsnew.html", text: "What's New" };
+		}
 		var hasClaimLanding = false;
 		xml.find(search).each( function(){
 			var item = $(this);
@@ -66,21 +71,42 @@ function getHomeMenu(){
 			if (sectionType == 89) {
 				hasClaimLanding = true;
 			}
-			if (sectionType == 71 && item.attr("LOCATION") == -2 ) {
+			if (sectionType == 71 && item.attr("LOCATION") == "-2" ) {
 				return true;
 			}
-			if (sectionType in supportedSections ) {
-				menuString += '<li><a href="' + supportedSections[sectionType] + '" data-transition="slide">' + psg.getMenuIcon(sectionType) + '&nbsp; ' + item.attr("NAME") +'</a></li>'
-				popmenuItems[popmenuItems.length] = { href: supportedSections[sectionType], text: item.attr("NAME") };
 				
+			// Menu names and icons.
+			if (sectionType != "90") {
+				// Custom icon
+				var icon = item.attr("ICON");
+				if (icon) {
+					menuIcons[sectionType.toString()] = '<i class="fa ' + icon + ' fa-lg fa-fw ui-menu-icon"></i>';
+				}
 				var searchMenu = "MENU";
 				if (psg.participantTypeId != null && psg.participantTypeId != 0){
 					searchMenu = 'MENU > PARTICIPANT_TYPES[PARTICIPANT_TYPE_ID="' + psg.participantTypeId + '"]';
 				}
 				searchMenu += ' > SECTION[TYPE_ID="' + sectionType + '"]';
-				
 				var matching = $(psg.configXml).find(searchMenu);
 				menuNames[sectionType] = matching.length > 0 ? matching.attr("NAME") : "";
+			}
+			else {
+				// Custom pages
+				var customId = item.attr("HREF").replace(".html", "");
+				menuIcons[customId] = '<i class="fa ' + item.attr("ICON") + ' fa-lg fa-fw ui-menu-icon"></i>';
+				menuNames[customId] = item.attr("NAME");
+			}
+			if (item.attr("LOCATION") == "0") {
+				if ((sectionType in supportedSections) || (!app.isPhoneGap && sectionType == "90")) {
+					if (sectionType != "90") {
+						menuString += '<li><a href="' + supportedSections[sectionType] + '" data-transition="slide">' + psg.getMenuIcon(sectionType) + '&nbsp; ' + item.attr("NAME") + '</a></li>'
+						popmenuItems[popmenuItems.length] = { href: supportedSections[sectionType], text: item.attr("NAME") };
+					}
+					else {
+						menuString += '<li><a href="' + item.attr("HREF") + '" data-transition="slide"><i class="fa ' + item.attr("ICON") + ' fa-lg fa-fw ui-menu-icon"></i>&nbsp; ' + item.attr("NAME") +'</a></li>'
+						popmenuItems[popmenuItems.length] = { href: item.attr("HREF"), text: item.attr("NAME") };
+					}
+				}
 			}
 		});
 		
@@ -103,6 +129,21 @@ function getHomeMenu(){
 		return psg.homeMenu;
 	}
 	//Easy to override
+	function getHomeSupportedSections() {
+		var supported =  {
+			"55":"pointshistory.html",
+			"57":"contact.html",
+			"58":"learnearnmain.html",
+			"89":"claimslanding.html",
+			"68":"profile.html",
+			"71":"shoppingmain.html",
+			"84":"quickpoints.html"
+		};
+		if (psg.isCustomMenu) 
+			supported["50"] ="home.html";
+		
+		return supported;
+	}
 	function setHomeIcons(menuIcons){
 		psg.menuIcons = menuIcons;
 	}

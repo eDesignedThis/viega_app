@@ -1,14 +1,36 @@
 function page_ispu_select_show(){
 	$("#ispu_select_item_title").text(sessionStorage.getItem(app.getBase() + "ispu.title"));
+	$("#ispu_checkout_store_panel_search_go").click( function() { IspuSelectMoreStores(); });
 	var points = sessionStorage.getItem(app.getBase() + "ispu.points");
 	var keyValue = sessionStorage.getItem(app.getBase() + "ispu.key");
 	var data = JSON.stringify({ key: keyValue});
 	getJson("ISPU.STORES.GET", HandleGetIpuSelect, data);	
 }
 
+ function IspuSelectMoreStores () {
+		$("#checkoutDetailMoreStoresZip").blur();
+
+        var keyValue = sessionStorage.getItem(app.getBase() + "ispu.key");
+		
+		var newZip = $("#checkoutDetailMoreStoresZip").val();
+
+		$("#ispu_select_listview").html(
+			"<li>Looking for stores in<br>" + (newZip == '' ? ' your zip code' : newZip) + "</li>");
+		$("#ispu_select_listview").listview("refresh");
+
+        var data = JSON.stringify({ key: keyValue, zip: newZip}); 
+		getJson("ISPU.STORES.GET",
+			function (result) {
+				HandleGetIpuSelect(result);
+			},
+			data);
+	}
+
 function HandleGetIpuSelect(data){
 	if (data.Result == null || data.Result == "success")
 	{
+		var errorDiv = $(".error");
+		errorDiv.hide();
 		var storeString = '';
 
 		$.each(data.Stores, function(index,store){
@@ -24,7 +46,7 @@ function HandleGetIpuSelect(data){
 		});
 				
 		if (storeString == '') {
-			storeString = '<li>No Stores Available</li>';
+			storeString = '<li>Stores in your area do not have this item.</li>';
 		}
 				
 		var page = $('#page_ispu_select');
@@ -51,6 +73,6 @@ function HandleGetIpuSelect(data){
 		});
 				 
 	} else {
-		WriteError(data.Result);
+		WriteError('<li>Stores in your area do not have this item.</li>');
 	}
 }
