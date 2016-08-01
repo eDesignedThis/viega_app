@@ -1,5 +1,16 @@
 function page_claim_show() {
 	var promotionId = psg.getSessionItem('promotion_id');
+	var rowCount = parseInt(psg.getSessionItem('promotion_number_of_rows')) || 1;
+	if (rowCount <= 1) { 
+		buildSingleClaim();
+	}
+	else {
+		buildTabledClaim();
+	}
+}
+
+function buildSingleClaim() {
+	var promotionId = psg.getSessionItem('promotion_id');
 	var promotionTypeId = psg.getSessionItem('promotion_type_id');
 	var promotionName = psg.getSessionItem('promotion_name');
 	
@@ -7,6 +18,33 @@ function page_claim_show() {
 	
 	var searchTerm = 'PROMOTION_TYPES[PROMOTION_TYPE_ID="' + promotionTypeId + '"] FIELD';
     var fields = ParseFields('claim', searchTerm);
+	var formDiv = $('#claim_form_div');
+	formDiv.html(fields.html);
+	formDiv.append(fields.script); 
+	$('#page_claim_content').trigger('create');
+	$('#frmClaim').validate({
+		submitHandler : submitClaimForm
+	});
+
+	var claimId = psg.getSessionItem('claim_id');
+	if (claimId != null) {
+		var data = JSON.stringify({
+				claim_id : claimId
+			});
+		getJson("CLAIM.DUPLICATE.GET", handleClaimPrefill, data);
+	}
+}
+
+function buildTabledClaim() {
+	var promotionId = psg.getSessionItem('promotion_id');
+	var promotionTypeId = psg.getSessionItem('promotion_type_id');
+	var promotionName = psg.getSessionItem('promotion_name');
+	var rowCount = parseInt(psg.getSessionItem('promotion_number_of_rows')) || 1;
+	
+	$('#psg-claims-promotion-name').html(promotionName);
+	
+	var fields = buildTabledClaimForm(promotionTypeId, rowCount);
+
 	var formDiv = $('#claim_form_div');
 	formDiv.html(fields.html);
 	formDiv.append(fields.script); 
@@ -19,6 +57,30 @@ function page_claim_show() {
 		getJson("CLAIM.DUPLICATE.GET", handleClaimPrefill, data);
 	}	
 }
+
+function buildTabledClaimForm(promotionTypeId, rowCount) {
+	// Common Fields
+	var searchTerm = 'PROMOTION_TYPES[PROMOTION_TYPE_ID="' + promotionTypeId + '"]>FIELD';
+	var fields = ParseFields('claim', searchTerm, true, '');
+		
+	// Rows
+	searchTerm = 'PROMOTION_TYPES[PROMOTION_TYPE_ID="' + promotionTypeId + '"]>FIELDGROUP>FIELD';
+	var row;
+	for (var i = 1; i < rowCount + 1; i++) {
+		row = ParseFields('claim', searchTerm, true, '_ROW' + i.toString());
+		fields.html += '<div class="ui-line-above ui-margin-top-2x"><p>Unit ' + i.toString() + '</p>' + row.html + '</div>';
+		if (psg.isNothing(fields.script)) {
+			fields.script = row.script;
+		}
+		else {
+			fields.script += row.script;
+		}
+	}
+	fields.html += '<div class="ui-line-above ui-margin-top-2x" style="height:1px;">&nbsp;</div>';
+	
+	return fields;
+}
+
 	function handleClaimPrefill(data){
 		if (data.Result == "success"){
 			psg.removeSessionItem('claim_id');
@@ -30,7 +92,9 @@ function page_claim_show() {
 	function submitClaimForm() {
 		var data = {};
 		var claimForm = $('#frmClaim');
-		claimForm.serializeArray().map(function(x){data[x.name] = x.value;});
+	claimForm.serializeArray().map(function (x) {
+		data[x.name] = x.value;
+	});
 		var promotionId = psg.getSessionItem('promotion_id');
 		data["promotion_id"] = promotionId;
 		
@@ -48,7 +112,7 @@ function page_claim_show() {
 			options.chunkedMode = false;
 
 			var ft = new FileTransfer();
-			var url = app.getHost() + "/json/jsonmobile.ashx?action=MOBILE.CLAIM.SUBMIT"
+		var url = app.getHost() + "/json/jsonmobile.ashx?action=MOBILE.CLAIM.SUBMIT";
 			ft.upload(imageUri, url, fileSuccess, fileError, options);
 		}
         
@@ -60,12 +124,14 @@ function page_claim_show() {
 	function submitClaimFormResult(data){
 		if (data.Result == "success") {
 			psg.setSessionItem('claim_result_array', JSON.stringify(data.ResultArray));
-			$.mobile.pageContainer.pagecontainer('change', 'claimsconfirmation.html', { transition: 'slide', changeHash: false } );
+		$.mobile.pageContainer.pagecontainer('change', 'claimsconfirmation.html', {
+			transition : 'slide',
+			changeHash : false
+		});
 		} else {
 			if (!psg.isNothing(data.ResultArray) && data.ResultArray.length > 1) {
 				WriteError(data.ResultArray[1]);
-			}
-			else {
+		} else {
 				WriteError(data.Result);
 			}
 		}
@@ -107,17 +173,26 @@ function PreFillForm(dataRow, formName) {
 					}
 					var jqxField = $('#div_combo_' + formName + '_' + key)
 					if (jqxField.length) {
+						var labelField = getLookupLabelId(key);
+						if (dataRow[labelField]) {
+							jqxField.jqxComboBox('val', dataRow[labelField]);
+						}
+						else {
 							var lookupFormat = field.attr('data-psg-format');
 							var preloadCode = key;
 							var preloadName = key.replace('_code','_name');
 							var preloadZip = key.replace('_code', '_zip');
-							var formatCode = "[" + key + "]";
+							var formatKey = key;
+							if (formatKey.indexOf('_ROW') > -1) {
+								formatKey = formatKey.substring(0, formatKey.indexOf('_ROW'));
+							}
+							var formatCode = "[" + formatKey + "]";
 							var formatName = formatCode.replace("_code","_name");
 							var formatZip = formatCode.replace("_code","_zip");
 							var initialValue = lookupFormat;
-							initialValue = initialValue.replace(formatCode, dataRow[preloadCode]);
-							initialValue = initialValue.replace(formatName, dataRow[preloadName]);
-							initialValue = initialValue.replace(formatZip, dataRow[preloadZip]);
+							initialValue = initialValue.replace(formatCode, psg.StringUtil.ConvertNull(dataRow[preloadCode], ''));
+							initialValue = initialValue.replace(formatName, psg.StringUtil.ConvertNull(dataRow[preloadName], ''));
+							initialValue = initialValue.replace(formatZip, psg.StringUtil.ConvertNull(dataRow[preloadZip], ''));
 							jqxField.val(initialValue);
 							continue;
 					}						
@@ -126,16 +201,37 @@ function PreFillForm(dataRow, formName) {
 		}
 	}
 }
+}
 
-function ParseFields(page,searchTerm,canEdit) {
-	if ( typeof canEdit == 'undefinded' )
+// Used by lookup fields.
+function getLookupLabelId(fieldId) {
+	var labelId = fieldId + '_label';
+	if (fieldId.indexOf('_ROW') > -1) {
+		labelId = fieldId.slice(0, fieldId.indexOf('_ROW')) + '_label' + fieldId.slice(fieldId.indexOf('_ROW'));
+	}
+	return labelId;
+}
+
+function ParseFields(page, searchTerm, canEdit, suffix) {
+	if ( typeof canEdit == 'undefined' ){
 		canEdit = false;
+	}
+	if ( typeof suffix == 'undefined') {
+		suffix = '';
+	}
 
 	var options = psg.configXml;
-	var $xml = $(options)
+	var $xml = $(options);
 	var formString='';
 	var scriptString = '';
 	var isPhoneGap = app.isPhoneGap;
+	
+	// If this is a multi-row, add an error icon for
+	// error reporting.
+	if (!psg.isNothing(suffix) && suffix.length > 0) {
+		formString += '<img id="' + page + '_fieldrowerror' + suffix + '" class="psg_field_row_error" alt="Error on this line" src="img/warning.png" style="display: none;" />';
+	}
+
 	$xml.find(searchTerm).each( function() {
 		var item = $(this);
 
@@ -156,13 +252,15 @@ function ParseFields(page,searchTerm,canEdit) {
 			}
 		}
 		
+		// The suffix supports multi-row claim forms.
+		var fieldName = itemName;
+		itemName += suffix;
 		
 		var placeholder = item.attr("FIELD_PLACEHOLDER");
 		var required = item.attr("REQUIRED");
 		var validationMessage = item.attr("VALIDATION_MESSAGE");
 		var validationExpression = item.text();
 
-		
 		if (required == "1") {
 			required = "required";
 		}else{
@@ -184,8 +282,7 @@ function ParseFields(page,searchTerm,canEdit) {
 		if (itemType == 'addressblock' || itemType == 'shippableaddressblock'  || itemType == 'customcountries' ) {
 			formString += ExpandAddressBlock(page,item.attr("OPTION_VALUES"));
 			return; //continue;
-		}
-		else {
+		} else {
 			//formString += '<div class="ui-field-contain">';
 			if (itemType != 'note') {
 				formString +='<div class="ui-margin-top-1x"><label for="' + itemName + '">' + itemLabel + '</label>';
@@ -247,7 +344,7 @@ function ParseFields(page,searchTerm,canEdit) {
 				if (required) {
 					formString += ' data-rule-required="true" data-msg-required="' + itemLabel + ' is required." ';
 				}
-				formString += '>';
+			formString += '><input style="display:none;" data-role="none" type="text" id="' + getLookupLabelId(itemId) +'" name="' + getLookupLabelId(itemName) + '" >';
 				scriptString += '<script>';
 				if (!psg.isNothing(dealerResearch) && dealerResearch == "1" && page == "enrollment") {
 					formString += '<div><span>Cannot find your ' + itemLabel.toLowerCase() + '?</span> <a href="#panel_dealer_research">Request Research</a></div>';
@@ -256,7 +353,7 @@ function ParseFields(page,searchTerm,canEdit) {
 					scriptString += 'var dealerResearchField = "' + page + '_research_information";';
 					scriptString += 'DealerResearch.Init();';
 				}
-				scriptString += 'InitLookup("' + page + '","' + itemId + '","' + itemName + '","' + lookupFields + '","' + lookupFormat + '","' + placeholder + '");</scr' + 'ipt>';
+			scriptString += 'InitLookup("' + page + '","' + itemId + '","' + fieldName + '","' + lookupFields + '","' + lookupFormat + '","' + placeholder + '");</scr' + 'ipt>';
 				break;
 			//we store the actual value in field with display:none
 			case 'date':
@@ -300,8 +397,7 @@ function ParseFields(page,searchTerm,canEdit) {
 				if (!psg.isNothing(picture) && picture.isSupported) {
 					formString += picture.html;
 					scriptString += picture.script;
-				}
-				else {
+			} else {
 					formString += '<div class="ui-text-small">'
 					formString += 'Unfortunately, the mobile website <b>does not support</b> document uploads.';
 					formString += '</div>';
@@ -311,7 +407,10 @@ function ParseFields(page,searchTerm,canEdit) {
 		formString += '</div>';
 	});
 	
-	var fields = { html: formString, script: scriptString };
+	var fields = {
+		html : formString,
+		script : scriptString
+	};
 	return fields;
 }
 
@@ -337,14 +436,18 @@ function drawPictureControl(itemId, itemName, itemLabel, required, placeholder) 
 	//formString += '<input type="file" accept="image/*" capture="camera" name="' + itemName + '" id="' + itemId + '" placeholder="' + placeholder + '">';
 	}
 	
-	return { html: formString, script: scriptString, isSupported: isSupported};
+	return {
+		html : formString,
+		script : scriptString,
+		isSupported : isSupported
+	};
 }
 
 function undecorateCheckboxes(formString) {
 	return formString.replace('type="checkbox"', 'type="checkbox" data-role="none"');
 }
 
-function InitLookup (page, itemId, itemName, itemLookupFields, itemLookupFormat, itemPlaceholder){
+function InitLookup(page, itemId, itemName, itemLookupFields, itemLookupFormat, itemPlaceholder, alternateJsonService) {
 	var fieldId = itemId;
 	var fieldName = itemName;
 	var guid = encodeURIComponent(psg.programGuid);	
@@ -363,14 +466,25 @@ function InitLookup (page, itemId, itemName, itemLookupFields, itemLookupFormat,
 	}
 	var controlName = $("#div_combo_" + fieldId);
 	var hdControlName = $("#" + fieldId);
+	var hdControlLabel = $('#' + getLookupLabelId(fieldId));
 	var toolTip = $("#toolTip_" + fieldId);
 	var promotionId = psg.getSessionItem('promotion_id');
+	var jsonService = !psg.isNothing(alternateJsonService) ? alternateJsonService : "/json/JsonService.ashx";
 	hdControlName.attr('data-psg-format',format);
 	var source = {
 		type: "GET",
 		datatype: "json",
-		datafields: [{name: 'Code'}, {name: 'Name'}, {name: 'ZipCode'}, {name: 'City'}],
-		url: app.getHost() +  "/json/JsonService.ashx",
+		datafields : [{
+				name : 'Code'
+			}, {
+				name : 'Name'
+			}, {
+				name : 'ZipCode'
+			}, {
+				name : 'City'
+			}
+		],
+		url : app.getHost() + jsonService,
 		data: {
 			action: page + "." + fieldName.replace("_", "") + "s" + ".get",
 			programGuid: guid,
@@ -378,8 +492,7 @@ function InitLookup (page, itemId, itemName, itemLookupFields, itemLookupFormat,
 			promotion_id: promotionId
 		}
 	};
-	var dataAdapter = new $.jqx.dataAdapter(source,
-	{
+	var dataAdapter = new $.jqx.dataAdapter(source, {
 		autoBind: false,
 		contentType: "application/json; charset=utf-8",
 		formatData: function (data) {
@@ -410,8 +523,7 @@ function InitLookup (page, itemId, itemName, itemLookupFields, itemLookupFormat,
 		}
 	});
 	
-	controlName.jqxComboBox(
-	{ 
+	controlName.jqxComboBox({
 		minLength: 2, 
 		placeHolder: placeholder, 
 		height: 30, 
@@ -440,13 +552,21 @@ function InitLookup (page, itemId, itemName, itemLookupFields, itemLookupFormat,
 		$(this).select();
 	}); 
 
+	controlName.on('open', function (event) {
+		document.body.scrollTop += this.getBoundingClientRect().top - 10;
+	});
+
 	var values;
 	controlName.on('select', function (event) {
-		if (!event) return;
-		if (!event.args) return;
-		if (!event.args.item.value) return;
+		if (!event)
+			return;
+		if (!event.args)
+			return;
+		if (!event.args.item.value)
+			return;
 		values = event.args.item.value;
 		hdControlName.val(values);
+		hdControlLabel.val(event.args.item.label);
 	});
 }
 
@@ -465,9 +585,12 @@ function InitDate (fieldName) {
 	});
 
 	dt.on('valuechanged', function (event) {
-		if (event == null) return;
-		if (event.args == null) return;
-		if (event.args.date == null) return;
+		if (event == null)
+			return;
+		if (event.args == null)
+			return;
+		if (event.args.date == null)
+			return;
 		var d = event.args.date;
 		var hf = $('#'+fieldName);
 		hf.val(d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear()); 
@@ -523,11 +646,14 @@ var DealerResearch = {
 		$('#panel_dealer_research').panel('close');
 	},
 	SetValue: function (info) {
-		if (psg.isNothing(info)) return;
-		if (psg.isNothing(dealerResearchField)) return;
+		if (psg.isNothing(info))
+			return;
+		if (psg.isNothing(dealerResearchField))
+			return;
 		$('#' + dealerResearchField).val(info);	
 		
-		if (psg.isNothing(dealerResearchCaller)) return;
+		if (psg.isNothing(dealerResearchCaller))
+			return;
 		var controlName = $("#div_combo_" + dealerResearchCaller);
 		var item = {
 			label: "Research Requested",

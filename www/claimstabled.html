@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<!-- Home -->
+<div data-role="page" id="page_claims_tabled">
+	<div data-role="panel" class="menu-panel" data-position="right" data-position-fixed="true" data-display="push" data-display="overlay" data-theme="a" id="page_claim_tabled_popup" >
+		<ul class='popup_menu' data-role="listview" data-inset="false"  data-theme="a">
+		</ul>
+	</div>
+	<div data-theme="a" data-role="header" data-position="fixed">
+		<a data-rel="back" data-role="button" data-direction="reverse" data-transition="slide"
+		   data-icon="carat-l" data-iconpos="notext" class="ui-btn-left icon-back">
+			Back
+		</a>
+		<h3 class="psg-class-program-name"></h3>
+		<a href="#page_claim_tabled_popup" data-rel="panel" data-role="button"
+		   data-inline="true" data-icon="bullets" data-iconpos="notext" class="ui-btn-right icon-menu">Menu</a>
+	</div>
+	<div data-role="content" id="page_claims_tabled_content">
+		<h3 id="claims_tabled_title"></h3>
+		<div class="error" tabindex="-1" style="display: none;outline: none !important;" id="claims_tabled_error">
+		</div>
+		<div id="claims_tabled_units" class="ui-margin-top-2x">
+			<p id="claims_tabled_instructions"></p>
+			<div id="numbers_relative_cnt" class="ui-margin-top-1x">
+				
+					<label>Number of Entries:</label>
+					
+				<div class="ui-grid-b" id="numberInputHolder">
+					
+					<div class="numberInputInnerPlus ui-block-a"><button data-mini="true" class="number-rows-add ui-btn ui-btn-a ui-icon-plus ui-btn-icon-notext ui-shadow ui-corner-all ">Add</button> </div>
+				
+				
+					<div class="numberInputInnerInput ui-block-b"><input type="number" name="number_of_rows" id="number_of_rows" value="1" class="number-rows-input" data-inline="true" /> </div>
+				
+				
+					<div class="numberInputInnerMinus ui-block-c"><button data-mini="true" class="number-rows-subtract ui-btn ui-btn-a ui-icon-minus ui-btn-icon-notext ui-shadow ui-corner-all ">Subtract</button></div>
+				
+				</div>
+			</div>
+			<button id="psg_claims_tabled_continue_button" class="ui-btn ui-btn-a ui-shadow ui-corner-all">Continue</button>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

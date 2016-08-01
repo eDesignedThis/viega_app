@@ -113,7 +113,8 @@ function page_shopping_cart_show(previousId) {
 	}
 	
 	function HandleShoppingCartRefresh(data) {
-		if (data.SSNRequired || data.BuyInRequired) {
+		// @@@ if ((app.isPhoneGap && data.SSNRequired) || data.BuyInRequired) {
+			if (data.BuyInRequired) {
 			// todo redirect to full site wont work for mobile app
 			WriteError("You must checkout using the desktop site.  Click <a rel='external' class='cart_desktop_link' data-role='none' data-enhance='false' href='../cart.aspx'>HERE</a> to complete.");
 			if (app.isPhoneGap) {

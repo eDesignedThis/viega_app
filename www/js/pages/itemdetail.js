@@ -207,15 +207,12 @@ var itemDetails = {
 		$("#detailMoreStoresZip").blur();
 
 		var idThis = this;
-		var data = JSON.stringify({ sku: this.ispuKey });
-		var zip = $("#detailMoreStoresZip").val();
-		if (zip.length > 0)
-			data['zip'] = zip;
+		var newZip = $("#detailMoreStoresZip").val();
 		$("#ispu_store_list").html(
-			"<li>Looking for stores in<br>" + (zip == '' ? ' your zip code' : zip) + "</li>");
+			"<li>Looking for stores in<br>" + (newZip == '' ? ' your zip code' : newZip) + "</li>");
 		$("#ispu_store_list").listview("refresh");
 
-
+		var data = JSON.stringify({ sku: this.ispuKey, zip: newZip}); 
 		getJson("ISPU.STORES.GET",
 			function (result) {
 				idThis.HandleGetIpuStoreList(result);

@@ -8,8 +8,7 @@ function page_claim_history_show () {
 		var listString = '<li data-theme="a"><a href="promotionhistory.html" data-transition="slide">More...</a></li>';
 		if (psg.isNothing(data) || psg.isNothing(data.Claims)) {
 			listString += '<li>You have no claims or your claims are archived.</li>';
-		}
-		else {
+		} else {
 			var latest = psgClaimHistory.getLastClaims(data.Claims);
 			listString += psgClaimHistory.buildClaimList(latest);
 		}
@@ -32,8 +31,7 @@ var psgClaimHistory = {
 		set: function ( id ) {
 			if (psg.isNothing(id)) {
 				psg.removeSessionItem("claim.history.selectedclaim");
-			}
-			else {
+			} else {
 				psg.setSessionItem("claim.history.selectedclaim", id);
 			}
 		}
@@ -45,8 +43,7 @@ var psgClaimHistory = {
 		set: function ( id ) {
 			if (psg.isNothing(id)) {
 				psg.removeSessionItem("claim.history.selectedpromotion");
-			}
-			else {
+			} else {
 				psg.setSessionItem("claim.history.selectedpromotion", id);
 			}
 		}
@@ -60,7 +57,10 @@ var psgClaimHistory = {
 			return JSON.parse(raw);
 		},
 		getDefault: function () {
-			return { PromotionFilter: "0", ClaimFilter: "1" };
+			return {
+				PromotionFilter : "0",
+				ClaimFilter : "1"
+			};
 		},
 		set: function ( filter ) {
 			psg.setSessionItem("claim.history.filter", JSON.stringify(filter));
@@ -70,7 +70,9 @@ var psgClaimHistory = {
 		prep: function ( raw ) {
 			var data = $.extend({}, psgClaimHistory.Data.getDefault(), raw);
 			if (!psg.isNothing(data.Claims)) {
-				data.Claims.sort(function(a,b) { return !a.claim_date.localeCompare(b.claim_date); } );
+				data.Claims.sort(function (a, b) {
+					return !a.claim_date.localeCompare(b.claim_date);
+				});
 			}
 			return data;
 		},
@@ -82,7 +84,16 @@ var psgClaimHistory = {
 			return JSON.parse(raw);
 		},
 		getDefault: function () {
-			return { Views: [ { Key: "1", Value: "All - Not Denied" } ], Promotions: [], Goals: [], Claims: [] };
+			return {
+				Views : [{
+						Key : "1",
+						Value : "All - Not Denied"
+					}
+				],
+				Promotions : [],
+				Goals : [],
+				Claims : []
+			};
 		},
 		set: function ( data ) {
 			psg.setSessionItem("claim.history.data", JSON.stringify(data));
@@ -97,27 +108,70 @@ var psgClaimHistory = {
 		}
 		return claims.slice(0, Math.min(claims.length, count));
 	},
+	parseClaimLabels : function () {
+		// Returns object where each property name is a promotion type
+		// and each promotion type is an object where each property is
+		// a field name and its value is the field label.
+		// { "0" : {"invoice_number":"Invoice Number", "sale_date":"Sale Date", "product_code":"Product(s) Sold"}}
+		var labels = {};
+
+		var options = psg.configXml;
+		var $xml = $(options);
+		var searchTerm = 'PROMOTION_TYPES'; //[PROMOTION_TYPE_ID="' + promotionTypeId + '"]>FIELD';
+		$xml.find('PROMOTION_TYPES').each(function () {
+			var item = $(this);
+			var promotionType = item.attr('PROMOTION_TYPE_ID');
+			var temp = {};
+			// Each promotion type has a set of fields.
+			// Do not user " > FIELD" because that will miss tabled fields.
+			$xml.find('PROMOTION_TYPES[PROMOTION_TYPE_ID="' + promotionType + '"] FIELD').each(function () {
+				var field = $(this);
+				var fieldType = field.attr('TYPE');
+
+				// Ignore hidden field and non-fields.
+				if (fieldType == 'note' || fieldType == "hidden" || fieldType == "hiddenq" || fieldType == "hiddend") {
+					return;
+				} // skip
+
+				temp[field.attr('NAME')] = field.attr('LABEL');
+			});
+			labels[promotionType] = temp;
+		});
+
+		return labels;
+	},
 	buildClaimList: function ( claims ) {
 		if (psg.isNothing(claims)) {
 			return '';
 		}
 		
+		var labels = psgClaimHistory.parseClaimLabels();
+
 		var output = '';
 		var claim;
 		var amount;
+		var promotionType;
+		var productLabel;
 		for (var i = 0; i < claims.length; i++) {
 			claim = claims[i];
+			promotionType = claim.promotion_type_id.toString();
 			output += '<li><a href="claimdetail.html" class="psg-claim-item" data-transition="slide" psg-claim-id="';
 			output += claim.claim_id.toString();
 			output += '"><div class="ui-overlay-container"><div class="ui-no-ellipse ui-text-small"><strong>';
 			output += claim.promotion_name;
 			output += '</strong></div><div class="ui-text-small"><table>';
-			if (!psg.isNothing(claim.invoice_number)) {
-				output += '<tr><td class="ui-form-label">Invoice</td><td class="ui-form-field">';
+			if (!psg.isNothing(claim.invoice_number) && labels[promotionType].hasOwnProperty("invoice_number")) {
+				output += '<tr><td class="ui-form-label">' + labels[promotionType]["invoice_number"] + '</td><td class="ui-form-field">';
 				output += claim.invoice_number;
 				output += '</td></tr>';
 			}
-			output += '<tr><td class="ui-form-label">Product</td><td class="ui-form-field">';
+			productLabel = '';
+			if (labels[promotionType].hasOwnProperty("product_code")) {
+				productLabel = labels[promotionType]["product_code"];
+			} else if (labels[promotionType].hasOwnProperty("product_name")) {
+				productLabel = labels[promotionType]["product_name"];
+			}
+			output += '<tr><td class="ui-form-label">' + productLabel + '</td><td class="ui-form-field">';
 			output += claim.product_name;
 			if (!psg.isNothing(claim.is_claim_split) && claim.is_claim_split === 1) {
 				output += '<small style=\"margin-left:1.5em;\">Claim Split</small>';
@@ -126,37 +180,37 @@ var psgClaimHistory = {
 			output += '<tr><td class="ui-form-label">Claim Date</td><td class="ui-form-field">';
 			output += moment(claim.claim_date_jdate,'MM-DD-YYYY').format('MM-DD-YYYY');
 			output += '</td></tr>';
-			output += '<tr><td class="ui-form-label">Sale Date</td><td class="ui-form-field">';
+			if (labels[promotionType].hasOwnProperty("sale_date")) {
+				output += '<tr><td class="ui-form-label">' + labels[promotionType]["sale_date"] + '</td><td class="ui-form-field">';
 			output += moment(claim.sale_date_jdate,'MM-DD-YYYY').format('MM-DD-YYYY');
 			output += '</td></tr>';
-			if (!psg.isNothing(claim.quantity)) {
-				output += '<tr><td class="ui-form-label">Quantity</td><td class="ui-form-field">';
+			}
+			if (!psg.isNothing(claim.quantity) && labels[promotionType].hasOwnProperty("quantity")) {
+				output += '<tr><td class="ui-form-label">' + labels[promotionType]["quantity"] + '</td><td class="ui-form-field">';
 				output += claim.quantity.toString();
 				output += '</td></tr>';
 			}
-			if (!psg.isNothing(claim.promotion_basis) && claim.promotion_basis >= 20) {
-				output += '<tr><td class="ui-form-label">Amount</td><td class="ui-form-field">';
+			if (!psg.isNothing(claim.promotion_basis) && claim.promotion_basis >= 20 && labels[promotionType].hasOwnProperty("sale_amount")) {
+				output += '<tr><td class="ui-form-label">' + labels[promotionType]["sale_amount"] + '</td><td class="ui-form-field">';
 				output += psg.NumberUtil.toCurrency(claim.sale_amount);
 				output += '</td></tr>';
 			}
 			output += '<tr><td class="ui-form-label">Payout</td><td class="ui-form-field">';
 			if (!psg.isNothing(claim.status_type_id) && claim.status_type_id === 0) {
 				amount = claim.amount_paid;
-			}
-			else {
+			} else {
 				amount = claim.payout;
 			}
 			if (!psg.isNothing(claim.payout_type) && claim.payout_type === 1) {
 				output += psg.NumberUtil.toCurrency(amount);
-			}
-			else {
+			} else {
 				output += psg.NumberUtil.toPoints(amount);
 			}
 			output += '</td></tr>';
 			output += '</table></div><div class="ui-no-ellipse ui-text-small ui-text-right ui-claim-status ui-underlay"><div class="ui-claim-status">';
-			output += claim.claim_status
+			output += claim.claim_status;
 			if (!psg.isNothing(claim.status_type_id) && claim.status_type_id === 0) {
-				output += '<br />' + moment(claim.date_paid1_jdate,'MM-DD-YYYY').format('MM-DD-YYYY');
+				output += '<br />' + moment(claim.date_paid_jdate, 'MM-DD-YYYY').format('MM-DD-YYYY');
 			}
 			output += '</div></div></div></a></li>';
 		}
@@ -167,6 +221,9 @@ var psgClaimHistory = {
 			return '';
 		}
 		
+		var promotionType = claim.promotion_type_id.toString();
+		var labels = psgClaimHistory.parseClaimLabels()[promotionType];
+
 		var output = '';
 		if (!psg.isNothing(claim.cover_sheet_id)) {
 			if (claim.status_type_id == 3 || claim.status_type_id == 11) {
@@ -175,18 +232,17 @@ var psgClaimHistory = {
 				if (!hasDocuments) {
 					output += '<h3><i class="fa fa-exclamation-triangle fa-2x psg-claims-confirmation-audit-icon"></i>&nbsp; ATTENTION</h3>';
 					output += '<p>Your submission <b>requires documentation</b>. You may attach a picture now.</p>';
-				}
-				else {
+				} else {
 					output += '<h3>Claim Verification</h3>';
 					output += '<p>You have attached the following picture as verification:</p>';
 					output += '<code>';
 					$.each(claim["Documents"], function( index, doc ) {
-						if (psg.isNothing(doc)) return;
+						if (psg.isNothing(doc))
+							return;
 						output += doc.DocumentLocation + '<br />';
 					});
 					output += '</code>';
 					output += '<p>You may upload additional documentation, if needed.</p>';
-				}
 				var picture = drawPictureControl('claimdetail_document', 'document', 'Upload Document', '0', '');
 				if (!psg.isNothing(picture) && picture.isSupported) {
 					output += '<form data-ajax="false" id="frmClaimDetail">';
@@ -198,11 +254,11 @@ var psgClaimHistory = {
 					output += '<button class="ui-btn ui-btn-a ui-shadow ui-corner-all" type="submit">Submit</button>';
 					output += picture.script;
 					output += '</form>';
-				}
-				else {
+					} else {
 					output += '<div class="ui-margin-top-1x ui-text-small">'
 					output += 'Unfortunately, the mobile website <b>does not support</b> document uploads.';
 					output += '</div>';
+				}
 				}
 				output += '</div><br /><br />';
 			}
@@ -216,56 +272,56 @@ var psgClaimHistory = {
 		output += '</span></li>';
 		switch (claim.status_type_id) {
 			case 0:
-				output += '<li class="ui-field-contain"><label for="psg-claim-detail-paid-date" class="ui-text-small">Approved Date:</label><span id="psg-claim-detail-paid-date">';
+			output += '<li class="ui-field-contain"><label for="psg-claim-detail-paid-date" class="ui-text-small">' + claim.claim_status + ' Date:</label><span id="psg-claim-detail-paid-date">';
 				output += moment(claim.date_paid_jdate,'MM-DD-YYYY').format('MM-DD-YYYY');
-				output += '</span></li><li class="ui-field-contain"><label for="psg-claim-detail-paid-amount" class="ui-text-small">Award Amount:</label><span id="psg-claim-detail-paid-amount">';
-				if (!psg.isNothing(claim.payout_type) && claim.payout_type === 1) {
-					output += psg.NumberUtil.toCurrency(claim.amount_paid);
-				}
-				else {
-					output += psg.NumberUtil.toPoints(claim.amount_paid);
-				}
+			output += '</span></li><li class="ui-field-contain"><label for="psg-claim-detail-paid-amount" class="ui-text-small">' + claim.claim_status + ' Amount:</label><span id="psg-claim-detail-paid-amount">';
+			if (!psg.isNothing(claim.payout_type) && claim.payout_type === 1) {
+				output += psg.NumberUtil.toCurrency(claim.amount_paid);
+			} else {
+				output += psg.NumberUtil.toPoints(claim.amount_paid);
+			}
 				output += '</span></li>';
 				break;
 			default:
 				output += '<li class="ui-field-contain"><label for="psg-claim-detail-payout" class="ui-text-small">Payout:</label><span id="psg-claim-detail-payout">';
-				if (!psg.isNothing(claim.payout_type) && claim.payout_type === 1){
-					output += psg.NumberUtil.toCurrency(claim.payout);
-				}
-				else {
-					output += psg.NumberUtil.toPoints(claim.payout);
-				}
+			if (!psg.isNothing(claim.payout_type) && claim.payout_type === 1) {
+				output += psg.NumberUtil.toCurrency(claim.payout);
+			} else {
+				output += psg.NumberUtil.toPoints(claim.payout);
+			}
 				output += '</span></li>';
 		}
 		output += '</ul>';
 		output += '<ul id="psg-listview-claimdetail-details" data-role="listview" data-theme="a" data-divider-theme="a" data-inset="false"><li data-role="list-divider">Details</li>';
 		
-		var fields = ['invoice_number','product_name','sale_date','quantity','sale_amount','dealer_code','distributor_code','serial_number','receiver_serial','consumer_full_name','consumer_company','wholesaler_name','consumer_line_one','consumer_line_two','consumer_city','consumer_state','consumer_zip','consumer_phone_number'];
-		var labels = ['Invoice','Product','Sale Date','Quantity','Sale Amount','Dealer','Distributor','Serial Number','Receiver Serial','Consumer','Company','Wholesaler','Address 1','Address 2','City','State','Zip','Phone'];
-		$.each(fields, function( index, field ) {
-			var value = claim[field];
-			if (!psg.isNothing(value)) {
-				output += '<li class="ui-field-contain"><label for="psg-claim-detail-invoice" class="ui-text-small">';
-				output += labels[index];
-				output += ':</label><span id="psg-claim-detail-invoice">';
-				if (field.indexOf('jdate') > -1) {
-					output += moment(value,'MM-DD-YYYY').format('MM-DD-YYYY');
+		for (var field in labels) {
+			if (!labels.hasOwnProperty(field)) {
+				continue;
 				}
-				else if (field === 'quantity') {
-					output += psg.NumberUtil.toNumber(value, 2);
+
+			var value = '';
+			if (claim.hasOwnProperty(field + '_jdate')) {
+				value = moment(claim[field + '_jdate'], 'MM-DD-YYYY').format('MM-DD-YYYY');
+			} else if (field === 'quantity') {
+				value = psg.NumberUtil.toNumber(claim[field], 2);
 					if (!psg.isNothing(claim.uom)) {
-						output += '&nbsp;' + claim.uom;
+					value += '&nbsp;' + claim.uom;
 					}
+			} else if (field === 'sale_amount') {
+				value = psg.NumberUtil.toCurrency(claim[field]);
+			} else {
+				value = claim[field];
 				}
-				else if (field === 'sale_amount') {
-					output += psg.NumberUtil.toCurrency(value);
+			if (psg.isNothing(value)) {
+				value = '';
 				}
-				else {
+
+			output += '<li class="ui-field-contain"><label for="psg-claim-detail-' + field + '" class="ui-text-small">';
+			output += labels[field];
+			output += ':</label><span id="psg-claim-detail-' + field + '">';
 					output += value;
-				}
 				output += '</span></li>';
 			}
-		});
 		output += '</ul>';
 
 		return output;

@@ -51,11 +51,7 @@ function page_promotion_history_show () {
 				output += ' thru ';
 				output += moment(promotion.sales_end_date_jdate,'MM-DD-YYYY').format('MM-DD-YYYY');
 				output += '</div><div class="ui-float-right">';
-				if (psg.payoutType != '1') {
-					output += psg.NumberUtil.toPoints(promotion.payout);
-				} else {
-					output += psg.NumberUtil.toCurrency(promotion.payout);
-				}
+				output += promotion.payout_formatted
 				output += '</div></div></a></li>';
 			});
 		}

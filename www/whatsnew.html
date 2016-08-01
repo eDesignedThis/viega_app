@@ -4,23 +4,24 @@
 </head>
 <body>
 <div data-role="page" id="page_whatsnew">
-    <div data-role="panel" data-position="right" data-position-fixed="true" data-display="push" data-display="overlay" data-theme="a" id="page_whatsnew_popup" >
+    <div data-role="panel" class="menu-panel" data-position="right" data-position-fixed="true" data-display="push" data-display="overlay" data-theme="a" id="page_whatsnew_popup" >
 			<ul class='popup_menu' data-role="listview" data-inset="false"  data-theme="a">
 			</ul>
 		</div>
     <div data-theme="a" data-role="header" data-position="fixed">
 		<a data-rel="back" data-role="button" data-direction="reverse" data-transition="slide"
-		   data-icon="carat-l" data-iconpos="notext" class="ui-btn-left">
+		   data-icon="carat-l" data-iconpos="notext" class="ui-btn-left icon-back">
 			Back
 		</a>
 		<h3 class="psg-class-program-name">
 		</h3>
 		<a href="#page_whatsnew_popup" data-rel="panel" data-role="button"
-		   data-inline="true" data-icon="bullets" data-iconpos="notext" class="ui-btn-right">Menu</a>
+		   data-inline="true" data-icon="bullets" data-iconpos="notext" class="ui-btn-right icon-menu">Menu</a>
 	</div>
 	<div role="main" class="ui-content">
 		<h3 class="psg-section-name" psg-section-type-id="whats_new">
 		</h3>
+		<div class="content-section content-section-whats-new ui-pad-before-list"><!-- CUSTOM CONTENT --></div>
 		<div class="colspLrg" data-role="collapsible-set" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-inset="false" data-theme="a" data-content-theme="a" id="psg_collapsible_set_whats_new">
 		</div>
 	</div>

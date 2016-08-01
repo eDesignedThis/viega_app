@@ -6,20 +6,21 @@
 <body>
 <!-- Home -->
 <div data-role="page" id="page_claim">
-	<div data-role="panel" data-position="right" data-position-fixed="true" data-display="push" data-display="overlay" data-theme="a" id="page_claim_popup" >
+	<div data-role="panel" class="menu-panel" data-position="right" data-position-fixed="true" data-display="push" data-display="overlay" data-theme="a" id="page_claim_popup" >
 			<ul class='popup_menu' data-role="listview" data-inset="false"  data-theme="a">
 			</ul>
 		</div>
 	<div data-theme="a" data-role="header" data-position="fixed">
 		<a data-rel="back" data-role="button" data-direction="reverse" data-transition="slide"
-		   data-icon="carat-l" data-iconpos="notext" class="ui-btn-left">
+		   data-icon="carat-l" data-iconpos="notext" class="ui-btn-left icon-back">
 			Back
 		</a>
 		<h3 class="psg-class-program-name"></h3>
 		<a href="#page_claim_popup" data-rel="panel" data-role="button"
-		   data-inline="true" data-icon="bullets" data-iconpos="notext" class="ui-btn-right">Menu</a>
+		   data-inline="true" data-icon="bullets" data-iconpos="notext" class="ui-btn-right icon-menu">Menu</a>
 	</div>
 	<div data-role="content" id="page_claim_content">
+		<div class="content-section content-section-claims"><!-- CUSTOM CONTENT --></div>
 		<form data-ajax="false" id="frmClaim">
 			<h3 class="headerDivider" id="psg-claims-promotion-name"></h3>
 			<div class="error" tabindex="-1" style="display: none;outline: none !important;" id="claim_error">
