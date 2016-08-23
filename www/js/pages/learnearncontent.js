@@ -91,7 +91,7 @@ function BuildLearnEarnQuestions(data, reviewOnly) {
 			listString += '<fieldset data-role="controlgroup">';
 			$.each(question.Answers, function (index, answer) {
 				checkedText = reviewOnly && answer.AnswerId == question.ParticipantAnswerId ? ' checked ' : '';
-				correctMessage = reviewOnly && answer.IsCorrectAnswer === true ? '<span class="psg-learn-earn-correct-answer-message">Correct Answer</span>' : '';
+				correctMessage = reviewOnly && answer.IsCorrectAnswerReview === true ? '<span class="psg-learn-earn-correct-answer-message">Correct Answer</span>' : '';
 				//listString += '<div class="psg-learn-earn-answer-stacked">';
 				if (question.Required == 1 && index == 0) {
 					listString += '<label><input type="radio"' + disabledText + checkedText + 'data-rule-required="true" class="psg-learn-earn-answer-radio" name="answer_id_QN' + question.QuestionId + '" value="' + answer.AnswerId + '" ><span class="psg-learn-earn-answer-text">' + correctMessage + answer.Text + '</span></label>';
