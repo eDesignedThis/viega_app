@@ -26,10 +26,20 @@ function HandleEditCheckoutAddress(data) {
 
 function doUpdateCheckoutAddress()
 {
+	ValidateInput();
+	var editShippingAddressError = $("#edit_shipping_address_error");
+	editShippingAddressError.html('');
+	var streetAddressOne = $("#edit_checkout_address1").val();
+	var streetAddressTwo = $("#edit_checkout_address2").val();
+	var returnAddressValidation = ValidateStreetAddress(streetAddressOne,streetAddressTwo);
+	if(returnAddressValidation.length > 0){
+		editShippingAddressError.html(returnAddressValidation);
+		return false;
+	}	
 	var address = JSON.stringify({
 		Name:$("#edit_checkout_name").val(),
-		StreetAddress1: $("#edit_checkout_address1").val(),
-		StreetAddress2: $("#edit_checkout_address2").val(),
+		StreetAddress1: streetAddressOne,
+		StreetAddress2: streetAddressTwo,
 		CityName: $("#edit_checkout_city").val(),
 		StateCode: $("#edit_checkout_state").val(),
 		PostalCode: $("#edit_checkout_zip").val(),
@@ -45,4 +55,28 @@ function doUpdateCheckoutAddress()
 		}
 	
 	}, address);
+}
+function ValidateStreetAddress(address){
+	
+	if(address != null)
+	{
+		var pattern = new RegExp('\\b[p]*(ost)*\\.*\\s*[o|0]*(ffice)*\\.*\\s*b[o|0]x\\b', 'i');
+		if(address.match(pattern)){
+			return 'P.O. Box is not allowed for address fields.';
+		}
+	}
+	return '';
+}
+function ValidateInput(){
+	var addressOne = $("#edit_checkout_address1").val();
+	var validateAddressOne = ValidateStreetAddress(addressOne);
+	if (validateAddressOne.length > 0){
+		$("#edit_checkout_address1_error").html(validateAddressOne);
+	}	 
+	var addressTwo = $("#edit_checkout_address2").val();
+	var validateAddressTwo = ValidateStreetAddress(addressTwo);
+	if (validateAddressTwo.length > 0){
+		$("#edit_checkout_address2_error").html(validateAddressTwo);
+	}
+		
 }
