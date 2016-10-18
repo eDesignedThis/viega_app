@@ -26,20 +26,14 @@ function HandleEditCheckoutAddress(data) {
 
 function doUpdateCheckoutAddress()
 {
-	ValidateInput();
-	var editShippingAddressError = $("#edit_shipping_address_error");
-	editShippingAddressError.html('');
-	var streetAddressOne = $("#edit_checkout_address1").val();
-	var streetAddressTwo = $("#edit_checkout_address2").val();
-	var returnAddressValidation = ValidateStreetAddress(streetAddressOne,streetAddressTwo);
-	if(returnAddressValidation.length > 0){
-		editShippingAddressError.html(returnAddressValidation);
-		return false;
+	if(!ValidateInput()){
+		return;
 	}	
+
 	var address = JSON.stringify({
 		Name:$("#edit_checkout_name").val(),
-		StreetAddress1: streetAddressOne,
-		StreetAddress2: streetAddressTwo,
+		StreetAddress1: $("#edit_checkout_address1").val(),
+		StreetAddress2: $("#edit_checkout_address2").val(),
 		CityName: $("#edit_checkout_city").val(),
 		StateCode: $("#edit_checkout_state").val(),
 		PostalCode: $("#edit_checkout_zip").val(),
@@ -67,16 +61,85 @@ function ValidateStreetAddress(address){
 	}
 	return '';
 }
+function ValidStateShipping(sstate,countryCode) {
+	var sstates;
+	switch (countryCode) {
+		case "USA":
+			sstates = "wa|or|ca|ak|nv|id|ut|az|hi|mt|wy|" +
+			"co|nm|nd|sd|ne|ks|ok|tx|mn|ia|mo|" +
+			"ar|la|wi|il|ms|mi|in|ky|tn|al|fl|" +
+			"ga|sc|nc|oh|wv|va|pa|ny|vt|me|nh|" +
+			"ma|ri|ct|nj|de|md|dc|as|fm|gu|mh|" +
+			"mp|pw|pr|vi|um|ae|aa|ap|";
+			break;
+		case "CAN":
+			sstates = "ab|bc|mb|nb|nl|ns|nt|nu|on|pe|qc|sk|yt|";
+			break;
+		default:
+			sstates = "wa|or|ca|ak|nv|id|ut|az|hi|mt|wy|" +
+			"co|nm|nd|sd|ne|ks|ok|tx|mn|ia|mo|" +
+			"ar|la|wi|il|ms|mi|in|ky|tn|al|fl|" +
+			"ga|sc|nc|oh|wv|va|pa|ny|vt|me|nh|" +
+			"ma|ri|ct|nj|de|md|dc|as|fm|gu|mh|" +
+			"mp|pw|pr|vi|um|ae|aa|ap|";
+			break;
+	}
+	if (sstates.indexOf(sstate.toLowerCase() + "|") > -1) {
+		return true;
+	}
+	return false;
+}
+
+function ValidPostalCodeShipping(postalCode, countryCode) {
+	switch (countryCode) {
+	case "USA":
+		postalCodeRegex = /^([0-9]{5})(?:[-\s]*([0-9]{4}))?$/;
+		break;
+	case "CAN":
+		postalCodeRegex = /^([A-Z][0-9][A-Z])\s*([0-9][A-Z][0-9])$/;
+		break;
+	default:
+		postalCodeRegex = /^(?:[A-Z0-9]+([- ]?[A-Z0-9]+)*)?$/;
+	}
+	return postalCodeRegex.test(postalCode);
+}
 function ValidateInput(){
 	var addressOne = $("#edit_checkout_address1").val();
+	var addressOneError = $("#edit_checkout_address1_error");
+	addressOneError.html('');
 	var validateAddressOne = ValidateStreetAddress(addressOne);
 	if (validateAddressOne.length > 0){
-		$("#edit_checkout_address1_error").html(validateAddressOne);
-	}	 
+		addressOneError.html(validateAddressOne);
+		return false;
+	}	 	
+	
 	var addressTwo = $("#edit_checkout_address2").val();
+	var addressTwoError = $("#edit_checkout_address2_error");
+	addressTwoError.html('');
 	var validateAddressTwo = ValidateStreetAddress(addressTwo);
 	if (validateAddressTwo.length > 0){
-		$("#edit_checkout_address2_error").html(validateAddressTwo);
+		addressTwoError.html(validateAddressTwo);
+		return false;
 	}
-		
+	
+	var shippingCountry = $("#edit_checkout_country").val();
+	if(shippingCountry != 'USA'){return true;}
+	
+	var shippingState = $("#edit_checkout_state").val();
+	var shippingStateError = $("#edit_checkout_state_error");
+	shippingStateError.html('');
+	if(!ValidStateShipping(shippingState,shippingCountry)){
+		shippingStateError.html('Incorrect state input.');
+		return false;
+	}
+
+	var shippingPostal = $("#edit_checkout_zip").val();
+	var shippingPostalError = $("#edit_checkout_zip_error");
+	shippingPostalError.html('');
+	if(!ValidPostalCodeShipping(shippingPostal,shippingCountry)){
+		shippingPostalError.html('Incorrect Postal Code.');
+		return false;
+	}
+	
+	return true;	
 }
