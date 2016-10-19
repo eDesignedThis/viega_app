@@ -52,8 +52,7 @@ function doUpdateCheckoutAddress()
 }
 function ValidateStreetAddress(address){
 	
-	if(address != null)
-	{
+	if(address != null)	{
 		var pattern = new RegExp('\\b[p]*(ost)*\\.*\\s*[o|0]*(ffice)*\\.*\\s*b[o|0]x\\b', 'i');
 		if(address.match(pattern)){
 			return 'P.O. Box is not allowed for address fields.';
@@ -121,7 +120,7 @@ function ValidateInput(){
 		addressTwoError.html(validateAddressTwo);
 		return false;
 	}
-	
+	// USA validation only for now
 	var shippingCountry = $("#edit_checkout_country").val();
 	if(shippingCountry != 'USA'){return true;}
 	

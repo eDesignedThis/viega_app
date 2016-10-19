@@ -69,8 +69,7 @@ function HandleShowSSN(data) {
 	}
 
 	$('#checkout_continue').on('click', (function (e) {
-		if(!CheckAddressOnCheckOut())
-		{
+		if(!CheckAddressOnCheckOut()){
 			return false;
 		}		
 		//save ssn 
@@ -94,18 +93,24 @@ function HandleShowSSN(data) {
 }
 function CheckAddressOnCheckOut(){
 	var data = sessionStorage.getItem(getBase() + "checkoutAddress");
-		data = JSON.parse(data);
-		var validAddressOneCheckout = ValidateStreetAddress(data.Address.StreetAddress1);
-		$('#div_checkout_address_error').html('');		
-		if(validAddressOneCheckout.length > 0){
-			$('#div_checkout_address_error').html(validAddressOneCheckout);
-			return false;
-		} 
-		var validAddressTwoCheckout = ValidateStreetAddress(data.Address.StreetAddress2);
-		if(validAddressTwoCheckout.length > 0){
-			$('#div_checkout_address_error').html(validAddressTwoCheckout);
-			return false;
-		}
+	if(data == null ){
+		var addressError = 'Issue with Address.  Please contact Administrator.';
+		$('#div_checkout_address_error').html(addressError);
+		return false;
+	}
+	data = JSON.parse(data);
+	//ValidateStreetAddress function is located in editcheckoutaddress.js  
+	var validAddressOneCheckout = ValidateStreetAddress(data.Address.StreetAddress1);
+	$('#div_checkout_address_error').html('');		
+	if(validAddressOneCheckout.length > 0){
+		$('#div_checkout_address_error').html(validAddressOneCheckout);
+		return false;
+	} 
+	var validAddressTwoCheckout = ValidateStreetAddress(data.Address.StreetAddress2);
+	if(validAddressTwoCheckout.length > 0){
+		$('#div_checkout_address_error').html(validAddressTwoCheckout);
+		return false;
+	}
 	return true;		
 }
 function SetSSNFTIN()
