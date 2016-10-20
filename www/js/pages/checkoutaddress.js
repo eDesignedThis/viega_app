@@ -16,8 +16,10 @@ function HandleGetCheckoutAddress(data) {
                 + data.Address.PhoneNumber + '<br/>' + data.Email + '<br/>';
         var div = $('#div_checkout_address');
         div.html(setString);
-        psg.setSessionItem('checkoutAddress', JSON.stringify(data));   
+        psg.setSessionItem('checkoutAddress', JSON.stringify(data)); 
+
 		CheckSSN();
+	
 }
 function CheckSSN(){
 	 $('#checkout_validate_ssn').hide();
@@ -67,6 +69,9 @@ function HandleShowSSN(data) {
 	}
 
 	$('#checkout_continue').on('click', (function (e) {
+		if(!CheckAddressOnCheckOut()){
+			return false;
+		}		
 		//save ssn 
 		if (!showSsn && !showFtin) {
 			$.mobile.pageContainer.pagecontainer('change', 'checkoutconfirm.html', {
@@ -85,6 +90,28 @@ function HandleShowSSN(data) {
 		 e.preventDefault();
 		 e.stopPropagation();
 	}));	
+}
+function CheckAddressOnCheckOut(){
+	var data = sessionStorage.getItem(getBase() + "checkoutAddress");
+	if(data == null ){
+		var addressError = 'Issue with Address.  Please contact Administrator.';
+		$('#div_checkout_address_error').html(addressError);
+		return false;
+	}
+	data = JSON.parse(data);
+	//ValidateStreetAddress function is located in editcheckoutaddress.js  
+	var validAddressOneCheckout = ValidateStreetAddress(data.Address.StreetAddress1);
+	$('#div_checkout_address_error').html('');		
+	if(validAddressOneCheckout.length > 0){
+		$('#div_checkout_address_error').html(validAddressOneCheckout);
+		return false;
+	} 
+	var validAddressTwoCheckout = ValidateStreetAddress(data.Address.StreetAddress2);
+	if(validAddressTwoCheckout.length > 0){
+		$('#div_checkout_address_error').html(validAddressTwoCheckout);
+		return false;
+	}
+	return true;		
 }
 function SetSSNFTIN()
 {

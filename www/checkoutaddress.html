@@ -5,6 +5,7 @@
 </head>
 <body>
 <div data-role="page" id="page_checkout_address">
+	
 	<div data-theme="a" data-role="header" data-position="fixed">
 		<a data-rel="back" data-role="button" data-direction="reverse" data-transition="slide"
 		   data-icon="carat-l" data-iconpos="notext" class="ui-btn-left icon-back">
@@ -51,8 +52,11 @@
 			<a href="editcheckoutaddress.html" data-transition='slidedown' >Edit</a>
 		</p>
         <a href="#" class="linkBtn ui-btn ui-btn-a ui-shadow ui-corner-all" id="checkout_continue">
-				Continue Checkout</a>
+				Continue Checkout
+		</a>
+		<div id='div_checkout_address_error' class='error'></div>		
 	</div>
+	
 	<div data-theme="a" data-role="footer" data-position="fixed">
 	<!-- footer is set dynamically for all pages in psgmobilecore.js:PageBeforeCreateManager(e) -->
 	</div>
