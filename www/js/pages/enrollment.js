@@ -34,6 +34,10 @@ function page_enrollment_show(){
 		if (participantDataRow != null) {
 			PreFillForm(participantDataRow[0],'enrollment');
 		}
+	} else {
+		if (psg.participantTypeId != null && psg.participantTypeId != "0") {
+			formDiv.append('<input type="hidden" name="participant_type_id" value="' + psg.participantTypeId + '">');
+		}
 	}
 
 	$('#frmEnrollment').validate({ submitHandler: submitEnrollmentForm });
