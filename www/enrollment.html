@@ -6,9 +6,9 @@
 <body>
     <!-- Home -->
     <div data-role="page" id="page_enrollment">
-        <div data-theme="a" class="myclass" data-role="header">
+        <div data-theme="a" class="myclass header_fixed" data-role="header">
 			<a data-rel="back" data-role="button" data-direction="reverse" data-transition="slide"
-			   data-icon="carat-l" data-iconpos="notext" class="ui-btn-left">
+			   data-icon="carat-l" data-iconpos="notext" class="ui-btn-left icon-back">
 				Back
 			</a>
 			<h3 class="psg-class-program-name">
@@ -16,6 +16,7 @@
 			<!-- this is part of the initial setup so mno menu -->
         </div>
         <div id="page_enrollment_content" data-role="content">
+			<div class="content-section content-section-enrollment"><!-- CUSTOM CONTENT --></div>
             <form data-ajax="false" id="frmEnrollment" >
             <div style="display: none;" class="error" id="enrollment_error">
             </div>

@@ -4,8 +4,8 @@
     <title></title>
 </head>
 <body>
-<div data-role="page" id="page_home" psg-popmenu-content-type="base">
-    <div data-role="panel" data-position="right" data-position-fixed="true" data-display="push" data-display="overlay" data-theme="a" id="page_home_popup" >
+<div data-role="page" id="page_home" >
+    <div class="menu-panel" data-role="panel" data-position="right" data-position-fixed="true" data-display="push" data-display="overlay" data-theme="a" id="page_home_popup" >
 			<ul class='popup_menu' data-role="listview" data-inset="false"  data-theme="a">
 			</ul>
 		</div>
@@ -16,7 +16,7 @@
 			Settings
 		</a>-->
 		<a href="#page_home_popup" data-rel="panel" data-role="button"
-		   data-inline="true" data-icon="bullets" data-iconpos="notext" class="ui-btn-right">Menu</a>
+		   data-inline="true" data-icon="bullets" data-iconpos="notext" class="ui-btn-right icon-menu">Menu</a>
         <h3 class="psg-class-program-name"></h3>
     </div>
 
@@ -27,6 +27,8 @@
 		    <p></p>
 		    <img src=''>
 		</div>
+		
+		<div class="content-section content-section-home ui-pad-before-list"><!-- CUSTOM CONTENT --></div>  
 		
 		<ul data-role="listview" data-theme="a" id="home_menu" data-inset="false">
 		</ul>

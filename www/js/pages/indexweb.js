@@ -33,6 +33,9 @@ var app = {
 				var participantTypeId = getQSParameterByName('pid');
 				if (participantTypeId != null) {
 					psg.participantTypeId = participantTypeId;
+					sessionStorage.clear();
+					psg.homeMenu = null; // need to reset home menu, too.
+					getHomeMenu();
 					getJson("POINTS.SUMMARY",function (data) { 
 								if (typeof data !== null) {
 									UpdatePointAccount(data);

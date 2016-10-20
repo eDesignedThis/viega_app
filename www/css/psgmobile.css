@@ -135,6 +135,9 @@ img {
     border-top-width: 1px;
     border-top-style: solid
 }
+.psg_field_row_error{
+    max-height: 25px;
+}
 #login_enrollment_link.linkBtn {
     width: 70% !important
 }

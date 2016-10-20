@@ -13,13 +13,10 @@ function page_claims_landing_show (){
 				return (!psg.isNothing(promotion) && promotion.promotion_id == id);
 			});
 			psg.removeSessionItem('claim_id');
-			psg.setSessionItem('promotion_id', id);
-			psg.setSessionItem('promotion_type_id', typeId);
-			psg.setSessionItem('promotion_name', !psg.isNothing(promotion) ? promotion[0].promotion_name : '');
+			openNewClaim(id, typeId, !psg.isNothing(promotion) ? promotion[0].promotion_name : '', 'claims.html');
 			
 			event.stopImmediatePropagation();
 			event.preventDefault();
-			$.mobile.pageContainer.pagecontainer('change', 'claims.html', { transition: 'slide', changeHash: false } );
 		});
 		
 		ul.find('.psg-promotion-info-item').on('click', function ( event ) {
@@ -63,3 +60,53 @@ function page_claims_landing_show (){
 		
 		return output;
 	}
+
+function openNewClaim(promotionId, promotionTypeId, promotionName, claimPage) {
+	psg.setSessionItem('promotion_id', promotionId);
+	psg.setSessionItem('promotion_type_id', promotionTypeId);
+	psg.setSessionItem('promotion_name', !psg.isNothing(promotionName) ? promotionName : '');
+	psg.setSessionItem('promotion_number_of_rows', '1');
+
+	var tableSettings = checkForTabledPromotion(promotionTypeId);
+	if (tableSettings.IsTabled) {
+		if (tableSettings.RowCount > 1) {
+			psg.setSessionItem('promotion_number_of_rows', tableSettings.RowCount); // use fixed row count.
+			$.mobile.pageContainer.pagecontainer('change', claimPage, {
+				transition : 'slide',
+				changeHash : true
+			});
+		} else {
+			psg.setSessionItem('open_new_claim_target_page', claimPage);
+			$.mobile.pageContainer.pagecontainer('change', 'claimstabled.html', {
+				transition : 'slide',
+				changeHash : true
+			});
+		}
+	} else {
+		$.mobile.pageContainer.pagecontainer('change', claimPage, {
+			transition : 'slide',
+			changeHash : true
+		});
+	}
+}
+
+function checkForTabledPromotion(promotionTypeId) {
+	var isTabled = false;
+	var rowCount = '1';
+	var searchTerm = 'PROMOTION_TYPES[PROMOTION_TYPE_ID="' + promotionTypeId + '"] FIELDGROUP';
+
+	var options = psg.configXml;
+	var $xml = $(options);
+	$xml.find(searchTerm).each(function () {
+		var item = $(this);
+		if (!psg.isNothing(item.ROWCOUNT) && item.ROWCOUNT > 1) {
+			rowCount = item.ROWCOUNT;
+		}
+		isTabled = true;
+	});
+
+	return {
+		IsTabled : isTabled,
+		RowCount : rowCount
+	};
+}

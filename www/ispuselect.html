@@ -5,18 +5,18 @@
  </head>
 <body>
     <div data-role="page" id="page_ispu_select">
-     <div data-role="panel" data-position="right" data-position-fixed="true" data-display="push" data-display="overlay" data-theme="a" id="page_ispu_select_popup" >
+     <div data-role="panel" class="menu-panel" data-position="right" data-position-fixed="true" data-display="push" data-display="overlay" data-theme="a" id="page_ispu_select_popup" >
 			<ul class='popup_menu' data-role="listview" data-inset="false"  data-theme="a">
 			</ul>
 		</div>
         <div data-theme="a" data-role="header" data-position="fixed">
 			<a data-rel="back" data-role="button" data-direction="reverse" data-transition="slide"
-			   data-icon="carat-l" data-iconpos="notext" class="ui-btn-left">
+			   data-icon="carat-l" data-iconpos="notext" class="ui-btn-left icon-back">
 				Back
 			</a>
           <h3 class="psg-class-program-name"></h3>
 			<a href="#page_ispu_select_popup" data-rel="panel" data-role="button"
-			   data-inline="true" data-icon="bullets" data-iconpos="notext" class="ui-btn-right">Menu</a>
+			   data-inline="true" data-icon="bullets" data-iconpos="notext" class="ui-btn-right icon-menu">Menu</a>
         </div>
 
 		<div data-role="content">
@@ -25,6 +25,11 @@
 			<div id="ispu_item_points"></div>
 			<ul id="ispu_select_listview" data-role="listview"  >
 			</ul>
+			<div style="padding-top:20px;" id='ispu_checkout_store_panel_search'>
+				<label for="checkoutDetailMoreStoresZip">Look for stores in another Zip Code:</label>
+				<input type="text" id="checkoutDetailMoreStoresZip"/>
+				<button id='ispu_checkout_store_panel_search_go'>Show Nearby Stores</button>
+			</div>
 		</div>
 
 		<div data-theme="a" data-role="footer" data-position="fixed">
