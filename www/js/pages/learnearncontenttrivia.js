@@ -207,7 +207,7 @@
 				}
 			}
 			if (data.DetailList[index].QuestionId == data.DetailList[index].LastQuestionId) {
-				$('#lblError').html('You have reached the last question.');
+				$('#lblError').append('You have reached the last question.');
 			} 			
 		}			
 	}
