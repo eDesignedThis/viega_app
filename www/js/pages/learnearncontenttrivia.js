@@ -206,6 +206,9 @@
 						}			
 				}
 			}
+			if (data.DetailList[index].QuestionId == data.DetailList[index].LastQuestionId) {
+				$('#lblError').append('You have reached the last question.');
+			} 			
 		}			
 	}
 	function GetData(type)
