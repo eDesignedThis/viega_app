@@ -102,6 +102,11 @@ function ValidPostalCodeShipping(postalCode, countryCode) {
 	}
 	return postalCodeRegex.test(postalCode);
 }
+
+function ValidatePhone(phoneValue){
+	var phoneRegex = /^((\(\d{3}\)\s?)|(\d{3}\-))\d{3}\-\d{4}(\s*[xX]\d+)?$/;
+	return phoneRegex.test(phoneValue);
+}
 function ValidateInput(){
 	var addressOne = $("#edit_checkout_address1").val();
 	var addressOneError = $("#edit_checkout_address1_error");
@@ -139,6 +144,14 @@ function ValidateInput(){
 		shippingPostalError.html('Incorrect Postal Code.');
 		return false;
 	}
+	
+	var shippingPhone = $("#edit_checkout_phone").val();
+	var shippingPhoneError = $("#edit_checkout_phone_error");
+	if(!ValidatePhone(shippingPhone)){
+		shippingPhoneError.html('Incorrect Phone format.  Please use xxx-xxx-xxxx.');
+		return false;
+	}
+	
 	
 	return true;	
 }
