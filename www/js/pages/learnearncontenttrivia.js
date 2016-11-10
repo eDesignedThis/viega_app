@@ -27,20 +27,20 @@
 				
 				var listString = '';
 				
-				listString += '<li data-psg-divider="' + data.DetailList[index].SurveyTitle + '">\
+				listString += '<li data-psg-divider="' + data.DetailList.SurveyTitle + '">\
 								<div class="ui-no-ellipse">'; // Open the div for trivia question number, question, and submit
 								
-				if(data.DetailList[index].QuestionHeader != null){
-					listString += '<p class="trivia_header psg-lrnErn-txt" id="lblQuestionHeader">' + data.DetailList[index].QuestionHeader + '</p>';
+				if(data.DetailList.QuestionHeader != null){
+					listString += '<p class="trivia_header psg-lrnErn-txt" id="lblQuestionHeader">' + data.DetailList.QuestionHeader + '</p>';
 					}		
 					
-				if(data.DetailList[index].QuestionOrder != null){
-					listString += '<p class="trivia_question_number psg-lrnErn-txt" id="lblSurveyNumber">Trivia Question #' + data.DetailList[index].QuestionOrder + '</p>';
+				if(data.DetailList.QuestionOrder != null){
+					listString += '<p class="trivia_question_number psg-lrnErn-txt" id="lblSurveyNumber">Trivia Question #' + data.DetailList.QuestionOrder + '</p>';
 					}				
 				
-				if(data.DetailList[index].QuestionText != null){
+				if(data.DetailList.QuestionText != null){
 					listString += '<div class="trivia_question ui-no-ellipse">\
-										<p class="psg-lrnErn-txt" id="lblSurveyQuestion">' + data.DetailList[index].QuestionText + '</p>\
+										<p class="psg-lrnErn-txt" id="lblSurveyQuestion">' + data.DetailList.QuestionText + '</p>\
 									</div>'; 
 				}
 					listString += '<p class="error psg-lrnErn-txt" id="lblError"></p>';
@@ -78,8 +78,8 @@
 								</li>';
 			
 
-				if(data.DetailList[index].QuestionId != null){questionId = data.DetailList[index].QuestionId};
-				if(data.DetailList[index].QuestionType != null){questionType = data.DetailList[index].QuestionType};
+				if(data.DetailList.QuestionId != null){questionId = data.DetailList.QuestionId};
+				if(data.DetailList.QuestionType != null){questionType = data.DetailList.QuestionType};
 				// Refresh Points
 				getJson("POINTS.SUMMARY", HandleGetTriviaRefreshPoints);
 
@@ -132,7 +132,7 @@
 	}	
 	function HandleGetTriviaRefreshPoints(data) {
 		if (typeof data !== null) {
-					UpdatePointAccount(data);
+					UpdatePointAccount(data); 
 		}
 	}	
 		
@@ -145,13 +145,13 @@
 
 		if (index > 0 ) 
 		{
-			if( data.DetailList[index].HistoryId > 0)
+			if( data.DetailList.HistoryId > 0)
 			{
 				$('#cmdNext').show();
 				nextShow = true;
 			}
 		}
-		if (index >= 0 && index < data.DetailList.length - 1)
+		if (index >= 0 && index < data.TotalCount - 1)
 		{
 			$('#cmdPrevious').show();
 			previousShow = true;
@@ -165,7 +165,7 @@
 		
 		if (index >= 0 ) 
 		{
-			if( data.DetailList[index].HistoryId == 0)
+			if( data.DetailList.HistoryId == 0)
 			{
 				$('#cmdSubmit').show();
 				submitShow = true;
@@ -184,12 +184,12 @@
 		
 		if (index >= 0 ) 
 		{
-			if( data.DetailList[index].HistoryId > 0)
+			if( data.DetailList.HistoryId > 0)
 			{							
-				for(var i=0;i < data.DetailList[index].Answers.length;i++)
+				for(var i=0;i < data.DetailList.Answers.length;i++)
 				{
-					if (data.DetailList[index].Answers[i].AnswerId == data.DetailList[index].Answers[i].AnswerIDRecorded
-						&& data.DetailList[index].Answers[i].IsCorrectAnswer != 1)
+					if (data.DetailList.Answers[i].AnswerId == data.DetailList.Answers[i].AnswerIDRecorded
+						&& data.DetailList.Answers[i].IsCorrectAnswer != 1)
 						{
 							$('#lblCorrect').hide();
 							$('#lblWrong').show();
@@ -206,7 +206,7 @@
 						}			
 				}
 			}
-			if (data.DetailList[index].QuestionId == data.DetailList[index].LastQuestionId) {
+			if (data.DetailList.QuestionId == data.DetailList.LastQuestionId) {
 				$('#lblError').append('You have reached the last question.');
 			} 			
 		}			
