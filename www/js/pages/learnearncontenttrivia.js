@@ -14,7 +14,7 @@
 		var questionId = '';
 		var	questionType = '';	
 
-		if (data.Result == 'error')
+		if (data.Error != '')
 		{
 			$('#lblError').html(data.Error);
 			return false;		
