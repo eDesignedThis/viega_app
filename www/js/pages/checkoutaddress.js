@@ -92,6 +92,7 @@ function HandleShowSSN(data) {
 	}));	
 }
 function CheckAddressOnCheckOut(){
+	$('#div_checkout_address_error').html('');
 	var data = sessionStorage.getItem(getBase() + "checkoutAddress");
 	if(data == null ){
 		var addressError = 'Issue with Address.  Please contact Administrator.';
@@ -101,7 +102,6 @@ function CheckAddressOnCheckOut(){
 	data = JSON.parse(data);
 	//ValidateStreetAddress function is located in editcheckoutaddress.js  
 	var validAddressOneCheckout = ValidateStreetAddress(data.Address.StreetAddress1);
-	$('#div_checkout_address_error').html('');		
 	if(validAddressOneCheckout.length > 0){
 		$('#div_checkout_address_error').html(validAddressOneCheckout);
 		return false;
@@ -110,6 +110,11 @@ function CheckAddressOnCheckOut(){
 	if(validAddressTwoCheckout.length > 0){
 		$('#div_checkout_address_error').html(validAddressTwoCheckout);
 		return false;
+	}
+	//ValidatePhone function located in editcheckoutaddress.js 
+	if(!ValidatePhone(data.Address.PhoneNumber)){
+		$('#div_checkout_address_error').html('Incorrect Phone format.  Please use xxx-xxx-xxxx.');
+		return false;	
 	}
 	return true;		
 }
