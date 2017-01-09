@@ -6,6 +6,7 @@ function page_invitation_show(){
 		invitationLabel = configLabel;
 	}
 	$('#invitation_label').text(invitationLabel);
+	$('.psg_custom_content_participant_type_0').show();
 	
 	var enableScan = ($(psg.configXml).find('ENROLLMENT[ENABLE_INVITATION_SCAN="1"]').length > 0);
 	if ( enableScan && app.isPhoneGap ) {
