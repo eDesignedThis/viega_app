@@ -26,6 +26,10 @@ function HandleEditCheckoutAddress(data) {
 
 function doUpdateCheckoutAddress()
 {
+	if(!ValidateInput()){
+		return;
+	}	
+
 	var address = JSON.stringify({
 		Name:$("#edit_checkout_name").val(),
 		StreetAddress1: $("#edit_checkout_address1").val(),
@@ -45,4 +49,109 @@ function doUpdateCheckoutAddress()
 		}
 	
 	}, address);
+}
+function ValidateStreetAddress(address){
+	
+	if(address != null)	{
+		var pattern = new RegExp('\\b[p]*(ost)*\\.*\\s*[o|0]*(ffice)*\\.*\\s*b[o|0]x\\b', 'i');
+		if(address.match(pattern)){
+			return 'P.O. Box is not allowed for address fields.';
+		}
+	}
+	return '';
+}
+function ValidStateShipping(sstate,countryCode) {
+	var sstates;
+	switch (countryCode) {
+		case "USA":
+			sstates = "wa|or|ca|ak|nv|id|ut|az|hi|mt|wy|" +
+			"co|nm|nd|sd|ne|ks|ok|tx|mn|ia|mo|" +
+			"ar|la|wi|il|ms|mi|in|ky|tn|al|fl|" +
+			"ga|sc|nc|oh|wv|va|pa|ny|vt|me|nh|" +
+			"ma|ri|ct|nj|de|md|dc|as|fm|gu|mh|" +
+			"mp|pw|pr|vi|um|ae|aa|ap|";
+			break;
+		case "CAN":
+			sstates = "ab|bc|mb|nb|nl|ns|nt|nu|on|pe|qc|sk|yt|";
+			break;
+		default:
+			sstates = "wa|or|ca|ak|nv|id|ut|az|hi|mt|wy|" +
+			"co|nm|nd|sd|ne|ks|ok|tx|mn|ia|mo|" +
+			"ar|la|wi|il|ms|mi|in|ky|tn|al|fl|" +
+			"ga|sc|nc|oh|wv|va|pa|ny|vt|me|nh|" +
+			"ma|ri|ct|nj|de|md|dc|as|fm|gu|mh|" +
+			"mp|pw|pr|vi|um|ae|aa|ap|";
+			break;
+	}
+	if (sstates.indexOf(sstate.toLowerCase() + "|") > -1) {
+		return true;
+	}
+	return false;
+}
+
+function ValidPostalCodeShipping(postalCode, countryCode) {
+	switch (countryCode) {
+	case "USA":
+		postalCodeRegex = /^([0-9]{5})(?:[-\s]*([0-9]{4}))?$/;
+		break;
+	case "CAN":
+		postalCodeRegex = /^([A-Z][0-9][A-Z])\s*([0-9][A-Z][0-9])$/;
+		break;
+	default:
+		postalCodeRegex = /^(?:[A-Z0-9]+([- ]?[A-Z0-9]+)*)?$/;
+	}
+	return postalCodeRegex.test(postalCode);
+}
+
+function ValidatePhone(phoneValue){
+	var phoneRegex = /^((\(\d{3}\)\s?)|(\d{3}\-))\d{3}\-\d{4}(\s*[xX]\d+)?$/;
+	return phoneRegex.test(phoneValue);
+}
+function ValidateInput(){
+	var addressOne = $("#edit_checkout_address1").val();
+	var addressOneError = $("#edit_checkout_address1_error");
+	addressOneError.html('');
+	var validateAddressOne = ValidateStreetAddress(addressOne);
+	if (validateAddressOne.length > 0){
+		addressOneError.html(validateAddressOne);
+		return false;
+	}	 	
+	
+	var addressTwo = $("#edit_checkout_address2").val();
+	var addressTwoError = $("#edit_checkout_address2_error");
+	addressTwoError.html('');
+	var validateAddressTwo = ValidateStreetAddress(addressTwo);
+	if (validateAddressTwo.length > 0){
+		addressTwoError.html(validateAddressTwo);
+		return false;
+	}
+	// USA validation only for now
+	var shippingCountry = $("#edit_checkout_country").val();
+	if(shippingCountry != 'USA'){return true;}
+	
+	var shippingState = $("#edit_checkout_state").val();
+	var shippingStateError = $("#edit_checkout_state_error");
+	shippingStateError.html('');
+	if(!ValidStateShipping(shippingState,shippingCountry)){
+		shippingStateError.html('Incorrect state input.');
+		return false;
+	}
+
+	var shippingPostal = $("#edit_checkout_zip").val();
+	var shippingPostalError = $("#edit_checkout_zip_error");
+	shippingPostalError.html('');
+	if(!ValidPostalCodeShipping(shippingPostal,shippingCountry)){
+		shippingPostalError.html('Incorrect Postal Code.');
+		return false;
+	}
+	
+	var shippingPhone = $("#edit_checkout_phone").val();
+	var shippingPhoneError = $("#edit_checkout_phone_error");
+	if(!ValidatePhone(shippingPhone)){
+		shippingPhoneError.html('Incorrect Phone format.  Please use xxx-xxx-xxxx.');
+		return false;
+	}
+	
+	
+	return true;	
 }

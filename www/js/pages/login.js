@@ -1,5 +1,16 @@
 function page_login_show() {
     var base = app.getBase();
+	if (!app.isPhoneGap) {
+		var $xml = $(psg.configXml);
+		var redirect = $xml.find('PROGRAM > IS_LOGIN_REDIRECT');
+		if (redirect != null) {
+			if (redirect.attr('IS') == "1" && redirect.text() != '') {
+			  setTimeout (function(){document.location=redirect.text();},500);
+			}		
+		}
+	 
+	  
+	}
 	if (app.isPhoneGap) {
 		var authFail = sessionStorage.getItem(base + 'authFail');
 		if (authFail != null) {

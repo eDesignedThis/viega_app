@@ -42,6 +42,7 @@ function getHomeMenu(){
 			  "rec_items" : '<i class="fa fa-smile-o fa-lg fa-fw ui-menu-icon"></i>',
 			  "card_awards" : '<i class="fa fa-trophy fa-lg fa-fw ui-menu-icon"></i>',
 			  "card_fundings" : '<i class="fa fa-money fa-lg fa-fw ui-menu-icon"></i>',
+			  "card_balance" : '<i class="fa fa-credit-card fa-lg fa-fw ui-menu-icon"></i>'
 			  };
 		var menuNames ={
 			"claim_history":"Performance Tracking",
@@ -54,7 +55,8 @@ function getHomeMenu(){
 			"whats_new":"What's New",
 			"wish_list":"Wish List",
 			"card_fundings":"Funding Info",
-			"card_awards":"Awards and Adjustments"
+			"card_awards":"Awards and Adjustments",
+			"card_balance": "Card Balance"
 		};
 		setHomeIcons(menuIcons);
 		
@@ -116,7 +118,9 @@ function getHomeMenu(){
 							<li><a href="orders.html" data-transition="slide">' + psg.getMenuIcon("orders") + '&nbsp; Orders </a></li>';
 		} else {
 			historyMenu = '<li><a href="cardawards.html" data-transition="slide">' + psg.getMenuIcon("card_awards") + '&nbsp; Awards and Adjustments </a></li> \
-						    <li><a href="cardfundings.html" data-transition="slide">' + psg.getMenuIcon("card_fundings") + '&nbsp; Funding </a></li>';
+						    <li><a href="cardfundings.html" data-transition="slide">' + psg.getMenuIcon("card_fundings") + '&nbsp; Funding </a></li> \
+							<li><a href="cardbalance.html" data-transition="slide">' + psg.getMenuIcon("card_balance") + '&nbsp; Card Balance </a></li>';
+
 		}
 		if (hasClaimLanding) {
 			historyMenu += '<li><a href="claimhistory.html" data-transition="slide">' + psg.getMenuIcon("claim_history") + '&nbsp; Performance Tracking</a></li>';
