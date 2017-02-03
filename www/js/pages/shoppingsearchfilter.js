@@ -98,6 +98,6 @@ function page_shopping_search_filter_show() {
 		$('#page_shopping_search_filter').dialog('close');
 	});
 
-	$("[name=search_filter_qualifies_radio]").val(psg.getSessionItem('shoppingSearchLimit'));
+	//$("[name=search_filter_qualifies_radio]").val(psg.getSessionItem('shoppingSearchLimit'));
 }
 
