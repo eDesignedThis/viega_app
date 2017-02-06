@@ -71,7 +71,7 @@ function BuildSurveyComplete(data) {
 		listString += '<tr><td><b>Grade: </b>' + data.Grade + '</td></tr>'
 		listString += '<tr><td><b>Score: </b>' + data.Score + ' %</td></tr>'
 		listString += '<br />'
-		if(data.Retakes > 0 && data.Attempts > 0){listString += '<tr><td>You have ' + (data.Retakes - data.Attempts) + ' retakes available.</td></tr>'}
+		if((data.Retakes > 0 && data.Attempts) > 0 && data.Grade == 'Fail'){listString += '<tr><td>You have ' + (data.Retakes - data.Attempts) + ' retakes available.</td></tr>'}
 
 	}
 	else {
@@ -87,7 +87,7 @@ function BuildSurveyComplete(data) {
 	listString += '</table></div>';
 	listString += '</li>';
 	if (data.SurveyTypeId == 1) {	
-		if(data.Retakes > 0 && data.Attempts > 0) {
+		if((data.Retakes > 0 && data.Attempts) > 0 && data.Grade == 'Fail') {
 			if(data.Retakes - data.Attempts > 0){
 				listString += '<li><a href="learnearncontent.html" class="psg-learn-earn-detail-link" data-transition="slide">Retake Now</a></li>';
 			}
