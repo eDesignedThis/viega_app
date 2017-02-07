@@ -40,6 +40,7 @@ xmlns:android   = "http://schemas.android.com/apk/res/android">
     <gap:plugin name="com.pushwoosh.plugins.pushwoosh" version="3.0.2" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />
+    <access origin="*.pushwoosh.com" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
