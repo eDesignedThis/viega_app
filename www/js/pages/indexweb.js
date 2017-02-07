@@ -31,6 +31,9 @@ var app = {
 		    var sso = getQSParameterByName('sso');
 			if (sso != null){
 				var participantTypeId = getQSParameterByName('pid');
+				var startPage = getQSParameterByName('startPage');
+				if (startPage == null)
+					startPage = 'home.html';
 				if (participantTypeId != null) {
 					psg.participantTypeId = participantTypeId;
 					sessionStorage.clear();
@@ -40,7 +43,8 @@ var app = {
 								if (typeof data !== null) {
 									UpdatePointAccount(data);
 								}
-								$.mobile.pageContainer.pagecontainer('change', 'home.html');
+								
+								$.mobile.pageContainer.pagecontainer('change', startPage);
 							}
 					);
 					return
