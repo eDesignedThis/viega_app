@@ -9,7 +9,7 @@ function page_orders_show() {
 					<div class="ui-no-ellipse ui-text-small"><strong>Order ' + value.OrderNumber + '</strong></div> \
 					<div class="ui-text-small"> \
 					<div class="ui-float-left">' + value.DateOrdered + '</div> \
-					<div class="ui-float-right">' + addCommas(value.TotalPoints) + ' points</div> \
+					<div class="ui-float-right">' + value.TotalPointsFormatted + ' points</div> \
 				</div> \
 				</a> \
 				</li>';
