@@ -104,9 +104,9 @@ function HandleQuickPointsCallback(data){
 		//TODO: Need better message.	
 		$('#certificate_number').val(""); 
 		if (psg.payoutType == 1) {
-			ShowAlert("We have awarded you $" + data.Amount + " dollars.  Funds will be added to your card on the next funding cycle.","Congratulations!");
+			ShowAlert("We have awarded you $" + data.AmountFormatted + " dollars.  Funds will be added to your card on the next funding cycle.","Congratulations!");
 		} else {
-		ShowAlert("We have added " + data.Amount + " points to your account.","Congratulations!");
+		ShowAlert("We have added " + data.AmountFormatted + " points to your account.","Congratulations!");
 		}
 		WriteError("");
 		psg.pageInit();
