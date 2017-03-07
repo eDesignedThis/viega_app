@@ -39,7 +39,12 @@ xmlns:android   = "http://schemas.android.com/apk/res/android">
     <gap:plugin name="com.phonegap.plugins.barcodescanner" version="2.0.0" />
     <gap:plugin name="com.pushwoosh.plugins.pushwoosh" version="3.0.2" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
+    <plugin name="cordova-plugin-camera" spec="https://github.com/apache/cordova-plugin-camera">
+        <variable name="CAMERA_USAGE_DESCRIPTION" value="For Camera Use." />
+        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="For Camera Roll Use." />
+    </plugin>
     <access origin="*" />
+    <access origin="*.pushwoosh.com" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
