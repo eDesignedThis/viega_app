@@ -27,17 +27,18 @@ function CheckSSN(){
 	 $('#div_checkout_show_ssn').hide();
 	 $('#div_checkout_show_ftin').hide();
 	 $('#psg_ssn_ftin_info').hide();
-
-
-	if(!app.isPhoneGap){
-		getJson("SHOPPING.CHECKSSN", HandleShowSSN);
-	}	
+	getJson("SHOPPING.CHECKSSN", HandleShowSSN);
 }
 function HandleShowSSN(data) {
 	var showSsn = false;
 	var showFtin = false;
 	var SsnAtRedemptionEnabled = 0;
-
+    
+	if(data.result.ShowSSNFTIN && app.isPhoneGap)
+	{
+		$('#div_checkout_address_error').html('You must complete checkout via a web browser (desktop or mobile) for this transaction.');
+		return;
+	}
 	//show
 	if(data.result.ShowSSNFTIN)
 	{

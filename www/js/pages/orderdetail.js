@@ -98,7 +98,7 @@ function HandleGetOrderDetail(data) {
 				transTable += '<tr> \
 						<td width="30%" class="ui-text-right">' + moment(value.TransactionDate,'YYYY-MM-DD').format('MM-DD-YYYY') + '</td> \
 						<td style="white-space:normal;">' + value.TransactionDescription + '</td> \
-						<td class="ui-text-right ptsRght">' + addCommas(value.RedeemedPoints) + '</td> \
+						<td class="ui-text-right ptsRght">' + value.RedeemedPointsFormatted + '</td> \
 					</tr>';
 			});
 			transTable += '</tbody></table>';
@@ -154,7 +154,7 @@ function GetTableRow(lineItem) {
 	var rowString = '<tr> \
 						<td class="ui-text-right">' + lineItem.Quantity + '</td> \
 						<td style="white-space:normal;">' + lineItem.ItemDescription + '</td> \
-						<td class="ui-text-right ptsRght">' + addCommas(lineItem.ExtendedPoints) + '</td> \
+						<td class="ui-text-right ptsRght">' + lineItem.ExtendedPointsFormatted + '</td> \
 					</tr>';
 	return rowString;
 
