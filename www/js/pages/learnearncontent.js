@@ -29,6 +29,8 @@ function DrawSurveyContent(data) {
 	});
 	
 	ul.listview('refresh');
+	
+	EnableSurveyPaging(data);
     
 	$('#learnearn_submit').prop('disabled', false);
 
@@ -70,15 +72,18 @@ function BuildLearnEarnQuestions(data, reviewOnly) {
 	var listString = '';
 	if (psg.isNothing(reviewOnly)) reviewOnly = false;
 	
+	var pagingEnabled = !psg.isNothing(data.Survey.PagingEnabled) && data.Survey.PagingEnabled == "PagePerQuestion" ? true : false;
+	
 	$.each(data.Questions, function (index, question) {
-		listString += '<li data-psg-divider="' + data.Survey.Title + '">';
-		listString += '<input type="hidden" id="question_type_QN' + question.QuestionId + '" name="question_type_QN' + question.QuestionId + '" value="' + question.QuestionType + '" />';
+		var displaySetting = pagingEnabled && index > 0 ? 'style="display:none;"' : '';
+		listString += '<li id="psg-question-' + question.QuestionId.toString() + '" data-psg-divider="' + data.Survey.Title + '" ' + displaySetting + ' >';
+		listString += '<input type="hidden" id="question_type_QN' + question.QuestionId.toString() + '" name="question_type_QN' + question.QuestionId.toString() + '" value="' + question.QuestionType.toString() + '" />';
 		
 		if (!psg.isNothing(question.Header)) {
 			listString += '<div class="ui-no-ellipse psg-learn-earn-question-header">' + question.Header + '</div>';
 		}
 		
-		listString += '<div class="psg-learn-earn-question"><span class="psg-learn-earn-question-number">' + question.Order + '</span><span class="psg-learn-earn-question-text ui-no-ellipse">' + question.Text + '</span></div>';
+		listString += '<div class="psg-learn-earn-question"><span class="psg-learn-earn-question-number">' + question.Order.toString() + '</span><span class="psg-learn-earn-question-text ui-no-ellipse">' + question.Text + '</span></div>';
 		
 		// 1 means multi-choice
 		// 3 means stacked multi-choice
@@ -94,10 +99,10 @@ function BuildLearnEarnQuestions(data, reviewOnly) {
 				correctMessage = reviewOnly && answer.IsCorrectAnswerReview === true ? '<span class="psg-learn-earn-correct-answer-message">Correct Answer</span>' : '';
 				//listString += '<div class="psg-learn-earn-answer-stacked">';
 				if (question.Required == 1 && index == 0) {
-					listString += '<label><input type="radio"' + disabledText + checkedText + 'data-rule-required="true" class="psg-learn-earn-answer-radio" name="answer_id_QN' + question.QuestionId + '" value="' + answer.AnswerId + '" ><span class="psg-learn-earn-answer-text">' + correctMessage + answer.Text + '</span></label>';
+					listString += '<label><input type="radio"' + disabledText + checkedText + 'data-rule-required="true" class="psg-learn-earn-answer-radio" name="answer_id_QN' + question.QuestionId.toString() + '" value="' + answer.AnswerId.toString() + '" ><span class="psg-learn-earn-answer-text">' + correctMessage + answer.Text + '</span></label>';
 				}
 				else {
-					listString += '<label><input type="radio"' + disabledText + checkedText + 'class="psg-learn-earn-answer-radio" name="answer_id_QN' + question.QuestionId + '" value="' + answer.AnswerId + '" ><span class="psg-learn-earn-answer-text">' + correctMessage + answer.Text + '</span></label>';
+					listString += '<label><input type="radio"' + disabledText + checkedText + 'class="psg-learn-earn-answer-radio" name="answer_id_QN' + question.QuestionId.toString() + '" value="' + answer.AnswerId.toString() + '" ><span class="psg-learn-earn-answer-text">' + correctMessage + answer.Text + '</span></label>';
 				}
 				//listString += '</div>';
 			});
@@ -112,7 +117,7 @@ function BuildLearnEarnQuestions(data, reviewOnly) {
 				if (question.Required == 1) {
 					listString += ' data-rule-required="true"';
 				}
-				listString += ' class="psg-learn-earn-answer-textbox" name="long_answer_QN' + question.QuestionId + '"></input>';
+				listString += ' class="psg-learn-earn-answer-textbox" name="long_answer_QN' + question.QuestionId.toString() + '"></input>';
 			}
 		}
 		else {
@@ -124,7 +129,7 @@ function BuildLearnEarnQuestions(data, reviewOnly) {
 				if (question.Required == 1) {
 					listString += ' data-rule-required="true"';
 				}
-				listString += ' class="psg-learn-earn-answer-textarea" name="long_answer_QN' + question.QuestionId + '"></textarea>';
+				listString += ' class="psg-learn-earn-answer-textarea" name="long_answer_QN' + question.QuestionId.toString() + '"></textarea>';
 			}
 		}
 		listString += '</div>';
@@ -134,4 +139,77 @@ function BuildLearnEarnQuestions(data, reviewOnly) {
 	
 	return listString;
 }
+
+function EnableSurveyPaging(data) {
+	if (psg.isNothing(data)) return;
+	if (psg.isNothing(data.Survey)) return;
+	if (psg.isNothing(data.Survey.PagingEnabled)) return;
+	
+	switch (data.Survey.PagingEnabled) {
+		case "PagePerQuestion":
+			SetupSurveyPagePerQuestion(data);
+			break;
+		
+		//
+		// future paging options go here.
+		//
+	}
+}
+
+function SetupSurveyPagePerQuestion(data) {
+	var pagingHtml = '<div class="psg_survey_progress_bar" style="margin-left:auto; margin-right:auto;"></div>';
+	pagingHtml += '<button class="ui-btn ui-btn-a ui-shadow ui-corner-all psg_survey_paging_previous psg-survey-paging-button" type="button" style="display:none;" psg_paging_value="-1" >Previous</button>';
+	pagingHtml += '<button class="ui-btn ui-btn-a ui-shadow ui-corner-all psg_survey_paging_next psg-survey-paging-button" type="button" psg_paging_value="+1" >Next</button>';
+	
+	var submitButton = $('#learnearn_submit');
+	submitButton.before(pagingHtml);
+	submitButton.hide();
+	
+	var progressIncrement = 100 / data.Questions.length;
+	$('.psg_survey_progress_bar').jqxProgressBar({ width: "80%", height: 20, showText: true, value: Math.floor(progressIncrement) });
+	
+	var currentPage = 1;
+	$('.psg-survey-paging-button').on('click', function () {
+		var pagingValue = $(this).attr('psg_paging_value');
+		switch (pagingValue) {
+			case "-1":
+				currentPage--;
+				break;
+				
+			case "+1":
+				currentPage++;
+				break;
+		}
+
+		if (currentPage <= 1) {
+			currentPage = 1;
+			$('.psg_survey_paging_previous').hide();
+		}
+		if (currentPage >= data.Questions.length) {
+			currentPage = data.Questions.length;
+			$('.psg_survey_paging_next').hide();
+			$('#learnearn_submit').show();
+		}
+		if (currentPage > 1) {
+			$('.psg_survey_paging_previous').show();
+		}
+		if (currentPage < data.Questions.length) {
+			$('.psg_survey_paging_next').show();
+			$('#learnearn_submit').hide();
+		}
+		
+		$.each(data.Questions, function (index, question) {
+			var page = index + 1;
+			if (page == currentPage) {
+				$('#psg-question-' + question.QuestionId.toString()).show();
+			}
+			else {
+				$('#psg-question-' + question.QuestionId.toString()).hide();
+			}
+		});
+		
+		$('.psg_survey_progress_bar').jqxProgressBar({ width: "80%", height: 20, showText: true, value: Math.floor(progressIncrement * currentPage) });
+	});
+}
+
 
