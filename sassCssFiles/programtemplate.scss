@@ -740,6 +740,76 @@ button.ui-btn.ui-icon-minus.shopping-cart-subtract{
 }
 
 
+//////////// leaderboard css  ///////////////
+
+.psg-leaderboard-detail-title{
+    font-size: .95em;
+    font-weight: lighter;
+    margin: 0em -1em 0.5em -1em;
+    padding: 0 0 .75em 15px !important;
+    
+    h1,h2, h3, h4, h5, h6, p,{
+        font-size: .95em;
+        font-weight: lighter;
+    }
+    
+}
+
+
+
+#psg-listview-leaderboard-detail{
+    position: relative;
+    border-top: solid 2px $neutralClr;
+    
+    .leaderboard-list-item{
+        min-height: 40px;
+        .pax-rank{
+            float: left;
+            line-height: 40px;
+        }
+        .pax-image{
+            float: left;
+            margin: 0 15px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50% !important;
+            -moz-border-radius: 50% !important;
+            -webkit-border-radius: 50% !important;
+            border: solid 2px $neutralClr;
+            text-align: center;
+            overflow: hidden;
+            img{
+                width: 35px !important;
+                height: 35px !important;
+            }
+            
+            i{
+                color:$neutralClr; // or primary color
+            }
+            
+            
+        }
+        .name-score-holder{
+            float: left;
+            .pax-fullName{
+                
+            }
+            .pax-score{
+               color: $ThmeA_HdrClr; 
+            }
+            
+        }
+    
+    } 
+    
+}
+
+.psg-leaderboard-detail-footer{
+    font-size: .95em;
+    font-weight: lighter;
+    margin-top: 20px;
+}
+
 
 /*********************************    download app offer banner (on login screen)  *******************************************/
 

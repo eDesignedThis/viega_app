@@ -669,7 +669,17 @@ function PageBeforeCreateManager(e) {
 	page.find(".psg-section-name").each(function ( index ) {
 		var section = $(this);
 		var id = section.attr("psg-section-type-id");
-		section.html(psg.getMenuIcon(id) + '&nbsp; ' + psg.getMenuName(id));
+		var icon = psg.getMenuIcon(id);
+		var name = psg.getMenuName(id);
+
+		var html = '';
+		if (!psg.isNothing(icon)) {
+			html += icon + '&nbsp; ';
+		}
+		if (!psg.isNothing(name)) {
+			html += name;
+		}
+		section.html(html);
 	});
 
 	// set handler for remote content pages

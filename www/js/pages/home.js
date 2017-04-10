@@ -99,7 +99,11 @@ function getHomeMenu(){
 				menuNames[customId] = item.attr("NAME");
 			}
 			if (item.attr("LOCATION") == "0") {
-				if ((sectionType in supportedSections) || (!app.isPhoneGap && sectionType == "90")) {
+				if (psg.isCustomMenu) {
+					menuString += '<li><a href="' + item.attr("HREF") + '" data-transition="slide"><i class="fa ' + item.attr("ICON") + ' fa-lg fa-fw ui-menu-icon"></i>&nbsp; ' + item.attr("NAME") +'</a></li>'
+					popmenuItems[popmenuItems.length] = { href: item.attr("HREF"), text: item.attr("NAME") };
+				}
+				else if ((sectionType in supportedSections) || (!app.isPhoneGap && sectionType == "90")) {
 					if (sectionType != "90") {
 						menuString += '<li><a href="' + supportedSections[sectionType] + '" data-transition="slide">' + psg.getMenuIcon(sectionType) + '&nbsp; ' + item.attr("NAME") + '</a></li>'
 						popmenuItems[popmenuItems.length] = { href: supportedSections[sectionType], text: item.attr("NAME") };
