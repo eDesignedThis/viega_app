@@ -119,6 +119,9 @@ function getJson(action, successCallBack, data, failCallback, timeout, nospinner
 	else if (action.indexOf("SURVEY.") == 0) {
 		baseUrl += "jsonSurvey.ashx?action=";
 	}
+	else if (action.indexOf("LEADERBOARD.") == 0) {
+		baseUrl += "jsonLeaderboard.ashx?action=";
+	}
 	else {
         switch (action) {
             case "LOGIN.PROGRAMINFO":
@@ -376,7 +379,7 @@ var psg = {
 			psg.headerImageHeight = mobileNode.attr('HEADER_IMAGE_HEIGHT');
 			psg.headerImageName = mobileNode.attr('HEADER_IMAGE_NAME');
 		}
-		if (appName != '') {
+		if (!psg.isNothing(appName)) { // appName != '' fails if appName is undefined.
 			psg.programName = appName;
 		}
 		
@@ -955,6 +958,12 @@ function PageContainerBeforeShowManager(e,ui) {
 			break;
 		case 'page_item_options':
 			page_item_options_show();
+			break;
+        case 'page_leaderboard_detail':
+			page_leaderboard_detail_show();
+			break;
+        case 'page_leaderboard_main':
+			page_leaderboard_main_show();
 			break;
 		case 'page_learn_earn_complete':
 			page_learn_earn_complete_show();
