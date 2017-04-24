@@ -145,7 +145,8 @@ function getHomeMenu(){
 			"89":"claimslanding.html",
 			"68":"profile.html",
 			"71":"shoppingmain.html",
-			"84":"quickpoints.html"
+			"84":"quickpoints.html",
+			"112":"leaderboardmain.html"
 		};
 		if (psg.isCustomMenu) 
 			supported["50"] ="home.html";
