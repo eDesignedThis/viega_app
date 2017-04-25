@@ -42,7 +42,8 @@ function getHomeMenu(){
 			  "rec_items" : '<i class="fa fa-smile-o fa-lg fa-fw ui-menu-icon"></i>',
 			  "card_awards" : '<i class="fa fa-trophy fa-lg fa-fw ui-menu-icon"></i>',
 			  "card_fundings" : '<i class="fa fa-money fa-lg fa-fw ui-menu-icon"></i>',
-			  "card_balance" : '<i class="fa fa-credit-card fa-lg fa-fw ui-menu-icon"></i>'
+			  "card_balance" : '<i class="fa fa-credit-card fa-lg fa-fw ui-menu-icon"></i>',
+			  "112" : '<i class="fa fa-flag-checkered fa-lg fa-fw ui-menu-icon"></i>'
 			  };
 		var menuNames ={
 			"claim_history":"Performance Tracking",
