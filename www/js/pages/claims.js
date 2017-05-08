@@ -403,6 +403,23 @@ function ParseFields(page, searchTerm, canEdit, suffix) {
 					formString += '</div>';
 				}
 				break;
+			case 'commpref':
+				formString += '<select id="' + itemId + '" name="' + itemName + '" ';
+				if (required) {
+					formString += ' data-rule-required="true" data-msg-required="' + itemLabel + ' is required." ';
+				}
+				formString += '><option value="">Select One</option>';
+				formString += '<option value="1">Email</option>';
+				formString += '<option value="2">SMS</option>';
+				var $xml = $(psg.configXml);
+				var modules = $xml.find('PROGRAM > MODULES');
+				var hasApp = modules.attr('MOBILE_APP');
+				if (hasApp == '1'){
+					formString += '<option value="4">Push</option>';
+				}	
+				formString += '</select>';
+				break;
+			
 		}
 		formString += '</div>';
 	});
