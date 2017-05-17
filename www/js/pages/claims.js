@@ -267,16 +267,17 @@ function ParseFields(page, searchTerm, canEdit, suffix) {
 			required = "";
 		}
 		
+		itemId =  page + '_' + itemName;
 		if (itemType == 'hidden'){
-			formString +='<input name="' + itemName + '"  type="hidden" value="' + item.attr("VALUE") + '" >';
+			formString +='<input name="' + itemName + '" id="' + itemId + '"  type="hidden" value="' + item.attr("VALUE") + '" >';
 			return;
 		} 
 		if (itemType == 'hiddenq'){
-			formString +='<input name="' + itemName + '"  type="hidden" value="1" >';
+			formString +='<input name="' + itemName + '" id="' + itemId + '"  type="hidden" value="1" >';
 			return;
 		} 
 		if (itemType == 'hiddend'){
-			formString +='<input name="' + itemName + '" type="hidden" value="' + moment().format('MM/DD/YYYY') + '" >';
+			formString +='<input name="' + itemName + '" id="' + itemId + '" type="hidden" value="' + moment().format('MM/DD/YYYY') + '" >';
 			return;
 		} 
 		if (itemType == 'addressblock' || itemType == 'shippableaddressblock'  || itemType == 'customcountries' ) {
@@ -288,7 +289,6 @@ function ParseFields(page, searchTerm, canEdit, suffix) {
 				formString +='<div class="ui-margin-top-1x"><label for="' + itemName + '">' + itemLabel + '</label>';
 			}						
 		}
-		itemId =  page + '_' + itemName;
 		switch(itemType){
 			case 'note':
 				//TODO: Do we need to consider encoding for notes or other field labels?
