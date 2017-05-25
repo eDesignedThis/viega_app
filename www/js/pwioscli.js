@@ -11,7 +11,7 @@ function registerPushwooshIOS(appId, appName){
 	
 					//display alert to the user for example
 					navigator.notification.alert(
-						notification.aps.alert,function(){
+						notification.message,function(){
                                                     
                                                     //Send tracking data to Google
                                                     ga('send','event','User Opened Push Notification iOS','Open');
@@ -30,7 +30,7 @@ function registerPushwooshIOS(appId, appName){
 				//register for pushes
 				pushNotification.registerDevice(
 					function (status) {
-						var deviceToken = status['deviceToken'];
+						var deviceToken = status.pushToken;
 						localStorage.setItem(app.getBase() + "deviceToken", deviceToken);
 						console.warn('registerDevice: ' + deviceToken);
 					},

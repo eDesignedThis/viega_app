@@ -1,21 +1,42 @@
 {
-  "name": "RewardTrax-Web-Optimized",
-  "version": "0.1.0",
-  "author": "PSG",
-  "private": true,
-  "devDependencies": {
-    "grunt": "~0.4.*",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-concat": "^0.5.0",
-    "grunt-contrib-copy": "^0.7.0",
-    "grunt-contrib-cssmin": "^0.11.0",
-    "grunt-contrib-jshint": "*",
-    "grunt-contrib-qunit": "*",
-    "grunt-contrib-sass": "^0.8.1",
-    "grunt-contrib-uglify": "^0.7.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-filerev": "^2.1.2",
-    "grunt-usemin": "^3.0.0",
-    "load-grunt-tasks": "^2.0.0"
-  }
+    "name": "RewardTrax-Web-Optimized",
+    "version": "0.1.0",
+    "author": "PSG",
+    "private": true,
+    "devDependencies": {
+        "grunt": "~0.4.*",
+        "grunt-contrib-clean": "^0.6.0",
+        "grunt-contrib-concat": "^0.5.0",
+        "grunt-contrib-copy": "^0.7.0",
+        "grunt-contrib-cssmin": "^0.11.0",
+        "grunt-contrib-jshint": "*",
+        "grunt-contrib-qunit": "*",
+        "grunt-contrib-sass": "^0.8.1",
+        "grunt-contrib-uglify": "^0.7.0",
+        "grunt-contrib-watch": "^0.6.1",
+        "grunt-filerev": "^2.1.2",
+        "grunt-usemin": "^3.0.0",
+        "load-grunt-tasks": "^2.0.0"
+    },
+    "dependencies": {
+        "cordova-android": "^6.2.3",
+        "cordova-ios": "^4.4.0",
+        "cordova-plugin-camera": "https://github.com/apache/cordova-plugin-camera",
+        "cordova-plugin-whitelist": "1",
+        "pushwoosh-cordova-plugin": "^6.5.2"
+    },
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-camera": {
+                "CAMERA_USAGE_DESCRIPTION": "For Camera Use.",
+                "PHOTOLIBRARY_USAGE_DESCRIPTION": "For Camera Roll Use."
+            },
+            "cordova-plugin-whitelist": {},
+            "pushwoosh-cordova-plugin": {}
+        },
+        "platforms": [
+            "android",
+            "ios"
+        ]
+    }
 }

@@ -4,7 +4,7 @@ function registerPushwooshAndroid(appId, googleProjectId, appName){
 	
 	//set push notifications handler
 	document.addEventListener('push-notification', function(event) {
-		var message = event.notification.title;
+		var message = event.notification.message;
 		var userData = event.notification.userdata;
 								 
 		if(typeof(userData) != "undefined") {
@@ -29,7 +29,7 @@ function registerPushwooshAndroid(appId, googleProjectId, appName){
 	//register for pushes
 	pushNotification.registerDevice(
 		function(status) {
-			var pushToken = status;
+			var pushToken = status.pushToken;
 			localStorage.setItem(app.getBase() + "deviceToken", pushToken);
 			console.warn('push token: ' + pushToken);
 		},
