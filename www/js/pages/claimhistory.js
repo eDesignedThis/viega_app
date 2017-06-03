@@ -242,6 +242,7 @@ var psgClaimHistory = {
 						output += doc.DocumentLocation + '<br />';
 					});
 					output += '</code>';
+				}
 					output += '<p>You may upload additional documentation, if needed.</p>';
 				var picture = drawPictureControl('claimdetail_document', 'document', 'Upload Document', '0', '');
 				if (!psg.isNothing(picture) && picture.isSupported) {
@@ -258,7 +259,6 @@ var psgClaimHistory = {
 					output += '<div class="ui-margin-top-1x ui-text-small">'
 					output += 'Unfortunately, the mobile website <b>does not support</b> document uploads.';
 					output += '</div>';
-				}
 				}
 				output += '</div><br /><br />';
 			}
