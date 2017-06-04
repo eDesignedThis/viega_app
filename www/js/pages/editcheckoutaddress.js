@@ -1,17 +1,21 @@
 function page_edit_checkout_address_show()
 {
+	//debugger;
     var addressResult = psg.getSessionItem('checkoutAddress');
     if (addressResult === null) {
         getJson("CHECKOUT.ADDRESS.GET", HandleEditCheckoutAddress);
     } else {
         HandleEditCheckoutAddress(JSON.parse(addressResult));
     }
-	
+	if(psg.isIntegratedServices == "1"){
+		$('#div_edit_checkout_email').hide();
+		//$('#div_edit_checkout_profile').hide();		
+	}
 	$('#frmEditCheckoutAddress').validate({ submitHandler: doUpdateCheckoutAddress });
 }
 
 function HandleEditCheckoutAddress(data) {
-
+	
 	$("#edit_checkout_name").val(data.Name);
 	$("#edit_checkout_address1").val(data.Address.StreetAddress1);
 	$("#edit_checkout_address2").val(data.Address.StreetAddress2);
@@ -26,6 +30,7 @@ function HandleEditCheckoutAddress(data) {
 
 function doUpdateCheckoutAddress()
 {
+	//debugger;
 	if(!ValidateInput()){
 		return;
 	}	
@@ -37,7 +42,12 @@ function doUpdateCheckoutAddress()
 		CityName: $("#edit_checkout_city").val(),
 		StateCode: $("#edit_checkout_state").val(),
 		PostalCode: $("#edit_checkout_zip").val(),
-		PhoneNumber: $("#edit_checkout_phone").val()
+		PhoneNumber: $("#edit_checkout_phone").val(),
+		Email : $('#edit_checkout_email').val(),
+		Profile: $('input[name=edit_checkout_profile]').is(':checked')
+		//Profile: $("#edit_checkout_profile ").val()
+
+	
 	});
 
 	getJson("CHECKOUT.ADDRESS.SET", function(data) {
