@@ -263,12 +263,23 @@ var app = {
 	},
 	getHost: function() { return config.host;},
 	getBase: function() { return config.base;},
-	initScanField: function (fieldName){	
-		$('#scan_' + fieldName).on('click', function (e){
+	initScanField: function (fieldName){
+        var scanFieldName = (fieldName.indexOf('div_combo_') == 0) ? fieldName.replace('div_combo_','') : fieldName;	
+		$('#scan_' + scanFieldName).on('click', function (e){
 		    e.preventDefault();
 			cordova.plugins.barcodeScanner.scan(
 				function (result) {
-					$('#' + fieldName).val(result.text);
+					if (fieldName.indexOf('div_combo_') == 0) {
+						var controlName = $('#' + fieldName);
+								var item = {
+									label: result.text,
+									value: result.text
+								}
+                                controlName.jqxComboBox('val',result.text);
+								$("#" + fieldName + " input").keyup();
+					} else {
+						$('#' + fieldName).val(result.text);
+					}
 				},
 				function (error) {
 					navigator.notification.alert('Unable to scan code', function(){}, 'Scan Failed', 'OK');

@@ -346,6 +346,11 @@ function ParseFields(page, searchTerm, canEdit, suffix) {
 				}
 			formString += '><input style="display:none;" data-role="none" type="text" id="' + getLookupLabelId(itemId) +'" name="' + getLookupLabelId(itemName) + '" >';
 				scriptString += '<script>';
+				var scanEnabled = item.attr('ENABLESCAN');
+				if (isPhoneGap && scanEnabled == '1') {
+				   formString += '<a href="#" id="scan_' + itemId + '" class="fa fa-qrcode ui-menu-icon fa-lg fa-fw" style="margin-right:5px;margin-top:-20px;float:right;"></a>';
+				   scriptString += 'app.initScanField("div_combo_' + itemId + '");';	
+				}
 				if (!psg.isNothing(dealerResearch) && dealerResearch == "1" && page == "enrollment") {
 					formString += '<div><span>Cannot find your ' + itemLabel.toLowerCase() + '?</span> <a href="#panel_dealer_research">Request Research</a></div>';
 					formString += '<input type="hidden" id="' + page + '_research_information" name="research_information">';
