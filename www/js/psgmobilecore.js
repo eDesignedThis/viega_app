@@ -369,7 +369,7 @@ var psg = {
 			var loginBehavior = enrollmentNode.attr('LOGIN_BEHAVIOR');
 			psg.requiresEnrollmentConfirmation = (defaultStatus != 0 && defaultStatus != 1) || (defaultStatus == 0 && loginBehavior == 0);
 		}
-		
+		psg.isIntegratedServices = (modules.attr('INTEGRATION_SERVICES') == "1");
 		
 		var mobileNode = $xml.find('PROGRAM > MOBILE');
 		var appName = mobileNode.attr('APPLICATION_NAME');
@@ -405,6 +405,7 @@ var psg = {
 	programGuid: null,
 	payoutType: null,
 	isOpenEnrollment: false,
+	isIntegratedServices: false,
 	requiresEnrollmentConfirmation: false,
 	balance: null,
 	homeMenu: null,

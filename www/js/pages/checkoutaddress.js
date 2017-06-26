@@ -1,4 +1,5 @@
 function page_checkout_address_show() {
+	//debugger;
 	var ispu = sessionStorage.getItem(getBase() + "checkout.hasISPU");
 	if (ispu == "true") {
 		$("#checkout_address_ispu").show();
