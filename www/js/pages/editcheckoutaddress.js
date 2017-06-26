@@ -1,14 +1,15 @@
 function page_edit_checkout_address_show() {
 	var addressResult = psg.getSessionItem('checkoutAddress');
+	if (psg.isIntegratedServices) {
+		$('#div_edit_checkout_email').hide();
+		$('#div_edit_checkout_profile').hide();
+	}
 	if (addressResult === null) {
 		getJson("CHECKOUT.ADDRESS.GET", HandleEditCheckoutAddress);
 	} else {
 		HandleEditCheckoutAddress(JSON.parse(addressResult));
 	}
-	if (psg.isIntegratedServices == "1") {
-		$('#div_edit_checkout_email').hide();
-		$('#div_edit_checkout_profile').hide();
-	}
+	
 	$('#frmEditCheckoutAddress').validate({
 		submitHandler : doUpdateCheckoutAddress
 	});
