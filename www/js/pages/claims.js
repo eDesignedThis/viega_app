@@ -1,13 +1,16 @@
-function page_claim_show() {
-	var promotionId = psg.getSessionItem('promotion_id');
-	var rowCount = parseInt(psg.getSessionItem('promotion_number_of_rows')) || 1;
-	if (rowCount <= 1) { 
-		buildSingleClaim();
+var page_claim_show = (function () {
+	return function () {
+		var promotionTypeId = psg.getSessionItem('promotion_type_id');
+		var tableSettings = checkForTabledPromotion(promotionTypeId);		
+		//var rowCount = parseInt(psg.getSessionItem('promotion_number_of_rows')) || 1;
+		if (tableSettings.IsTabled) {
+			buildTabledClaim();
+		}
+		else {
+			buildSingleClaim();
+		}
 	}
-	else {
-		buildTabledClaim();
-	}
-}
+})();
 
 function buildSingleClaim() {
 	var promotionId = psg.getSessionItem('promotion_id');
@@ -51,24 +54,41 @@ function buildTabledClaim() {
 	$('#page_claim_content').trigger('create');
     $('#frmClaim').validate({ submitHandler: submitClaimForm });
 	
+	$('.psg-claim-multi-row-container').on('click', '.psg-claim-remove-button', function () {
+		var btn = $(this);
+		var rowNumber = btn.attr('data-psg-row-number');
+		$('.psg-claim-tabled-div[data-psg-row-number="' + rowNumber + '"]').remove();
+		if ($('.psg-claim-tabled-div').length == 0) {
+			addNewClaimRow();
+		}
+	});
+	
+	$('.psg-claims-add-btn').on('click', addNewClaimRow);
+	
 	var claimId = psg.getSessionItem('claim_id');
 	if (claimId != null){
 	    var data = JSON.stringify({ claim_id: claimId});
 		getJson("CLAIM.DUPLICATE.GET", handleClaimPrefill, data);
-	}	
+	}
 }
 
+
+var psgLastClaimRowNumber = 1;
 function buildTabledClaimForm(promotionTypeId, rowCount) {
 	// Common Fields
 	var searchTerm = 'PROMOTION_TYPES[PROMOTION_TYPE_ID="' + promotionTypeId + '"]>FIELD';
 	var fields = ParseFields('claim', searchTerm, true, '');
+	
+	// Create DIV for multi-rows.
+	fields.html += '<div class="psg-claim-multi-row-container">';
 		
 	// Rows
 	searchTerm = 'PROMOTION_TYPES[PROMOTION_TYPE_ID="' + promotionTypeId + '"]>FIELDGROUP>FIELD';
 	var row;
 	for (var i = 1; i < rowCount + 1; i++) {
-		row = ParseFields('claim', searchTerm, true, '_ROW' + i.toString());
-		fields.html += '<div class="ui-line-above ui-margin-top-2x"><p>Unit ' + i.toString() + '</p>' + row.html + '</div>';
+		psgLastClaimRowNumber = i;
+		row = buildTabledClaimRow(searchTerm, i.toString());
+		fields.html += row.html;
 		if (psg.isNothing(fields.script)) {
 			fields.script = row.script;
 		}
@@ -76,11 +96,12 @@ function buildTabledClaimForm(promotionTypeId, rowCount) {
 			fields.script += row.script;
 		}
 	}
+	fields.html += '</div>';
 	fields.html += '<div class="ui-line-above ui-margin-top-2x" style="height:1px;">&nbsp;</div>';
+	fields.html += '<div class="psg-claims-spacer">&nbsp;<button type="button" data-mini="true" data-theme="a" class="noCenter ui-btn ui-btn-a ui-corner-all psg-claims-add-btn">ADD</button></div>';
 	
 	return fields;
 }
-
 	function handleClaimPrefill(data){
 		if (data.Result == "success"){
 			psg.removeSessionItem('claim_id');
@@ -121,6 +142,20 @@ function buildTabledClaimForm(promotionTypeId, rowCount) {
         
 	}
 
+function addNewClaimRow() {
+	psgLastClaimRowNumber++;
+	var promotionTypeId = psg.getSessionItem('promotion_type_id');
+	var searchTerm = 'PROMOTION_TYPES[PROMOTION_TYPE_ID="' + promotionTypeId + '"]>FIELDGROUP>FIELD';
+	var row = buildTabledClaimRow(searchTerm, psgLastClaimRowNumber.toString());
+	$('.psg-claim-multi-row-container').append(row.html);
+	$('.psg-claim-multi-row-container').append(row.script);
+	$('.psg-claim-tabled-div[data-psg-row-number="' + psgLastClaimRowNumber.toString() + '"]').trigger('create');
+}
+function buildTabledClaimRow(searchTerm, rowNumber) {
+	var fields = ParseFields('claim', searchTerm, true, '_ROW' + rowNumber);
+	fields.html = '<div class="ui-line-above ui-margin-top-2x psg-claim-tabled-div" data-psg-row-number="' + rowNumber + '"><p>Unit ' + rowNumber + '<span style="float: right;"><button type="button" class="psg-claim-remove-button" data-them="a" data-psg-row-number="' + rowNumber + '" style="height: 35px;width: 35px;border-radius: 50%;font-weight: bold;background-color: #e98a1b;color: #FFF;border-width: 0px;line-height: 80%;">-</button></span></p>' + fields.html + '</div>';
+	return fields;
+}
 	function submitClaimFormResult(data){
 		if (data.Result == "success") {
 			psg.setSessionItem('claim_result_array', JSON.stringify(data.ResultArray));
