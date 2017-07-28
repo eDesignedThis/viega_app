@@ -96,7 +96,7 @@ function ExpandAddressBlock(page,optionString){
           <label for="' + page + '_state">State Code</label><input name="state" id="' + page + '_state" type="text" data-rule-required="true" data-msg-required="State Code is required." style="width: 3em;"  \
 		   data-rule-regex="true" data-psg-validation="^(A[LKSZRAEP]|C[AOT]|D[EC]|F[LM]|G[AU]|HI|I[ADLN]|K[SY]|LA|M[ADEHINOPST]|N[CDEHJMVY]|O[HKR]|P[ARW]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$" data-msg-regex="Invalid State Code" > \
           <label for="' + page + '_zip">Zip Code</label><input name="zip" id="' + page + '_zip" type="text" data-rule-required="true" data-msg-required="Zip Code is required." style="width: 6em;" \
-		   data-rule-regex="true" data-psg-validation="^((\d{5})|([AaBbCcEeGgHhJjKkLlMmNnPpRrSsTtVvXxYy]\d[A-Za-z]\d[A-Za-z]\d))$" data-msg-regex="Invalid Zip Code" >';
+		   data-rule-regex="true" data-psg-validation="^((\\d{5})|([AaBbCcEeGgHhJjKkLlMmNnPpRrSsTtVvXxYy]\\d[A-Za-z]\\d[A-Za-z]\\d))$" data-msg-regex="Invalid Zip Code" >';
 	formString += '<label for="' + page + '_country">Country</label><select id="' + page + '_country" name="' + page + '_country"  ';
 	formString += ' data-rule-required="true" data-msg-required="Country is required." style="width: 3em;" >';
 				var options = optionString.split('||');
