@@ -27,7 +27,7 @@ function page_claims_landing_show() { //@@@ CL
 		});
 	});
 }
-function buildPromotionList(promotions) { //@@@ CL
+function buildPromotionList(promotions) {
 	if (psg.isNothing(promotions)) {
 		return '<li><p class="ui-no-ellipse error"><strong>There are no active promotions at this time.  Please check back later.</strong></p></li>';
 	}
@@ -65,7 +65,7 @@ function buildPromotionList(promotions) { //@@@ CL
 	return output;
 }
 
-function openNewClaim(promotionId, promotionTypeId, promotionName, claimPage) { //@@@ CL
+function openNewClaim(promotionId, promotionTypeId, promotionName, claimPage) {
 	psg.setSessionItem('promotion_id', promotionId);
 	psg.setSessionItem('promotion_type_id', promotionTypeId);
 	psg.setSessionItem('promotion_name', !psg.isNothing(promotionName) ? promotionName : '');
