@@ -98,7 +98,7 @@ function buildTabledClaimForm(promotionTypeId, rowCount) {
 	}
 	fields.html += '</div>';
 	fields.html += '<div class="ui-line-above ui-margin-top-2x" style="height:1px;">&nbsp;</div>';
-	fields.html += '<div class="psg-claims-spacer">&nbsp;<button type="button" data-mini="true" data-theme="a" class="ui-btn ui-btn-a ui-shadow ui-corner-all">ADD</button></div>';
+	fields.html += '<div class="psg-claims-spacer">&nbsp;<button type="button" data-mini="true" data-theme="a" class="ui-btn ui-btn-a ui-shadow ui-corner-all psg-claims-add-btn">ADD</button></div>';
 	
 	return fields;
 }
@@ -153,7 +153,7 @@ function addNewClaimRow() {
 }
 function buildTabledClaimRow(searchTerm, rowNumber) {
 	var fields = ParseFields('claim', searchTerm, true, '_ROW' + rowNumber);
-	fields.html = '<div class="ui-line-above ui-margin-top-2x psg-claim-tabled-div" data-psg-row-number="' + rowNumber + '"><p>Unit ' + rowNumber + '<span style="float: right;"><button type="button" class="psg-claim-remove-button" data-them="a" data-psg-row-number="' + rowNumber + '" style="height: 35px;width: 35px;border-radius: 50%;font-weight: bold;background-color: #ee1c25;color: #FFF;border-width: 0px;line-height: 80%;">-</button></span></p>' + fields.html + '</div>';
+	fields.html = '<div class="ui-line-above ui-margin-top-2x psg-claim-tabled-div" data-psg-row-number="' + rowNumber + '"><p>Product ' + rowNumber + '<span style="float: right;"><button type="button" class="psg-claim-remove-button" data-them="a" data-psg-row-number="' + rowNumber + '" style="height: 35px;width: 35px;border-radius: 50%;font-weight: bold;background-color: #ee1c25;color: #FFF;border-width: 0px;line-height: 80%;">-</button></span></p>' + fields.html + '</div>';
 	return fields;
 }
 	function submitClaimFormResult(data){
