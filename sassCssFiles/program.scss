@@ -981,7 +981,13 @@ html body .ui-group-theme-a .ui-bar-inherit {
 .ui-page-theme-a .headerDivider {
     @include pageHeaderStylesA;
 }
-
+.psg-claims-add-btn {
+    float: right;
+    width: 5em !important;
+    /* height: 1.1em; */
+    padding: .1em .1em !important;
+    font-weight: bold !important;
+}
 
 /***************** List ********************************/
 
