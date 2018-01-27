@@ -84,10 +84,14 @@ function buildLeaderboardStandardList(data) {
 		} else {
 		   listString += '<div class="pax-image"><i class="fa fa-user fa-2x"></i></div>'; 
 		}
-		listString += '<div class="name-score-holder"> \
-			<div class="pax-fullName ui-text-small"><strong>' + pax.FullName + '</strong></div> \
-			<div class="pax-score"><strong>' + pax.Score + '</strong></div> \
-		</div></li>';
+		listString += '<div class="name-score-holder">';
+		if (psg.isNothing(pax.DrilldownOrgId) || pax.DrilldownOrgId == 0) {
+			listString += '<div class="pax-fullName ui-text-small"><strong>' + pax.FullName + '</strong></div>';
+		} else {
+			listString += '<div class="pax-fullName ui-text-small"><a href="#" class="leaderboard_drilldown_link" drilldown="' + row.DrilldownOrgId.toString() + '"><strong>' + pax.FullName + '</strong></a></div>';
+		}
+		listString += '<div class="pax-score"><strong>' + pax.Score + '</strong></div>';
+		listString += '</div></li>';
 	});
 	
 	return listString;
@@ -210,6 +214,20 @@ function drawLeaderboardField(pax, col) {
 				fieldString += '<div class="ui-text-right">' + pax.Score.toString() + '</div>'; // may need to apply formatting in future.
 			}
 			break;
+		
+		case "FIRSTNAME":
+		case "FULLNAME":
+		case "LASTNAME":
+			if (!psg.isNothing(pax[col.Field])) {
+				if (psg.isNothing(pax.DrilldownOrgId) || pax.DrilldownOrgId == 0) {
+					fieldString += pax[col.Field].toString();
+				} else {
+					fieldString += '<a href="#" class="leaderboard_drilldown_link" drilldown="';
+					fieldString += pax.DrilldownOrgId.toString();
+					fieldString += '"><b>' + pax[col.Field].toString() + '</b></a>';
+				}
+			}
+			break;
 			
 		default:
 			if (!psg.isNothing(pax[col.Field])) {
@@ -222,6 +240,20 @@ function drawLeaderboardField(pax, col) {
 }
 
 // Attaches click events to the list items.
-function attachLeaderboardListEvents() {
-	// no events currently.
+function attachLeaderboardDetailEvents() {
+	// Drill-down event.
+	$('.leaderboard_drilldown_link').on('click', function (e) {
+		var org = $(this).attr('drilldown');
+		var leaderboardId = sessionStorage.getItem('psg-leaderboard-id');
+		var data = JSON.stringify({ leaderboardId: leaderboardId, drillDownId: org });
+		getJson("LEADERBOARD.DETAIL.GET", handleLeaderboardDetail, data);
+	});
+	
+	// Drill-up event.
+	$('.leaderboard_drillup_link').on('click', function (e) {
+		var org = $(this).attr('drillup');
+		var leaderboardId = sessionStorage.getItem('psg-leaderboard-id');
+		var data = JSON.stringify({ leaderboardId: leaderboardId, drillDownId: org });
+		getJson("LEADERBOARD.DETAIL.GET", handleLeaderboardDetail, data);
+	});
 }
