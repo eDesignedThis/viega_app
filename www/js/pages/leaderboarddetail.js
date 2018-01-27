@@ -88,7 +88,7 @@ function buildLeaderboardStandardList(data) {
 		if (psg.isNothing(pax.DrilldownOrgId) || pax.DrilldownOrgId == 0) {
 			listString += '<div class="pax-fullName ui-text-small"><strong>' + pax.FullName + '</strong></div>';
 		} else {
-			listString += '<div class="pax-fullName ui-text-small"><a href="#" class="leaderboard_drilldown_link" drilldown="' + row.DrilldownOrgId.toString() + '"><strong>' + pax.FullName + '</strong></a></div>';
+			listString += '<div class="pax-fullName ui-text-small"><a href="#" class="leaderboard_drilldown_link" drilldown="' + pax.DrilldownOrgId.toString() + '"><strong>' + pax.FullName + '</strong></a></div>';
 		}
 		listString += '<div class="pax-score"><strong>' + pax.Score + '</strong></div>';
 		listString += '</div></li>';
