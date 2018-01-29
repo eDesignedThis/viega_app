@@ -24,6 +24,9 @@ node_modules/
 **/node_modules/*
 dist/
 **/dist/*
+simulation/
+**/simulation/*
+
 
 # =========================
 # Operating System Files
