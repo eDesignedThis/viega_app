@@ -148,7 +148,16 @@ function ValidateSSN(showSsn)
 		$('#checkout_validate_ssn').show();
 		return false;
 		}
-	var re = /^[0-9]{3}\-?[0-9]{2}\-?[0-9]{4}$/
+	if(ssn == '-') {
+		$('#checkout_validate_ssn').show();
+		return false;
+	}	
+	if(ssn.length != 9){
+		$('#checkout_validate_ssn').show();
+		return false;		
+	}
+		
+	var re = /^[0-9]*$/
 	var test = re.test(ssn);
 	if (!test) {
 		$('#checkout_validate_ssn').show();
