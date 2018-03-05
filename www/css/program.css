@@ -53,6 +53,7 @@ body {
     margin: -90px 0px 0px -198px;
     /* offset vertical: half of image height */
     /* offset horizontal: half of image width and text area width */ } }
+
 h1 {
   font-size: 24px;
   font-weight: normal;
@@ -86,6 +87,7 @@ h1 {
     opacity: 0.4; }
   to {
     opacity: 1.0; } }
+
 @-webkit-keyframes fade {
   from {
     opacity: 1.0; }
@@ -93,6 +95,7 @@ h1 {
     opacity: 0.4; }
   to {
     opacity: 1.0; } }
+
 .blink {
   animation: fade 3000ms infinite;
   -webkit-animation: fade 3000ms infinite; }
@@ -282,7 +285,7 @@ div#psg_jqx_progress_bar_0.jqx-progressbar.jqx-widget.jqx-widget-content.jqx-rc-
   /*width: 99% !important;*/
   background-color: #8c8b8b !important;
   /*border-radius: $buttonNoCrns;
-  -webkit-border-radius: $buttonNoCrns;*/ }
+    -webkit-border-radius: $buttonNoCrns;*/ }
 
 div.jqx-progressbar-value.jqx-fill-state-pressed[style] {
   background-color: #2b82fa !important;
@@ -404,12 +407,13 @@ button.ui-btn.ui-icon-minus.shopping-cart-subtract {
   color: #ee1c25; }
 
 #homeLogo {
-  margin-bottom: 15px;
-  height: 150px;
+  margin-bottom: 0px;
+  height: 250px;
   background-image: url(../img/icon.png);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain; }
+  background-size: contain;
+  background-color: #302f2f; }
   #homeLogo p {
     display: none; }
   #homeLogo img {
@@ -488,7 +492,7 @@ button.ui-btn.ui-icon-minus.shopping-cart-subtract {
     #psg-listview-leaderboard-detail .leaderboard-list-item .name-score-holder {
       float: left; }
       #psg-listview-leaderboard-detail .leaderboard-list-item .name-score-holder .pax-score {
-        color: #0667EC; }
+        color: #ec1c26; }
 
 .psg-leaderboard-detail-footer {
   font-size: .95em;
@@ -534,15 +538,13 @@ button.ui-btn.ui-icon-minus.shopping-cart-subtract {
 @media screen and (min-width: 768px) {
   .ui-input-text.ui-corner-all {
     border-bottom: solid 0.1em #8c8b8b !important; }
-
   #page_home .ui-listview > li.ui-first-child > a.ui-btn {
     border-width: 4px 0 .1em 0 !important; }
-
   .ui-listview > li > a.ui-btn {
     border-width: 0 0 .1em 0; }
-
   #qpointsContainer .panelRight .innerpnlRgt {
     border-bottom: solid 0.1em #8c8b8b; } }
+
 /*********************************    ipad/tablet media queries   *******************************************/
 /********************************************** Theme A ***************************************************
 -----------------------------------------------------------------------------------------------------------*/
@@ -585,7 +587,7 @@ html body .ui-group-theme-a .ui-bar-inherit {
   border-style: solid; }
 
 .ui-header.ui-bar-a {
-  background-color: #0667EC !important;
+  background-color: #ec1c26 !important;
   border: none !important;
   color: #FFF; }
   .ui-header.ui-bar-a .ui-btn {
@@ -608,6 +610,13 @@ html body .ui-group-theme-a .ui-bar-inherit {
   background-color: #636363 !important;
   padding-left: 1.5em !important;
   margin: -1.1em -1.6em 0em -1.6em !important; }
+
+.psg-claims-add-btn {
+  float: right;
+  width: 5em !important;
+  /* height: 1.1em; */
+  padding: .1em .1em !important;
+  font-weight: bold !important; }
 
 /***************** List ********************************/
 .ui-page-theme-a .colspLrg.ui-collapsible-set {
@@ -632,6 +641,7 @@ html body .ui-group-theme-a .ui-bar-inherit {
   color: #FFF !important; }
   .ui-page-theme-a .ui-collapsible .ui-collapsible-heading .ui-btn.ui-btn-a .ui-li-count {
     color: #FFF !important; }
+
 .ui-page-theme-a .ui-collapsible .ui-collapsible-content li.ui-li-divider.ui-bar-a {
   color: #000 !important;
   font-size: .75em !important;
@@ -640,9 +650,11 @@ html body .ui-group-theme-a .ui-bar-inherit {
   border-bottom: solid 0.05em #8c8b8b !important;
   padding-left: 1em !important;
   background-color: transparent !important; }
+
 .ui-page-theme-a .ui-collapsible .ui-collapsible-content td.ptsRght {
   color: #0667EC !important;
   font-weight: bold; }
+
 .ui-page-theme-a .ui-collapsible .ui-collapsible-content div#order_detail_shipping {
   color: #000;
   font-size: 0.8em !important; }
@@ -874,7 +886,5 @@ html body .ui-group-theme-a .ui-focus,
 html head + body .ui-btn-a.ui-focus,
 html head + body .ui-body-a.ui-focus {
   /*-webkit-box-shadow: 0 0 12px #3388cc ;
-  -moz-box-shadow: 0 0 12px #3388cc ;
-  box-shadow: 0 0 12px #3388cc ;*/ }
-
-/*# sourceMappingURL=program.css.map */
+	-moz-box-shadow: 0 0 12px #3388cc ;
+	box-shadow: 0 0 12px #3388cc ;*/ }
