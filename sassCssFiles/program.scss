@@ -33,7 +33,7 @@ $ThmeA_LstClrHover:#8c8b8b;
 /************* Header, Statusbar, PointsNumbers, Icons  ************/
 
 /////  This value controls the color of the following item(s): Header/Banner and *Statusbar.
-$ThmeA_HdrClr:#0667EC;
+$ThmeA_HdrClr:#ec1c26;
 
 /////  This value controls the text color of the following item(s): Header/Banner.
 $ThmeA_HdrTxtClr:#FFF;
@@ -42,7 +42,7 @@ $ThmeA_HdrTxtClr:#FFF;
 $ThmeA_PntClr:#0667EC;
 
 /////  This value controls the color of the following item(s): Carats ( actually color is adjusted below ).
-$ThmeA_CrtClr:#0667ec;
+$ThmeA_CrtClr:#302f2f;
 
 /////  This value controls the color of the following item(s): Menu Icons.
 $ThmeA_MnuIconClr:#ee1c25;
@@ -657,13 +657,16 @@ button.ui-btn.ui-icon-minus.shopping-cart-subtract{
 
 
 
+
 #homeLogo{
-	margin-bottom: 15px;
-	height: 150px;
+	margin-bottom: 0px;
+	height: 250px;
 	background-image: url(../img/icon.png);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
+    background-color: #302f2f;
+   
 	
 	p{
 	    display:none;
