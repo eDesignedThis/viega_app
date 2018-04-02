@@ -1,19 +1,21 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="100001" id="com.incentivesolutions.fiberondeckdollars" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Fiberon Deck Dollars</name>
+<widget id="com.incentivesolutions.rewardtrax" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" 
+xmlns:gap="http://phonegap.com/ns/1.0"
+xmlns:android   = "http://schemas.android.com/apk/res/android">
+    <name>Rewardtrax</name>
     <description>
-        Fiberon Deck Dollars Mobile App
+        Mobile Incentives and Loyalty Application
     </description>
     <author email="support@incentivesolutions.com" href="http://www.incentivesolutions.com">
         Incentive Solutions, Inc.
     </author>
+    
     <preference name="permissions" value="none" />
     <preference name="FadeSplashScreen" value="false" />
     <preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="false" />
-    <preference name="webviewbounce" value="false" />
-    <preference name="DisallowOverscroll" value="true" />
+    <preference name="webviewbounce" value="true" />
     <preference name="prerendered-icon" value="true" />
     <preference name="stay-in-webview" value="false" />
     <preference name="StatusBarOverlaysWebView" value="false" />
@@ -25,7 +27,6 @@
     <preference name="disable-cursor" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="10000" />
-    <preference name="android-minSdkVersion" value="19" />
     <preference name="SplashScreenMaintainAspectRatio" value="true" />
     <gap:plugin name="org.apache.cordova.camera" />
     <gap:plugin name="org.apache.cordova.device" />
@@ -37,6 +38,11 @@
     <gap:plugin name="org.apache.cordova.vibration" />
     <gap:plugin name="com.phonegap.plugins.barcodescanner" version="2.0.0" />
     <gap:plugin name="com.pushwoosh.plugins.pushwoosh" version="3.0.2" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <plugin name="cordova-plugin-camera" spec="https://github.com/apache/cordova-plugin-camera">
+        <variable name="CAMERA_USAGE_DESCRIPTION" value="For Camera Use." />
+        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="For Camera Roll Use." />
+    </plugin>
     <access origin="*" />
     <access origin="*.pushwoosh.com" />
     <allow-intent href="http://*/*" />
@@ -52,37 +58,4 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
-        <string>For scanning barcodes and invoices</string>
-    </edit-config>
-    <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryUsageDescription">
-        <string>For pictures of invoices</string>
-    </edit-config>
-    <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
-        <string>need for tagging pictures</string>
-    </edit-config>
-    <engine name="android" spec="6.4.0" />
-    <engine name="ios" spec="4.5.4" />
-    <plugin name="cordova-plugin-camera" spec="git+https://github.com/apache/cordova-plugin-camera.git">
-        <variable name="CAMERA_USAGE_DESCRIPTION" value="For Camera Use." />
-        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="For Camera Roll Use." />
-    </plugin>
-    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
-    <plugin name="pushwoosh-cordova-plugin" spec="^6.5.3">
-        <variable name="LOG_LEVEL" value="DEBUG" />
-        <variable name="IOS_FOREGROUND_ALERT_TYPE" value="NONE" />
-        <variable name="ANDROID_FOREGROUND_PUSH" value="false" />
-    </plugin>
-    <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
-    <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
-    <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
-    <plugin name="cordova-plugin-dialogs" spec="^2.0.1" />
-    <plugin name="cordova-plugin-globalization" spec="^1.0.9" />
-    <plugin name="cordova-plugin-inappbrowser" spec="^2.0.2" />
-    <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
-    <plugin name="cordova-plugin-device" spec="^2.0.1" />
-    <plugin name="cordova-plugin-file-transfer" spec="^1.7.1" />
-    <plugin name="phonegap-plugin-barcodescanner" spec="^7.0.2">
-        <variable name="CAMERA_USAGE_DESCRIPTION" value=" " />
-    </plugin>
 </widget>
