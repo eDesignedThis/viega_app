@@ -290,19 +290,30 @@ var app = {
 	initPictureField: function (fieldName){	
 		$('#picture_' + fieldName).on('click', function (e){
 			e.preventDefault();
-			navigator.camera.getPicture(
-				function (imageData) {
-					$('#' + fieldName).val(imageData);
-					$('#img_' + fieldName).show();
-					$('#img_' + fieldName).attr("src",imageData); // "data:image/jpeg;base64," + imageData;
-					
-				},
-				function (error) {
-					navigator.notification.alert('Unable to get picture', function(){}, 'Capture Failed', 'OK');
-				},
-				{ 	quality: 50,
-					destinationType: Camera.DestinationType.FILE_URI
-				}
+			navigator.notification.confirm(
+			'What do you want to add?', // message
+			function(buttonIndex) {
+				var photoSource = Camera.PictureSourceType.CAMERA;
+				if (buttonIndex == 2)
+					photoSource = Camera.PictureSourceType.SAVEDPHOTOALBUM;
+				navigator.camera.getPicture(
+					function (imageData) {
+						if (imageData.indexOf("file://") == -1)
+							imageData = getFileEntry(imageData,fieldName);
+						else
+							updatePictureField(imageData,fieldName);						
+					},
+					function (error) {
+						navigator.notification.alert('Unable to get picture', function(){}, 'Capture Failed', 'OK');
+					},
+					{ 	quality: 30,
+					    sourceType: photoSource,
+						destinationType: Camera.DestinationType.FILE_URI
+					}
+				)
+			},            // callback to invoke with index of button pressed
+			"Add A Picture",           // title
+			["New Picture","Saved Picture"]     // buttonLabels
 			);
 		});
 	},
@@ -352,3 +363,33 @@ var app = {
 		}
 	}	
 };
+function getFileEntry(imgUri,fieldName) {
+    window.resolveLocalFileSystemURL(imgUri, function(fileEntry) {
+									var fileLocation = fileEntry.toURL();
+									console.log(fileLocation);
+									if (fileLocation.indexOf("file://") == -1)
+									    createNewFileEntry(fileEntry,fieldName);
+									else
+										updatePictureField(fileLocation,fieldName);
+									}, function() { 
+										createNewFileEntry(imgUri,fieldName);
+									});
+}
+
+function createNewFileEntry(fileEntry,fieldName) {
+    window.resolveLocalFileSystemURL(cordova.file.cacheDirectory, function (dirEntry) {
+ 		fileEntry.copyTo(dirEntry,"tempfile" + Math.random() + ".jpg",function(newFile){
+							console.log("success")
+							updatePictureField(newFile.toURL(),fieldName);
+						},
+						function(){
+							console.log("fail");
+						});
+     }, null);
+}
+
+function updatePictureField(imageData,fieldName) {
+	$('#' + fieldName).val(imageData);
+	$('#img_' + fieldName).show();
+	$('#img_' + fieldName).attr("src",imageData); // "data:image/jpeg;base64," + imageData;	
+}
