@@ -29,6 +29,7 @@ function getHomeMenu(){
 			  "57" : '<i class="fa fa-envelope-o fa-lg fa-fw ui-menu-icon"></i>',
 			  "58" : '<i class="fa fa-book fa-lg fa-fw ui-menu-icon"></i>',
 			  "89" : '<i class="fa fa-clipboard fa-lg fa-fw ui-menu-icon"></i>',
+			  "118" : '<i class="fa fa-clipboard fa-lg fa-fw ui-menu-icon"></i>',
 			  "68" : '<i class="fa fa-user fa-lg fa-fw ui-menu-icon"></i>',
 			  "71" : '<i class="fa fa-gift fa-lg fa-fw ui-menu-icon"></i>',
 			  "84" : '<i class="fa fa-certificate fa-lg fa-fw ui-menu-icon"></i>',
@@ -71,7 +72,7 @@ function getHomeMenu(){
 		xml.find(search).each( function(){
 			var item = $(this);
 			var sectionType = item.attr("TYPE_ID");
-			if (sectionType == 89) {
+			if (sectionType == 89 || sectionType == 118) {
 				hasClaimLanding = true;
 			}
 			if (sectionType == 71 && item.attr("LOCATION") == "-2" ) {
@@ -144,6 +145,7 @@ function getHomeMenu(){
 			"57":"contact.html",
 			"58":"learnearnmain.html",
 			"89":"claimslanding.html",
+			"118":"claimslanding.html",
 			"68":"profile.html",
 			"71":"shoppingmain.html",
 			"84":"quickpoints.html",
