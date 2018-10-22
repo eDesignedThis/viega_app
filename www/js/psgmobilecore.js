@@ -440,6 +440,7 @@ var psg = {
 					localStorage.setItem(base + 'authToken', data.Token);
 					psg.setCache('participant_type_id', {"ParticipantTypeId": data.ParticipantTypeId});
 					sessionStorage.removeItem(base + 'authFail');
+					addBaseMenuItems( [{href:"settings.html", text:"Settings" }] );
 				}
 				psg.participantTypeId = data.ParticipantTypeId;
 				localStorage.setItem(base + 'last_email', $('#login_email').val());
