@@ -1,11 +1,11 @@
 var config = {
-appName: 'RewardTrax',
-appPushId: 'AA322-266A3',
+appName: 'HYShareRewards',
+appPushId: 'D3EF2-35712',
 //this is the project number not the project Id
-googleProjectNumber: '66243742706', 
+googleProjectNumber: '646856504251', 
 msServiceName: '',
-host: 'https://www.rewardtrax.com/brandeddemo15',
-base: '/brandeddemo15/m/',
-googleUA: 'UA-61738744-1'
+host: 'https://www.hysharerewards.com',
+base: '/m/',
+googleUA: 'UA-61738744-29'
 
 }

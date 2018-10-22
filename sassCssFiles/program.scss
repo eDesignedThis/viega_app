@@ -33,19 +33,19 @@ $ThmeA_LstClrHover:#8c8b8b;
 /************* Header, Statusbar, PointsNumbers, Icons  ************/
 
 /////  This value controls the color of the following item(s): Header/Banner and *Statusbar.
-$ThmeA_HdrClr:#0667EC;
+$ThmeA_HdrClr:#000;
 
 /////  This value controls the text color of the following item(s): Header/Banner.
 $ThmeA_HdrTxtClr:#FFF;
 
 /////  This value controls the color of the following item(s): PointsNumber.
-$ThmeA_PntClr:#0667EC;
+$ThmeA_PntClr:#000;
 
 /////  This value controls the color of the following item(s): Carats ( actually color is adjusted below ).
-$ThmeA_CrtClr:#0667ec;
+$ThmeA_CrtClr:#e5a713!important;
 
 /////  This value controls the color of the following item(s): Menu Icons.
-$ThmeA_MnuIconClr:#ee1c25;
+$ThmeA_MnuIconClr:#e5a713;
 
 
 /************* Dividers and Collapsible(s)  ************/
@@ -67,19 +67,19 @@ $ThmeA_ClpTxtClr:#FFF;
 /*************   Links and Buttons  ************/
 
 /////  This value controls the color of the following item(s): Links (normal and visited).
-$ThmeA_LnkClrNormal:#ee1c25;
+$ThmeA_LnkClrNormal:#e5a713;
 
 /////  This value controls the color of the following item(s): Links (hover and active).
 $ThmeA_LnkClrHover:#0667EC;
 
 /////  This value controls the color of the following item(s): Button (normal and visited).
-$ThmeA_btnClrNormal:#ee1c25;
+$ThmeA_btnClrNormal:#e5a713;
 
 /////  This value controls the color of the following item(s): Button Text (normal and visited).
-$ThmeA_btnTxtClrNormal:#FFF;
+$ThmeA_btnTxtClrNormal:#000;
 
 /////  This value controls the color of the following item(s): Button (hover and active).
-$ThmeA_btnClrHover:#0667EC;
+$ThmeA_btnClrHover:#000;
 
 /////  This value controls the color of the following item(s): Button Text (hover and active).
 $ThmeA_btnTxtClrHover:#FFF;
@@ -1381,5 +1381,28 @@ html head + body .ui-body-a.ui-focus {
 	-moz-box-shadow: 0 0 12px #3388cc ;
 	box-shadow: 0 0 12px #3388cc ;*/
 }
+
+ui-listview .ui-btn .ui-btn-inner .ui-icon-arrow-r{
+    background-color: green!important;
+}
+
+
+
+ul#psg-listview-leaderboard-detail{
+ 
+ 
+table.ui-responsive{
+    max-width: 100%;
+}
+}
+
+ul#psg-listview-leaderboard-detail table.ui-responsive{
+    width: 100%;
+}
+
+.ui-listview > .ui-li-static, .ui-listview > .ui-li-divider, .ui-listview > li > a.ui-btn{
+    white-space: normal!important;
+}
+
 
 

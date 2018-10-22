@@ -1,15 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.incentivesolutions.rewardtrax" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" 
-xmlns:gap="http://phonegap.com/ns/1.0"
-xmlns:android   = "http://schemas.android.com/apk/res/android">
-    <name>Rewardtrax</name>
+<widget id="com.incentivesolutions.hysharerewards" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>HY Share Rewards</name>
     <description>
-        Mobile Incentives and Loyalty Application
+       Hy Share Mobile App
     </description>
     <author email="support@incentivesolutions.com" href="http://www.incentivesolutions.com">
         Incentive Solutions, Inc.
     </author>
-    
     <preference name="permissions" value="none" />
     <preference name="FadeSplashScreen" value="false" />
     <preference name="orientation" value="portrait" />
@@ -19,7 +16,7 @@ xmlns:android   = "http://schemas.android.com/apk/res/android">
     <preference name="prerendered-icon" value="true" />
     <preference name="stay-in-webview" value="false" />
     <preference name="StatusBarOverlaysWebView" value="false" />
-    <preference name="StatusBarBackgroundColor" value="#2b5c9f" />
+    <preference name="StatusBarBackgroundColor" value="#000" />
     <preference name="detect-data-types" value="true" />
     <preference name="exit-on-suspend" value="false" />
     <preference name="show-splash-screen-spinner" value="true" />
@@ -38,11 +35,6 @@ xmlns:android   = "http://schemas.android.com/apk/res/android">
     <gap:plugin name="org.apache.cordova.vibration" />
     <gap:plugin name="com.phonegap.plugins.barcodescanner" version="2.0.0" />
     <gap:plugin name="com.pushwoosh.plugins.pushwoosh" version="3.0.2" />
-    <plugin name="cordova-plugin-whitelist" spec="1" />
-    <plugin name="cordova-plugin-camera" spec="https://github.com/apache/cordova-plugin-camera">
-        <variable name="CAMERA_USAGE_DESCRIPTION" value="For Camera Use." />
-        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="For Camera Roll Use." />
-    </plugin>
     <access origin="*" />
     <access origin="*.pushwoosh.com" />
     <allow-intent href="http://*/*" />
@@ -57,5 +49,29 @@ xmlns:android   = "http://schemas.android.com/apk/res/android">
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+        <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
+            <string>For scanning barcodes and invoices</string>
+        </edit-config>
+        <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryUsageDescription">
+            <string>For pictures of invoices</string>
+        </edit-config>
+        <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
+            <string>need for tagging pictures</string>
+        </edit-config>
     </platform>
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <plugin name="cordova-plugin-device" spec="~2.0.2" />
+    <plugin name="cordova-plugin-dialogs" spec="~2.0.1" />
+    <plugin name="cordova-plugin-file-transfer" spec="~1.7.1" />
+    <plugin name="cordova-plugin-geolocation" spec="~4.0.1" />
+    <plugin name="cordova-plugin-globalization" spec="~1.11.0" />
+    <plugin name="cordova-plugin-inappbrowser" spec="~3.0.0" />
+    <plugin name="cordova-plugin-network-information" spec="~2.0.1" />
+    <plugin name="cordova-plugin-splashscreen" spec="~5.0.2" />
+    <plugin name="cordova-plugin-statusbar" spec="~2.4.2" />
+    <plugin name="phonegap-plugin-barcodescanner" spec="~8.0.0" />
+    <plugin name="pushwoosh-cordova-plugin" spec="~7.2.2" />
+    <plugin name="cordova-plugin-camera" spec="~4.0.3" />
+    <engine name="android" spec="^7.1.1" />
+    <engine name="ios" spec="^4.5.4" />
 </widget>
