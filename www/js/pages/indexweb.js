@@ -49,7 +49,27 @@ var app = {
 					);
 					return
 				}
+			} else {
+				var page = getQSParameterByName('page');
+				if (page != null) {
+					var redirectPage = '';
+					var redirectParameters = '';
+					if (page.toLowerCase().startsWith('catalog.aspx')) {
+						redirectPage = 'shoppingbrowse.html';
+						redirectParameters = page.toLowerCase().replace('catalog.aspx?department=','');
+					}
+					if (page.toLowerCase().startsWith('history.aspx')) {
+						redirectPage = 'pointshistory.html';
+					}
+					if (page.toLowerCase().startsWith('profile.aspx')) {
+						redirectPage = 'profile.html';
+					}
+					localStorage.setItem('redirectPage', redirectPage);
+					localStorage.setItem('shopping.departments', redirectParameters);
+				}
+			
 			}
+			
 		}
 		if (sessionStorage.getItem('startPage') != null){
 			var startPage = sessionStorage.getItem('startPage');
