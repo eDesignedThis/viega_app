@@ -55,7 +55,7 @@ var app = {
 					var redirectPage = '';
 					var redirectParameters = '';
 					if (page.toLowerCase().startsWith('catalog.aspx')) {
-						redirectPage = 'shoppingbrowse.html';
+						redirectPage = 'shoppingsearch.html';
 						redirectParameters = page.toLowerCase().replace('catalog.aspx?department=','');
 					}
 					if (page.toLowerCase().startsWith('history.aspx')) {
@@ -65,7 +65,7 @@ var app = {
 						redirectPage = 'profile.html';
 					}
 					localStorage.setItem('redirectPage', redirectPage);
-					localStorage.setItem('shopping.departments', redirectParameters);
+					localStorage.setItem('redirectParameters', redirectParameters);
 				}
 			
 			}

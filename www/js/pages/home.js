@@ -4,6 +4,24 @@ function page_home_show(){
 	}
 
 	var menuString = getHomeMenu();
+	
+	redirectPage = localStorage.getItem('redirectPage');
+			if (redirectPage && redirectPage != ''){
+				localStorage.removeItem('redirectPage');
+				var redirectParameters = localStorage.getItem('redirectParameters');
+				if (!psg.isNothing(redirectParameters)) {
+					psg.setSessionItem('shoppingSearchInit',"true");
+					psgShopping.Search.Mode.reset();
+					psgShopping.Department.Current.reset(); // restarts us at top of tree.
+					var dept = { Code: redirectParameters, Parent:"0", Name: "Link Results", CatalogCategoryIndex: null};
+					psgShopping.Department.Current.set(dept);
+					psgShopping.Search.Term.set(null); // makes browse mode.
+					psgShopping.Search.Trigger.set(); // instructs search page to refresh.
+					localStorage.removeItem('redirectParameters');
+				}
+				$.mobile.pageContainer.pagecontainer('change', redirectPage);
+			}
+	
     if (!psg.isCustomMenu) {
     	var ul = $('#home_menu');
 		ul.html(menuString);

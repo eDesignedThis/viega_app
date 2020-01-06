@@ -106,17 +106,7 @@ function page_login_show() {
 				WriteError(data.Result);
 			}
 		} else {
-			redirectPage = localStorage.getItem('redirectPage');
-			if (redirectPage && redirectPage != ''){
-				localStorage.removeItem('redirectPage');
-				if (!psg.isNothing(localStorage.getItem('shopping.departments'))) {
-					psg.setSessionItem('shopping.departments', localStorage.getItem('shopping.departments'));
-					localStorage.removeItem('redirectParameters');
-				}
-				$.mobile.pageContainer.pagecontainer('change', redirectPage);
-			} else {
 				$.mobile.pageContainer.pagecontainer('change', 'home.html');
-			}
 		}
 	}
 }
