@@ -79,6 +79,11 @@ function page_enrollment_show(){
 	
 	function loginCallback ( data ) {
 		if (data.Result == null || data.Result == "success") {
+			var searchTermGame = 'GAMES > GAME[GAME_TYPE_ID="1"][PARTICIPANT_TYPE_ID="' + psg.participantTypeId + '"]'; // winwheel	only
+			var $xml = $(psg.configXml);
+			if ($xml.find(searchTermGame).length > 0){
+				$.mobile.changePage('enrollmentbonus.html');
+			}				
 			$.mobile.changePage('home.html');
 		}
 		else {

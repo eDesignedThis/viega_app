@@ -106,7 +106,7 @@ function page_login_show() {
 				WriteError(data.Result);
 			}
 		} else {
-			$.mobile.pageContainer.pagecontainer('change', 'home.html');
+				$.mobile.pageContainer.pagecontainer('change', 'home.html');
 		}
 	}
 }

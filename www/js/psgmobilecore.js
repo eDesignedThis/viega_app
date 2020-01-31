@@ -122,6 +122,9 @@ function getJson(action, successCallBack, data, failCallback, timeout, nospinner
 	else if (action.indexOf("LEADERBOARD.") == 0) {
 		baseUrl += "jsonLeaderboard.ashx?action=";
 	}
+	else if (action.indexOf("GAMES") == 0) {
+		baseUrl += "jsonGames.ashx?action=";
+	}	
 	else {
         switch (action) {
             case "LOGIN.PROGRAMINFO":
@@ -974,6 +977,9 @@ function PageContainerBeforeShowManager(e,ui) {
         case 'page_leaderboard_detail':
 			page_leaderboard_detail_show();
 			break;
+        case 'page_enrollment_bonus':
+			page_enrollment_bonus_show();
+			break;			
         case 'page_leaderboard_main':
 			page_leaderboard_main_show();
 			break;

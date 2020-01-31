@@ -1,0 +1,63 @@
+<html>
+<head><title></title></head>
+<body>
+ 
+ <!-- Start Page ----------------------------------------- -->
+	<div data-role="page" id="page_enrollment_bonus">
+	  <div data-role="panel" class="menu-panel" data-position="right" data-position-fixed="true" data-display="push" data-display="overlay" data-theme="a" id="enrollment_bonus_popup" >
+			<ul class='popup_menu' data-role="listview" data-inset="false"  data-theme="a">
+			</ul>
+		</div>
+	  <div data-theme="a" data-role="header" data-position="fixed">
+		  <a data-rel="back" data-role="button" data-direction="reverse" data-transition="slide"
+			 data-icon="carat-l" data-iconpos="notext" class="ui-btn-left icon-back">
+			  Back
+		  </a>
+		  <h3 class="psg-class-program-name">
+		  </h3>
+	
+		</div>
+		<div data-role="content"  id="page_enrollment_bonus_content">
+			<form data-ajax="false" id="frmWinWheel">
+				<div class="error" tabindex="-1" style="display: none;outline: none !important;" id="winwheel_error">
+				</div>			
+				<div>
+					  <div class="winWheelContainer" id="winWheelContainerId">
+
+						<div id="btnSpinDiv" class="winWheelDiv">
+							<canvas class="the_canvas" id="myDrawingCanvas" Width="200px" Height="200px">
+								<p class="noCanvasMsg" align="center">
+								  Sorry, your browser doesn't support canvas.<br>Please try another.</br>
+								</p>
+							</canvas>
+						</div>
+					</div>
+						<div class="instructionsContainer">
+							<div class="instructions" id="ww_instructions_button">
+								Click the Spin button to spin the wheel.
+								<br />
+								<button id="btnSpin" class="ui-btn ui-btn-a ui-shadow ui-corner-all" type="submit" >Spin</button>
+							</div>
+						</div>
+
+				</div>
+				<div id="popupGames" style="position: fixed; left: 50%; top: 50%;display:none;">
+						<div>Confirmation</div>
+						<div id="contentMessage" style="margin: 5px; width: 100%">
+								  <div><input type="button" id="btnConfirm" value="Ok" style="margin: 10px" /></div>
+							</div>
+				  </div>	
+				  <div id="popupErrors" style="position: fixed; left: 50%; top: 50%;">
+						  <div>Message:</div>
+						  <div id="errorMessage" style="margin: 5px">
+								   <div> <input type="button" id="errorMessageOk" value="OK" style="margin: 5px" /></div>
+						  </div>
+				  </div>			  				
+			</form>
+		</div>
+		<div data-theme="a" data-role="footer" data-position="fixed">
+		
+		</div>
+</div>
+</body>
+</html>
