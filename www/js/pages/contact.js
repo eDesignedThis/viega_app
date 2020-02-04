@@ -7,7 +7,7 @@ function page_contact_show(){
 		var useDefaults = '0';
 		var $xml = $(psg.configXml);
 
-		if ($xml.find('CONTACTS[USE_DEFAULTS="1"]').length == 1){
+		if ($xml.find('CONTACTS[CONTACT_USE_DEFAULTS="1"]').length == 1){
 			useDefaults = '1';
 		}	
 		
