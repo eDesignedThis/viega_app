@@ -1,0 +1,48 @@
+.ui-header.ui-bar-a {
+  background: #01315b !important;
+  color: white !important;
+}
+
+.ui-page-theme-a .linkBtn,
+button.ui-btn.ui-btn-a {
+  background: #01315b !important;
+  color: white !important;
+}
+
+.ui-page-theme-a .linkBtn:hover,
+button.ui-btn.ui-btn-a:hover {
+  background: #253746 !important;
+  color: white !important;
+}
+
+.ui-block-a .ui-page-theme-a .linkBtn {
+  background: #253746 !important;
+  color: white !important;
+}
+
+.ui-footer.ui-bar-a {
+  /* border-top: 2px solid #ea7024 !important; */
+}
+
+.linkBtn.remote-content {
+  border: 2px solid #ea7024 !important;
+}
+
+.ui-alt-title-color {
+  color: #01315b !important;
+}
+
+.ui-page-theme-a {
+  /* background: #ebebeb !important; */
+}
+
+.ui-page-theme-a a:visited,
+html .ui-bar-a a:visited,
+html .ui-body-a a:visited,
+html body .ui-group-theme-a a:visited,
+.ui-page-theme-a a,
+html .ui-bar-a a,
+html .ui-body-a a,
+html body .ui-group-theme-a a {
+  color: #ea7024 !important;
+}

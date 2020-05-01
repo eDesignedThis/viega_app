@@ -1,10 +1,10 @@
 var config = {
   appName: "MasterTech Rewards",
-  appPushId: "D3EF2-35712",
+  appPushId: "C61AE-B31F6",
   //this is the project number not the project Id
-  googleProjectNumber: "646856504251",
+  googleProjectNumber: "911695952068",
   msServiceName: "",
   host: "https://mastertechrewards.com",
   base: "/m/",
-  googleUA: "UA-61738744-29",
+  googleUA: "UA-61738744-42",
 };
